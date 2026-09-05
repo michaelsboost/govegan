@@ -39,6 +39,8 @@ ALPINE APP
               <button type="button" @click="navigate('ingredient-library'); open = false" class="menu-item">🧪 Ingredient Library</button>
               <button type="button" @click="navigate('nutrition'); open = false" class="menu-item">🥗 Nutrition</button>
               <button type="button" @click="navigate('learn'); open = false" class="menu-item">📖 Learn</button>
+              <button type="button" @click="navigate('evidence'); open = false" class="menu-item">🔬 Evidence Library</button>
+              <button type="button" @click="navigate('normalization'); open = false" class="menu-item">🧭 When Harm Becomes Normal</button>
               <button type="button" @click="navigate('resources'); open = false" class="menu-item">🔗 Resources</button>
               <button type="button" @click="navigate('about'); open = false" class="menu-item">ℹ️ About</button>
             </div>
@@ -57,6 +59,12 @@ ALPINE APP
           <button type="button" @click="openGlobalSearch = !openGlobalSearch" class="icon-button" aria-label="Search">
             <span aria-hidden="true">🔍</span>
           </button>
+          <button type="button" @click="shareApp()" class="icon-button header-share-button" aria-label="Share Go Vegan" title="Share Go Vegan">
+            <span aria-hidden="true">📤</span>
+          </button>
+          <a href="https://michaelsboost.com/donate" target="_blank" rel="noopener noreferrer" class="icon-button" aria-label="Donate" title="Donate">
+            <span aria-hidden="true">💛</span>
+          </a>
         </div>
       </div>
 
@@ -123,7 +131,7 @@ ALPINE APP
               </div>
               <div class="hero-visual">
   <img
-    src="imgs/hero.jpg"
+    src="https://michaelsboost.github.io/govegan/imgs/hero.jpg"
     alt="Healthy plant-based brunch table with smoothie, coffee, toast and colorful dishes"
     class="hero-image"
     width="1200"
@@ -391,6 +399,124 @@ ALPINE APP
         </div>
       </div>
 
+      <!-- EVIDENCE LIBRARY VIEW -->
+      <div x-show="view === 'evidence'" x-transition:enter.duration.300ms>
+        <div class="view view-evidence"><div class="view-container evidence-shell">
+          <template x-if="!selectedEvidenceClaim">
+            <div class="evidence-landing">
+              <div class="evidence-hero">
+                <div class="evidence-hero-copy">
+                  <span class="evidence-eyebrow">Research, without the gotchas</span>
+                  <h2 class="view-title">Evidence Library</h2>
+                  <p class="view-subtitle">Search common questions about veganism and see what the evidence supports, what needs context, and what science cannot answer by itself.</p>
+                </div>
+                <span class="resource-count" x-text="evidenceClaims.length + ' claims reviewed'"></span>
+              </div>
+
+              <label class="evidence-search-box">
+                <span aria-hidden="true">🔍</span>
+                <input type="search" x-model="evidenceQuery" placeholder="Ask about B12, plants, crop deaths, soy..." aria-label="Search evidence library">
+                <button x-show="evidenceQuery" type="button" @click="evidenceQuery = ''" aria-label="Clear evidence search">×</button>
+              </label>
+
+              <div class="evidence-category-strip" aria-label="Evidence categories">
+                <template x-for="cat in evidenceCategories" :key="cat">
+                  <button type="button" @click="selectEvidenceCategory(cat)" class="evidence-category-chip" :class="{'active': evidenceCategory === cat}" x-text="cat"></button>
+                </template>
+              </div>
+
+              <section x-show="!evidenceQuery && evidenceCategory === 'All'" class="evidence-popular">
+                <div class="evidence-section-heading"><div><span class="evidence-eyebrow">Start here</span><h3>Common questions</h3></div><span>Tap one for the full answer</span></div>
+                <div class="evidence-popular-grid">
+                  <template x-for="item in popularEvidenceClaims" :key="item.id">
+                    <button type="button" class="evidence-question-card" @click="openEvidenceClaim(item)">
+                      <span class="evidence-question-icon" x-text="evidenceCategoryIcon(item.category)"></span>
+                      <span><small x-text="item.category"></small><strong x-text="item.claim"></strong><em>Read evidence →</em></span>
+                    </button>
+                  </template>
+                </div>
+              </section>
+
+              <div class="evidence-results-head">
+                <div><h3 x-text="evidenceQuery || evidenceCategory !== 'All' ? 'Results' : 'Browse all claims'"></h3><p x-text="evidenceResultSummary"></p></div>
+                <button x-show="evidenceQuery || evidenceCategory !== 'All' || evidenceVerdict !== 'All'" type="button" class="text-button" @click="resetEvidenceFilters()">Reset</button>
+              </div>
+
+              <div class="evidence-results-list">
+                <template x-for="item in filteredEvidenceClaims" :key="item.id">
+                  <button type="button" class="evidence-result-card" @click="openEvidenceClaim(item)">
+                    <span class="evidence-result-main"><span class="evidence-meta"><span class="evidence-category" x-text="item.category"></span><span class="evidence-verdict" x-text="item.verdict"></span></span><strong x-text="item.claim"></strong><span class="evidence-answer" x-text="item.shortAnswer"></span></span>
+                    <span class="evidence-result-arrow" aria-hidden="true">›</span>
+                  </button>
+                </template>
+              </div>
+              <div x-show="filteredEvidenceClaims.length === 0" class="empty-state"><h3>No matching claims</h3><p>Try a shorter search or choose another category.</p><button type="button" class="secondary-button" @click="resetEvidenceFilters()">Show all claims</button></div>
+            </div>
+          </template>
+
+          <template x-if="selectedEvidenceClaim">
+            <article class="evidence-detail">
+              <button type="button" class="evidence-back" @click="closeEvidenceClaim()">← Back to Evidence Library</button>
+              <div class="evidence-detail-header">
+                <div class="evidence-meta"><span class="evidence-category" x-text="selectedEvidenceClaim.category"></span><span class="evidence-verdict" x-text="selectedEvidenceClaim.verdict"></span></div>
+                <h2 x-text="selectedEvidenceClaim.claim"></h2>
+              </div>
+              <section class="evidence-short-answer"><span class="evidence-eyebrow">Short answer</span><p x-text="selectedEvidenceClaim.shortAnswer"></p></section>
+              <section class="evidence-detail-section"><h3>What the evidence shows</h3><p x-text="selectedEvidenceClaim.explanation"></p></section>
+              <section class="evidence-detail-section evidence-context"><h3>Important context</h3><p x-text="selectedEvidenceClaim.caveats"></p></section>
+              <section class="evidence-detail-section"><h3>Sources</h3><div class="evidence-source-list"><template x-for="source in selectedEvidenceClaim.sources" :key="source.url"><a :href="source.url" target="_blank" rel="noopener noreferrer"><span x-text="source.title"></span><span aria-hidden="true">↗</span></a></template></div></section>
+              <section x-show="relatedEvidenceClaims.length" class="evidence-detail-section"><h3>Related questions</h3><div class="evidence-related-list"><template x-for="item in relatedEvidenceClaims" :key="item.id"><button type="button" @click="openEvidenceClaim(item)"><span x-text="item.claim"></span><span aria-hidden="true">›</span></button></template></div></section>
+            </article>
+          </template>
+        </div></div>
+      </div>
+
+
+      <!-- WHEN HARM BECOMES NORMAL VIEW -->
+      <div x-show="view === 'normalization'" x-transition:enter.duration.300ms>
+        <div class="view view-normalization"><div class="view-container normalization-shell">
+          <header class="normalization-hero">
+            <span class="evidence-eyebrow">History, ethics, and the danger of familiarity</span>
+            <h2 class="view-title">When Harm Becomes Normal</h2>
+            <p class="view-subtitle">A practice being legal, traditional, profitable, familiar, or socially accepted does not by itself tell us whether it is ethical.</p>
+            <div class="normalization-note"><strong>This is not a claim that animal agriculture is identical to human atrocities.</strong><span>The victims, histories, circumstances, and forms of suffering are different. The comparison here is about a recurring social mechanism: people can become accustomed to harmful systems and build language, institutions, laws, and economic interests around them.</span></div>
+          </header>
+
+          <section class="normalization-section">
+            <div class="normalization-heading"><span class="normalization-number">01</span><div><h3>Normalization is not justification</h3><p>History gives us many examples of practices that were defended or tolerated within their societies and later condemned, restricted, or abolished.</p></div></div>
+            <div class="normalization-grid">
+              <article class="normalization-card"><span>Enslavement</span><h4>People treated as property</h4><p>Enslavement was embedded in law and major economic systems for generations. Its historical acceptance did not make ownership of human beings morally defensible.</p><a href="https://www.loc.gov/classroom-materials/united-states-history-primary-source-timeline/national-expansion-and-reform-1815-1880/pre-civil-war-african-american-slavery/" target="_blank" rel="noopener noreferrer">Library of Congress ↗</a></article>
+              <article class="normalization-card"><span>Child labor</span><h4>Dangerous work became ordinary</h4><p>Industrial child labor placed large numbers of children in factories, mills, mines, and street work. Reform came despite arguments involving family income, industry, and established practice.</p><a href="https://www.loc.gov/classroom-materials/child-labor/" target="_blank" rel="noopener noreferrer">Library of Congress ↗</a></article>
+              <article class="normalization-card"><span>Forced assimilation</span><h4>Indigenous children removed from culture</h4><p>Federal Indian boarding schools separated Native children from families and sought to suppress languages, religions, names, clothing, and cultural practices, often through coercion and punishment.</p><a href="https://www.nps.gov/articles/boarding-schools.htm" target="_blank" rel="noopener noreferrer">National Park Service ↗</a></article>
+              <article class="normalization-card"><span>Human experimentation</span><h4>Research without meaningful consent</h4><p>The U.S. Public Health Service study at Tuskegee continued for decades without informed consent and without offering appropriate treatment even after effective treatment was available. Its exposure helped drive research-ethics reform.</p><a href="https://www.nlm.nih.gov/news/Collection-Untreated-Syphilis-Study-Tuskegee.html" target="_blank" rel="noopener noreferrer">National Library of Medicine ↗</a></article>
+              <article class="normalization-card"><span>Eugenics</span><h4>Forced sterilization presented as social improvement</h4><p>Eugenic movements classified people as biologically or socially "unfit" and promoted compulsory sterilization. Such ideas influenced policy in multiple countries and were taken to horrific extremes by Nazi Germany.</p><a href="https://encyclopedia.ushmm.org/content/en/article/eugenics" target="_blank" rel="noopener noreferrer">U.S. Holocaust Memorial Museum ↗</a></article>
+              <article class="normalization-card"><span>Living ethnological exhibitions</span><h4>Human beings displayed as spectacles</h4><p>Late nineteenth and early twentieth century exhibitions displayed people described as "primitive" before paying audiences. Historians caution that these exhibitions varied, but they were closely tied to colonialism, racism, and exoticization.</p><a href="https://doi.org/10.3989/chdj.2013.022" target="_blank" rel="noopener noreferrer">Peer-reviewed history ↗</a></article>
+              <article class="normalization-card"><span>Castrati</span><h4>Boys altered to preserve singing voices</h4><p>For centuries, some boys were castrated before puberty so their voices would remain high into adulthood. A small number became celebrated singers, while the bodily alteration itself served religious and artistic institutions rather than the child's medical needs.</p><a href="https://pubmed.ncbi.nlm.nih.gov/25665280/" target="_blank" rel="noopener noreferrer">Peer-reviewed history ↗</a></article>
+              <article class="normalization-card"><span>Forced labor</span><h4>Coercion turned into an institution</h4><p>Compelled labor has repeatedly been justified by states and private interests. International standards now recognize forced labor as a fundamental rights violation, although it continues today.</p><a href="https://www.ilo.org/topics-and-sectors/forced-labour-modern-slavery-and-trafficking-persons/what-forced-labour" target="_blank" rel="noopener noreferrer">International Labour Organization ↗</a></article>
+            </div>
+          </section>
+
+          <section class="normalization-section normalization-mechanism">
+            <div class="normalization-heading"><span class="normalization-number">02</span><div><h3>How harmful systems become ordinary</h3><p>No single mechanism explains every historical case, but the same kinds of defenses appear repeatedly.</p></div></div>
+            <div class="normalization-mechanism-grid">
+              <div><strong>Tradition</strong><span>“We have always done it.”</span></div><div><strong>Legality</strong><span>“It is allowed, therefore it is acceptable.”</span></div><div><strong>Economics</strong><span>“Jobs and livelihoods depend on it.”</span></div><div><strong>Distance</strong><span>The harmed individual becomes invisible to the beneficiary.</span></div><div><strong>Language</strong><span>Technical or commercial terms can make physical realities easier to ignore.</span></div><div><strong>Institutions</strong><span>Routine procedures can distribute responsibility until no individual feels responsible for the whole system.</span></div>
+            </div>
+          </section>
+
+          <section class="normalization-section normalization-bridge">
+            <div class="normalization-heading"><span class="normalization-number">03</span><div><h3>Now apply the question consistently</h3><p>The historical lesson is not that every accepted practice is secretly evil. It is that acceptance alone cannot settle the moral question.</p></div></div>
+            <div class="normalization-question"><p>When a sentient animal can experience pain, fear, distress, confinement, separation, or death, what justifies imposing those harms?</p><span>If a practice is defended primarily by taste, convenience, tradition, legality, or profit, ask whether those reasons are sufficient when practical alternatives are available.</span></div>
+            <div class="normalization-actions"><button type="button" class="primary-button" @click="navigate('animals')">See what happens to animals</button><button type="button" class="secondary-button" @click="navigate('evidence')">Check the evidence</button></div>
+          </section>
+
+          <section class="normalization-section normalization-reflection">
+            <span class="evidence-eyebrow">A question worth carrying forward</span>
+            <blockquote>Normal does not mean moral. Sometimes normal is simply what a society has become accustomed to no longer questioning.</blockquote>
+            <p>Learn where products come from. Look beyond packaging and familiar terminology. Question what you were taught was inevitable. Then decide what you are willing to participate in when another option is reasonably available.</p>
+          </section>
+        </div></div>
+      </div>
+
       <!-- RESOURCES VIEW -->
       <div x-show="view === 'resources'" x-transition:enter.duration.300ms>
         <div class="view view-resources">
@@ -561,7 +687,7 @@ ALPINE APP
             <p class="view-subtitle">Discover common household products that may contain animal-derived materials, and find vegan alternatives.</p>
             <div class="filter-row">
               <template x-for="location in householdLocations" :key="location.id">
-                <button type="button" @click="selectedLocation = location.id" class="filter-chip" :class="{'active': selectedLocation === location.id}" x-text="location.emoji + ' ' + location.name"></button>
+                <button type="button" @click="selectHouseholdLocation(location.id)" class="filter-chip" :class="{'active': selectedLocation === location.id}" x-text="location.emoji + ' ' + location.name"></button>
               </template>
             </div>
             <div x-show="selectedLocationData">
@@ -699,13 +825,14 @@ ALPINE APP
               </div>
 
               <div class="modal-tabs" role="tablist" aria-label="Animal detail sections" @keydown="handleAnimalTabKeydown($event)">
-                <button type="button" @click="selectAnimalTab('overview', $event)" role="tab" :aria-selected="animalDetailTab === 'overview'" :aria-controls="'tab-panel-overview'" :id="'tab-overview'" class="modal-tab" :class="{'active': animalDetailTab === 'overview'}" :tabindex="animalDetailTab === 'overview' ? '0' : '-1'">Overview</button>
-                <button type="button" @click="selectAnimalTab('natural', $event)" role="tab" :aria-selected="animalDetailTab === 'natural'" :aria-controls="'tab-panel-natural'" :id="'tab-natural'" class="modal-tab" :class="{'active': animalDetailTab === 'natural'}" :tabindex="animalDetailTab === 'natural' ? '0' : '-1'">Natural Life</button>
-                <button type="button" @click="selectAnimalTab('uses', $event)" role="tab" :aria-selected="animalDetailTab === 'uses'" :aria-controls="'tab-panel-uses'" :id="'tab-uses'" class="modal-tab" :class="{'active': animalDetailTab === 'uses'}" :tabindex="animalDetailTab === 'uses' ? '0' : '-1'">Human Uses</button>
-                <button type="button" @click="selectAnimalTab('ingredients', $event)" role="tab" :aria-selected="animalDetailTab === 'ingredients'" :aria-controls="'tab-panel-ingredients'" :id="'tab-ingredients'" class="modal-tab" :class="{'active': animalDetailTab === 'ingredients'}" :tabindex="animalDetailTab === 'ingredients' ? '0' : '-1'">Ingredients</button>
-                <button type="button" @click="selectAnimalTab('everyday', $event)" role="tab" :aria-selected="animalDetailTab === 'everyday'" :aria-controls="'tab-panel-everyday'" :id="'tab-everyday'" class="modal-tab" :class="{'active': animalDetailTab === 'everyday'}" :tabindex="animalDetailTab === 'everyday' ? '0' : '-1'">Everyday Items</button>
-                <button type="button" @click="selectAnimalTab('alternatives', $event)" role="tab" :aria-selected="animalDetailTab === 'alternatives'" :aria-controls="'tab-panel-alternatives'" :id="'tab-alternatives'" class="modal-tab" :class="{'active': animalDetailTab === 'alternatives'}" :tabindex="animalDetailTab === 'alternatives' ? '0' : '-1'">Alternatives</button>
-                <button type="button" @click="selectAnimalTab('sources', $event)" role="tab" :aria-selected="animalDetailTab === 'sources'" :aria-controls="'tab-panel-sources'" :id="'tab-sources'" class="modal-tab" :class="{'active': animalDetailTab === 'sources'}" :tabindex="animalDetailTab === 'sources' ? '0' : '-1'">Sources</button>
+                <button type="button" @click="animalDetailTab = 'overview'" role="tab" :aria-selected="animalDetailTab === 'overview'" :aria-controls="'tab-panel-overview'" :id="'tab-overview'" class="modal-tab" :class="{'active': animalDetailTab === 'overview'}" :tabindex="animalDetailTab === 'overview' ? '0' : '-1'">Overview</button>
+                <button type="button" @click="animalDetailTab = 'natural'" role="tab" :aria-selected="animalDetailTab === 'natural'" :aria-controls="'tab-panel-natural'" :id="'tab-natural'" class="modal-tab" :class="{'active': animalDetailTab === 'natural'}" :tabindex="animalDetailTab === 'natural' ? '0' : '-1'">Natural Life</button>
+                <button type="button" @click="animalDetailTab = 'uses'" role="tab" :aria-selected="animalDetailTab === 'uses'" :aria-controls="'tab-panel-uses'" :id="'tab-uses'" class="modal-tab" :class="{'active': animalDetailTab === 'uses'}" :tabindex="animalDetailTab === 'uses' ? '0' : '-1'">Human Uses</button>
+                <button type="button" @click="animalDetailTab = 'harm'" role="tab" :aria-selected="animalDetailTab === 'harm'" :aria-controls="'tab-panel-harm'" :id="'tab-harm'" class="modal-tab" :class="{'active': animalDetailTab === 'harm'}" :tabindex="animalDetailTab === 'harm' ? '0' : '-1'">What Happens to Them</button>
+                <button type="button" @click="animalDetailTab = 'ingredients'" role="tab" :aria-selected="animalDetailTab === 'ingredients'" :aria-controls="'tab-panel-ingredients'" :id="'tab-ingredients'" class="modal-tab" :class="{'active': animalDetailTab === 'ingredients'}" :tabindex="animalDetailTab === 'ingredients' ? '0' : '-1'">Ingredients</button>
+                <button type="button" @click="animalDetailTab = 'everyday'" role="tab" :aria-selected="animalDetailTab === 'everyday'" :aria-controls="'tab-panel-everyday'" :id="'tab-everyday'" class="modal-tab" :class="{'active': animalDetailTab === 'everyday'}" :tabindex="animalDetailTab === 'everyday' ? '0' : '-1'">Everyday Items</button>
+                <button type="button" @click="animalDetailTab = 'alternatives'" role="tab" :aria-selected="animalDetailTab === 'alternatives'" :aria-controls="'tab-panel-alternatives'" :id="'tab-alternatives'" class="modal-tab" :class="{'active': animalDetailTab === 'alternatives'}" :tabindex="animalDetailTab === 'alternatives' ? '0' : '-1'">Alternatives</button>
+                <button type="button" @click="animalDetailTab = 'sources'" role="tab" :aria-selected="animalDetailTab === 'sources'" :aria-controls="'tab-panel-sources'" :id="'tab-sources'" class="modal-tab" :class="{'active': animalDetailTab === 'sources'}" :tabindex="animalDetailTab === 'sources' ? '0' : '-1'">Sources</button>
               </div>
 
               <!-- Overview -->
@@ -781,6 +908,31 @@ ALPINE APP
                 </div>
                 <p x-show="selectedAnimalUses.length === 0" class="empty-text">No uses documented yet.</p>
               </div>
+
+              <!-- What Happens to Them -->
+              <template x-if="animalDetailTab === 'harm'">
+              <div class="modal-body active" role="tabpanel" aria-labelledby="tab-harm" id="tab-panel-harm">
+                <div class="harm-intro">
+                  <h4 class="modal-subtitle">What physically happens</h4>
+                  <p>This section documents what is physically done to animals in food, fiber, research and other human-use systems. Routine practices, system-dependent practices, welfare failures and natural biology are distinguished rather than treated as equivalent. Graphic detail is included when needed for accuracy, not for shock value.</p>
+                </div>
+                <div x-show="selectedAnimal.harmDetails && selectedAnimal.harmDetails.length > 0" class="harm-list">
+                  <template x-for="item in selectedAnimal.harmDetails" :key="item.title">
+                    <article class="harm-card">
+                      <div class="harm-card-heading"><h5 x-text="item.title"></h5><span class="tag" x-text="item.context || 'Documented practice'"></span></div>
+                      <p x-show="item.status" class="harm-status"><strong>Evidence:</strong> <span x-text="item.status"></span></p>
+                      <p x-text="item.description"></p>
+                      <p x-show="item.welfare" class="harm-welfare"><strong>What evidence shows:</strong> <span x-text="item.welfare"></span></p>
+                      <p x-show="item.limit" class="harm-limit"><strong>What this does not establish:</strong> <span x-text="item.limit"></span></p>
+                      <div x-show="item.urls && item.urls.length" class="harm-sources">
+                        <template x-for="link in item.urls" :key="link.url"><a :href="link.url" target="_blank" rel="noopener noreferrer" x-text="link.label + ' ↗'"></a></template>
+                      </div>
+                    </article>
+                  </template>
+                </div>
+                <p x-show="!selectedAnimal.harmDetails || selectedAnimal.harmDetails.length === 0" class="empty-text">Detailed harm documentation for this animal is still being researched. Existing welfare concerns and sources remain available in the Overview and Sources tabs.</p>
+              </div>
+              </template>
 
               <!-- Ingredients -->
               <div class="modal-body" x-show="animalDetailTab === 'ingredients'" :class="{'active': animalDetailTab === 'ingredients'}" role="tabpanel" :aria-labelledby="'tab-ingredients'" id="tab-panel-ingredients">
@@ -1028,20 +1180,24 @@ ALPINE APP
     <!-- MORE DRAWER -->
     <div id="more-drawer" class="more-drawer" :class="{'open': moreOpen}" :aria-hidden="!moreOpen" role="menu">
       <button type="button" @click="navigate('learn'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">📖</span> Learn</button>
+      <button type="button" @click="navigate('evidence'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🔬</span> Evidence Library</button>
+      <button type="button" @click="navigate('normalization'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🧭</span> When Harm Becomes Normal</button>
       <button type="button" @click="navigate('resources'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🔗</span> Resources</button>
       <button type="button" @click="navigate('animals'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🐄</span> Animals</button>
       <button type="button" @click="navigate('everyday'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🏠</span> Everyday</button>
       <button type="button" @click="navigate('ingredient-library'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🧪</span> Ingredients</button>
       <button type="button" @click="navigate('nutrition'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🥗</span> Nutrition</button>
       <button type="button" @click="openChecker = true; moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">✅</span> Ingredient Checker</button>
+      <button type="button" @click="shareApp(); moreOpen = false" class="tiny-share-menu-item" role="menuitem"><span class="drawer-icon" aria-hidden="true">📤</span> Share Go Vegan</button>
       <button type="button" @click="navigate('about'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">ℹ️</span> About</button>
     </div>
 
     <!-- FOOTER -->
     <footer class="app-footer">
-      <p>🌱 Go Vegan — progress, not perfection.</p>
+      <p>Go Vegan is free and open source. If this helped you, consider <a href="https://michaelsboost.com/donate" target="_blank" rel="noopener noreferrer">supporting development 💛</a> · <a href="https://github.com/michaelsboost/govegan" target="_blank" rel="noopener noreferrer">view the source on GitHub</a> · compassion over convenience · progress, not perfection</p>
       <p class="footer-disclaimer">All data for guidance. Always verify current product packaging.</p>
     </footer>
   </div>
 </div>
+
 

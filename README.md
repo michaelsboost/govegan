@@ -1,11 +1,12 @@
 # GO VEGAN
 
-*A practical, compassionate guide to vegan alternatives, animal-derived ingredients, everyday animal use, plant-based recipes, and making the transition one step at a time.*
+*A practical, compassionate, source-backed guide to vegan alternatives, animal-derived ingredients, animal use, evidence, plant-based recipes, and making the transition one step at a time.*
 
 ![About Go Vegan](https://raw.githubusercontent.com/michaelsboost/govegan/main/imgs/promo.png)
 
 
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://michaelsboost.com/govegan/)
+[![Version](https://img.shields.io/badge/version-0.0.2-6d8b61)](https://github.com/michaelsboost/govegan)
 [![MIT License](https://img.shields.io/github/license/michaelsboost/govegan)](LICENSE)  [![GitHub Stars](https://img.shields.io/github/stars/michaelsboost/govegan)](https://github.com/michaelsboost/govegan/stargazers)  [![GitHub Issues](https://img.shields.io/github/issues/michaelsboost/govegan)](https://github.com/michaelsboost/govegan/issues)
 
 ---
@@ -23,12 +24,31 @@ The app helps users:
 - identify animal-derived or source-dependent ingredients
 - learn which animals are used by different industries
 - understand common welfare and exploitation concerns
+- examine documented physical practices across animal-use systems
+- research common claims and questions through an Evidence Library
+- examine how harmful practices can become socially normalized
 - discover affordable plant-based recipes
 - learn basic vegan nutrition considerations
 - follow a gradual transition plan
 - save useful products and resources
 
 Go Vegan is designed around informed, compassionate action. It does not demand perfection or assume everyone begins with the same health, income, access, knowledge, or living situation.
+
+## ✨ What's New in 0.0.2
+
+Version 0.0.2 substantially expands the educational and research portions of Go Vegan.
+
+- The Animals Library has grown from 24 to 52 animal groups.
+- Twenty-eight new profiles cover additional mammals, birds, aquatic animals, invertebrates, and animals used for materials, labor, entertainment, trade, or research.
+- Animal profiles now separate natural life, human uses, documented physical practices, derived ingredients, everyday items, alternatives, and sources into focused tabs.
+- A new **What Happens to Them** section adds 152 documented practice entries across 24 animal profiles.
+- A new **Evidence Library** organizes 207 common vegan claims and questions across eight subject areas.
+- A new **When Harm Becomes Normal** section examines normalization as a social mechanism without claiming that different historical injustices are identical.
+- Evidence results are included in unified search.
+- URL-based navigation now supports direct links to views and details, along with improved browser and PWA Back and Forward behavior.
+- Sharing controls, mobile navigation, narrow-screen layout support, and project support links have been improved.
+
+The Evidence Library is an expanding research directory. Entries should be reviewed individually, strengthened with claim-specific evidence, and corrected whenever stronger sources become available.
 
 ---
 
@@ -67,12 +87,42 @@ Animal profiles may include:
 - industries in which the animal is used
 - products and ingredients derived from the animal
 - documented welfare concerns
+- documented physical practices and their context
 - practical vegan alternatives
 - supporting sources
 
 Some entries represent broad groups, such as fish or mollusks. These profiles are clearly identified because behavior, biology, and lifespan can vary substantially between species.
 
-Sensitive subjects are presented factually and without unnecessary graphic detail.
+Sensitive subjects are presented factually and with enough detail for accuracy, not for shock value. Routine practices, system-dependent practices, welfare failures, and natural biology are distinguished rather than treated as equivalent.
+
+---
+
+## 🔬 Evidence Library
+
+The Evidence Library provides a searchable structure for examining common claims and questions about veganism. Version 0.0.2 includes 207 entries organized into:
+
+- sentience
+- plants
+- nutrition
+- evolution and nature
+- environment
+- crop deaths and farming
+- animal agriculture
+- ethics and logic
+
+Each entry can contain a short answer, explanation, important context, verdict, confidence label, related questions, and supporting sources.
+
+Scientific evidence can establish or challenge factual premises, but it cannot decide every ethical conclusion by itself. Ethical and philosophical entries are identified accordingly. The directory is intended to improve over time as individual claims receive deeper review and stronger claim-specific sourcing.
+
+---
+
+## 🧭 When Harm Becomes Normal
+
+This section explores how harmful systems can become ordinary through repetition, law, tradition, economic dependence, social distance, euphemistic language, and institutional acceptance.
+
+It uses documented historical examples to examine the mechanism of normalization. It does not claim that animal agriculture is identical to slavery, forced assimilation, child labor, nonconsensual experimentation, eugenics, or other human atrocities. The victims, histories, circumstances, and forms of suffering are different.
+
+The central principle is that social acceptance, legality, tradition, and economic importance do not by themselves establish that a practice is morally justified.
 
 ---
 
@@ -197,6 +247,9 @@ The goal is to make meaningful change more understandable and achievable, not to
 - ✅ Whole-food and homemade alternatives
 - ✅ Animals Library
 - ✅ Animal-use and industry information
+- ✅ Documented physical-practice and harm information
+- ✅ Evidence Library with searchable claims and sources
+- ✅ Normalization and ethical-reflection section
 - ✅ Animal-derived ingredient database
 - ✅ Ingredient-label scanner
 - ✅ Plant-based recipes
@@ -204,6 +257,8 @@ The goal is to make meaningful change more understandable and achievable, not to
 - ✅ Budget-friendly filters
 - ✅ Dietary preference filters
 - ✅ Unified search
+- ✅ Direct links to views and detailed records
+- ✅ Browser and PWA history navigation
 - ✅ Transition plans and progress tracking
 - ✅ Product favorites
 - ✅ Favorites export
@@ -227,11 +282,19 @@ Go Vegan organizes information into linked collections rather than isolated list
 ```text
 Animals
   ├── Human uses and industries
+  ├── Documented physical practices
   ├── Derived ingredients
   ├── Everyday products
   ├── Welfare concerns
   ├── Vegan alternatives
   ├── Recipes
+  └── Sources
+
+Evidence claims
+  ├── Category and verdict
+  ├── Short answer and explanation
+  ├── Context and limitations
+  ├── Related questions
   └── Sources
 ```
 
@@ -258,6 +321,31 @@ The app includes a client-side data validator that can identify problems such as
 - incomplete recipes
 
 Validation warnings appear in the developer console without preventing the app from loading.
+
+---
+
+## 📊 Current Content
+
+Version 0.0.2 includes:
+
+| Collection | Entries |
+|---|---:|
+| Animal groups | 52 |
+| Documented physical-practice entries | 152 |
+| Evidence claims and questions | 207 |
+| Animal-use categories | 23 |
+| Products | 92 |
+| Recipes | 45 |
+| Ingredients | 94 |
+| Alternatives | 32 |
+| Everyday items | 51 |
+| Household locations | 8 |
+| Nutrients | 10 |
+| Learning articles | 20 |
+| Resources | 16 |
+| Core source records | 80 |
+
+Counts describe the included dataset, not a claim that every entry has completed final editorial review.
 
 ---
 
@@ -293,6 +381,15 @@ Go Vegan is built entirely with lightweight browser-native technologies.
 - Alpine.js
 - Custom CSS
 - JavaScript
+
+### Source and Build Files
+
+- `source.html` contains the application markup.
+- `source.css` contains the handwritten application styles.
+- `source.js` contains application behavior and structured content data.
+- `bundle.css` contains the production CSS generated from `source.css` plus the Tailwind classes detected in the HTML and JavaScript.
+- `dist/script.js` contains the production JavaScript bundle.
+- `index.html` is the deployable application page.
 
 ### Browser APIs
 
@@ -345,6 +442,22 @@ http://localhost:8000
 
 Because Go Vegan is a client-side application, it can also be hosted using GitHub Pages or another static hosting provider.
 
+### Production Build
+
+Install development dependencies:
+
+```bash
+npm install
+```
+
+Build the production CSS and JavaScript:
+
+```bash
+npm run build
+```
+
+When rebuilding CSS, ensure Tailwind scans both `source.html` and `source.js`. The final `bundle.css` must include the handwritten `source.css` rules and only the Tailwind classes used by the project.
+
 ---
 
 ## ⚠️ Disclaimer
@@ -376,6 +489,9 @@ Useful contribution areas include:
 - homemade and whole-food alternatives
 - animal profiles
 - animal-use documentation
+- claim-specific Evidence Library research
+- stronger peer-reviewed and primary sources
+- review of verdicts, limitations, and confidence labels
 - ingredient aliases
 - direct and current sources
 - affordable recipes

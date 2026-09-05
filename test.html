@@ -26,1045 +26,1212 @@
     <link rel="stylesheet" href="src/style.css">
   </head>
   <body>
-
-<a class="skip-link" href="#main-content">Skip to main content</a>
-
-<!-- ============================================================
-ALPINE APP
-============================================================ -->
-<div x-data="goVeganApp()" x-init="initApp()" id="app" x-cloak="">
-
-  <!-- Toast -->
-  <div class="toast-container" x-show="toast.message" x-transition.duration.300ms="">
-    <div class="toast" x-text="toast.message" @click="toast.message = ''"></div>
-  </div>
-
-  <div class="app-shell">
-
-    <!-- HEADER -->
-    <header class="app-header">
-      <div class="header-inner">
-        <a href="#" @click.prevent="navigate('home')" class="brand">
-          <span class="brand-icon" aria-hidden="true">🌱</span>
-          <span class="brand-name">Go Vegan</span>
-        </a>
-
-        <nav class="desktop-navigation" aria-label="Main navigation">
-          <template x-for="item in navItems" :key="item.id">
-            <a href="#" @click.prevent="navigate(item.id)" :class="{'active': view === item.id}" x-text="item.label" :aria-current="view === item.id ? 'page' : undefined"></a>
-          </template>
-
-          <!-- Desktop More dropdown -->
-          <div class="desktop-more-wrap" x-data="{ open: false }" @click.outside="open = false">
-            <button type="button" @click="open = !open" class="nav-more-btn" :aria-expanded="open" aria-controls="desktop-more-menu">
-              More
-            </button>
-            <div id="desktop-more-menu" x-show="open" x-cloak="" class="desktop-more-menu">
-              <button type="button" @click="navigate('animals'); open = false" class="menu-item">🐄 Animals</button>
-              <button type="button" @click="navigate('everyday'); open = false" class="menu-item">🏠 Everyday Products</button>
-              <button type="button" @click="navigate('ingredient-library'); open = false" class="menu-item">🧪 Ingredient Library</button>
-              <button type="button" @click="navigate('nutrition'); open = false" class="menu-item">🥗 Nutrition</button>
-              <button type="button" @click="navigate('learn'); open = false" class="menu-item">📖 Learn</button>
-              <button type="button" @click="navigate('resources'); open = false" class="menu-item">🔗 Resources</button>
-              <button type="button" @click="navigate('about'); open = false" class="menu-item">ℹ️ About</button>
+      
+    <!-- ============================================================
+    SKIP LINK
+    ============================================================ -->
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    
+    <!-- ============================================================
+    ALPINE APP
+    ============================================================ -->
+    <div x-data="goVeganApp()" x-init="initApp()" id="app" x-cloak>
+    
+      <!-- Toast -->
+      <div class="toast-container" x-show="toast.message" x-transition.duration.300ms>
+        <div class="toast" x-text="toast.message" @click="toast.message = ''"></div>
+      </div>
+    
+      <div class="app-shell">
+    
+        <!-- HEADER -->
+        <header class="app-header">
+          <div class="header-inner">
+            <a href="#" @click.prevent="navigate('home')" class="brand">
+              <span class="brand-icon" aria-hidden="true">🌱</span>
+              <span class="brand-name">Go Vegan</span>
+            </a>
+    
+            <nav class="desktop-navigation" aria-label="Main navigation">
+              <template x-for="item in navItems" :key="item.id">
+                <a href="#" @click.prevent="navigate(item.id)" :class="{'active': view === item.id}" x-text="item.label" :aria-current="view === item.id ? 'page' : undefined"></a>
+              </template>
+    
+              <!-- Desktop More dropdown -->
+              <div class="desktop-more-wrap" x-data="{ open: false }" @click.outside="open = false">
+                <button type="button" @click="open = !open" class="nav-more-btn" :aria-expanded="open" aria-controls="desktop-more-menu">
+                  More
+                </button>
+                <div id="desktop-more-menu" x-show="open" x-cloak class="desktop-more-menu">
+                  <button type="button" @click="navigate('animals'); open = false" class="menu-item">🐄 Animals</button>
+                  <button type="button" @click="navigate('everyday'); open = false" class="menu-item">🏠 Everyday Products</button>
+                  <button type="button" @click="navigate('ingredient-library'); open = false" class="menu-item">🧪 Ingredient Library</button>
+                  <button type="button" @click="navigate('nutrition'); open = false" class="menu-item">🥗 Nutrition</button>
+                  <button type="button" @click="navigate('learn'); open = false" class="menu-item">📖 Learn</button>
+                  <button type="button" @click="navigate('evidence'); open = false" class="menu-item">🔬 Evidence Library</button>
+                  <button type="button" @click="navigate('normalization'); open = false" class="menu-item">🧭 When Harm Becomes Normal</button>
+                  <button type="button" @click="navigate('resources'); open = false" class="menu-item">🔗 Resources</button>
+                  <button type="button" @click="navigate('about'); open = false" class="menu-item">ℹ️ About</button>
+                </div>
+              </div>
+            </nav>
+    
+            <div class="header-actions">
+              <button type="button" @click="navigate('favorites')" class="icon-button" aria-label="Favorites">
+                <span aria-hidden="true">❤️</span>
+                <span x-show="favorites.length > 0" class="favorites-badge" x-text="favorites.length"></span>
+              </button>
+              <button type="button" @click="toggleTheme()" class="icon-button theme-toggle" :aria-label="theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'" :title="theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'">
+                <span x-show="theme === 'dark'" aria-hidden="true">☀️</span>
+                <span x-show="theme === 'light'" aria-hidden="true">🌙</span>
+              </button>
+              <button type="button" @click="openGlobalSearch = !openGlobalSearch" class="icon-button" aria-label="Search">
+                <span aria-hidden="true">🔍</span>
+              </button>
+              <button type="button" @click="shareApp()" class="icon-button header-share-button" aria-label="Share Go Vegan" title="Share Go Vegan">
+                <span aria-hidden="true">📤</span>
+              </button>
+              <a href="https://michaelsboost.com/donate" target="_blank" rel="noopener noreferrer" class="icon-button" aria-label="Donate" title="Donate">
+                <span aria-hidden="true">💛</span>
+              </a>
             </div>
           </div>
-        </nav>
-
-        <div class="header-actions">
-          <button type="button" @click="navigate('favorites')" class="icon-button" aria-label="Favorites">
-            <span aria-hidden="true">❤️</span>
-            <span x-show="favorites.length &gt; 0" class="favorites-badge" x-text="favorites.length"></span>
-          </button>
-          <button type="button" @click="toggleTheme()" class="icon-button theme-toggle" :aria-label="theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'" :title="theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'">
-            <span x-show="theme === 'dark'" aria-hidden="true">☀️</span>
-            <span x-show="theme === 'light'" aria-hidden="true">🌙</span>
-          </button>
-          <button type="button" @click="openGlobalSearch = !openGlobalSearch" class="icon-button" aria-label="Search">
-            <span aria-hidden="true">🔍</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Global Search Bar -->
-      <div x-show="openGlobalSearch" x-transition.duration.200ms="" class="global-search">
-        <div class="search-field">
-          <span class="search-icon" aria-hidden="true">🔍</span>
-          <input type="text" x-model="globalSearchQuery" @input.debounce.300ms="performUnifiedSearch()" placeholder="Search animals, products, recipes, ingredients..." class="search-input" aria-label="Global search">
-          <button type="button" @click="globalSearchQuery = ''; globalSearchResults = []; openGlobalSearch = false" class="search-clear" aria-label="Clear search">✕</button>
-        </div>
-        <div x-show="globalSearchQuery.length &gt; 0" class="search-results">
-          <template x-if="Object.values(groupedSearchResults).some(arr =&gt; arr.length &gt; 0)">
-            <div>
-              <template x-for="(group, groupName) in groupedSearchResults" :key="groupName">
-                <div x-show="group.length &gt; 0" class="search-result-group">
-                  <h4 x-text="groupName"></h4>
-                  <template x-for="item in group.slice(0, 5)" :key="item.id">
-                    <button type="button" @click="handleSearchResultClick(item)" class="search-result-item">
-                      <span aria-hidden="true" x-text="item.emoji || '📄'"></span>
-                      <span x-text="item.displayName || item.name || item.title || item.commonName || item.label"></span>
+    
+          <!-- Global Search Bar -->
+          <div x-show="openGlobalSearch" x-transition.duration.200ms class="global-search">
+            <div class="search-field">
+              <span class="search-icon" aria-hidden="true">🔍</span>
+              <input type="text" x-model="globalSearchQuery" @input.debounce.300ms="performUnifiedSearch()" placeholder="Search animals, products, recipes, ingredients..." class="search-input" aria-label="Global search" />
+              <button type="button" @click="globalSearchQuery = ''; globalSearchResults = []; openGlobalSearch = false" class="search-clear" aria-label="Clear search">✕</button>
+            </div>
+            <div x-show="globalSearchQuery.length > 0" class="search-results">
+              <template x-if="Object.values(groupedSearchResults).some(arr => arr.length > 0)">
+                <div>
+                  <template x-for="(group, groupName) in groupedSearchResults" :key="groupName">
+                    <div x-show="group.length > 0" class="search-result-group">
+                      <h4 x-text="groupName"></h4>
+                      <template x-for="item in group.slice(0, 5)" :key="item.id">
+                        <button type="button" @click="handleSearchResultClick(item)" class="search-result-item">
+                          <span aria-hidden="true" x-text="item.emoji || '📄'"></span>
+                          <span x-text="item.displayName || item.name || item.title || item.commonName || item.label"></span>
+                        </button>
+                      </template>
+                    </div>
+                  </template>
+                </div>
+              </template>
+              <template x-if="Object.values(groupedSearchResults).every(arr => arr.length === 0)">
+                <div class="search-empty">
+                  No results found for "<span x-text="globalSearchQuery"></span>"
+                </div>
+              </template>
+            </div>
+          </div>
+        </header>
+    
+        <!-- MAIN CONTENT -->
+        <main id="main-content" class="main-content">
+    
+          <!-- HOME VIEW -->
+          <div x-show="view === 'home'" x-transition:enter.duration.300ms>
+            <div class="view view-home">
+              <!-- Hero -->
+              <section class="hero">
+                <div class="hero-layout">
+                  <div class="hero-copy">
+                    <h1 class="hero-headline">Everything you need to make the switch.</h1>
+                    <p class="hero-subhead">Find vegan alternatives for the food and products you already love.</p>
+                    <div class="hero-actions">
+                      <button type="button" @click="navigate('explore')" class="primary-button"><span aria-hidden="true">🌿</span> <span>Find an alternative</span></button>
+                      <button type="button" @click="navigate('journey')" class="secondary-button"><span aria-hidden="true">➡️</span> <span>Start my journey</span></button>
+                    </div>
+                    <div class="hero-search">
+                      <div class="search-field">
+                        <span class="search-icon" aria-hidden="true">🔍</span>
+                        <input type="text" x-model="globalSearchQuery" @input.debounce.300ms="performUnifiedSearch()" @focus="openGlobalSearch = true" placeholder="What do you want to replace?" class="search-input" aria-label="Search for alternatives" />
+                        <button type="button" @click="searchExplore(globalSearchQuery)" class="primary-button search-submit">Search</button>
+                      </div>
+                      <div class="hero-tags">
+                        <template x-for="suggestion in ['Burger', 'Milk', 'Eggs', 'Cheese', 'Fish']" :key="suggestion">
+                          <button type="button" @click="searchExplore(suggestion)" class="tag" x-text="suggestion"></button>
+                        </template>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="hero-visual">
+      <img
+        src="https://michaelsboost.github.io/govegan/imgs/hero.jpg"
+        alt="Healthy plant-based brunch table with smoothie, coffee, toast and colorful dishes"
+        class="hero-image"
+        width="1200"
+        height="800"
+        loading="eager"
+        decoding="async"
+        referrerpolicy="no-referrer"
+      />
+                  </div>
+                </div>
+              </section>
+    
+              <!-- Quick swaps -->
+              <section class="section section-swaps">
+                <div class="section-container">
+                  <h2 class="section-title">Start with one simple swap</h2>
+                  <p class="section-subtitle">Pick a category that feels easy to begin with.</p>
+                  <div class="swap-grid">
+                    <template x-for="cat in ['Milk', 'Burger', 'Cheese', 'Eggs', 'Yogurt', 'Butter', 'Chicken', 'Seafood']" :key="cat">
+                      <button type="button" @click="searchExplore(cat)" class="swap-card">
+                        <span class="swap-icon" aria-hidden="true" x-text="({Milk:'🥛',Burger:'🍔',Cheese:'🧀',Eggs:'🥚',Yogurt:'🥄',Butter:'🧈',Chicken:'🍗',Seafood:'🐟'})[cat] || '🌱'"></span>
+                        <span class="swap-label" x-text="cat"></span>
+                        <span class="swap-action">Find alternatives →</span>
+                      </button>
+                    </template>
+                  </div>
+                </div>
+              </section>
+    
+              <!-- Cow's milk → Plant milk comparison -->
+              <section class="section section-comparison">
+                <div class="section-container">
+                  <div class="comparison-grid">
+                    <div class="comparison-card comparison-source">
+                      <span class="comparison-icon" aria-hidden="true">🐄</span>
+                      <h3 class="comparison-title">Cow's milk</h3>
+                      <p class="comparison-desc">Creamy, classic, and part of so many moments.</p>
+                      <span class="comparison-arrow" aria-hidden="true">➡️</span>
+                    </div>
+                    <div class="comparison-card comparison-target">
+                      <span class="comparison-icon" aria-hidden="true">🌾</span>
+                      <h3 class="comparison-title">Plant milk</h3>
+                      <p class="comparison-desc">Same comfort, made from plants.</p>
+                      <div class="comparison-tags">
+                        <span class="tag">🥛 Oat Original</span>
+                        <span class="tag">🌰 Almond Unsweetened</span>
+                        <span class="tag">🌱 Soy</span>
+                      </div>
+                      <button type="button" @click="searchExplore('Milk')" class="secondary-button">Explore plant milks</button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+    
+              <!-- Featured -->
+              <section class="section section-featured">
+                <div class="section-container">
+                  <div class="section-header">
+                    <h2 class="section-title">Popular alternatives</h2>
+                    <button type="button" @click="navigate('explore')" class="text-button">View all →</button>
+                  </div>
+                  <div class="product-grid">
+                    <template x-for="p in featuredProducts" :key="p.id">
+                      <button type="button" @click="openProduct(p)" class="product-card product-card-visual">
+                        <div class="card-photo-wrap">
+                          <span class="card-photo-fallback product-emoji" aria-hidden="true" x-text="p.emoji || '🌱'"></span>
+                          <img x-show="p.imageUrl" :src="p.imageUrl" :alt="p.imageAlt || (p.brand + ' ' + p.name)" class="card-photo" loading="lazy" decoding="async" @error="$event.currentTarget.style.display='none'" />
+                        </div>
+                        <div class="product-card-body">
+                          <span class="product-emoji" aria-hidden="true" x-text="p.emoji || '🌱'"></span>
+                          <div>
+                            <div class="product-brand" x-text="p.brand"></div>
+                            <div class="product-name" x-text="p.name"></div>
+                          </div>
+                        </div>
+                        <div class="product-tags">
+                          <span class="tag" x-text="p.category"></span>
+                          <span class="tag" x-text="p.priceTier || 'moderate'"></span>
+                        </div>
+                      </button>
+                    </template>
+                  </div>
+                </div>
+              </section>
+    
+              <!-- Budget & New -->
+              <section class="section section-resources">
+                <div class="section-container">
+                  <div class="resources-grid">
+                    <div class="resource-card">
+                      <h3 class="resource-title">Budget-friendly choices</h3>
+                      <p class="resource-desc">Eating vegan doesn't have to be expensive.</p>
+                      <ul class="resource-list">
+                        <li><span class="bullet" aria-hidden="true">●</span> Beans & lentils → ground meat</li>
+                        <li><span class="bullet" aria-hidden="true">●</span> Tofu → chicken or fish</li>
+                        <li><span class="bullet" aria-hidden="true">●</span> Oatmeal → breakfast</li>
+                        <li><span class="bullet" aria-hidden="true">●</span> Store‑brand plant milk → dairy milk</li>
+                      </ul>
+                      <button type="button" @click="navigate('explore')" class="secondary-button">Explore budget options</button>
+                    </div>
+                    <div class="resource-card">
+                      <h3 class="resource-title">New to veganism?</h3>
+                      <p class="resource-desc">Start with our beginner-friendly resources.</p>
+                      <div class="resource-links">
+                        <button type="button" @click="navigate('learn'); expandLearnArticle('learn-getting-started')" class="resource-link">📖 Getting started guide</button>
+                        <button type="button" @click="navigate('learn'); expandLearnArticle('learn-hidden-ingredients')" class="resource-link">🏷️ How to read labels</button>
+                        <button type="button" @click="navigate('journey')" class="resource-link">🗓️ 30‑day transition plan</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+    
+              <!-- Feature cards -->
+              <section class="section section-features">
+                <div class="section-container">
+                  <div class="features-grid">
+                    <button type="button" @click="navigate('nutrition')" class="feature-card">
+                      <span class="feature-icon" aria-hidden="true">🥗</span>
+                      <h4 class="feature-label">Nutrition</h4>
+                    </button>
+                    <button type="button" @click="openChecker = true" class="feature-card">
+                      <span class="feature-icon" aria-hidden="true">🔍</span>
+                      <h4 class="feature-label">Checker</h4>
+                    </button>
+                    <button type="button" @click="openExploreTab('Beyond Food')" class="feature-card">
+                      <span class="feature-icon" aria-hidden="true">🧴</span>
+                      <h4 class="feature-label">Beyond Food</h4>
+                    </button>
+                    <button type="button" @click="navigate('animals')" class="feature-card">
+                      <span class="feature-icon" aria-hidden="true">🐄</span>
+                      <h4 class="feature-label">Animals</h4>
+                    </button>
+                    <button type="button" @click="navigate('everyday')" class="feature-card">
+                      <span class="feature-icon" aria-hidden="true">🏠</span>
+                      <h4 class="feature-label">Everyday</h4>
+                    </button>
+                    <button type="button" @click="navigate('ingredient-library')" class="feature-card">
+                      <span class="feature-icon" aria-hidden="true">🧪</span>
+                      <h4 class="feature-label">Ingredients</h4>
+                    </button>
+                  </div>
+                </div>
+              </section>
+    
+              <section class="section section-cta">
+                <div class="section-container">
+                  <h2 class="cta-title">Every step counts. 🌱</h2>
+                  <p class="cta-sub">Progress, not perfection. You're doing something good.</p>
+                  <button type="button" @click="navigate('journey')" class="primary-button">Start your 30‑day journey</button>
+                </div>
+              </section>
+            </div>
+          </div>
+    
+          <!-- EXPLORE VIEW -->
+          <div x-show="view === 'explore'" x-transition:enter.duration.300ms>
+            <div class="view view-explore">
+              <div class="view-container">
+                <h2 class="view-title">Explore</h2>
+                <p class="view-subtitle">Find products, whole-food swaps, homemade alternatives, and beyond.</p>
+                <div class="tab-bar">
+                  <template x-for="tab in ['Products', 'Whole-Food', 'Homemade', 'Beyond Food']" :key="tab">
+                    <button type="button" @click="exploreTab = tab" class="tab-button" :class="{'active': exploreTab === tab}" x-text="tab"></button>
+                  </template>
+                </div>
+                <div class="explore-controls">
+                  <div class="search-field">
+                    <span class="search-icon" aria-hidden="true">🔍</span>
+                    <input type="text" x-model="exploreQuery" @input.debounce.300ms="filterExplore()" placeholder="Search products, brands..." class="search-input" aria-label="Search products" />
+                  </div>
+                  <div class="filter-row">
+                    <button type="button" @click="toggleFilter('budget')" class="filter-chip" :class="{'active': activeFilters.includes('budget')}">Budget</button>
+                    <button type="button" @click="toggleFilter('high-protein')" class="filter-chip" :class="{'active': activeFilters.includes('high-protein')}">High Protein</button>
+                    <button type="button" @click="toggleFilter('soy-free')" class="filter-chip" :class="{'active': activeFilters.includes('soy-free')}">Soy-Free</button>
+                    <button type="button" @click="toggleFilter('peanut-free')" class="filter-chip" :class="{'active': activeFilters.includes('peanut-free')}">Peanut-Free</button>
+                    <button type="button" @click="toggleFilter('tree-nut-free')" class="filter-chip" :class="{'active': activeFilters.includes('tree-nut-free')}">Tree-Nut-Free</button>
+                    <button type="button" @click="clearFilters()" class="filter-chip filter-clear" x-show="activeFilters.length > 0">Clear all</button>
+                  </div>
+                </div>
+                <p class="dietary-disclaimer">
+                  Dietary tags describe listed ingredients only and do not guarantee freedom from manufacturing cross-contact. Verify current packaging when allergies are involved.
+                </p>
+                <div class="product-grid">
+                  <template x-for="p in filteredExploreItems" :key="p.id">
+                    <button type="button" @click="openProduct(p)" class="product-card product-card-visual">
+                      <div class="card-photo-wrap">
+                        <span class="card-photo-fallback product-emoji" aria-hidden="true" x-text="p.emoji || '🌱'"></span>
+                        <img x-show="p.imageUrl" :src="p.imageUrl" :alt="p.brand + ' ' + p.name + ' category illustration'" class="card-photo" loading="lazy" decoding="async" referrerpolicy="no-referrer" @error="$event.currentTarget.style.display='none'" />
+                      </div>
+                      <div class="product-brand" x-text="p.brand + ' ' + p.name"></div>
+                      <div class="product-name" x-text="p.category"></div>
+                      <div class="product-tags">
+                        <span class="tag" x-text="p.priceTier || 'moderate'"></span>
+                        <span x-show="p.dietaryTags && p.dietaryTags.includes('high-protein')" class="tag tag-high-protein">💪</span>
+                      </div>
                     </button>
                   </template>
                 </div>
-              </template>
+                <div x-show="filteredExploreItems.length === 0" class="empty-state">No products found. Try adjusting your filters.</div>
+              </div>
             </div>
-          </template>
-          <template x-if="Object.values(groupedSearchResults).every(arr =&gt; arr.length === 0)">
-            <div class="search-empty">
-              No results found for "<span x-text="globalSearchQuery"></span>"
-            </div>
-          </template>
-        </div>
-      </div>
-    </header>
-
-    <!-- MAIN CONTENT -->
-    <main id="main-content" class="main-content">
-
-      <!-- HOME VIEW -->
-      <div x-show="view === 'home'" x-transition:enter.duration.300ms="">
-        <div class="view view-home">
-          <!-- Hero -->
-          <section class="hero">
-            <div class="hero-layout">
-              <div class="hero-copy">
-                <h1 class="hero-headline">Everything you need to make the switch.</h1>
-                <p class="hero-subhead">Find vegan alternatives for the food and products you already love.</p>
-                <div class="hero-actions">
-                  <button type="button" @click="navigate('explore')" class="primary-button"><span aria-hidden="true">🌿</span> <span>Find an alternative</span></button>
-                  <button type="button" @click="navigate('journey')" class="secondary-button"><span aria-hidden="true">➡️</span> <span>Start my journey</span></button>
+          </div>
+    
+          <!-- RECIPES VIEW -->
+          <div x-show="view === 'recipes'" x-transition:enter.duration.300ms>
+            <div class="view view-recipes">
+              <div class="view-container">
+                <h2 class="view-title">Recipes</h2>
+                <p class="view-subtitle">Delicious plant‑based meals for every occasion.</p>
+                <div class="search-field">
+                  <span class="search-icon" aria-hidden="true">🔍</span>
+                  <input type="text" x-model="recipeQuery" @input.debounce.300ms="filterRecipes()" placeholder="Search recipes..." class="search-input" aria-label="Search recipes" />
                 </div>
-                <div class="hero-search">
-                  <div class="search-field">
-                    <span class="search-icon" aria-hidden="true">🔍</span>
-                    <input type="text" x-model="globalSearchQuery" @input.debounce.300ms="performUnifiedSearch()" @focus="openGlobalSearch = true" placeholder="What do you want to replace?" class="search-input" aria-label="Search for alternatives">
-                    <button type="button" @click="searchExplore(globalSearchQuery)" class="primary-button search-submit">Search</button>
+                <div class="filter-row">
+                  <template x-for="tag in ['Quick', 'Budget', 'High-Protein', 'Breakfast', 'Dinner', 'Dessert']" :key="tag">
+                    <button type="button" @click="toggleRecipeFilter(tag)" class="filter-chip" :class="{'active': recipeFilters.includes(tag)}" x-text="tag"></button>
+                  </template>
+                </div>
+                <div class="recipe-grid">
+                  <template x-for="r in filteredRecipes" :key="r.id">
+                    <button type="button" @click="openRecipe(r)" class="recipe-card">
+                      <div class="recipe-media card-photo-wrap">
+                        <span class="card-photo-fallback recipe-visual" x-text="r.emoji || '🍽️'"></span>
+                        <img x-show="r.imageUrl" :src="r.imageUrl" :alt="r.title" class="card-photo" loading="lazy" decoding="async" referrerpolicy="no-referrer" @error="$event.currentTarget.style.display='none'" />
+                      </div>
+                      <div class="recipe-body">
+                        <div class="recipe-title" x-text="r.title"></div>
+                        <div class="recipe-meta"><span x-text="r.category"></span><span x-text="r.totalMinutes + ' min'"></span><span x-text="r.difficulty"></span></div>
+                      </div>
+                    </button>
+                  </template>
+                </div>
+                <div x-show="filteredRecipes.length === 0" class="empty-state">No recipes found.</div>
+              </div>
+            </div>
+          </div>
+    
+          <!-- LEARN VIEW -->
+          <div x-show="view === 'learn'" x-transition:enter.duration.300ms>
+            <div class="view view-learn">
+              <div class="view-container view-container-narrow">
+                <h2 class="view-title">Learn</h2>
+                <p class="view-subtitle">Factual, compassionate guidance for your vegan journey.</p>
+                <div class="learn-list">
+                  <template x-for="article in learnArticles" :key="article.id">
+                    <div class="learn-item">
+                      <button type="button" @click="toggleLearnArticle(article.id)" class="learn-toggle" :aria-expanded="expandedLearn.includes(article.id)" :aria-controls="'learn-panel-' + article.id" :id="'learn-btn-' + article.id">
+                        <h3 class="learn-title" x-text="article.title"></h3>
+                        <span class="learn-arrow" :class="{'rotate': expandedLearn.includes(article.id)}" aria-hidden="true">▼</span>
+                      </button>
+                      <div x-show="expandedLearn.includes(article.id)" x-transition.duration.200ms :id="'learn-panel-' + article.id" role="region" :aria-labelledby="'learn-btn-' + article.id">
+                        <div class="learn-content" x-html="article.content"></div>
+                        <div x-show="getResourcesForArticle(article).length > 0" class="context-resources context-resources-learn">
+                          <div class="context-resource-heading">Go deeper</div>
+                          <template x-for="resource in getResourcesForArticle(article)" :key="resource.id">
+                            <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><span x-text="resource.emoji || '🔗'"></span><span><strong x-text="resource.title"></strong><small x-text="resource.category + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
+                          </template>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <!-- EVIDENCE LIBRARY VIEW -->
+          <div x-show="view === 'evidence'" x-transition:enter.duration.300ms>
+            <div class="view view-evidence"><div class="view-container evidence-shell">
+              <template x-if="!selectedEvidenceClaim">
+                <div class="evidence-landing">
+                  <div class="evidence-hero">
+                    <div class="evidence-hero-copy">
+                      <span class="evidence-eyebrow">Research, without the gotchas</span>
+                      <h2 class="view-title">Evidence Library</h2>
+                      <p class="view-subtitle">Search common questions about veganism and see what the evidence supports, what needs context, and what science cannot answer by itself.</p>
+                    </div>
+                    <span class="resource-count" x-text="evidenceClaims.length + ' claims reviewed'"></span>
                   </div>
-                  <div class="hero-tags">
-                    <template x-for="suggestion in ['Burger', 'Milk', 'Eggs', 'Cheese', 'Fish']" :key="suggestion">
-                      <button type="button" @click="searchExplore(suggestion)" class="tag" x-text="suggestion"></button>
+    
+                  <label class="evidence-search-box">
+                    <span aria-hidden="true">🔍</span>
+                    <input type="search" x-model="evidenceQuery" placeholder="Ask about B12, plants, crop deaths, soy..." aria-label="Search evidence library">
+                    <button x-show="evidenceQuery" type="button" @click="evidenceQuery = ''" aria-label="Clear evidence search">×</button>
+                  </label>
+    
+                  <div class="evidence-category-strip" aria-label="Evidence categories">
+                    <template x-for="cat in evidenceCategories" :key="cat">
+                      <button type="button" @click="selectEvidenceCategory(cat)" class="evidence-category-chip" :class="{'active': evidenceCategory === cat}" x-text="cat"></button>
+                    </template>
+                  </div>
+    
+                  <section x-show="!evidenceQuery && evidenceCategory === 'All'" class="evidence-popular">
+                    <div class="evidence-section-heading"><div><span class="evidence-eyebrow">Start here</span><h3>Common questions</h3></div><span>Tap one for the full answer</span></div>
+                    <div class="evidence-popular-grid">
+                      <template x-for="item in popularEvidenceClaims" :key="item.id">
+                        <button type="button" class="evidence-question-card" @click="openEvidenceClaim(item)">
+                          <span class="evidence-question-icon" x-text="evidenceCategoryIcon(item.category)"></span>
+                          <span><small x-text="item.category"></small><strong x-text="item.claim"></strong><em>Read evidence →</em></span>
+                        </button>
+                      </template>
+                    </div>
+                  </section>
+    
+                  <div class="evidence-results-head">
+                    <div><h3 x-text="evidenceQuery || evidenceCategory !== 'All' ? 'Results' : 'Browse all claims'"></h3><p x-text="evidenceResultSummary"></p></div>
+                    <button x-show="evidenceQuery || evidenceCategory !== 'All' || evidenceVerdict !== 'All'" type="button" class="text-button" @click="resetEvidenceFilters()">Reset</button>
+                  </div>
+    
+                  <div class="evidence-results-list">
+                    <template x-for="item in filteredEvidenceClaims" :key="item.id">
+                      <button type="button" class="evidence-result-card" @click="openEvidenceClaim(item)">
+                        <span class="evidence-result-main"><span class="evidence-meta"><span class="evidence-category" x-text="item.category"></span><span class="evidence-verdict" x-text="item.verdict"></span></span><strong x-text="item.claim"></strong><span class="evidence-answer" x-text="item.shortAnswer"></span></span>
+                        <span class="evidence-result-arrow" aria-hidden="true">›</span>
+                      </button>
+                    </template>
+                  </div>
+                  <div x-show="filteredEvidenceClaims.length === 0" class="empty-state"><h3>No matching claims</h3><p>Try a shorter search or choose another category.</p><button type="button" class="secondary-button" @click="resetEvidenceFilters()">Show all claims</button></div>
+                </div>
+              </template>
+    
+              <template x-if="selectedEvidenceClaim">
+                <article class="evidence-detail">
+                  <button type="button" class="evidence-back" @click="closeEvidenceClaim()">← Back to Evidence Library</button>
+                  <div class="evidence-detail-header">
+                    <div class="evidence-meta"><span class="evidence-category" x-text="selectedEvidenceClaim.category"></span><span class="evidence-verdict" x-text="selectedEvidenceClaim.verdict"></span></div>
+                    <h2 x-text="selectedEvidenceClaim.claim"></h2>
+                  </div>
+                  <section class="evidence-short-answer"><span class="evidence-eyebrow">Short answer</span><p x-text="selectedEvidenceClaim.shortAnswer"></p></section>
+                  <section class="evidence-detail-section"><h3>What the evidence shows</h3><p x-text="selectedEvidenceClaim.explanation"></p></section>
+                  <section class="evidence-detail-section evidence-context"><h3>Important context</h3><p x-text="selectedEvidenceClaim.caveats"></p></section>
+                  <section class="evidence-detail-section"><h3>Sources</h3><div class="evidence-source-list"><template x-for="source in selectedEvidenceClaim.sources" :key="source.url"><a :href="source.url" target="_blank" rel="noopener noreferrer"><span x-text="source.title"></span><span aria-hidden="true">↗</span></a></template></div></section>
+                  <section x-show="relatedEvidenceClaims.length" class="evidence-detail-section"><h3>Related questions</h3><div class="evidence-related-list"><template x-for="item in relatedEvidenceClaims" :key="item.id"><button type="button" @click="openEvidenceClaim(item)"><span x-text="item.claim"></span><span aria-hidden="true">›</span></button></template></div></section>
+                </article>
+              </template>
+            </div></div>
+          </div>
+    
+    
+          <!-- WHEN HARM BECOMES NORMAL VIEW -->
+          <div x-show="view === 'normalization'" x-transition:enter.duration.300ms>
+            <div class="view view-normalization"><div class="view-container normalization-shell">
+              <header class="normalization-hero">
+                <span class="evidence-eyebrow">History, ethics, and the danger of familiarity</span>
+                <h2 class="view-title">When Harm Becomes Normal</h2>
+                <p class="view-subtitle">A practice being legal, traditional, profitable, familiar, or socially accepted does not by itself tell us whether it is ethical.</p>
+                <div class="normalization-note"><strong>This is not a claim that animal agriculture is identical to human atrocities.</strong><span>The victims, histories, circumstances, and forms of suffering are different. The comparison here is about a recurring social mechanism: people can become accustomed to harmful systems and build language, institutions, laws, and economic interests around them.</span></div>
+              </header>
+    
+              <section class="normalization-section">
+                <div class="normalization-heading"><span class="normalization-number">01</span><div><h3>Normalization is not justification</h3><p>History gives us many examples of practices that were defended or tolerated within their societies and later condemned, restricted, or abolished.</p></div></div>
+                <div class="normalization-grid">
+                  <article class="normalization-card"><span>Enslavement</span><h4>People treated as property</h4><p>Enslavement was embedded in law and major economic systems for generations. Its historical acceptance did not make ownership of human beings morally defensible.</p><a href="https://www.loc.gov/classroom-materials/united-states-history-primary-source-timeline/national-expansion-and-reform-1815-1880/pre-civil-war-african-american-slavery/" target="_blank" rel="noopener noreferrer">Library of Congress ↗</a></article>
+                  <article class="normalization-card"><span>Child labor</span><h4>Dangerous work became ordinary</h4><p>Industrial child labor placed large numbers of children in factories, mills, mines, and street work. Reform came despite arguments involving family income, industry, and established practice.</p><a href="https://www.loc.gov/classroom-materials/child-labor/" target="_blank" rel="noopener noreferrer">Library of Congress ↗</a></article>
+                  <article class="normalization-card"><span>Forced assimilation</span><h4>Indigenous children removed from culture</h4><p>Federal Indian boarding schools separated Native children from families and sought to suppress languages, religions, names, clothing, and cultural practices, often through coercion and punishment.</p><a href="https://www.nps.gov/articles/boarding-schools.htm" target="_blank" rel="noopener noreferrer">National Park Service ↗</a></article>
+                  <article class="normalization-card"><span>Human experimentation</span><h4>Research without meaningful consent</h4><p>The U.S. Public Health Service study at Tuskegee continued for decades without informed consent and without offering appropriate treatment even after effective treatment was available. Its exposure helped drive research-ethics reform.</p><a href="https://www.nlm.nih.gov/news/Collection-Untreated-Syphilis-Study-Tuskegee.html" target="_blank" rel="noopener noreferrer">National Library of Medicine ↗</a></article>
+                  <article class="normalization-card"><span>Eugenics</span><h4>Forced sterilization presented as social improvement</h4><p>Eugenic movements classified people as biologically or socially "unfit" and promoted compulsory sterilization. Such ideas influenced policy in multiple countries and were taken to horrific extremes by Nazi Germany.</p><a href="https://encyclopedia.ushmm.org/content/en/article/eugenics" target="_blank" rel="noopener noreferrer">U.S. Holocaust Memorial Museum ↗</a></article>
+                  <article class="normalization-card"><span>Living ethnological exhibitions</span><h4>Human beings displayed as spectacles</h4><p>Late nineteenth and early twentieth century exhibitions displayed people described as "primitive" before paying audiences. Historians caution that these exhibitions varied, but they were closely tied to colonialism, racism, and exoticization.</p><a href="https://doi.org/10.3989/chdj.2013.022" target="_blank" rel="noopener noreferrer">Peer-reviewed history ↗</a></article>
+                  <article class="normalization-card"><span>Castrati</span><h4>Boys altered to preserve singing voices</h4><p>For centuries, some boys were castrated before puberty so their voices would remain high into adulthood. A small number became celebrated singers, while the bodily alteration itself served religious and artistic institutions rather than the child's medical needs.</p><a href="https://pubmed.ncbi.nlm.nih.gov/25665280/" target="_blank" rel="noopener noreferrer">Peer-reviewed history ↗</a></article>
+                  <article class="normalization-card"><span>Forced labor</span><h4>Coercion turned into an institution</h4><p>Compelled labor has repeatedly been justified by states and private interests. International standards now recognize forced labor as a fundamental rights violation, although it continues today.</p><a href="https://www.ilo.org/topics-and-sectors/forced-labour-modern-slavery-and-trafficking-persons/what-forced-labour" target="_blank" rel="noopener noreferrer">International Labour Organization ↗</a></article>
+                </div>
+              </section>
+    
+              <section class="normalization-section normalization-mechanism">
+                <div class="normalization-heading"><span class="normalization-number">02</span><div><h3>How harmful systems become ordinary</h3><p>No single mechanism explains every historical case, but the same kinds of defenses appear repeatedly.</p></div></div>
+                <div class="normalization-mechanism-grid">
+                  <div><strong>Tradition</strong><span>“We have always done it.”</span></div><div><strong>Legality</strong><span>“It is allowed, therefore it is acceptable.”</span></div><div><strong>Economics</strong><span>“Jobs and livelihoods depend on it.”</span></div><div><strong>Distance</strong><span>The harmed individual becomes invisible to the beneficiary.</span></div><div><strong>Language</strong><span>Technical or commercial terms can make physical realities easier to ignore.</span></div><div><strong>Institutions</strong><span>Routine procedures can distribute responsibility until no individual feels responsible for the whole system.</span></div>
+                </div>
+              </section>
+    
+              <section class="normalization-section normalization-bridge">
+                <div class="normalization-heading"><span class="normalization-number">03</span><div><h3>Now apply the question consistently</h3><p>The historical lesson is not that every accepted practice is secretly evil. It is that acceptance alone cannot settle the moral question.</p></div></div>
+                <div class="normalization-question"><p>When a sentient animal can experience pain, fear, distress, confinement, separation, or death, what justifies imposing those harms?</p><span>If a practice is defended primarily by taste, convenience, tradition, legality, or profit, ask whether those reasons are sufficient when practical alternatives are available.</span></div>
+                <div class="normalization-actions"><button type="button" class="primary-button" @click="navigate('animals')">See what happens to animals</button><button type="button" class="secondary-button" @click="navigate('evidence')">Check the evidence</button></div>
+              </section>
+    
+              <section class="normalization-section normalization-reflection">
+                <span class="evidence-eyebrow">A question worth carrying forward</span>
+                <blockquote>Normal does not mean moral. Sometimes normal is simply what a society has become accustomed to no longer questioning.</blockquote>
+                <p>Learn where products come from. Look beyond packaging and familiar terminology. Question what you were taught was inevitable. Then decide what you are willing to participate in when another option is reasonably available.</p>
+              </section>
+            </div></div>
+          </div>
+    
+          <!-- RESOURCES VIEW -->
+          <div x-show="view === 'resources'" x-transition:enter.duration.300ms>
+            <div class="view view-resources">
+              <div class="view-container">
+                <div class="resources-heading">
+                  <div>
+                    <h2 class="view-title">Resources Library</h2>
+                    <p class="view-subtitle">Go deeper with documentaries, books, talks, podcasts, organizations and evidence-based references.</p>
+                  </div>
+                  <span class="resource-count" x-text="filteredResources.length + ' resources'"></span>
+                </div>
+                <div class="resource-safety-note"><strong>You control the experience.</strong> External videos never autoplay. Graphic resources are clearly marked so you can decide whether and when to engage.</div>
+                <div class="search-field resource-search">
+                  <span class="search-icon" aria-hidden="true">🔍</span>
+                  <input type="text" x-model="resourceQuery" placeholder="Search resources, creators or topics..." class="search-input" aria-label="Search resources" />
+                </div>
+                <div class="filter-row resource-filters" aria-label="Resource categories">
+                  <template x-for="category in resourceCategories" :key="category">
+                    <button type="button" @click="resourceCategory = category" class="filter-chip" :class="{'active': resourceCategory === category}" x-text="category"></button>
+                  </template>
+                </div>
+                <div class="resource-grid">
+                  <template x-for="resource in filteredResources" :key="resource.id">
+                    <article class="external-resource-card external-resource-card-visual" :class="{'resource-graphic': resource.graphic}">
+                      <div class="resource-photo card-photo-wrap">
+                        <span class="card-photo-fallback resource-emoji" aria-hidden="true" x-text="resource.emoji || '🔗'"></span>
+                        <img x-show="resource.imageUrl" :src="resource.imageUrl" :alt="resource.title + ' resource artwork'" class="card-photo" loading="lazy" decoding="async" referrerpolicy="no-referrer" @error="if ($event.currentTarget.getAttribute('src') !== resource.fallbackImageUrl) { $event.currentTarget.src = resource.fallbackImageUrl } else { $event.currentTarget.style.display = 'none' }" />
+                        <span x-show="resource.graphic" class="resource-image-warning">Content warning</span>
+                      </div>
+                      <div class="resource-card-top">
+                        <span class="resource-emoji" aria-hidden="true" x-text="resource.emoji || '🔗'"></span>
+                        <div class="resource-badges">
+                          <span class="resource-badge" x-text="resource.category"></span>
+                          <span x-show="resource.free" class="resource-badge resource-free">Free</span>
+                          <span x-show="resource.graphic" class="resource-badge resource-warning-badge">Graphic</span>
+                        </div>
+                      </div>
+                      <h3 class="resource-card-title" x-text="resource.title"></h3>
+                      <p class="resource-creator" x-text="resource.creator + ' · ' + resource.format"></p>
+                      <p class="resource-description" x-text="resource.description"></p>
+                      <div x-show="resource.contentWarning" class="resource-content-warning"><strong>Content note:</strong> <span x-text="resource.contentWarning"></span></div>
+                      <div class="resource-tags">
+                        <template x-for="tag in (resource.tags || []).slice(0, 4)" :key="tag"><span x-text="tag"></span></template>
+                      </div>
+                      <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="resource-open-link"><span>Open resource</span><span aria-hidden="true">↗</span></a>
+                    </article>
+                  </template>
+                </div>
+                <div x-show="filteredResources.length === 0" class="empty-state">No resources match those filters.</div>
+                <p class="resource-disclaimer">External resources are included for education, not blanket endorsement. Availability and content can change; health material does not replace individualized medical advice.</p>
+              </div>
+            </div>
+          </div>
+    
+          <!-- ANIMALS VIEW -->
+          <div x-show="view === 'animals'" x-transition:enter.duration.300ms>
+            <div class="view view-animals">
+              <div class="view-container">
+                <div class="animals-header">
+                  <div>
+                    <h2 class="view-title">Animals Library</h2>
+                    <p class="view-subtitle">Learn about the animals behind everyday products and discover compassionate alternatives.</p>
+                  </div>
+                  <span class="animal-count" x-text="filteredAnimals.length + ' animals'"></span>
+                </div>
+    
+                <div class="filter-row">
+                  <template x-for="filter in ['All', 'Farmed', 'Aquatic', 'Insects', 'Materials', 'Research', 'Entertainment', 'Labor', 'Companionship']" :key="filter">
+                    <button type="button" @click="animalFilter = filter" class="filter-chip" :class="{'active': animalFilter === filter}" x-text="filter"></button>
+                  </template>
+                </div>
+    
+                <div class="search-field">
+                  <span class="search-icon" aria-hidden="true">🔍</span>
+                  <input type="text" x-model="animalSearchQuery" @input.debounce.300ms="filterAnimals()" placeholder="Search animals..." class="search-input" aria-label="Search animals" />
+                </div>
+    
+                <div class="animal-grid">
+                  <template x-for="animal in filteredAnimals" :key="animal.id">
+                    <button type="button" @click="openAnimalDetail(animal)" class="animal-card animal-card-visual">
+                      <div class="animal-photo card-photo-wrap">
+                        <span class="card-photo-fallback animal-emoji" aria-hidden="true" x-text="animal.emoji || '🐾'"></span>
+                        <img x-show="animal.imageUrl" :src="animal.imageUrl" :alt="animal.commonName || animal.singularName" class="card-photo" loading="lazy" decoding="async" referrerpolicy="no-referrer" @error="$event.currentTarget.style.display='none'" />
+                      </div>
+                      <div class="animal-name" x-text="animal.commonName || animal.singularName"></div>
+                      <div class="animal-summary" x-text="animal.summary || 'Learn more about this animal.'"></div>
+                      <div class="animal-meta">
+                        <span x-show="animal.categories && animal.categories.length > 0" x-text="animal.categories.join(', ')"></span>
+                        <span x-show="animal.industries && animal.industries.length > 0" x-text="animal.industries.join(', ')"></span>
+                        <span x-show="animal.sensitiveContent" class="sensitive-badge">⚠️ Sensitive</span>
+                      </div>
+                    </button>
+                  </template>
+                </div>
+                <div x-show="filteredAnimals.length === 0" class="empty-state">
+                  <span aria-hidden="true">🐾</span>
+                  <p>No animals found matching your criteria.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <!-- JOURNEY VIEW -->
+          <div x-show="view === 'journey'" x-transition:enter.duration.300ms>
+            <div class="view view-journey">
+              <div class="view-container view-container-narrow">
+                <h2 class="view-title">Your Journey</h2>
+                <p class="view-subtitle">Choose a path and track your progress.</p>
+                <div class="filter-row">
+                  <template x-for="path in transitionPaths" :key="path.id">
+                    <button type="button" @click="selectTransitionPath(path.id)" class="filter-chip" :class="{'active': transitionPath === path.id}" x-text="path.label"></button>
+                  </template>
+                </div>
+                <div class="progress-card">
+                  <div class="progress-header"><span class="progress-label">Progress</span><span class="progress-value" x-text="Math.round(transitionProgress * 100) + '%'"></span></div>
+                  <div class="progress-bar"><div class="progress-fill" :style="'width: ' + (transitionProgress * 100) + '%'"></div></div>
+                </div>
+                <div class="task-list">
+                  <template x-for="(task, idx) in currentTransitionTasks" :key="idx">
+                    <label class="task-item">
+                      <input type="checkbox" x-model="transitionCompleted[idx]" @change="saveTransitionProgress()" class="task-checkbox" />
+                      <span class="task-label" :class="{'done': transitionCompleted[idx]}" x-text="task"></span>
+                    </label>
+                  </template>
+                </div>
+                <div x-show="currentJourneyResources.length > 0" class="context-resources journey-resources">
+                  <div class="context-resource-heading">Helpful for this path</div>
+                  <template x-for="resource in currentJourneyResources" :key="resource.id">
+                    <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><span x-text="resource.emoji || '🔗'"></span><span><strong x-text="resource.title"></strong><small x-text="resource.format + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
+                  </template>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <!-- FAVORITES VIEW -->
+          <div x-show="view === 'favorites'" x-transition:enter.duration.300ms>
+            <div class="view view-favorites">
+              <div class="view-container">
+                <div class="favorites-header">
+                  <div><h2 class="view-title">Favorites</h2><p class="view-subtitle" x-text="favorites.length + ' saved items'"></p></div>
+                  <button type="button" @click="exportFavorites()" class="secondary-button">Export</button>
+                </div>
+                <div class="product-grid">
+                  <template x-for="p in favorites" :key="p.id">
+                    <article class="product-card product-card-favorite">
+                      <button type="button" @click="openProduct(p)" class="product-card-main">
+                        <div class="favorite-product-photo card-photo-wrap">
+                          <span class="card-photo-fallback product-emoji" aria-hidden="true" x-text="p.emoji || '⭐'"></span>
+                          <img x-show="p.imageUrl" :src="p.imageUrl" :alt="p.imageAlt || (p.brand + ' ' + p.name)" class="card-photo" loading="lazy" decoding="async" @error="$event.currentTarget.style.display='none'" />
+                        </div>
+                        <div class="product-brand" x-text="p.brand + ' ' + p.name"></div>
+                      </button>
+                      <button type="button" @click.stop="removeFavorite(p.id)" class="favorite-remove">Remove</button>
+                    </article>
+                  </template>
+                </div>
+                <div x-show="favorites.length === 0" class="empty-state"><span aria-hidden="true">❤️</span><p>No favorites yet.</p></div>
+              </div>
+            </div>
+          </div>
+    
+          <!-- EVERYDAY PRODUCTS VIEW -->
+          <div x-show="view === 'everyday'" x-transition:enter.duration.300ms>
+            <div class="view view-everyday">
+              <div class="view-container">
+                <h2 class="view-title">Everyday Products</h2>
+                <p class="view-subtitle">Discover common household products that may contain animal-derived materials, and find vegan alternatives.</p>
+                <div class="filter-row">
+                  <template x-for="location in householdLocations" :key="location.id">
+                    <button type="button" @click="selectHouseholdLocation(location.id)" class="filter-chip" :class="{'active': selectedLocation === location.id}" x-text="location.emoji + ' ' + location.name"></button>
+                  </template>
+                </div>
+                <div x-show="selectedLocationData">
+                  <h3 class="location-title" x-text="selectedLocationData.name"></h3>
+                  <p class="location-desc" x-text="selectedLocationData.description"></p>
+                  <div class="everyday-grid">
+                    <template x-for="item in selectedLocationItems" :key="item.id">
+                      <div class="everyday-card">
+                        <div class="everyday-item">
+                          <span class="everyday-emoji" aria-hidden="true" x-text="item.emoji || '📦'"></span>
+                          <div><div class="everyday-name" x-text="item.name"></div><div class="everyday-desc" x-text="item.description || 'Common household item.'"></div></div>
+                        </div>
+                        <div class="everyday-tags">
+                          <span class="tag" x-text="'🐾 ' + (getAnimalNamesForProduct(item).join(', ') || 'Animal source needs research')"></span>
+                        </div>
+                        <button type="button" @click="showProductAlternatives(item)" class="text-button">Find alternatives →</button>
+                      </div>
                     </template>
                   </div>
                 </div>
               </div>
-              <div class="hero-visual">
-  <img src="imgs/free-photo-of-healthy-brunch-table-with-smoothie-and-coffee.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600" alt="Healthy plant-based brunch table with smoothie, coffee, toast and colorful dishes" class="hero-image" width="1200" height="800" loading="eager" decoding="async" referrerpolicy="no-referrer">
-              </div>
             </div>
-          </section>
-
-          <!-- Quick swaps -->
-          <section class="section section-swaps">
-            <div class="section-container">
-              <h2 class="section-title">Start with one simple swap</h2>
-              <p class="section-subtitle">Pick a category that feels easy to begin with.</p>
-              <div class="swap-grid">
-                <template x-for="cat in ['Milk', 'Burger', 'Cheese', 'Eggs', 'Yogurt', 'Butter', 'Chicken', 'Seafood']" :key="cat">
-                  <button type="button" @click="searchExplore(cat)" class="swap-card">
-                    <span class="swap-icon" aria-hidden="true" x-text="({Milk:'🥛',Burger:'🍔',Cheese:'🧀',Eggs:'🥚',Yogurt:'🥄',Butter:'🧈',Chicken:'🍗',Seafood:'🐟'})[cat] || '🌱'"></span>
-                    <span class="swap-label" x-text="cat"></span>
-                    <span class="swap-action">Find alternatives →</span>
-                  </button>
-                </template>
-              </div>
-            </div>
-          </section>
-
-          <!-- Cow's milk → Plant milk comparison -->
-          <section class="section section-comparison">
-            <div class="section-container">
-              <div class="comparison-grid">
-                <div class="comparison-card comparison-source">
-                  <span class="comparison-icon" aria-hidden="true">🐄</span>
-                  <h3 class="comparison-title">Cow's milk</h3>
-                  <p class="comparison-desc">Creamy, classic, and part of so many moments.</p>
-                  <span class="comparison-arrow" aria-hidden="true">➡️</span>
+          </div>
+    
+          <!-- INGREDIENT LIBRARY VIEW -->
+          <div x-show="view === 'ingredient-library'" x-transition:enter.duration.300ms>
+            <div class="view view-ingredients">
+              <div class="view-container">
+                <h2 class="view-title">Ingredient Library</h2>
+                <p class="view-subtitle">Browse animal-derived ingredients and their vegan alternatives.</p>
+                <div class="search-field">
+                  <span class="search-icon" aria-hidden="true">🔍</span>
+                  <input type="text" x-model="ingredientSearchQuery" @input.debounce.300ms="filterIngredientLibrary()" placeholder="Search ingredients..." class="search-input" aria-label="Search ingredients" />
                 </div>
-                <div class="comparison-card comparison-target">
-                  <span class="comparison-icon" aria-hidden="true">🌾</span>
-                  <h3 class="comparison-title">Plant milk</h3>
-                  <p class="comparison-desc">Same comfort, made from plants.</p>
-                  <div class="comparison-tags">
-                    <span class="tag">🥛 Oat Original</span>
-                    <span class="tag">🌰 Almond Unsweetened</span>
-                    <span class="tag">🌱 Soy</span>
-                  </div>
-                  <button type="button" @click="searchExplore('Milk')" class="secondary-button">Explore plant milks</button>
+                <div class="filter-row">
+                  <template x-for="status in ['All', 'animal-derived', 'usually-animal-derived', 'may-be-animal-derived', 'usually-plant-or-microbial', 'vegan', 'unknown']" :key="status">
+                    <button type="button" @click="ingredientStatusFilter = status" class="filter-chip" :class="{'active': ingredientStatusFilter === status}" x-text="status.replace(/-/g, ' ')"></button>
+                  </template>
                 </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- Featured -->
-          <section class="section section-featured">
-            <div class="section-container">
-              <div class="section-header">
-                <h2 class="section-title">Popular alternatives</h2>
-                <button type="button" @click="navigate('explore')" class="text-button">View all →</button>
-              </div>
-              <div class="product-grid">
-                <template x-for="p in featuredProducts" :key="p.id">
-                  <button type="button" @click="openProduct(p)" class="product-card product-card-visual">
-                    <div class="card-photo-wrap">
-                      <span class="card-photo-fallback product-emoji" aria-hidden="true" x-text="p.emoji || '🌱'"></span>
-                      <img x-show="p.imageUrl" :src="p.imageUrl" :alt="p.imageAlt || (p.brand + ' ' + p.name)" class="card-photo" loading="lazy" decoding="async" @error="$event.currentTarget.style.display='none'">
+                <div class="ingredient-grid">
+                  <template x-for="ing in filteredIngredientLibrary" :key="ing.id">
+                    <div class="ingredient-card">
+                      <div class="ingredient-header">
+                        <div><span class="ingredient-name" x-text="ing.name"></span><span class="ingredient-aliases" x-show="ing.aliases && ing.aliases.length > 0" x-text="'aka ' + ing.aliases.join(', ')"></span></div>
+                        <span class="tag" :class="{'tag-coral': ['animal-derived', 'usually-animal-derived'].includes(ing.status), 'tag-lime': ['usually-plant-or-microbial', 'vegan'].includes(ing.status)}" x-text="ing.status.replace(/-/g, ' ')"></span>
+                      </div>
+                      <div class="ingredient-source" x-text="ing.commonSources ? 'Source: ' + ing.commonSources.join(', ') : ''"></div>
+                      <div class="ingredient-found" x-text="ing.commonlyFoundIn ? 'Found in: ' + ing.commonlyFoundIn.join(', ') : ''"></div>
+                      <div class="ingredient-tags">
+                        <span x-show="ing.animalIds && ing.animalIds.length > 0" class="tag">🐾 <span x-text="ing.animalIds.length + ' animals'"></span></span>
+                        <span x-show="ing.alternativeIds && ing.alternativeIds.length > 0" class="tag tag-lime">🌱 alternatives available</span>
+                      </div>
+                      <button type="button" @click="openIngredientDetail(ing)" class="text-button">View details →</button>
                     </div>
-                    <div class="product-card-body">
-                      <span class="product-emoji" aria-hidden="true" x-text="p.emoji || '🌱'"></span>
-                      <div>
-                        <div class="product-brand" x-text="p.brand"></div>
-                        <div class="product-name" x-text="p.name"></div>
+                  </template>
+                </div>
+                <div x-show="filteredIngredientLibrary.length === 0" class="empty-state">No ingredients found.</div>
+              </div>
+            </div>
+          </div>
+    
+          <!-- NUTRITION VIEW -->
+          <div x-show="view === 'nutrition'" x-transition:enter.duration.300ms>
+            <div class="view view-nutrition">
+              <div class="view-container view-container-narrow">
+                <h2 class="view-title">Nutrition</h2>
+                <p class="view-subtitle">Explore important nutrition topics for plant-based eating.</p>
+                <div class="nutrient-list">
+                  <template x-for="nutrient in nutrients" :key="nutrient.id">
+                    <div class="nutrient-card">
+                      <h3 class="nutrient-title" x-text="nutrient.name"></h3>
+                      <p class="nutrient-desc" x-text="nutrient.purpose"></p>
+                      <div class="nutrient-details">
+                        <div x-show="nutrient.priority"><span class="nutrient-label">Planning priority:</span> <span x-text="nutrient.priority"></span></div>
+                        <div x-show="nutrient.dailyReference"><span class="nutrient-label">Reference intake:</span> <span x-text="nutrient.dailyReference"></span></div>
+                        <div><span class="nutrient-label">Vegan sources:</span> <span x-text="nutrient.veganSources ? nutrient.veganSources.join(', ') : 'Needs research'"></span></div>
+                        <div><span class="nutrient-label">Absorption notes:</span> <span x-text="nutrient.absorptionNotes || 'Needs research'"></span></div>
+                        <div><span class="nutrient-label">Considerations:</span> <span x-text="nutrient.deficiencyConsiderations || 'Needs research'"></span></div>
+                        <div><span class="nutrient-label">Supplement notes:</span> <span x-text="nutrient.supplementNotes || 'Needs research'"></span></div>
+                      </div>
+                      <div x-show="nutrient.medicalDisclaimer" class="nutrient-disclaimer">
+                        <span>⚠️</span> <span x-text="nutrient.medicalDisclaimer"></span>
+                      </div>
+                      <div x-show="getResourcesForNutrient(nutrient).length > 0" class="context-resources nutrient-resources">
+                        <div class="context-resource-heading">Evidence and planning guides</div>
+                        <template x-for="resource in getResourcesForNutrient(nutrient)" :key="resource.id">
+                          <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><span x-text="resource.emoji || '🔗'"></span><span><strong x-text="resource.title"></strong><small x-text="resource.creator"></small></span><span aria-hidden="true">↗</span></a>
+                        </template>
                       </div>
                     </div>
-                    <div class="product-tags">
-                      <span class="tag" x-text="p.category"></span>
-                      <span class="tag" x-text="p.priceTier || 'moderate'"></span>
+                  </template>
+                </div>
+                <div class="nutrition-note">
+                  <p>💡 <span class="nutrition-note-strong">Remember:</span> This information is educational, not medical advice. Consult a registered dietitian or healthcare provider for personalized guidance.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <!-- ABOUT VIEW -->
+          <div x-show="view === 'about'" x-transition:enter.duration.300ms>
+            <div class="view view-about">
+              <div class="view-container view-container-narrow">
+                <h2 class="view-title">About Go Vegan</h2>
+                <div class="about-content">
+                  <p><strong>Go Vegan</strong> is a free, open‑source educational application designed to help people understand veganism and make the switch, step by step.</p>
+                  <p>We believe in progress, not perfection. Veganism is defined by The Vegan Society as <em>“a philosophy and way of living which seeks to exclude—as far as is possible and practicable—all forms of exploitation of, and cruelty to, animals for food, clothing or any other purpose.”</em></p>
+                  <p>This app is built with compassion and respect for everyone, regardless of where they are on their journey. We do not shame or judge. We recognize that disability, medication needs, health conditions, poverty, food access, geography, and survival circumstances can affect what is possible for each person.</p>
+                  <hr />
+                  <p><strong>Please note:</strong> Product formulas, company policies, and ingredient sourcing change frequently. Always verify current packaging and manufacturer statements before relying on any product information shown here. Product availability varies by region.</p>
+                  <p><strong>Not medical advice:</strong> The nutrition information provided is for educational purposes only. Consult a registered dietitian or healthcare provider for personalized guidance. Never stop or change medically necessary treatment without professional advice.</p>
+                  <hr />
+                  <p><strong>Open source:</strong> Go Vegan is an open‑source project. Contributions, corrections, and suggestions are welcome. If you find an error or have a reliable source to share, please reach out.</p>
+                  <p class="about-disclaimer">All data is provided for guidance only. We strive for accuracy but cannot guarantee completeness or currency.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <!-- ANIMAL DETAIL MODAL -->
+          <div x-show="selectedAnimal" class="modal-overlay" @click.self="closeAnimalDetail" @keydown.escape="closeAnimalDetail" role="dialog" aria-modal="true" aria-labelledby="animal-detail-title">
+            <div class="modal-panel modal-panel-wide">
+              <button type="button" @click="closeAnimalDetail" class="modal-close" aria-label="Close animal detail">&times;</button>
+              <template x-if="selectedAnimal">
+                <div>
+                  <div class="animal-detail-header">
+                    <span class="animal-detail-emoji" aria-hidden="true" x-text="selectedAnimal.emoji || '🐾'"></span>
+                    <div>
+                      <h2 id="animal-detail-title" class="animal-detail-name" x-text="selectedAnimal.commonName || selectedAnimal.singularName"></h2>
+                      <div class="animal-detail-tags">
+                        <span class="tag" x-text="selectedAnimal.scientificGroups ? selectedAnimal.scientificGroups.join(', ') : 'Needs research'"></span>
+                        <span x-show="selectedAnimal.sensitiveContent" class="sensitive-badge">⚠️ Sensitive content</span>
+                      </div>
                     </div>
-                  </button>
-                </template>
-              </div>
-            </div>
-          </section>
-
-          <!-- Budget & New -->
-          <section class="section section-resources">
-            <div class="section-container">
-              <div class="resources-grid">
-                <div class="resource-card">
-                  <h3 class="resource-title">Budget-friendly choices</h3>
-                  <p class="resource-desc">Eating vegan doesn't have to be expensive.</p>
-                  <ul class="resource-list">
-                    <li><span class="bullet" aria-hidden="true">●</span> Beans &amp; lentils → ground meat</li>
-                    <li><span class="bullet" aria-hidden="true">●</span> Tofu → chicken or fish</li>
-                    <li><span class="bullet" aria-hidden="true">●</span> Oatmeal → breakfast</li>
-                    <li><span class="bullet" aria-hidden="true">●</span> Store‑brand plant milk → dairy milk</li>
-                  </ul>
-                  <button type="button" @click="navigate('explore')" class="secondary-button">Explore budget options</button>
-                </div>
-                <div class="resource-card">
-                  <h3 class="resource-title">New to veganism?</h3>
-                  <p class="resource-desc">Start with our beginner-friendly resources.</p>
-                  <div class="resource-links">
-                    <button type="button" @click="navigate('learn'); expandLearnArticle('learn-getting-started')" class="resource-link">📖 Getting started guide</button>
-                    <button type="button" @click="navigate('learn'); expandLearnArticle('learn-hidden-ingredients')" class="resource-link">🏷️ How to read labels</button>
-                    <button type="button" @click="navigate('journey')" class="resource-link">🗓️ 30‑day transition plan</button>
                   </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- Feature cards -->
-          <section class="section section-features">
-            <div class="section-container">
-              <div class="features-grid">
-                <button type="button" @click="navigate('nutrition')" class="feature-card">
-                  <span class="feature-icon" aria-hidden="true">🥗</span>
-                  <h4 class="feature-label">Nutrition</h4>
-                </button>
-                <button type="button" @click="openChecker = true" class="feature-card">
-                  <span class="feature-icon" aria-hidden="true">🔍</span>
-                  <h4 class="feature-label">Checker</h4>
-                </button>
-                <button type="button" @click="openExploreTab('Beyond Food')" class="feature-card">
-                  <span class="feature-icon" aria-hidden="true">🧴</span>
-                  <h4 class="feature-label">Beyond Food</h4>
-                </button>
-                <button type="button" @click="navigate('animals')" class="feature-card">
-                  <span class="feature-icon" aria-hidden="true">🐄</span>
-                  <h4 class="feature-label">Animals</h4>
-                </button>
-                <button type="button" @click="navigate('everyday')" class="feature-card">
-                  <span class="feature-icon" aria-hidden="true">🏠</span>
-                  <h4 class="feature-label">Everyday</h4>
-                </button>
-                <button type="button" @click="navigate('ingredient-library')" class="feature-card">
-                  <span class="feature-icon" aria-hidden="true">🧪</span>
-                  <h4 class="feature-label">Ingredients</h4>
-                </button>
-              </div>
-            </div>
-          </section>
-
-          <section class="section section-cta">
-            <div class="section-container">
-              <h2 class="cta-title">Every step counts. 🌱</h2>
-              <p class="cta-sub">Progress, not perfection. You're doing something good.</p>
-              <button type="button" @click="navigate('journey')" class="primary-button">Start your 30‑day journey</button>
-            </div>
-          </section>
-        </div>
-      </div>
-
-      <!-- EXPLORE VIEW -->
-      <div x-show="view === 'explore'" x-transition:enter.duration.300ms="">
-        <div class="view view-explore">
-          <div class="view-container">
-            <h2 class="view-title">Explore</h2>
-            <p class="view-subtitle">Find products, whole-food swaps, homemade alternatives, and beyond.</p>
-            <div class="tab-bar">
-              <template x-for="tab in ['Products', 'Whole-Food', 'Homemade', 'Beyond Food']" :key="tab">
-                <button type="button" @click="exploreTab = tab" class="tab-button" :class="{'active': exploreTab === tab}" x-text="tab"></button>
-              </template>
-            </div>
-            <div class="explore-controls">
-              <div class="search-field">
-                <span class="search-icon" aria-hidden="true">🔍</span>
-                <input type="text" x-model="exploreQuery" @input.debounce.300ms="filterExplore()" placeholder="Search products, brands..." class="search-input" aria-label="Search products">
-              </div>
-              <div class="filter-row">
-                <button type="button" @click="toggleFilter('budget')" class="filter-chip" :class="{'active': activeFilters.includes('budget')}">Budget</button>
-                <button type="button" @click="toggleFilter('high-protein')" class="filter-chip" :class="{'active': activeFilters.includes('high-protein')}">High Protein</button>
-                <button type="button" @click="toggleFilter('soy-free')" class="filter-chip" :class="{'active': activeFilters.includes('soy-free')}">Soy-Free</button>
-                <button type="button" @click="toggleFilter('peanut-free')" class="filter-chip" :class="{'active': activeFilters.includes('peanut-free')}">Peanut-Free</button>
-                <button type="button" @click="toggleFilter('tree-nut-free')" class="filter-chip" :class="{'active': activeFilters.includes('tree-nut-free')}">Tree-Nut-Free</button>
-                <button type="button" @click="clearFilters()" class="filter-chip filter-clear" x-show="activeFilters.length &gt; 0">Clear all</button>
-              </div>
-            </div>
-            <p class="dietary-disclaimer">
-              Dietary tags describe listed ingredients only and do not guarantee freedom from manufacturing cross-contact. Verify current packaging when allergies are involved.
-            </p>
-            <div class="product-grid">
-              <template x-for="p in filteredExploreItems" :key="p.id">
-                <button type="button" @click="openProduct(p)" class="product-card product-card-visual">
-                  <div class="card-photo-wrap">
-                    <span class="card-photo-fallback product-emoji" aria-hidden="true" x-text="p.emoji || '🌱'"></span>
-                    <img x-show="p.imageUrl" :src="p.imageUrl" :alt="p.brand + ' ' + p.name + ' category illustration'" class="card-photo" loading="lazy" decoding="async" referrerpolicy="no-referrer" @error="$event.currentTarget.style.display='none'">
+    
+                  <div class="modal-tabs" role="tablist" aria-label="Animal detail sections" @keydown="handleAnimalTabKeydown($event)">
+                    <button type="button" @click="animalDetailTab = 'overview'" role="tab" :aria-selected="animalDetailTab === 'overview'" :aria-controls="'tab-panel-overview'" :id="'tab-overview'" class="modal-tab" :class="{'active': animalDetailTab === 'overview'}" :tabindex="animalDetailTab === 'overview' ? '0' : '-1'">Overview</button>
+                    <button type="button" @click="animalDetailTab = 'natural'" role="tab" :aria-selected="animalDetailTab === 'natural'" :aria-controls="'tab-panel-natural'" :id="'tab-natural'" class="modal-tab" :class="{'active': animalDetailTab === 'natural'}" :tabindex="animalDetailTab === 'natural' ? '0' : '-1'">Natural Life</button>
+                    <button type="button" @click="animalDetailTab = 'uses'" role="tab" :aria-selected="animalDetailTab === 'uses'" :aria-controls="'tab-panel-uses'" :id="'tab-uses'" class="modal-tab" :class="{'active': animalDetailTab === 'uses'}" :tabindex="animalDetailTab === 'uses' ? '0' : '-1'">Human Uses</button>
+                    <button type="button" @click="animalDetailTab = 'harm'" role="tab" :aria-selected="animalDetailTab === 'harm'" :aria-controls="'tab-panel-harm'" :id="'tab-harm'" class="modal-tab" :class="{'active': animalDetailTab === 'harm'}" :tabindex="animalDetailTab === 'harm' ? '0' : '-1'">What Happens to Them</button>
+                    <button type="button" @click="animalDetailTab = 'ingredients'" role="tab" :aria-selected="animalDetailTab === 'ingredients'" :aria-controls="'tab-panel-ingredients'" :id="'tab-ingredients'" class="modal-tab" :class="{'active': animalDetailTab === 'ingredients'}" :tabindex="animalDetailTab === 'ingredients' ? '0' : '-1'">Ingredients</button>
+                    <button type="button" @click="animalDetailTab = 'everyday'" role="tab" :aria-selected="animalDetailTab === 'everyday'" :aria-controls="'tab-panel-everyday'" :id="'tab-everyday'" class="modal-tab" :class="{'active': animalDetailTab === 'everyday'}" :tabindex="animalDetailTab === 'everyday' ? '0' : '-1'">Everyday Items</button>
+                    <button type="button" @click="animalDetailTab = 'alternatives'" role="tab" :aria-selected="animalDetailTab === 'alternatives'" :aria-controls="'tab-panel-alternatives'" :id="'tab-alternatives'" class="modal-tab" :class="{'active': animalDetailTab === 'alternatives'}" :tabindex="animalDetailTab === 'alternatives' ? '0' : '-1'">Alternatives</button>
+                    <button type="button" @click="animalDetailTab = 'sources'" role="tab" :aria-selected="animalDetailTab === 'sources'" :aria-controls="'tab-panel-sources'" :id="'tab-sources'" class="modal-tab" :class="{'active': animalDetailTab === 'sources'}" :tabindex="animalDetailTab === 'sources' ? '0' : '-1'">Sources</button>
                   </div>
-                  <div class="product-brand" x-text="p.brand + ' ' + p.name"></div>
-                  <div class="product-name" x-text="p.category"></div>
-                  <div class="product-tags">
-                    <span class="tag" x-text="p.priceTier || 'moderate'"></span>
-                    <span x-show="p.dietaryTags &amp;&amp; p.dietaryTags.includes('high-protein')" class="tag tag-high-protein">💪</span>
-                  </div>
-                </button>
-              </template>
-            </div>
-            <div x-show="filteredExploreItems.length === 0" class="empty-state">No products found. Try adjusting your filters.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- RECIPES VIEW -->
-      <div x-show="view === 'recipes'" x-transition:enter.duration.300ms="">
-        <div class="view view-recipes">
-          <div class="view-container">
-            <h2 class="view-title">Recipes</h2>
-            <p class="view-subtitle">Delicious plant‑based meals for every occasion.</p>
-            <div class="search-field">
-              <span class="search-icon" aria-hidden="true">🔍</span>
-              <input type="text" x-model="recipeQuery" @input.debounce.300ms="filterRecipes()" placeholder="Search recipes..." class="search-input" aria-label="Search recipes">
-            </div>
-            <div class="filter-row">
-              <template x-for="tag in ['Quick', 'Budget', 'High-Protein', 'Breakfast', 'Dinner', 'Dessert']" :key="tag">
-                <button type="button" @click="toggleRecipeFilter(tag)" class="filter-chip" :class="{'active': recipeFilters.includes(tag)}" x-text="tag"></button>
-              </template>
-            </div>
-            <div class="recipe-grid">
-              <template x-for="r in filteredRecipes" :key="r.id">
-                <button type="button" @click="openRecipe(r)" class="recipe-card">
-                  <div class="recipe-media card-photo-wrap">
-                    <span class="card-photo-fallback recipe-visual" x-text="r.emoji || '🍽️'"></span>
-                    <img x-show="r.imageUrl" :src="r.imageUrl" :alt="r.title" class="card-photo" loading="lazy" decoding="async" referrerpolicy="no-referrer" @error="$event.currentTarget.style.display='none'">
-                  </div>
-                  <div class="recipe-body">
-                    <div class="recipe-title" x-text="r.title"></div>
-                    <div class="recipe-meta"><span x-text="r.category"></span><span x-text="r.totalMinutes + ' min'"></span><span x-text="r.difficulty"></span></div>
-                  </div>
-                </button>
-              </template>
-            </div>
-            <div x-show="filteredRecipes.length === 0" class="empty-state">No recipes found.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- LEARN VIEW -->
-      <div x-show="view === 'learn'" x-transition:enter.duration.300ms="">
-        <div class="view view-learn">
-          <div class="view-container view-container-narrow">
-            <h2 class="view-title">Learn</h2>
-            <p class="view-subtitle">Factual, compassionate guidance for your vegan journey.</p>
-            <div class="learn-list">
-              <template x-for="article in learnArticles" :key="article.id">
-                <div class="learn-item">
-                  <button type="button" @click="toggleLearnArticle(article.id)" class="learn-toggle" :aria-expanded="expandedLearn.includes(article.id)" :aria-controls="'learn-panel-' + article.id" :id="'learn-btn-' + article.id">
-                    <h3 class="learn-title" x-text="article.title"></h3>
-                    <span class="learn-arrow" :class="{'rotate': expandedLearn.includes(article.id)}" aria-hidden="true">▼</span>
-                  </button>
-                  <div x-show="expandedLearn.includes(article.id)" x-transition.duration.200ms="" :id="'learn-panel-' + article.id" role="region" :aria-labelledby="'learn-btn-' + article.id">
-                    <div class="learn-content" x-html="article.content"></div>
-                    <div x-show="getResourcesForArticle(article).length &gt; 0" class="context-resources context-resources-learn">
-                      <div class="context-resource-heading">Go deeper</div>
-                      <template x-for="resource in getResourcesForArticle(article)" :key="resource.id">
-                        <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><span x-text="resource.emoji || '🔗'"></span><span><strong x-text="resource.title"></strong><small x-text="resource.category + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
+    
+                  <!-- Overview -->
+                  <div class="modal-body" x-show="animalDetailTab === 'overview'" :class="{'active': animalDetailTab === 'overview'}" role="tabpanel" :aria-labelledby="'tab-overview'" id="tab-panel-overview">
+                    <p class="modal-text" x-text="selectedAnimal.summary || 'Information coming soon.'"></p>
+                    <div x-show="selectedAnimal.welfareConcerns && selectedAnimal.welfareConcerns.length > 0">
+                      <h4 class="modal-subtitle">Welfare concerns</h4>
+                      <ul class="modal-list">
+                        <template x-for="concern in selectedAnimal.welfareConcerns" :key="concern">
+                          <li x-text="concern"></li>
+                        </template>
+                      </ul>
+                    </div>
+                    <div x-show="selectedAnimal.industries && selectedAnimal.industries.length > 0">
+                      <h4 class="modal-subtitle">Industries</h4>
+                      <div class="modal-tags">
+                        <template x-for="industry in selectedAnimal.industries" :key="industry">
+                          <span class="tag" x-text="industry"></span>
+                        </template>
+                      </div>
+                    </div>
+                    <div x-show="selectedAnimal.categories && selectedAnimal.categories.length > 0">
+                      <h4 class="modal-subtitle">Categories</h4>
+                      <div class="modal-tags">
+                        <template x-for="cat in selectedAnimal.categories" :key="cat">
+                          <span class="tag" x-text="cat"></span>
+                        </template>
+                      </div>
+                    </div>
+                    <div x-show="selectedAnimalResources.length > 0" class="context-resources animal-context-resources">
+                      <div class="context-resource-heading">Related resources</div>
+                      <template x-for="resource in selectedAnimalResources" :key="resource.id">
+                        <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><span x-text="resource.emoji || '🔗'"></span><span><strong x-text="resource.title"></strong><small x-text="resource.graphic ? 'Graphic content · ' + resource.category : resource.category + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
                       </template>
                     </div>
                   </div>
+    
+                  <!-- Natural Life -->
+                  <div class="modal-body" x-show="animalDetailTab === 'natural'" :class="{'active': animalDetailTab === 'natural'}" role="tabpanel" :aria-labelledby="'tab-natural'" id="tab-panel-natural">
+                    <div class="detail-grid">
+                      <div class="detail-row"><span class="detail-label">Habitat:</span> <span x-text="selectedAnimal.naturalLife?.habitat || 'Needs research'"></span></div>
+                      <div class="detail-row"><span class="detail-label">Diet:</span> <span x-text="selectedAnimal.naturalLife?.diet || 'Needs research'"></span></div>
+                      <div class="detail-row"><span class="detail-label">Social life:</span> <span x-text="selectedAnimal.naturalLife?.socialLife || 'Needs research'"></span></div>
+                      <div class="detail-row"><span class="detail-label">Communication:</span> <span x-text="selectedAnimal.naturalLife?.communication || 'Needs research'"></span></div>
+                      <div class="detail-row"><span class="detail-label">Cognition:</span> <span x-text="selectedAnimal.naturalLife?.cognition || 'Needs research'"></span></div>
+                      <div class="detail-row"><span class="detail-label">Parenting:</span> <span x-text="selectedAnimal.naturalLife?.parenting || 'Needs research'"></span></div>
+                      <div class="detail-row"><span class="detail-label">Potential lifespan:</span> <span x-text="selectedAnimal.naturalLife?.potentialLifespan || 'Needs research'"></span></div>
+                    </div>
+                    <div x-show="selectedAnimal.naturalLife?.naturalBehaviors && selectedAnimal.naturalLife.naturalBehaviors.length > 0">
+                      <h4 class="modal-subtitle">Natural behaviors</h4>
+                      <ul class="modal-list">
+                        <template x-for="behavior in selectedAnimal.naturalLife.naturalBehaviors" :key="behavior">
+                          <li x-text="behavior"></li>
+                        </template>
+                      </ul>
+                    </div>
+                  </div>
+    
+                  <!-- Human Uses -->
+                  <div class="modal-body" x-show="animalDetailTab === 'uses'" :class="{'active': animalDetailTab === 'uses'}" role="tabpanel" :aria-labelledby="'tab-uses'" id="tab-panel-uses">
+                    <h4 class="modal-subtitle">How humans use this animal</h4>
+                    <div x-show="selectedAnimalUses.length > 0" class="use-list">
+                      <template x-for="use in selectedAnimalUses" :key="use.id">
+                        <div class="use-card">
+                          <h5 class="use-title" x-text="use.title"></h5>
+                          <p class="use-summary" x-text="use.summary || 'No summary available.'"></p>
+                          <div class="use-tags">
+                            <span class="tag" x-text="use.category"></span>
+                            <span class="tag" x-text="use.commonPractices ? use.commonPractices.length + ' practices' : ''"></span>
+                          </div>
+                        </div>
+                      </template>
+                    </div>
+                    <p x-show="selectedAnimalUses.length === 0" class="empty-text">No uses documented yet.</p>
+                  </div>
+    
+                  <!-- What Happens to Them -->
+                  <template x-if="animalDetailTab === 'harm'">
+                  <div class="modal-body active" role="tabpanel" aria-labelledby="tab-harm" id="tab-panel-harm">
+                    <div class="harm-intro">
+                      <h4 class="modal-subtitle">What physically happens</h4>
+                      <p>This section documents what is physically done to animals in food, fiber, research and other human-use systems. Routine practices, system-dependent practices, welfare failures and natural biology are distinguished rather than treated as equivalent. Graphic detail is included when needed for accuracy, not for shock value.</p>
+                    </div>
+                    <div x-show="selectedAnimal.harmDetails && selectedAnimal.harmDetails.length > 0" class="harm-list">
+                      <template x-for="item in selectedAnimal.harmDetails" :key="item.title">
+                        <article class="harm-card">
+                          <div class="harm-card-heading"><h5 x-text="item.title"></h5><span class="tag" x-text="item.context || 'Documented practice'"></span></div>
+                          <p x-show="item.status" class="harm-status"><strong>Evidence:</strong> <span x-text="item.status"></span></p>
+                          <p x-text="item.description"></p>
+                          <p x-show="item.welfare" class="harm-welfare"><strong>What evidence shows:</strong> <span x-text="item.welfare"></span></p>
+                          <p x-show="item.limit" class="harm-limit"><strong>What this does not establish:</strong> <span x-text="item.limit"></span></p>
+                          <div x-show="item.urls && item.urls.length" class="harm-sources">
+                            <template x-for="link in item.urls" :key="link.url"><a :href="link.url" target="_blank" rel="noopener noreferrer" x-text="link.label + ' ↗'"></a></template>
+                          </div>
+                        </article>
+                      </template>
+                    </div>
+                    <p x-show="!selectedAnimal.harmDetails || selectedAnimal.harmDetails.length === 0" class="empty-text">Detailed harm documentation for this animal is still being researched. Existing welfare concerns and sources remain available in the Overview and Sources tabs.</p>
+                  </div>
+                  </template>
+    
+                  <!-- Ingredients -->
+                  <div class="modal-body" x-show="animalDetailTab === 'ingredients'" :class="{'active': animalDetailTab === 'ingredients'}" role="tabpanel" :aria-labelledby="'tab-ingredients'" id="tab-panel-ingredients">
+                    <h4 class="modal-subtitle">Animal-derived ingredients</h4>
+                    <div x-show="selectedAnimalIngredients.length > 0" class="ingredient-list">
+                      <template x-for="ing in selectedAnimalIngredients" :key="ing.id">
+                        <div class="ingredient-row">
+                          <span class="ingredient-name" x-text="ing.name"></span>
+                          <div class="ingredient-row-tags">
+                            <span class="tag" x-text="ing.status"></span>
+                            <span x-show="ing.commonlyFoundIn && ing.commonlyFoundIn.length > 0" class="ingredient-found-in" x-text="ing.commonlyFoundIn.slice(0, 3).join(', ') + (ing.commonlyFoundIn.length > 3 ? '…' : '')"></span>
+                          </div>
+                        </div>
+                      </template>
+                    </div>
+                    <p x-show="selectedAnimalIngredients.length === 0" class="empty-text">No ingredients documented yet.</p>
+                  </div>
+    
+                  <!-- Everyday Items -->
+                  <div class="modal-body" x-show="animalDetailTab === 'everyday'" :class="{'active': animalDetailTab === 'everyday'}" role="tabpanel" :aria-labelledby="'tab-everyday'" id="tab-panel-everyday">
+                    <h4 class="modal-subtitle">Everyday items that may involve this animal</h4>
+                    <div x-show="selectedAnimalEverydayItems.length > 0" class="everyday-grid">
+                      <template x-for="item in selectedAnimalEverydayItems" :key="item.id">
+                        <div class="everyday-card">
+                          <div class="everyday-item">
+                            <span class="everyday-emoji" aria-hidden="true" x-text="item.emoji || '📦'"></span>
+                            <div><div class="everyday-name" x-text="item.name"></div><div class="everyday-desc" x-text="item.description || 'Common product.'"></div></div>
+                          </div>
+                        </div>
+                      </template>
+                    </div>
+                    <p x-show="selectedAnimalEverydayItems.length === 0" class="empty-text">No everyday items documented yet.</p>
+                  </div>
+    
+                  <!-- Alternatives -->
+                  <div class="modal-body" x-show="animalDetailTab === 'alternatives'" :class="{'active': animalDetailTab === 'alternatives'}" role="tabpanel" :aria-labelledby="'tab-alternatives'" id="tab-panel-alternatives">
+                    <h4 class="modal-subtitle">Vegan alternatives</h4>
+                    <div x-show="selectedAnimalAlternatives.length > 0" class="alt-grid">
+                      <template x-for="alt in selectedAnimalAlternatives" :key="alt.id">
+                        <div class="alt-card">
+                          <div class="alt-name" x-text="alt.name"></div>
+                          <div class="alt-desc" x-text="alt.description || alt.category || 'Alternative'"></div>
+                          <span class="tag" x-text="alt.replaces ? 'Replaces ' + alt.replaces : ''"></span>
+                        </div>
+                      </template>
+                    </div>
+                    <div x-show="selectedAnimalAlternatives.length === 0" class="alt-placeholder">
+                      <p>💡 <span class="alt-tip">Tip:</span> Many alternatives exist for products derived from <span x-text="selectedAnimal.commonName || selectedAnimal.singularName"></span>. Check the Explore section for product alternatives and the Recipes section for plant‑based meals.</p>
+                    </div>
+                    <div class="alt-actions">
+                      <button type="button" @click="selectedAnimal = null; navigate('explore')" class="secondary-button"><span aria-hidden="true">🌿</span> <span>Explore products</span></button>
+                      <button type="button" @click="selectedAnimal = null; navigate('recipes')" class="secondary-button"><span aria-hidden="true">🍽️</span> <span>Explore recipes</span></button>
+                    </div>
+                  </div>
+    
+                  <!-- Sources -->
+                  <div class="modal-body" x-show="animalDetailTab === 'sources'" :class="{'active': animalDetailTab === 'sources'}" role="tabpanel" :aria-labelledby="'tab-sources'" id="tab-panel-sources">
+                    <h4 class="modal-subtitle">Sources</h4>
+                    <div x-show="selectedAnimalSources.length > 0" class="source-list">
+                      <template x-for="src in selectedAnimalSources" :key="src.id">
+                        <div class="source-card">
+                          <div class="source-title" x-text="src.title"></div>
+                          <div class="source-org" x-text="src.organization || ''"></div>
+                          <div class="source-date" x-show="src.publicationDate" x-text="'Published: ' + src.publicationDate"></div>
+                          <a x-show="src.url" :href="src.url" target="_blank" rel="noopener noreferrer" class="source-link">View source ↗</a>
+                        </div>
+                      </template>
+                    </div>
+                    <p x-show="selectedAnimalSources.length === 0" class="empty-text">No sources documented yet.</p>
+                  </div>
                 </div>
               </template>
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- RESOURCES VIEW -->
-      <div x-show="view === 'resources'" x-transition:enter.duration.300ms="">
-        <div class="view view-resources">
-          <div class="view-container">
-            <div class="resources-heading">
-              <div>
-                <h2 class="view-title">Resources Library</h2>
-                <p class="view-subtitle">Go deeper with documentaries, books, talks, podcasts, organizations and evidence-based references.</p>
+    
+          <!-- PRODUCT DETAIL MODAL -->
+          <div x-show="selectedProduct" class="modal-overlay" @click.self="selectedProduct = null" @keydown.escape="selectedProduct = null" role="dialog" aria-modal="true" aria-labelledby="product-detail-title">
+            <div class="modal-panel">
+              <button type="button" @click="selectedProduct = null" class="modal-close" aria-label="Close product detail">&times;</button>
+              <template x-if="selectedProduct">
+                <div>
+                  <div class="product-detail-photo card-photo-wrap">
+                    <span class="card-photo-fallback product-emoji" aria-hidden="true" x-text="selectedProduct.emoji || '🌱'"></span>
+                    <img x-show="selectedProduct.imageUrl" :src="selectedProduct.imageUrl" :alt="selectedProduct.imageAlt || (selectedProduct.brand + ' ' + selectedProduct.name)" class="card-photo" decoding="async" @error="$event.currentTarget.style.display='none'" />
+                  </div>
+                  <h2 id="product-detail-title" class="product-detail-title" x-text="selectedProduct.brand + ' ' + selectedProduct.name"></h2>
+                  <div class="product-detail-tags">
+                    <span class="tag" x-text="selectedProduct.category"></span>
+                    <span class="tag" x-text="selectedProduct.replaces"></span>
+                    <span class="tag" :class="getProductStatusClass(selectedProduct.productStatus)" x-text="getProductStatusLabel(selectedProduct.productStatus)"></span>
+                  </div>
+                  <p class="product-detail-desc" x-text="selectedProduct.description"></p>
+                  <div class="product-detail-grid">
+                    <div><span class="detail-label">Base:</span> <span x-text="selectedProduct.base || 'Plant-based'"></span></div>
+                    <div><span class="detail-label">Price:</span> <span x-text="selectedProduct.priceTier || 'moderate'"></span></div>
+                    <div><span class="detail-label">Uses:</span> <span x-text="selectedProduct.uses || 'Versatile'"></span></div>
+                    <div><span class="detail-label">Company:</span> <span x-text="selectedProduct.companyScope || 'mixed'"></span></div>
+                  </div>
+                  <div x-show="selectedProduct.ingredientsSummary" class="product-detail-meta"><span class="detail-label">Ingredients:</span> <span x-text="selectedProduct.ingredientsSummary"></span></div>
+                  <div x-show="selectedProduct.verificationScope" class="product-detail-meta"><span class="detail-label">Evidence:</span> <span x-text="selectedProduct.verificationScope.replace(/-/g, ' ')"></span></div>
+                  <div x-show="selectedProduct.productUrl" class="product-detail-meta"><a :href="selectedProduct.productUrl" target="_blank" rel="noopener noreferrer" class="source-link">View manufacturer information ↗</a></div>
+                  <div x-show="selectedProduct.lastVerified" class="product-detail-meta"><span class="detail-label">Last verified:</span> <span x-text="selectedProduct.lastVerified"></span></div>
+                  <div x-show="selectedProduct.verificationNote" class="product-detail-meta"><span class="detail-label">Verification note:</span> <span x-text="selectedProduct.verificationNote"></span></div>
+                  <div x-show="selectedProduct.region" class="product-detail-meta"><span class="detail-label">Region:</span> <span x-text="selectedProduct.region"></span></div>
+                  <div x-show="selectedProduct.availability" class="product-detail-meta"><span class="detail-label">Availability:</span> <span x-text="selectedProduct.availability"></span></div>
+                  <div x-show="selectedProductResources.length > 0" class="context-resources product-context-resources">
+                    <div class="context-resource-heading">Related guidance</div>
+                    <template x-for="resource in selectedProductResources" :key="resource.id">
+                      <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><span x-text="resource.emoji || '🔗'"></span><span><strong x-text="resource.title"></strong><small x-text="resource.graphic ? 'Graphic content · ' + resource.category : resource.category + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
+                    </template>
+                  </div>
+                  <div class="product-detail-actions">
+                    <button type="button" @click="toggleFavorite(selectedProduct)" class="secondary-button">
+                      <span x-text="isFavorite(selectedProduct.id) ? '❤️ Remove' : '🤍 Save'"></span>
+                    </button>
+                    <button type="button" @click="shareProduct(selectedProduct)" class="secondary-button"><span aria-hidden="true">📤</span> <span>Share</span></button>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+    
+          <!-- RECIPE DETAIL MODAL -->
+          <div x-show="selectedRecipe" class="modal-overlay" @click.self="selectedRecipe = null" @keydown.escape="selectedRecipe = null" role="dialog" aria-modal="true" aria-labelledby="recipe-detail-title">
+            <div class="modal-panel modal-panel-wide">
+              <button type="button" @click="selectedRecipe = null" class="modal-close" aria-label="Close recipe detail">&times;</button>
+              <template x-if="selectedRecipe">
+                <div>
+                  <h2 id="recipe-detail-title" class="recipe-detail-title" x-text="selectedRecipe.title"></h2>
+                  <p class="recipe-detail-desc" x-text="selectedRecipe.description"></p>
+                  <div class="recipe-detail-tags">
+                    <span class="tag" x-text="selectedRecipe.category"></span>
+                    <span class="tag" x-text="selectedRecipe.totalMinutes + ' min'"></span>
+                    <span class="tag" x-text="selectedRecipe.difficulty"></span>
+                  </div>
+                  <div class="recipe-detail-grid">
+                    <div>
+                      <h4 class="recipe-detail-subtitle">Ingredients</h4>
+                      <ul class="recipe-ingredient-list">
+                        <template x-for="ing in selectedRecipe.ingredients" :key="ing.item">
+                          <li><input type="checkbox" class="task-checkbox" /><span x-text="ing.amount + ' ' + ing.unit + ' ' + ing.item"></span></li>
+                        </template>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 class="recipe-detail-subtitle">Instructions</h4>
+                      <ol class="recipe-instruction-list">
+                        <template x-for="(step, idx) in selectedRecipe.instructions" :key="idx">
+                          <li x-text="step"></li>
+                        </template>
+                      </ol>
+                    </div>
+                  </div>
+                  <div x-show="selectedRecipe.substitutionNotes && selectedRecipe.substitutionNotes.length" class="product-detail-meta">
+                    <span class="detail-label">Substitutions:</span>
+                    <span x-text="selectedRecipe.substitutionNotes.join(' ')"></span>
+                  </div>
+                  <div x-show="selectedRecipe.storageNotes" class="product-detail-meta">
+                    <span class="detail-label">Storage:</span>
+                    <span x-text="selectedRecipe.storageNotes"></span>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+    
+          <!-- INGREDIENT DETAIL MODAL -->
+          <div x-show="selectedIngredient" class="modal-overlay" @click.self="selectedIngredient = null" @keydown.escape="selectedIngredient = null" role="dialog" aria-modal="true" aria-labelledby="ingredient-detail-title">
+            <div class="modal-panel">
+              <button type="button" @click="selectedIngredient = null" class="modal-close" aria-label="Close ingredient detail">&times;</button>
+              <template x-if="selectedIngredient">
+                <div>
+                  <h2 id="ingredient-detail-title" class="ingredient-detail-title" x-text="selectedIngredient.name"></h2>
+                  <div class="ingredient-detail-tags">
+                    <span class="tag" :class="{'tag-coral': ['animal-derived', 'usually-animal-derived'].includes(selectedIngredient.status), 'tag-lime': ['usually-plant-or-microbial', 'vegan'].includes(selectedIngredient.status)}" x-text="selectedIngredient.status.replace(/-/g, ' ')"></span>
+                    <span x-show="selectedIngredient.aliases && selectedIngredient.aliases.length > 0" class="tag" x-text="'Aliases: ' + selectedIngredient.aliases.join(', ')"></span>
+                  </div>
+                  <div class="ingredient-detail-grid">
+                    <div><span class="detail-label">Common sources:</span> <span x-text="selectedIngredient.commonSources ? selectedIngredient.commonSources.join(', ') : 'Needs research'"></span></div>
+                    <div><span class="detail-label">Found in:</span> <span x-text="selectedIngredient.commonlyFoundIn ? selectedIngredient.commonlyFoundIn.join(', ') : 'Needs research'"></span></div>
+                    <div x-show="selectedIngredient.possibleNonAnimalSources && selectedIngredient.possibleNonAnimalSources.length > 0"><span class="detail-label">Possible non‑animal sources:</span> <span x-text="selectedIngredient.possibleNonAnimalSources.join(', ')"></span></div>
+                    <div x-show="selectedIngredient.purpose"><span class="detail-label">Purpose:</span> <span x-text="selectedIngredient.purpose"></span></div>
+                    <div x-show="selectedIngredient.verificationAdvice"><span class="detail-label">Verification advice:</span> <span x-text="selectedIngredient.verificationAdvice"></span></div>
+                  </div>
+                  <div x-show="selectedIngredient.alternativeIds && selectedIngredient.alternativeIds.length > 0">
+                    <h4 class="modal-subtitle">Vegan alternatives</h4>
+                    <div class="modal-tags">
+                      <template x-for="altId in selectedIngredient.alternativeIds" :key="altId">
+                        <span class="tag tag-lime" x-text="getAlternativeName(altId) || altId"></span>
+                      </template>
+                    </div>
+                  </div>
+                  <div class="ingredient-detail-actions">
+                    <button type="button" @click="selectedIngredient = null; navigate('explore')" class="secondary-button"><span aria-hidden="true">🌿</span> <span>Find products</span></button>
+                    <button type="button" @click="scanSelectedIngredient()" class="secondary-button"><span aria-hidden="true">🔍</span> <span>Check in scanner</span></button>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+    
+          <!-- INGREDIENT CHECKER MODAL -->
+          <div x-show="openChecker" class="modal-overlay" @click.self="openChecker = false" @keydown.escape="openChecker = false" role="dialog" aria-modal="true" aria-labelledby="checker-title">
+            <div class="modal-panel">
+              <button type="button" @click="openChecker = false" class="modal-close" aria-label="Close ingredient checker">&times;</button>
+              <h2 id="checker-title" class="checker-title">Ingredient Checker</h2>
+              <p class="checker-subtitle">Paste an ingredient list to scan for animal‑derived ingredients.</p>
+              <textarea x-model="ingredientText" rows="4" class="checker-textarea" placeholder="e.g. Water, sugar, wheat flour, casein, whey, natural flavors…" aria-label="Ingredient list to scan"></textarea>
+              <div class="checker-actions">
+                <button type="button" @click="scanIngredients()" class="primary-button"><span aria-hidden="true">🔍</span> <span>Scan</span></button>
+                <button type="button" @click="ingredientText = ''; ingredientResults = []" class="secondary-button">Clear</button>
+                <button type="button" @click="ingredientText = 'Water, sugar, wheat flour, casein, whey, natural flavors, gelatin, lactic acid, vitamin D3, honey, soy lecithin, salt'; scanIngredients()" class="text-button">Use example</button>
               </div>
-              <span class="resource-count" x-text="filteredResources.length + ' resources'"></span>
-            </div>
-            <div class="resource-safety-note"><strong>You control the experience.</strong> External videos never autoplay. Graphic resources are clearly marked so you can decide whether and when to engage.</div>
-            <div class="search-field resource-search">
-              <span class="search-icon" aria-hidden="true">🔍</span>
-              <input type="text" x-model="resourceQuery" placeholder="Search resources, creators or topics..." class="search-input" aria-label="Search resources">
-            </div>
-            <div class="filter-row resource-filters" aria-label="Resource categories">
-              <template x-for="category in resourceCategories" :key="category">
-                <button type="button" @click="resourceCategory = category" class="filter-chip" :class="{'active': resourceCategory === category}" x-text="category"></button>
-              </template>
-            </div>
-            <div class="resource-grid">
-              <template x-for="resource in filteredResources" :key="resource.id">
-                <article class="external-resource-card external-resource-card-visual" :class="{'resource-graphic': resource.graphic}">
-                  <div class="resource-photo card-photo-wrap">
-                    <span class="card-photo-fallback resource-emoji" aria-hidden="true" x-text="resource.emoji || '🔗'"></span>
-                    <img x-show="resource.imageUrl" :src="resource.imageUrl" :alt="resource.title + ' resource artwork'" class="card-photo" loading="lazy" decoding="async" referrerpolicy="no-referrer" @error="if ($event.currentTarget.getAttribute('src') !== resource.fallbackImageUrl) { $event.currentTarget.src = resource.fallbackImageUrl } else { $event.currentTarget.style.display = 'none' }">
-                    <span x-show="resource.graphic" class="resource-image-warning">Content warning</span>
-                  </div>
-                  <div class="resource-card-top">
-                    <span class="resource-emoji" aria-hidden="true" x-text="resource.emoji || '🔗'"></span>
-                    <div class="resource-badges">
-                      <span class="resource-badge" x-text="resource.category"></span>
-                      <span x-show="resource.free" class="resource-badge resource-free">Free</span>
-                      <span x-show="resource.graphic" class="resource-badge resource-warning-badge">Graphic</span>
-                    </div>
-                  </div>
-                  <h3 class="resource-card-title" x-text="resource.title"></h3>
-                  <p class="resource-creator" x-text="resource.creator + ' · ' + resource.format"></p>
-                  <p class="resource-description" x-text="resource.description"></p>
-                  <div x-show="resource.contentWarning" class="resource-content-warning"><strong>Content note:</strong> <span x-text="resource.contentWarning"></span></div>
-                  <div class="resource-tags">
-                    <template x-for="tag in (resource.tags || []).slice(0, 4)" :key="tag"><span x-text="tag"></span></template>
-                  </div>
-                  <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="resource-open-link"><span>Open resource</span><span aria-hidden="true">↗</span></a>
-                </article>
-              </template>
-            </div>
-            <div x-show="filteredResources.length === 0" class="empty-state">No resources match those filters.</div>
-            <p class="resource-disclaimer">External resources are included for education, not blanket endorsement. Availability and content can change; health material does not replace individualized medical advice.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- ANIMALS VIEW -->
-      <div x-show="view === 'animals'" x-transition:enter.duration.300ms="">
-        <div class="view view-animals">
-          <div class="view-container">
-            <div class="animals-header">
-              <div>
-                <h2 class="view-title">Animals Library</h2>
-                <p class="view-subtitle">Learn about the animals behind everyday products and discover compassionate alternatives.</p>
-              </div>
-              <span class="animal-count" x-text="filteredAnimals.length + ' animals'"></span>
-            </div>
-
-            <div class="filter-row">
-              <template x-for="filter in ['All', 'Farmed', 'Aquatic', 'Insects', 'Materials', 'Research', 'Entertainment', 'Labor', 'Companionship']" :key="filter">
-                <button type="button" @click="animalFilter = filter" class="filter-chip" :class="{'active': animalFilter === filter}" x-text="filter"></button>
-              </template>
-            </div>
-
-            <div class="search-field">
-              <span class="search-icon" aria-hidden="true">🔍</span>
-              <input type="text" x-model="animalSearchQuery" @input.debounce.300ms="filterAnimals()" placeholder="Search animals..." class="search-input" aria-label="Search animals">
-            </div>
-
-            <div class="animal-grid">
-              <template x-for="animal in filteredAnimals" :key="animal.id">
-                <button type="button" @click="openAnimalDetail(animal)" class="animal-card animal-card-visual">
-                  <div class="animal-photo card-photo-wrap">
-                    <span class="card-photo-fallback animal-emoji" aria-hidden="true" x-text="animal.emoji || '🐾'"></span>
-                    <img x-show="animal.imageUrl" :src="animal.imageUrl" :alt="animal.commonName || animal.singularName" class="card-photo" loading="lazy" decoding="async" referrerpolicy="no-referrer" @error="$event.currentTarget.style.display='none'">
-                  </div>
-                  <div class="animal-name" x-text="animal.commonName || animal.singularName"></div>
-                  <div class="animal-summary" x-text="animal.summary || 'Learn more about this animal.'"></div>
-                  <div class="animal-meta">
-                    <span x-show="animal.categories &amp;&amp; animal.categories.length &gt; 0" x-text="animal.categories.join(', ')"></span>
-                    <span x-show="animal.industries &amp;&amp; animal.industries.length &gt; 0" x-text="animal.industries.join(', ')"></span>
-                    <span x-show="animal.sensitiveContent" class="sensitive-badge">⚠️ Sensitive</span>
-                  </div>
-                </button>
-              </template>
-            </div>
-            <div x-show="filteredAnimals.length === 0" class="empty-state">
-              <span aria-hidden="true">🐾</span>
-              <p>No animals found matching your criteria.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- JOURNEY VIEW -->
-      <div x-show="view === 'journey'" x-transition:enter.duration.300ms="">
-        <div class="view view-journey">
-          <div class="view-container view-container-narrow">
-            <h2 class="view-title">Your Journey</h2>
-            <p class="view-subtitle">Choose a path and track your progress.</p>
-            <div class="filter-row">
-              <template x-for="path in transitionPaths" :key="path.id">
-                <button type="button" @click="selectTransitionPath(path.id)" class="filter-chip" :class="{'active': transitionPath === path.id}" x-text="path.label"></button>
-              </template>
-            </div>
-            <div class="progress-card">
-              <div class="progress-header"><span class="progress-label">Progress</span><span class="progress-value" x-text="Math.round(transitionProgress * 100) + '%'"></span></div>
-              <div class="progress-bar"><div class="progress-fill" :style="'width: ' + (transitionProgress * 100) + '%'"></div></div>
-            </div>
-            <div class="task-list">
-              <template x-for="(task, idx) in currentTransitionTasks" :key="idx">
-                <label class="task-item">
-                  <input type="checkbox" x-model="transitionCompleted[idx]" @change="saveTransitionProgress()" class="task-checkbox">
-                  <span class="task-label" :class="{'done': transitionCompleted[idx]}" x-text="task"></span>
-                </label>
-              </template>
-            </div>
-            <div x-show="currentJourneyResources.length &gt; 0" class="context-resources journey-resources">
-              <div class="context-resource-heading">Helpful for this path</div>
-              <template x-for="resource in currentJourneyResources" :key="resource.id">
-                <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><span x-text="resource.emoji || '🔗'"></span><span><strong x-text="resource.title"></strong><small x-text="resource.format + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
-              </template>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- FAVORITES VIEW -->
-      <div x-show="view === 'favorites'" x-transition:enter.duration.300ms="">
-        <div class="view view-favorites">
-          <div class="view-container">
-            <div class="favorites-header">
-              <div><h2 class="view-title">Favorites</h2><p class="view-subtitle" x-text="favorites.length + ' saved items'"></p></div>
-              <button type="button" @click="exportFavorites()" class="secondary-button">Export</button>
-            </div>
-            <div class="product-grid">
-              <template x-for="p in favorites" :key="p.id">
-                <article class="product-card product-card-favorite">
-                  <button type="button" @click="openProduct(p)" class="product-card-main">
-                    <div class="favorite-product-photo card-photo-wrap">
-                      <span class="card-photo-fallback product-emoji" aria-hidden="true" x-text="p.emoji || '⭐'"></span>
-                      <img x-show="p.imageUrl" :src="p.imageUrl" :alt="p.imageAlt || (p.brand + ' ' + p.name)" class="card-photo" loading="lazy" decoding="async" @error="$event.currentTarget.style.display='none'">
-                    </div>
-                    <div class="product-brand" x-text="p.brand + ' ' + p.name"></div>
-                  </button>
-                  <button type="button" @click.stop="removeFavorite(p.id)" class="favorite-remove">Remove</button>
-                </article>
-              </template>
-            </div>
-            <div x-show="favorites.length === 0" class="empty-state"><span aria-hidden="true">❤️</span><p>No favorites yet.</p></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- EVERYDAY PRODUCTS VIEW -->
-      <div x-show="view === 'everyday'" x-transition:enter.duration.300ms="">
-        <div class="view view-everyday">
-          <div class="view-container">
-            <h2 class="view-title">Everyday Products</h2>
-            <p class="view-subtitle">Discover common household products that may contain animal-derived materials, and find vegan alternatives.</p>
-            <div class="filter-row">
-              <template x-for="location in householdLocations" :key="location.id">
-                <button type="button" @click="selectedLocation = location.id" class="filter-chip" :class="{'active': selectedLocation === location.id}" x-text="location.emoji + ' ' + location.name"></button>
-              </template>
-            </div>
-            <div x-show="selectedLocationData">
-              <h3 class="location-title" x-text="selectedLocationData.name"></h3>
-              <p class="location-desc" x-text="selectedLocationData.description"></p>
-              <div class="everyday-grid">
-                <template x-for="item in selectedLocationItems" :key="item.id">
-                  <div class="everyday-card">
-                    <div class="everyday-item">
-                      <span class="everyday-emoji" aria-hidden="true" x-text="item.emoji || '📦'"></span>
-                      <div><div class="everyday-name" x-text="item.name"></div><div class="everyday-desc" x-text="item.description || 'Common household item.'"></div></div>
-                    </div>
-                    <div class="everyday-tags">
-                      <span class="tag" x-text="'🐾 ' + (getAnimalNamesForProduct(item).join(', ') || 'Animal source needs research')"></span>
-                    </div>
-                    <button type="button" @click="showProductAlternatives(item)" class="text-button">Find alternatives →</button>
+              <div class="checker-results">
+                <template x-for="res in ingredientResults" :key="res.term">
+                  <div class="checker-result" :class="getStatusClass(res.status)">
+                    <span class="checker-result-term" x-text="res.term"></span>
+                    <span class="checker-result-status" :class="getStatusClass(res.status)" x-text="res.label"></span>
+                    <span class="checker-result-note" x-text="res.note"></span>
                   </div>
                 </template>
               </div>
+              <div x-show="ingredientResults.length > 0" class="checker-disclaimer">
+                <span>ℹ️</span> "No flagged ingredient" does not guarantee the product is vegan. Processing aids, testing policies, and undisclosed sources may still require verification.
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- INGREDIENT LIBRARY VIEW -->
-      <div x-show="view === 'ingredient-library'" x-transition:enter.duration.300ms="">
-        <div class="view view-ingredients">
-          <div class="view-container">
-            <h2 class="view-title">Ingredient Library</h2>
-            <p class="view-subtitle">Browse animal-derived ingredients and their vegan alternatives.</p>
-            <div class="search-field">
-              <span class="search-icon" aria-hidden="true">🔍</span>
-              <input type="text" x-model="ingredientSearchQuery" @input.debounce.300ms="filterIngredientLibrary()" placeholder="Search ingredients..." class="search-input" aria-label="Search ingredients">
-            </div>
-            <div class="filter-row">
-              <template x-for="status in ['All', 'animal-derived', 'usually-animal-derived', 'may-be-animal-derived', 'usually-plant-or-microbial', 'vegan', 'unknown']" :key="status">
-                <button type="button" @click="ingredientStatusFilter = status" class="filter-chip" :class="{'active': ingredientStatusFilter === status}" x-text="status.replace(/-/g, ' ')"></button>
-              </template>
-            </div>
-            <div class="ingredient-grid">
-              <template x-for="ing in filteredIngredientLibrary" :key="ing.id">
-                <div class="ingredient-card">
-                  <div class="ingredient-header">
-                    <div><span class="ingredient-name" x-text="ing.name"></span><span class="ingredient-aliases" x-show="ing.aliases &amp;&amp; ing.aliases.length &gt; 0" x-text="'aka ' + ing.aliases.join(', ')"></span></div>
-                    <span class="tag" :class="{'tag-coral': ['animal-derived', 'usually-animal-derived'].includes(ing.status), 'tag-lime': ['usually-plant-or-microbial', 'vegan'].includes(ing.status)}" x-text="ing.status.replace(/-/g, ' ')"></span>
-                  </div>
-                  <div class="ingredient-source" x-text="ing.commonSources ? 'Source: ' + ing.commonSources.join(', ') : ''"></div>
-                  <div class="ingredient-found" x-text="ing.commonlyFoundIn ? 'Found in: ' + ing.commonlyFoundIn.join(', ') : ''"></div>
-                  <div class="ingredient-tags">
-                    <span x-show="ing.animalIds &amp;&amp; ing.animalIds.length &gt; 0" class="tag">🐾 <span x-text="ing.animalIds.length + ' animals'"></span></span>
-                    <span x-show="ing.alternativeIds &amp;&amp; ing.alternativeIds.length &gt; 0" class="tag tag-lime">🌱 alternatives available</span>
-                  </div>
-                  <button type="button" @click="openIngredientDetail(ing)" class="text-button">View details →</button>
-                </div>
-              </template>
-            </div>
-            <div x-show="filteredIngredientLibrary.length === 0" class="empty-state">No ingredients found.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- NUTRITION VIEW -->
-      <div x-show="view === 'nutrition'" x-transition:enter.duration.300ms="">
-        <div class="view view-nutrition">
-          <div class="view-container view-container-narrow">
-            <h2 class="view-title">Nutrition</h2>
-            <p class="view-subtitle">Explore important nutrition topics for plant-based eating.</p>
-            <div class="nutrient-list">
-              <template x-for="nutrient in nutrients" :key="nutrient.id">
-                <div class="nutrient-card">
-                  <h3 class="nutrient-title" x-text="nutrient.name"></h3>
-                  <p class="nutrient-desc" x-text="nutrient.purpose"></p>
-                  <div class="nutrient-details">
-                    <div x-show="nutrient.priority"><span class="nutrient-label">Planning priority:</span> <span x-text="nutrient.priority"></span></div>
-                    <div x-show="nutrient.dailyReference"><span class="nutrient-label">Reference intake:</span> <span x-text="nutrient.dailyReference"></span></div>
-                    <div><span class="nutrient-label">Vegan sources:</span> <span x-text="nutrient.veganSources ? nutrient.veganSources.join(', ') : 'Needs research'"></span></div>
-                    <div><span class="nutrient-label">Absorption notes:</span> <span x-text="nutrient.absorptionNotes || 'Needs research'"></span></div>
-                    <div><span class="nutrient-label">Considerations:</span> <span x-text="nutrient.deficiencyConsiderations || 'Needs research'"></span></div>
-                    <div><span class="nutrient-label">Supplement notes:</span> <span x-text="nutrient.supplementNotes || 'Needs research'"></span></div>
-                  </div>
-                  <div x-show="nutrient.medicalDisclaimer" class="nutrient-disclaimer">
-                    <span>⚠️</span> <span x-text="nutrient.medicalDisclaimer"></span>
-                  </div>
-                  <div x-show="getResourcesForNutrient(nutrient).length &gt; 0" class="context-resources nutrient-resources">
-                    <div class="context-resource-heading">Evidence and planning guides</div>
-                    <template x-for="resource in getResourcesForNutrient(nutrient)" :key="resource.id">
-                      <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><span x-text="resource.emoji || '🔗'"></span><span><strong x-text="resource.title"></strong><small x-text="resource.creator"></small></span><span aria-hidden="true">↗</span></a>
-                    </template>
-                  </div>
-                </div>
-              </template>
-            </div>
-            <div class="nutrition-note">
-              <p>💡 <span class="nutrition-note-strong">Remember:</span> This information is educational, not medical advice. Consult a registered dietitian or healthcare provider for personalized guidance.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ABOUT VIEW -->
-      <div x-show="view === 'about'" x-transition:enter.duration.300ms="">
-        <div class="view view-about">
-          <div class="view-container view-container-narrow">
-            <h2 class="view-title">About Go Vegan</h2>
-            <div class="about-content">
-              <p><strong>Go Vegan</strong> is a free, open‑source educational application designed to help people understand veganism and make the switch, step by step.</p>
-              <p>We believe in progress, not perfection. Veganism is defined by The Vegan Society as <em>“a philosophy and way of living which seeks to exclude—as far as is possible and practicable—all forms of exploitation of, and cruelty to, animals for food, clothing or any other purpose.”</em></p>
-              <p>This app is built with compassion and respect for everyone, regardless of where they are on their journey. We do not shame or judge. We recognize that disability, medication needs, health conditions, poverty, food access, geography, and survival circumstances can affect what is possible for each person.</p>
-              <hr>
-              <p><strong>Please note:</strong> Product formulas, company policies, and ingredient sourcing change frequently. Always verify current packaging and manufacturer statements before relying on any product information shown here. Product availability varies by region.</p>
-              <p><strong>Not medical advice:</strong> The nutrition information provided is for educational purposes only. Consult a registered dietitian or healthcare provider for personalized guidance. Never stop or change medically necessary treatment without professional advice.</p>
-              <hr>
-              <p><strong>Open source:</strong> Go Vegan is an open‑source project. Contributions, corrections, and suggestions are welcome. If you find an error or have a reliable source to share, please reach out.</p>
-              <p class="about-disclaimer">All data is provided for guidance only. We strive for accuracy but cannot guarantee completeness or currency.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ANIMAL DETAIL MODAL -->
-      <div x-show="selectedAnimal" class="modal-overlay" @click.self="closeAnimalDetail" @keydown.escape="closeAnimalDetail" role="dialog" aria-modal="true" aria-labelledby="animal-detail-title">
-        <div class="modal-panel modal-panel-wide">
-          <button type="button" @click="closeAnimalDetail" class="modal-close" aria-label="Close animal detail">×</button>
-          <template x-if="selectedAnimal">
-            <div>
-              <div class="animal-detail-header">
-                <span class="animal-detail-emoji" aria-hidden="true" x-text="selectedAnimal.emoji || '🐾'"></span>
-                <div>
-                  <h2 id="animal-detail-title" class="animal-detail-name" x-text="selectedAnimal.commonName || selectedAnimal.singularName"></h2>
-                  <div class="animal-detail-tags">
-                    <span class="tag" x-text="selectedAnimal.scientificGroups ? selectedAnimal.scientificGroups.join(', ') : 'Needs research'"></span>
-                    <span x-show="selectedAnimal.sensitiveContent" class="sensitive-badge">⚠️ Sensitive content</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="modal-tabs" role="tablist" aria-label="Animal detail sections" @keydown="handleAnimalTabKeydown($event)">
-                <button type="button" @click="selectAnimalTab('overview', $event)" role="tab" :aria-selected="animalDetailTab === 'overview'" :aria-controls="'tab-panel-overview'" :id="'tab-overview'" class="modal-tab" :class="{'active': animalDetailTab === 'overview'}" :tabindex="animalDetailTab === 'overview' ? '0' : '-1'">Overview</button>
-                <button type="button" @click="selectAnimalTab('natural', $event)" role="tab" :aria-selected="animalDetailTab === 'natural'" :aria-controls="'tab-panel-natural'" :id="'tab-natural'" class="modal-tab" :class="{'active': animalDetailTab === 'natural'}" :tabindex="animalDetailTab === 'natural' ? '0' : '-1'">Natural Life</button>
-                <button type="button" @click="selectAnimalTab('uses', $event)" role="tab" :aria-selected="animalDetailTab === 'uses'" :aria-controls="'tab-panel-uses'" :id="'tab-uses'" class="modal-tab" :class="{'active': animalDetailTab === 'uses'}" :tabindex="animalDetailTab === 'uses' ? '0' : '-1'">Human Uses</button>
-                <button type="button" @click="selectAnimalTab('ingredients', $event)" role="tab" :aria-selected="animalDetailTab === 'ingredients'" :aria-controls="'tab-panel-ingredients'" :id="'tab-ingredients'" class="modal-tab" :class="{'active': animalDetailTab === 'ingredients'}" :tabindex="animalDetailTab === 'ingredients' ? '0' : '-1'">Ingredients</button>
-                <button type="button" @click="selectAnimalTab('everyday', $event)" role="tab" :aria-selected="animalDetailTab === 'everyday'" :aria-controls="'tab-panel-everyday'" :id="'tab-everyday'" class="modal-tab" :class="{'active': animalDetailTab === 'everyday'}" :tabindex="animalDetailTab === 'everyday' ? '0' : '-1'">Everyday Items</button>
-                <button type="button" @click="selectAnimalTab('alternatives', $event)" role="tab" :aria-selected="animalDetailTab === 'alternatives'" :aria-controls="'tab-panel-alternatives'" :id="'tab-alternatives'" class="modal-tab" :class="{'active': animalDetailTab === 'alternatives'}" :tabindex="animalDetailTab === 'alternatives' ? '0' : '-1'">Alternatives</button>
-                <button type="button" @click="selectAnimalTab('sources', $event)" role="tab" :aria-selected="animalDetailTab === 'sources'" :aria-controls="'tab-panel-sources'" :id="'tab-sources'" class="modal-tab" :class="{'active': animalDetailTab === 'sources'}" :tabindex="animalDetailTab === 'sources' ? '0' : '-1'">Sources</button>
-              </div>
-
-              <!-- Overview -->
-              <div class="modal-body" x-show="animalDetailTab === 'overview'" :class="{'active': animalDetailTab === 'overview'}" role="tabpanel" :aria-labelledby="'tab-overview'" id="tab-panel-overview">
-                <p class="modal-text" x-text="selectedAnimal.summary || 'Information coming soon.'"></p>
-                <div x-show="selectedAnimal.welfareConcerns &amp;&amp; selectedAnimal.welfareConcerns.length &gt; 0">
-                  <h4 class="modal-subtitle">Welfare concerns</h4>
-                  <ul class="modal-list">
-                    <template x-for="concern in selectedAnimal.welfareConcerns" :key="concern">
-                      <li x-text="concern"></li>
-                    </template>
-                  </ul>
-                </div>
-                <div x-show="selectedAnimal.industries &amp;&amp; selectedAnimal.industries.length &gt; 0">
-                  <h4 class="modal-subtitle">Industries</h4>
-                  <div class="modal-tags">
-                    <template x-for="industry in selectedAnimal.industries" :key="industry">
-                      <span class="tag" x-text="industry"></span>
-                    </template>
-                  </div>
-                </div>
-                <div x-show="selectedAnimal.categories &amp;&amp; selectedAnimal.categories.length &gt; 0">
-                  <h4 class="modal-subtitle">Categories</h4>
-                  <div class="modal-tags">
-                    <template x-for="cat in selectedAnimal.categories" :key="cat">
-                      <span class="tag" x-text="cat"></span>
-                    </template>
-                  </div>
-                </div>
-                <div x-show="selectedAnimalResources.length &gt; 0" class="context-resources animal-context-resources">
-                  <div class="context-resource-heading">Related resources</div>
-                  <template x-for="resource in selectedAnimalResources" :key="resource.id">
-                    <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><span x-text="resource.emoji || '🔗'"></span><span><strong x-text="resource.title"></strong><small x-text="resource.graphic ? 'Graphic content · ' + resource.category : resource.category + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
-                  </template>
-                </div>
-              </div>
-
-              <!-- Natural Life -->
-              <div class="modal-body" x-show="animalDetailTab === 'natural'" :class="{'active': animalDetailTab === 'natural'}" role="tabpanel" :aria-labelledby="'tab-natural'" id="tab-panel-natural">
-                <div class="detail-grid">
-                  <div class="detail-row"><span class="detail-label">Habitat:</span> <span x-text="selectedAnimal.naturalLife?.habitat || 'Needs research'"></span></div>
-                  <div class="detail-row"><span class="detail-label">Diet:</span> <span x-text="selectedAnimal.naturalLife?.diet || 'Needs research'"></span></div>
-                  <div class="detail-row"><span class="detail-label">Social life:</span> <span x-text="selectedAnimal.naturalLife?.socialLife || 'Needs research'"></span></div>
-                  <div class="detail-row"><span class="detail-label">Communication:</span> <span x-text="selectedAnimal.naturalLife?.communication || 'Needs research'"></span></div>
-                  <div class="detail-row"><span class="detail-label">Cognition:</span> <span x-text="selectedAnimal.naturalLife?.cognition || 'Needs research'"></span></div>
-                  <div class="detail-row"><span class="detail-label">Parenting:</span> <span x-text="selectedAnimal.naturalLife?.parenting || 'Needs research'"></span></div>
-                  <div class="detail-row"><span class="detail-label">Potential lifespan:</span> <span x-text="selectedAnimal.naturalLife?.potentialLifespan || 'Needs research'"></span></div>
-                </div>
-                <div x-show="selectedAnimal.naturalLife?.naturalBehaviors &amp;&amp; selectedAnimal.naturalLife.naturalBehaviors.length &gt; 0">
-                  <h4 class="modal-subtitle">Natural behaviors</h4>
-                  <ul class="modal-list">
-                    <template x-for="behavior in selectedAnimal.naturalLife.naturalBehaviors" :key="behavior">
-                      <li x-text="behavior"></li>
-                    </template>
-                  </ul>
-                </div>
-              </div>
-
-              <!-- Human Uses -->
-              <div class="modal-body" x-show="animalDetailTab === 'uses'" :class="{'active': animalDetailTab === 'uses'}" role="tabpanel" :aria-labelledby="'tab-uses'" id="tab-panel-uses">
-                <h4 class="modal-subtitle">How humans use this animal</h4>
-                <div x-show="selectedAnimalUses.length &gt; 0" class="use-list">
-                  <template x-for="use in selectedAnimalUses" :key="use.id">
-                    <div class="use-card">
-                      <h5 class="use-title" x-text="use.title"></h5>
-                      <p class="use-summary" x-text="use.summary || 'No summary available.'"></p>
-                      <div class="use-tags">
-                        <span class="tag" x-text="use.category"></span>
-                        <span class="tag" x-text="use.commonPractices ? use.commonPractices.length + ' practices' : ''"></span>
-                      </div>
-                    </div>
-                  </template>
-                </div>
-                <p x-show="selectedAnimalUses.length === 0" class="empty-text">No uses documented yet.</p>
-              </div>
-
-              <!-- Ingredients -->
-              <div class="modal-body" x-show="animalDetailTab === 'ingredients'" :class="{'active': animalDetailTab === 'ingredients'}" role="tabpanel" :aria-labelledby="'tab-ingredients'" id="tab-panel-ingredients">
-                <h4 class="modal-subtitle">Animal-derived ingredients</h4>
-                <div x-show="selectedAnimalIngredients.length &gt; 0" class="ingredient-list">
-                  <template x-for="ing in selectedAnimalIngredients" :key="ing.id">
-                    <div class="ingredient-row">
-                      <span class="ingredient-name" x-text="ing.name"></span>
-                      <div class="ingredient-row-tags">
-                        <span class="tag" x-text="ing.status"></span>
-                        <span x-show="ing.commonlyFoundIn &amp;&amp; ing.commonlyFoundIn.length &gt; 0" class="ingredient-found-in" x-text="ing.commonlyFoundIn.slice(0, 3).join(', ') + (ing.commonlyFoundIn.length &gt; 3 ? '…' : '')"></span>
-                      </div>
-                    </div>
-                  </template>
-                </div>
-                <p x-show="selectedAnimalIngredients.length === 0" class="empty-text">No ingredients documented yet.</p>
-              </div>
-
-              <!-- Everyday Items -->
-              <div class="modal-body" x-show="animalDetailTab === 'everyday'" :class="{'active': animalDetailTab === 'everyday'}" role="tabpanel" :aria-labelledby="'tab-everyday'" id="tab-panel-everyday">
-                <h4 class="modal-subtitle">Everyday items that may involve this animal</h4>
-                <div x-show="selectedAnimalEverydayItems.length &gt; 0" class="everyday-grid">
-                  <template x-for="item in selectedAnimalEverydayItems" :key="item.id">
-                    <div class="everyday-card">
-                      <div class="everyday-item">
-                        <span class="everyday-emoji" aria-hidden="true" x-text="item.emoji || '📦'"></span>
-                        <div><div class="everyday-name" x-text="item.name"></div><div class="everyday-desc" x-text="item.description || 'Common product.'"></div></div>
-                      </div>
-                    </div>
-                  </template>
-                </div>
-                <p x-show="selectedAnimalEverydayItems.length === 0" class="empty-text">No everyday items documented yet.</p>
-              </div>
-
-              <!-- Alternatives -->
-              <div class="modal-body" x-show="animalDetailTab === 'alternatives'" :class="{'active': animalDetailTab === 'alternatives'}" role="tabpanel" :aria-labelledby="'tab-alternatives'" id="tab-panel-alternatives">
-                <h4 class="modal-subtitle">Vegan alternatives</h4>
-                <div x-show="selectedAnimalAlternatives.length &gt; 0" class="alt-grid">
-                  <template x-for="alt in selectedAnimalAlternatives" :key="alt.id">
-                    <div class="alt-card">
-                      <div class="alt-name" x-text="alt.name"></div>
-                      <div class="alt-desc" x-text="alt.description || alt.category || 'Alternative'"></div>
-                      <span class="tag" x-text="alt.replaces ? 'Replaces ' + alt.replaces : ''"></span>
-                    </div>
-                  </template>
-                </div>
-                <div x-show="selectedAnimalAlternatives.length === 0" class="alt-placeholder">
-                  <p>💡 <span class="alt-tip">Tip:</span> Many alternatives exist for products derived from <span x-text="selectedAnimal.commonName || selectedAnimal.singularName"></span>. Check the Explore section for product alternatives and the Recipes section for plant‑based meals.</p>
-                </div>
-                <div class="alt-actions">
-                  <button type="button" @click="selectedAnimal = null; navigate('explore')" class="secondary-button"><span aria-hidden="true">🌿</span> <span>Explore products</span></button>
-                  <button type="button" @click="selectedAnimal = null; navigate('recipes')" class="secondary-button"><span aria-hidden="true">🍽️</span> <span>Explore recipes</span></button>
-                </div>
-              </div>
-
-              <!-- Sources -->
-              <div class="modal-body" x-show="animalDetailTab === 'sources'" :class="{'active': animalDetailTab === 'sources'}" role="tabpanel" :aria-labelledby="'tab-sources'" id="tab-panel-sources">
-                <h4 class="modal-subtitle">Sources</h4>
-                <div x-show="selectedAnimalSources.length &gt; 0" class="source-list">
-                  <template x-for="src in selectedAnimalSources" :key="src.id">
-                    <div class="source-card">
-                      <div class="source-title" x-text="src.title"></div>
-                      <div class="source-org" x-text="src.organization || ''"></div>
-                      <div class="source-date" x-show="src.publicationDate" x-text="'Published: ' + src.publicationDate"></div>
-                      <a x-show="src.url" :href="src.url" target="_blank" rel="noopener noreferrer" class="source-link">View source ↗</a>
-                    </div>
-                  </template>
-                </div>
-                <p x-show="selectedAnimalSources.length === 0" class="empty-text">No sources documented yet.</p>
-              </div>
-            </div>
+    
+        </main>
+    
+        <!-- BOTTOM NAV -->
+        <nav class="bottom-navigation" aria-label="Mobile navigation">
+          <template x-for="item in mobileNavItems" :key="item.id">
+            <button type="button" @click="navigate(item.id)" class="bottom-nav-item" :class="{'active': view === item.id}" :aria-current="view === item.id ? 'page' : undefined">
+              <span class="nav-icon" aria-hidden="true" x-text="item.icon"></span>
+              <span x-text="item.label"></span>
+            </button>
           </template>
+          <button type="button" @click="toggleMoreDrawer()" class="bottom-nav-item" :class="{'active': moreOpen}" aria-label="More options" :aria-expanded="moreOpen" aria-controls="more-drawer">
+            <span class="nav-icon" aria-hidden="true">⋮</span>
+            <span>More</span>
+          </button>
+        </nav>
+    
+        <!-- MORE DRAWER -->
+        <div id="more-drawer" class="more-drawer" :class="{'open': moreOpen}" :aria-hidden="!moreOpen" role="menu">
+          <button type="button" @click="navigate('learn'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">📖</span> Learn</button>
+          <button type="button" @click="navigate('evidence'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🔬</span> Evidence Library</button>
+          <button type="button" @click="navigate('normalization'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🧭</span> When Harm Becomes Normal</button>
+          <button type="button" @click="navigate('resources'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🔗</span> Resources</button>
+          <button type="button" @click="navigate('animals'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🐄</span> Animals</button>
+          <button type="button" @click="navigate('everyday'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🏠</span> Everyday</button>
+          <button type="button" @click="navigate('ingredient-library'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🧪</span> Ingredients</button>
+          <button type="button" @click="navigate('nutrition'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🥗</span> Nutrition</button>
+          <button type="button" @click="openChecker = true; moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">✅</span> Ingredient Checker</button>
+          <button type="button" @click="shareApp(); moreOpen = false" class="tiny-share-menu-item" role="menuitem"><span class="drawer-icon" aria-hidden="true">📤</span> Share Go Vegan</button>
+          <button type="button" @click="navigate('about'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">ℹ️</span> About</button>
         </div>
+    
+        <!-- FOOTER -->
+        <footer class="app-footer">
+          <p>Go Vegan is free and open source. If this helped you, consider <a href="https://michaelsboost.com/donate" target="_blank" rel="noopener noreferrer">supporting development 💛</a> · <a href="https://github.com/michaelsboost/govegan" target="_blank" rel="noopener noreferrer">view the source on GitHub</a> · compassion over convenience · progress, not perfection</p>
+          <p class="footer-disclaimer">All data for guidance. Always verify current product packaging.</p>
+        </footer>
       </div>
-
-      <!-- PRODUCT DETAIL MODAL -->
-      <div x-show="selectedProduct" class="modal-overlay" @click.self="selectedProduct = null" @keydown.escape="selectedProduct = null" role="dialog" aria-modal="true" aria-labelledby="product-detail-title">
-        <div class="modal-panel">
-          <button type="button" @click="selectedProduct = null" class="modal-close" aria-label="Close product detail">×</button>
-          <template x-if="selectedProduct">
-            <div>
-              <div class="product-detail-photo card-photo-wrap">
-                <span class="card-photo-fallback product-emoji" aria-hidden="true" x-text="selectedProduct.emoji || '🌱'"></span>
-                <img x-show="selectedProduct.imageUrl" :src="selectedProduct.imageUrl" :alt="selectedProduct.imageAlt || (selectedProduct.brand + ' ' + selectedProduct.name)" class="card-photo" decoding="async" @error="$event.currentTarget.style.display='none'">
-              </div>
-              <h2 id="product-detail-title" class="product-detail-title" x-text="selectedProduct.brand + ' ' + selectedProduct.name"></h2>
-              <div class="product-detail-tags">
-                <span class="tag" x-text="selectedProduct.category"></span>
-                <span class="tag" x-text="selectedProduct.replaces"></span>
-                <span class="tag" :class="getProductStatusClass(selectedProduct.productStatus)" x-text="getProductStatusLabel(selectedProduct.productStatus)"></span>
-              </div>
-              <p class="product-detail-desc" x-text="selectedProduct.description"></p>
-              <div class="product-detail-grid">
-                <div><span class="detail-label">Base:</span> <span x-text="selectedProduct.base || 'Plant-based'"></span></div>
-                <div><span class="detail-label">Price:</span> <span x-text="selectedProduct.priceTier || 'moderate'"></span></div>
-                <div><span class="detail-label">Uses:</span> <span x-text="selectedProduct.uses || 'Versatile'"></span></div>
-                <div><span class="detail-label">Company:</span> <span x-text="selectedProduct.companyScope || 'mixed'"></span></div>
-              </div>
-              <div x-show="selectedProduct.ingredientsSummary" class="product-detail-meta"><span class="detail-label">Ingredients:</span> <span x-text="selectedProduct.ingredientsSummary"></span></div>
-              <div x-show="selectedProduct.verificationScope" class="product-detail-meta"><span class="detail-label">Evidence:</span> <span x-text="selectedProduct.verificationScope.replace(/-/g, ' ')"></span></div>
-              <div x-show="selectedProduct.productUrl" class="product-detail-meta"><a :href="selectedProduct.productUrl" target="_blank" rel="noopener noreferrer" class="source-link">View manufacturer information ↗</a></div>
-              <div x-show="selectedProduct.lastVerified" class="product-detail-meta"><span class="detail-label">Last verified:</span> <span x-text="selectedProduct.lastVerified"></span></div>
-              <div x-show="selectedProduct.verificationNote" class="product-detail-meta"><span class="detail-label">Verification note:</span> <span x-text="selectedProduct.verificationNote"></span></div>
-              <div x-show="selectedProduct.region" class="product-detail-meta"><span class="detail-label">Region:</span> <span x-text="selectedProduct.region"></span></div>
-              <div x-show="selectedProduct.availability" class="product-detail-meta"><span class="detail-label">Availability:</span> <span x-text="selectedProduct.availability"></span></div>
-              <div x-show="selectedProductResources.length &gt; 0" class="context-resources product-context-resources">
-                <div class="context-resource-heading">Related guidance</div>
-                <template x-for="resource in selectedProductResources" :key="resource.id">
-                  <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><span x-text="resource.emoji || '🔗'"></span><span><strong x-text="resource.title"></strong><small x-text="resource.graphic ? 'Graphic content · ' + resource.category : resource.category + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
-                </template>
-              </div>
-              <div class="product-detail-actions">
-                <button type="button" @click="toggleFavorite(selectedProduct)" class="secondary-button">
-                  <span x-text="isFavorite(selectedProduct.id) ? '❤️ Remove' : '🤍 Save'"></span>
-                </button>
-                <button type="button" @click="shareProduct(selectedProduct)" class="secondary-button"><span aria-hidden="true">📤</span> <span>Share</span></button>
-              </div>
-            </div>
-          </template>
-        </div>
-      </div>
-
-      <!-- RECIPE DETAIL MODAL -->
-      <div x-show="selectedRecipe" class="modal-overlay" @click.self="selectedRecipe = null" @keydown.escape="selectedRecipe = null" role="dialog" aria-modal="true" aria-labelledby="recipe-detail-title">
-        <div class="modal-panel modal-panel-wide">
-          <button type="button" @click="selectedRecipe = null" class="modal-close" aria-label="Close recipe detail">×</button>
-          <template x-if="selectedRecipe">
-            <div>
-              <h2 id="recipe-detail-title" class="recipe-detail-title" x-text="selectedRecipe.title"></h2>
-              <p class="recipe-detail-desc" x-text="selectedRecipe.description"></p>
-              <div class="recipe-detail-tags">
-                <span class="tag" x-text="selectedRecipe.category"></span>
-                <span class="tag" x-text="selectedRecipe.totalMinutes + ' min'"></span>
-                <span class="tag" x-text="selectedRecipe.difficulty"></span>
-              </div>
-              <div class="recipe-detail-grid">
-                <div>
-                  <h4 class="recipe-detail-subtitle">Ingredients</h4>
-                  <ul class="recipe-ingredient-list">
-                    <template x-for="ing in selectedRecipe.ingredients" :key="ing.item">
-                      <li><input type="checkbox" class="task-checkbox"><span x-text="ing.amount + ' ' + ing.unit + ' ' + ing.item"></span></li>
-                    </template>
-                  </ul>
-                </div>
-                <div>
-                  <h4 class="recipe-detail-subtitle">Instructions</h4>
-                  <ol class="recipe-instruction-list">
-                    <template x-for="(step, idx) in selectedRecipe.instructions" :key="idx">
-                      <li x-text="step"></li>
-                    </template>
-                  </ol>
-                </div>
-              </div>
-              <div x-show="selectedRecipe.substitutionNotes &amp;&amp; selectedRecipe.substitutionNotes.length" class="product-detail-meta">
-                <span class="detail-label">Substitutions:</span>
-                <span x-text="selectedRecipe.substitutionNotes.join(' ')"></span>
-              </div>
-              <div x-show="selectedRecipe.storageNotes" class="product-detail-meta">
-                <span class="detail-label">Storage:</span>
-                <span x-text="selectedRecipe.storageNotes"></span>
-              </div>
-            </div>
-          </template>
-        </div>
-      </div>
-
-      <!-- INGREDIENT DETAIL MODAL -->
-      <div x-show="selectedIngredient" class="modal-overlay" @click.self="selectedIngredient = null" @keydown.escape="selectedIngredient = null" role="dialog" aria-modal="true" aria-labelledby="ingredient-detail-title">
-        <div class="modal-panel">
-          <button type="button" @click="selectedIngredient = null" class="modal-close" aria-label="Close ingredient detail">×</button>
-          <template x-if="selectedIngredient">
-            <div>
-              <h2 id="ingredient-detail-title" class="ingredient-detail-title" x-text="selectedIngredient.name"></h2>
-              <div class="ingredient-detail-tags">
-                <span class="tag" :class="{'tag-coral': ['animal-derived', 'usually-animal-derived'].includes(selectedIngredient.status), 'tag-lime': ['usually-plant-or-microbial', 'vegan'].includes(selectedIngredient.status)}" x-text="selectedIngredient.status.replace(/-/g, ' ')"></span>
-                <span x-show="selectedIngredient.aliases &amp;&amp; selectedIngredient.aliases.length &gt; 0" class="tag" x-text="'Aliases: ' + selectedIngredient.aliases.join(', ')"></span>
-              </div>
-              <div class="ingredient-detail-grid">
-                <div><span class="detail-label">Common sources:</span> <span x-text="selectedIngredient.commonSources ? selectedIngredient.commonSources.join(', ') : 'Needs research'"></span></div>
-                <div><span class="detail-label">Found in:</span> <span x-text="selectedIngredient.commonlyFoundIn ? selectedIngredient.commonlyFoundIn.join(', ') : 'Needs research'"></span></div>
-                <div x-show="selectedIngredient.possibleNonAnimalSources &amp;&amp; selectedIngredient.possibleNonAnimalSources.length &gt; 0"><span class="detail-label">Possible non‑animal sources:</span> <span x-text="selectedIngredient.possibleNonAnimalSources.join(', ')"></span></div>
-                <div x-show="selectedIngredient.purpose"><span class="detail-label">Purpose:</span> <span x-text="selectedIngredient.purpose"></span></div>
-                <div x-show="selectedIngredient.verificationAdvice"><span class="detail-label">Verification advice:</span> <span x-text="selectedIngredient.verificationAdvice"></span></div>
-              </div>
-              <div x-show="selectedIngredient.alternativeIds &amp;&amp; selectedIngredient.alternativeIds.length &gt; 0">
-                <h4 class="modal-subtitle">Vegan alternatives</h4>
-                <div class="modal-tags">
-                  <template x-for="altId in selectedIngredient.alternativeIds" :key="altId">
-                    <span class="tag tag-lime" x-text="getAlternativeName(altId) || altId"></span>
-                  </template>
-                </div>
-              </div>
-              <div class="ingredient-detail-actions">
-                <button type="button" @click="selectedIngredient = null; navigate('explore')" class="secondary-button"><span aria-hidden="true">🌿</span> <span>Find products</span></button>
-                <button type="button" @click="scanSelectedIngredient()" class="secondary-button"><span aria-hidden="true">🔍</span> <span>Check in scanner</span></button>
-              </div>
-            </div>
-          </template>
-        </div>
-      </div>
-
-      <!-- INGREDIENT CHECKER MODAL -->
-      <div x-show="openChecker" class="modal-overlay" @click.self="openChecker = false" @keydown.escape="openChecker = false" role="dialog" aria-modal="true" aria-labelledby="checker-title">
-        <div class="modal-panel">
-          <button type="button" @click="openChecker = false" class="modal-close" aria-label="Close ingredient checker">×</button>
-          <h2 id="checker-title" class="checker-title">Ingredient Checker</h2>
-          <p class="checker-subtitle">Paste an ingredient list to scan for animal‑derived ingredients.</p>
-          <textarea x-model="ingredientText" rows="4" class="checker-textarea" placeholder="e.g. Water, sugar, wheat flour, casein, whey, natural flavors…" aria-label="Ingredient list to scan"></textarea>
-          <div class="checker-actions">
-            <button type="button" @click="scanIngredients()" class="primary-button"><span aria-hidden="true">🔍</span> <span>Scan</span></button>
-            <button type="button" @click="ingredientText = ''; ingredientResults = []" class="secondary-button">Clear</button>
-            <button type="button" @click="ingredientText = 'Water, sugar, wheat flour, casein, whey, natural flavors, gelatin, lactic acid, vitamin D3, honey, soy lecithin, salt'; scanIngredients()" class="text-button">Use example</button>
-          </div>
-          <div class="checker-results">
-            <template x-for="res in ingredientResults" :key="res.term">
-              <div class="checker-result" :class="getStatusClass(res.status)">
-                <span class="checker-result-term" x-text="res.term"></span>
-                <span class="checker-result-status" :class="getStatusClass(res.status)" x-text="res.label"></span>
-                <span class="checker-result-note" x-text="res.note"></span>
-              </div>
-            </template>
-          </div>
-          <div x-show="ingredientResults.length &gt; 0" class="checker-disclaimer">
-            <span>ℹ️</span> "No flagged ingredient" does not guarantee the product is vegan. Processing aids, testing policies, and undisclosed sources may still require verification.
-          </div>
-        </div>
-      </div>
-
-    </main>
-
-    <!-- BOTTOM NAV -->
-    <nav class="bottom-navigation" aria-label="Mobile navigation">
-      <template x-for="item in mobileNavItems" :key="item.id">
-        <button type="button" @click="navigate(item.id)" class="bottom-nav-item" :class="{'active': view === item.id}" :aria-current="view === item.id ? 'page' : undefined">
-          <span class="nav-icon" aria-hidden="true" x-text="item.icon"></span>
-          <span x-text="item.label"></span>
-        </button>
-      </template>
-      <button type="button" @click="toggleMoreDrawer()" class="bottom-nav-item" :class="{'active': moreOpen}" aria-label="More options" :aria-expanded="moreOpen" aria-controls="more-drawer">
-        <span class="nav-icon" aria-hidden="true">⋮</span>
-        <span>More</span>
-      </button>
-    </nav>
-
-    <!-- MORE DRAWER -->
-    <div id="more-drawer" class="more-drawer" :class="{'open': moreOpen}" :aria-hidden="!moreOpen" role="menu">
-      <button type="button" @click="navigate('learn'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">📖</span> Learn</button>
-      <button type="button" @click="navigate('resources'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🔗</span> Resources</button>
-      <button type="button" @click="navigate('animals'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🐄</span> Animals</button>
-      <button type="button" @click="navigate('everyday'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🏠</span> Everyday</button>
-      <button type="button" @click="navigate('ingredient-library'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🧪</span> Ingredients</button>
-      <button type="button" @click="navigate('nutrition'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🥗</span> Nutrition</button>
-      <button type="button" @click="openChecker = true; moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">✅</span> Ingredient Checker</button>
-      <button type="button" @click="navigate('about'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">ℹ️</span> About</button>
     </div>
 
-    <!-- FOOTER -->
-    <footer class="app-footer">
-      <p>🌱 Go Vegan — progress, not perfection.</p>
-      <p class="footer-disclaimer">All data for guidance. Always verify current product packaging.</p>
-    </footer>
-  </div>
-</div>
-
-
-<script src="https://michaelsboost.com/TailwindCSSMod/tailwind-mod.min.js"></script>
     
-<script src="dist/script.js"></script>
+    <script src="https://michaelsboost.com/TailwindCSSMod/tailwind-mod.min.js"></script>
+        
+    <script src="src/script.js"></script>
   </body>
 </html>

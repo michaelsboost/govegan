@@ -422,6 +422,7 @@ h1, h2, h3, h4, h5, .font-display {
   position: relative;
   appearance: none;
   flex-shrink: 0;
+  text-decoration: none;
 }
 
 .icon-button:hover {
@@ -3438,4 +3439,76 @@ h1, h2, h3, h4, h5, .font-display {
 .favorite-product-photo{width:4.5rem;height:4.5rem;min-width:4.5rem;border-radius:.75rem}
 .product-detail-photo{width:100%;height:18rem;margin:0 0 1.25rem;border-radius:1rem}
 @media(max-width:640px){.product-detail-photo{height:13rem}}
+
+
+
+/* ---------- Direct harm documentation ---------- */
+.harm-intro { padding: 1rem; margin-bottom: 1rem; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); background: var(--bg-surface-alt); }
+.harm-intro p { color: var(--text-secondary); font-size: .94rem; }
+.harm-list { display: grid; gap: 1rem; }
+.harm-card { padding: 1rem; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); background: var(--bg-surface); }
+.harm-card-heading { display:flex; gap:.75rem; align-items:flex-start; justify-content:space-between; margin-bottom:.65rem; }
+.harm-card-heading h5 { font-size:1rem; }
+.harm-card p { color:var(--text-secondary); }
+.harm-welfare { margin-top:.75rem; }
+.harm-status { margin-top:.35rem; font-size:.88rem; }
+.harm-limit { margin-top:.75rem; padding:.7rem .8rem; border-left:3px solid var(--border-subtle); background:var(--bg-surface-alt); font-size:.9rem; }
+.harm-sources { display:flex; flex-wrap:wrap; gap:.5rem 1rem; margin-top:.85rem; }
+.harm-sources a { color:var(--color-forest); font-weight:600; font-size:.88rem; }
+
+/* Evidence Library — mobile-first progressive disclosure */
+.evidence-shell{max-width:980px}.evidence-landing{display:grid;gap:1.25rem}.evidence-hero{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}.evidence-hero-copy{max-width:720px}.evidence-eyebrow{display:block;font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--color-forest);margin-bottom:.35rem}.evidence-search-box{display:flex;align-items:center;gap:.65rem;background:var(--bg-card);border:1px solid var(--border-color);border-radius:16px;padding:.2rem .8rem;box-shadow:0 6px 22px rgba(0,0,0,.04)}.evidence-search-box input{width:100%;border:0;outline:0;background:transparent;color:var(--text-primary);font:inherit;padding:.85rem 0}.evidence-search-box button{border:0;background:transparent;color:var(--text-secondary);font-size:1.35rem;cursor:pointer}.evidence-category-strip{display:flex;gap:.55rem;overflow-x:auto;padding:.1rem .05rem .4rem;scrollbar-width:none}.evidence-category-strip::-webkit-scrollbar{display:none}.evidence-category-chip{white-space:nowrap;border:1px solid var(--border-color);background:var(--bg-card);color:var(--text-primary);border-radius:999px;padding:.55rem .8rem;font-weight:700;cursor:pointer}.evidence-category-chip.active{background:var(--color-forest);border-color:var(--color-forest);color:white}.evidence-popular{display:grid;gap:.8rem}.evidence-section-heading,.evidence-results-head{display:flex;justify-content:space-between;align-items:end;gap:1rem}.evidence-section-heading h3,.evidence-results-head h3{margin:0}.evidence-section-heading>span,.evidence-results-head p{font-size:.85rem;color:var(--text-secondary);margin:0}.evidence-popular-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}.evidence-question-card{display:flex;text-align:left;gap:.8rem;width:100%;padding:1rem;border:1px solid var(--border-color);border-radius:16px;background:var(--bg-card);color:var(--text-primary);cursor:pointer}.evidence-question-card:hover,.evidence-result-card:hover{border-color:var(--color-forest)}.evidence-question-icon{font-size:1.45rem}.evidence-question-card span:last-child{display:grid;gap:.25rem}.evidence-question-card small{color:var(--text-secondary)}.evidence-question-card strong{line-height:1.35}.evidence-question-card em{font-style:normal;font-size:.82rem;font-weight:700;color:var(--color-forest);margin-top:.2rem}.evidence-results-list{display:grid;gap:.65rem}.evidence-result-card{display:flex;align-items:center;justify-content:space-between;gap:1rem;width:100%;text-align:left;padding:1rem;border:1px solid var(--border-color);border-radius:16px;background:var(--bg-card);color:var(--text-primary);cursor:pointer}.evidence-result-main{display:grid;gap:.45rem;min-width:0}.evidence-result-main>strong{font-size:1rem;line-height:1.35}.evidence-meta{display:flex;gap:.4rem;flex-wrap:wrap}.evidence-category,.evidence-verdict{display:inline-flex;border:1px solid var(--border-color);border-radius:999px;padding:.18rem .5rem;font-size:.72rem;font-weight:700;color:var(--text-secondary)}.evidence-answer{color:var(--text-secondary);line-height:1.45;font-size:.9rem}.evidence-result-arrow{font-size:1.8rem;color:var(--text-secondary)}.text-button,.evidence-back{border:0;background:transparent;color:var(--color-forest);font-weight:800;cursor:pointer;padding:.35rem 0}.evidence-detail{display:grid;gap:1.2rem;max-width:800px;margin:0 auto}.evidence-detail-header{display:grid;gap:.65rem}.evidence-detail-header h2{font-size:clamp(1.65rem,4vw,2.4rem);line-height:1.15;margin:0}.evidence-short-answer,.evidence-detail-section{padding:1.1rem;border:1px solid var(--border-color);border-radius:18px;background:var(--bg-card)}.evidence-short-answer p{font-size:1.08rem;line-height:1.65;margin:.2rem 0 0}.evidence-detail-section h3{margin:0 0 .65rem}.evidence-detail-section p{line-height:1.7;color:var(--text-secondary);margin:0}.evidence-context{background:var(--bg-surface-alt)}.evidence-source-list,.evidence-related-list{display:grid;gap:.55rem}.evidence-source-list a,.evidence-related-list button{display:flex;justify-content:space-between;align-items:center;gap:.75rem;text-align:left;padding:.8rem;border:1px solid var(--border-color);border-radius:12px;background:var(--bg-surface);color:var(--text-primary);text-decoration:none;font-weight:650}.evidence-related-list button{cursor:pointer}.secondary-button{margin-top:.7rem}
+@media(max-width:720px){.evidence-hero{display:grid}.evidence-hero .resource-count{justify-self:start}.evidence-popular-grid{grid-template-columns:1fr}.evidence-section-heading>span{display:none}.evidence-result-card{padding:.9rem}.evidence-answer{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.evidence-detail{gap:.9rem}.evidence-short-answer,.evidence-detail-section{padding:1rem}.evidence-category-strip{margin-right:-1rem;padding-right:1rem}}
+
+
+/* When Harm Becomes Normal */
+.normalization-shell{max-width:1050px}.normalization-hero{padding:1rem 0 1.5rem}.normalization-note{margin-top:1.25rem;padding:1rem 1.1rem;border:1px solid var(--border);border-radius:16px;background:var(--bg-card);display:grid;gap:.4rem;line-height:1.55}.normalization-note strong{color:var(--text-primary)}.normalization-note span{color:var(--text-secondary)}.normalization-section{margin:1.25rem 0 2.5rem}.normalization-heading{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.1rem}.normalization-heading h3{margin:0 0 .3rem;font-size:1.35rem}.normalization-heading p{margin:0;color:var(--text-secondary);line-height:1.55}.normalization-number{font-weight:800;font-size:.78rem;letter-spacing:.08em;padding:.4rem .5rem;border-radius:10px;background:var(--bg-card);border:1px solid var(--border);color:var(--text-secondary)}.normalization-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem}.normalization-card{padding:1rem;border:1px solid var(--border);border-radius:16px;background:var(--bg-card);display:flex;flex-direction:column;gap:.45rem}.normalization-card>span{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-secondary);font-weight:700}.normalization-card h4{font-size:1.02rem;margin:0}.normalization-card p{margin:0;color:var(--text-secondary);line-height:1.5;flex:1}.normalization-card a{font-size:.84rem;font-weight:700;margin-top:.35rem;color:var(--accent)}.normalization-mechanism-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.7rem}.normalization-mechanism-grid>div{padding:.9rem;border-radius:14px;background:var(--bg-card);border:1px solid var(--border);display:grid;gap:.25rem}.normalization-mechanism-grid span{color:var(--text-secondary);font-size:.9rem;line-height:1.4}.normalization-question{padding:1.25rem;border-radius:18px;background:var(--bg-card);border:1px solid var(--border)}.normalization-question p{font-size:1.2rem;font-weight:750;line-height:1.45;margin:0 0 .65rem}.normalization-question span{color:var(--text-secondary);line-height:1.55}.normalization-actions{display:flex;gap:.65rem;flex-wrap:wrap;margin-top:1rem}.normalization-reflection{padding:1.25rem;border-radius:18px;border:1px solid var(--border);background:var(--bg-card)}.normalization-reflection blockquote{margin:.6rem 0 1rem;font-size:1.25rem;line-height:1.45;font-weight:750}.normalization-reflection p{margin:0;color:var(--text-secondary);line-height:1.6}@media(max-width:720px){.normalization-grid,.normalization-mechanism-grid{grid-template-columns:1fr}.normalization-heading{gap:.7rem}.normalization-card{padding:.9rem}.normalization-question p,.normalization-reflection blockquote{font-size:1.08rem}.normalization-actions{display:grid}.normalization-actions button{width:100%}}
+
+
+/* ---------- Tiny-screen reflow audit (320 CSS px baseline) ---------- */
+html, body { max-width: 100%; overflow-x: hidden; }
+.app-shell, .view-container, main, section { min-width: 0; }
+img, svg, video, canvas { max-width: 100%; }
+.tiny-share-menu-item { display: none !important; }
+.evidence-shell, .evidence-landing, .evidence-hero, .evidence-hero-copy,
+.evidence-search-box, .evidence-results, .evidence-detail { min-width: 0; max-width: 100%; }
+.evidence-search-box input { min-width: 0; max-width: 100%; }
+
+@media (max-width: 360px) {
+  .header-inner { padding-left: .65rem; padding-right: .65rem; gap: .35rem; }
+  .brand { gap: .3rem; min-width: 0; }
+  .brand-name { font-size: 1.05rem; white-space: nowrap; }
+  .brand-icon { font-size: 1.25rem; }
+  .header-actions { gap: .05rem; }
+  .icon-button { width: 2.5rem; min-width: 2.5rem; height: 2.75rem; padding: 0; }
+  /* Preserve Share immediately before Donate on normal phones; move it into More only when space is truly tight. */
+  .header-share-button { display: none !important; }
+  .tiny-share-menu-item { display: flex !important; }
+
+  .view-container { padding-left: .75rem; padding-right: .75rem; }
+  .evidence-hero { display: grid; grid-template-columns: minmax(0,1fr); gap: .65rem; }
+  .evidence-hero-copy { width: 100%; }
+  .evidence-hero h1 { font-size: clamp(2rem, 11vw, 2.65rem); line-height: 1.02; overflow-wrap: anywhere; }
+  .evidence-search-box { width: 100%; box-sizing: border-box; padding-left: .65rem; padding-right: .45rem; }
+  .evidence-search-box input { width: 100%; font-size: .95rem; }
+  .evidence-category-strip { flex-wrap: wrap; overflow-x: visible; gap: .45rem; padding-bottom: .2rem; }
+  .evidence-category-chip { white-space: normal; flex: 0 1 auto; padding: .5rem .68rem; font-size: .88rem; }
+
+  .bottom-navigation { justify-content: stretch; padding-left: .15rem; padding-right: .15rem; }
+  .bottom-nav-item { flex: 1 1 0; min-width: 0; padding-left: .1rem; padding-right: .1rem; font-size: .55rem; }
+  .bottom-nav-item .nav-icon { font-size: 1.08rem; }
+  .more-drawer { left: .5rem; right: .5rem; width: auto; max-width: none; }
+}
+
+@media (max-width: 330px) {
+  .header-inner { padding-left: .45rem; padding-right: .45rem; }
+  .brand-name { font-size: .98rem; }
+  .icon-button { width: 2.35rem; min-width: 2.35rem; }
+  .view-container { padding-left: .6rem; padding-right: .6rem; }
+  .bottom-nav-item { font-size: .51rem; }
+  .bottom-nav-item .nav-icon { font-size: 1rem; }
+}
+
+/* Header action links must retain button styling, never browser link underlines. */
+.icon-button, .icon-button:hover, .icon-button:focus, .icon-button:active, .icon-button:visited { text-decoration: none; }
 
