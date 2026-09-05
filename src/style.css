@@ -16,6 +16,8 @@ html {
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  background-color: var(--bg-body);
+  color: var(--text-primary);
 }
 
 body {
@@ -59,7 +61,7 @@ button {
   --bg-input: #f7f2e8;
   --bg-header: rgba(255, 253, 247, 0.92);
   --bg-overlay: rgba(0, 0, 0, 0.35);
-  --text-primary: #123c2e;
+  --text-primary: #111111;
   --text-secondary: #46574e;
   --text-muted: #7a8a7e;
   --text-inverse: #f5f0e4;
@@ -91,7 +93,7 @@ button {
   --bg-input: #f7f2e8;
   --bg-header: rgba(255, 253, 247, 0.92);
   --bg-overlay: rgba(0, 0, 0, 0.35);
-  --text-primary: #123c2e;
+  --text-primary: #111111;
   --text-secondary: #46574e;
   --text-muted: #7a8a7e;
   --text-inverse: #f5f0e4;
@@ -118,7 +120,7 @@ button {
   --bg-input: #2d342f;
   --bg-header: rgba(36, 42, 38, 0.94);
   --bg-overlay: rgba(0, 0, 0, 0.6);
-  --text-primary: #e8ede4;
+  --text-primary: #ffffff;
   --text-secondary: #b8c4b8;
   --text-muted: #8a9a8a;
   --text-inverse: #1a1e1b;
@@ -3511,4 +3513,3 @@ img, svg, video, canvas { max-width: 100%; }
 
 /* Header action links must retain button styling, never browser link underlines. */
 .icon-button, .icon-button:hover, .icon-button:focus, .icon-button:active, .icon-button:visited { text-decoration: none; }
-

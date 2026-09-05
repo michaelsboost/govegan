@@ -8,12 +8,35 @@
     <meta name="author" content="Michael Schwartz">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Go Vegan — Everything you need to make the switch">
-    <meta name="theme-color" content="#d9e0e5">
+    <meta name="theme-color" content="#f7f2e8">
     <meta name="apple-mobile-web-app-title" content="Go Vegan — Everything you need to make the switch">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="msapplication-starturl" content="./index.html">
-    <meta name="msapplication-navbutton-color" content="#d9e0e5">
+    <meta name="msapplication-navbutton-color" content="#f7f2e8">
+    <script>
+      (function () {
+        var theme = 'light';
+        try {
+          var saved = localStorage.getItem('go-vegan-theme');
+          if (saved === 'light' || saved === 'dark') {
+            theme = saved;
+          } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            theme = 'dark';
+          }
+        } catch (_) {}
+        var dark = theme === 'dark';
+        var background = dark ? '#1a1e1b' : '#f7f2e8';
+        var foreground = dark ? '#ffffff' : '#111111';
+        var root = document.documentElement;
+        root.setAttribute('data-theme', theme);
+        root.style.backgroundColor = background;
+        root.style.color = foreground;
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f2e8');
+        document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]').setAttribute('content', 'default');
+        document.querySelector('meta[name="msapplication-navbutton-color"]').setAttribute('content', '#f7f2e8');
+      }());
+    </script>
     <meta property="og:url" content="https://michaelsboost.com/" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Go Vegan — Everything you need to make the switch" />

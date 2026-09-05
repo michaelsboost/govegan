@@ -444,14 +444,21 @@ document.addEventListener('alpine:init', function() {
 
       // ---- Theme ----
       updateThemeColor(theme) {
-        const color = theme === 'dark' ? '#1a1e1b' : '#f7f2e8';
-        let meta = document.querySelector('meta[name="theme-color"]');
-        if (!meta) {
-          meta = document.createElement('meta');
-          meta.setAttribute('name', 'theme-color');
-          document.head.appendChild(meta);
+        const dark = theme === 'dark';
+        const color = dark ? '#1a1e1b' : '#f7f2e8';
+        const foreground = dark ? '#ffffff' : '#111111';
+        const themeMeta = document.querySelector('meta[name="theme-color"]');
+        if (themeMeta) themeMeta.setAttribute('content', '#f7f2e8');
+        document.documentElement.style.backgroundColor = color;
+        document.documentElement.style.color = foreground;
+        if (document.body) {
+          document.body.style.backgroundColor = color;
+          document.body.style.color = foreground;
         }
-        meta.setAttribute('content', color);
+        const appleStatusBar = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
+        if (appleStatusBar) appleStatusBar.setAttribute('content', 'default');
+        const microsoftNav = document.querySelector('meta[name="msapplication-navbutton-color"]');
+        if (microsoftNav) microsoftNav.setAttribute('content', '#f7f2e8');
       },
 
       toggleTheme() {
@@ -12120,5 +12127,3 @@ function validateGoVeganData(data) {
 
   window.validateGoVeganData = validateGoVeganData;
 })();
-
-
