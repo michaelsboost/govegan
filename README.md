@@ -6,7 +6,7 @@
 
 
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://michaelsboost.com/govegan/)
-[![Version](https://img.shields.io/badge/version-1.0.0-6d8b61)](https://github.com/michaelsboost/govegan)
+[![Version](https://img.shields.io/badge/version-1.0.1-6d8b61)](https://github.com/michaelsboost/govegan)
 [![MIT License](https://img.shields.io/github/license/michaelsboost/govegan)](LICENSE)  [![GitHub Stars](https://img.shields.io/github/stars/michaelsboost/govegan)](https://github.com/michaelsboost/govegan/stargazers)  [![GitHub Issues](https://img.shields.io/github/issues/michaelsboost/govegan)](https://github.com/michaelsboost/govegan/issues)
 
 ---
@@ -33,6 +33,18 @@ The app helps users:
 - save useful products and resources
 
 Go Vegan is designed around informed, compassionate action. It does not demand perfection or assume everyone begins with the same health, income, access, knowledge, or living situation.
+
+## 🌎 Companion Project: Zerra
+
+Go Vegan and Zerra are separate companion applications connected by a shared commitment to informed action and respect for living systems. Go Vegan focuses on animals, normalized exploitation, plant-based alternatives, and compassionate change. Zerra explores our wider relationship with Mother Earth through ecological literacy, practical skills, responsibility, reciprocity, and regeneration.
+
+Explore Zerra: https://michaelsboost.github.io/Zerra
+
+Source code: https://github.com/michaelsboost/Zerra
+
+## ✨ What's New in 1.0.1
+
+Version 1.0.1 adds a clear companion-project connection to Zerra through Go Vegan's About page, desktop and mobile More menus, footer, and project documentation while keeping both apps independent.
 
 ## ✨ What's New in 1.0.0
 
