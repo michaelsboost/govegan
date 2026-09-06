@@ -3,17 +3,17 @@
   <head>
     <title>Go Vegan — Everything you need to make the switch</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, interactive-widget=resizes-content">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, interactive-widget=resizes-content, viewport-fit=cover">
     <meta name="description" content="A source-backed guide to vegan products, ingredients, animal uses, alternatives, recipes, nutrition and practical transition planning.">
     <meta name="author" content="Michael Schwartz">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Go Vegan — Everything you need to make the switch">
-    <meta name="theme-color" content="#f7f2e8">
+    <meta name="theme-color" content="transparent">
     <meta name="apple-mobile-web-app-title" content="Go Vegan — Everything you need to make the switch">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="msapplication-starturl" content="./index.html">
-    <meta name="msapplication-navbutton-color" content="#f7f2e8">
+    <meta name="msapplication-navbutton-color" content="transparent">
     <script>
       (function () {
         var theme = 'light';
@@ -32,9 +32,9 @@
         root.setAttribute('data-theme', theme);
         root.style.backgroundColor = background;
         root.style.color = foreground;
-        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f2e8');
-        document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]').setAttribute('content', 'default');
-        document.querySelector('meta[name="msapplication-navbutton-color"]').setAttribute('content', '#f7f2e8');
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', 'transparent');
+        document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]').setAttribute('content', 'black-translucent');
+        document.querySelector('meta[name="msapplication-navbutton-color"]').setAttribute('content', 'transparent');
       }());
     </script>
     <meta property="og:url" content="https://michaelsboost.com/" />
@@ -398,10 +398,40 @@
                   <span class="search-icon" aria-hidden="true">🔍</span>
                   <input type="text" x-model="recipeQuery" @input.debounce.300ms="filterRecipes()" placeholder="Search recipes..." class="search-input" aria-label="Search recipes" />
                 </div>
-                <div class="filter-row">
-                  <template x-for="tag in ['Quick', 'Budget', 'High-Protein', 'Breakfast', 'Dinner', 'Dessert']" :key="tag">
+                <div class="recipe-filter-panel" aria-label="Recipe filters">
+              <div class="recipe-filter-group">
+                <span class="recipe-filter-label">Type</span>
+                <div class="recipe-filter-scroll" tabindex="0" aria-label="Scroll recipe types">
+                  <template x-for="tag in ['Breakfast', 'Lunch', 'Dinner', 'Snack', 'Dessert', 'Basics', 'Sauce']" :key="tag">
                     <button type="button" @click="toggleRecipeFilter(tag)" class="filter-chip" :class="{'active': recipeFilters.includes(tag)}" x-text="tag"></button>
                   </template>
+                </div>
+              </div>
+              <div class="recipe-filter-group">
+                <span class="recipe-filter-label">Needs</span>
+                <div class="recipe-filter-scroll" tabindex="0" aria-label="Scroll recipe needs">
+                  <template x-for="tag in ['Quick', 'Budget', 'High-Protein', 'Whole-Food']" :key="tag">
+                    <button type="button" @click="toggleRecipeFilter(tag)" class="filter-chip" :class="{'active': recipeFilters.includes(tag)}" x-text="tag"></button>
+                  </template>
+                </div>
+              </div>
+              <div class="recipe-filter-group">
+                <span class="recipe-filter-label">Dietary</span>
+                <div class="recipe-filter-scroll" tabindex="0" aria-label="Scroll dietary filters">
+                  <template x-for="tag in ['Soy-Free', 'Gluten-Free', 'Peanut-Free', 'Tree-Nut-Free']" :key="tag">
+                    <button type="button" @click="toggleRecipeFilter(tag)" class="filter-chip" :class="{'active': recipeFilters.includes(tag)}" x-text="tag"></button>
+                  </template>
+                </div>
+              </div>
+              <div class="recipe-filter-group">
+                <span class="recipe-filter-label">Difficulty</span>
+                <div class="recipe-filter-scroll" tabindex="0" aria-label="Scroll difficulty filters">
+                  <template x-for="tag in ['Beginner', 'Intermediate', 'Advanced']" :key="tag">
+                    <button type="button" @click="toggleRecipeFilter(tag)" class="filter-chip" :class="{'active': recipeFilters.includes(tag)}" x-text="tag"></button>
+                  </template>
+                  <button x-show="recipeFilters.length" type="button" @click="clearRecipeFilters()" class="filter-clear">Clear filters</button>
+                </div>
+              </div>
                 </div>
                 <div class="recipe-grid">
                   <template x-for="r in filteredRecipes" :key="r.id">

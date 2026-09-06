@@ -6,7 +6,7 @@
 
 
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://michaelsboost.com/govegan/)
-[![Version](https://img.shields.io/badge/version-0.0.2-6d8b61)](https://github.com/michaelsboost/govegan)
+[![Version](https://img.shields.io/badge/version-1.0.0-6d8b61)](https://github.com/michaelsboost/govegan)
 [![MIT License](https://img.shields.io/github/license/michaelsboost/govegan)](LICENSE)  [![GitHub Stars](https://img.shields.io/github/stars/michaelsboost/govegan)](https://github.com/michaelsboost/govegan/stargazers)  [![GitHub Issues](https://img.shields.io/github/issues/michaelsboost/govegan)](https://github.com/michaelsboost/govegan/issues)
 
 ---
@@ -34,9 +34,9 @@ The app helps users:
 
 Go Vegan is designed around informed, compassionate action. It does not demand perfection or assume everyone begins with the same health, income, access, knowledge, or living situation.
 
-## ✨ What's New in 0.0.2
+## ✨ What's New in 1.0.0
 
-Version 0.0.2 substantially expands the educational and research portions of Go Vegan.
+Version 1.0.0 substantially expands the educational, research, and practical recipe portions of Go Vegan.
 
 - The Animals Library has grown from 24 to 52 animal groups.
 - Twenty-eight new profiles cover additional mammals, birds, aquatic animals, invertebrates, and animals used for materials, labor, entertainment, trade, or research.
@@ -47,6 +47,13 @@ Version 0.0.2 substantially expands the educational and research portions of Go 
 - Evidence results are included in unified search.
 - URL-based navigation now supports direct links to views and details, along with improved browser and PWA Back and Forward behavior.
 - Sharing controls, mobile navigation, narrow-screen layout support, and project support links have been improved.
+- The recipe library now contains 201 recipes across breakfast, lunch, dinner, snacks, desserts, homemade basics, and sauces.
+- The expansion adds 50 homemade alternatives to common animal products, including plant milks, butter, mayonnaise, egg replacements, cheeses, meat styles, and seafood styles.
+- New meal collections add 20 breakfasts, 20 lunches, 35 dinners, 15 snacks, and 15 desserts.
+- Recipe discovery now supports combined meal-type, quick, budget, high-protein, whole-food, dietary, allergy-aware, and difficulty filters.
+- Every expanded recipe now uses an embedded base64 WebP photograph showing the completed food, so the project does not depend on additional image downloads.
+- Recipe filter groups stay on a single horizontally scrollable row on small screens instead of wrapping into extra lines.
+- The installed PWA requests a transparent system status bar so the active light or dark page theme can show beneath it, with safe-area spacing for device indicators.
 
 The Evidence Library is an expanding research directory. Entries should be reviewed individually, strengthened with claim-specific evidence, and corrected whenever stronger sources become available.
 
@@ -99,7 +106,7 @@ Sensitive subjects are presented factually and with enough detail for accuracy, 
 
 ## 🔬 Evidence Library
 
-The Evidence Library provides a searchable structure for examining common claims and questions about veganism. Version 0.0.2 includes 207 entries organized into:
+The Evidence Library provides a searchable structure for examining common claims and questions about veganism. Version 1.0.0 includes 207 entries organized into:
 
 - sentience
 - plants
@@ -194,13 +201,21 @@ Go Vegan includes beginner-friendly plant-based recipes with:
 - estimated cost
 - meal category
 - dietary tags
+- substitution guidance
+- storage guidance
+- links to relevant homemade alternatives
 
 Recipe filters help users find meals that are:
 
 - quick
 - budget-friendly
 - high in protein
-- suitable for breakfast, lunch, dinner, or dessert
+- whole-food focused
+- soy-free, peanut-free, tree-nut-free, or gluten-free
+- beginner, intermediate, or advanced
+- suitable for breakfast, lunch, dinner, snacks, desserts, basics, or sauces
+
+Selections within meal type and difficulty work as alternatives, while needs and dietary selections combine. For example, users can request a quick, budget-friendly, gluten-free dinner rather than searching each filter separately.
 
 Dietary and allergy tags are informational. Ingredient brands and manufacturing facilities can differ, so users with allergies should verify labels and cross-contact information independently.
 
@@ -326,7 +341,7 @@ Validation warnings appear in the developer console without preventing the app f
 
 ## 📊 Current Content
 
-Version 0.0.2 includes:
+Version 1.0.0 includes:
 
 | Collection | Entries |
 |---|---:|
@@ -335,7 +350,7 @@ Version 0.0.2 includes:
 | Evidence claims and questions | 207 |
 | Animal-use categories | 23 |
 | Products | 92 |
-| Recipes | 45 |
+| Recipes | 201 |
 | Ingredients | 94 |
 | Alternatives | 32 |
 | Everyday items | 51 |

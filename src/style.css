@@ -29,6 +29,7 @@ body {
   transition: background 0.25s, color 0.25s;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding-top: env(safe-area-inset-top, 0px);
 }
 
 img,
@@ -2262,6 +2263,102 @@ h1, h2, h3, h4, h5, .font-display {
 
 .filter-row .filter-chip {
   flex-shrink: 0;
+}
+
+.recipe-filter-panel {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0.9rem 0;
+}
+
+.recipe-filter-group {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.recipe-filter-label {
+  width: 4.5rem;
+  flex: 0 0 4.5rem;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.recipe-filter-scroll {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.15rem 0 0.45rem;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-inline: contain;
+}
+
+.recipe-filter-scroll > * {
+  flex: 0 0 auto;
+}
+
+.recipe-filter-scroll::-webkit-scrollbar {
+  height: 0.4rem;
+}
+
+.recipe-filter-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.recipe-filter-scroll::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: var(--radius-full);
+}
+
+.recipe-filter-scroll:focus-visible {
+  outline: 2px solid var(--color-lime);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.filter-clear {
+  border: 0;
+  background: transparent;
+  color: var(--primary);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.4rem 0.2rem;
+}
+
+.filter-clear:hover,
+.filter-clear:focus-visible {
+  text-decoration: underline;
+}
+
+@media (max-width: 520px) {
+  .recipe-filter-group {
+    flex-wrap: wrap;
+  }
+
+  .recipe-filter-label {
+    width: 100%;
+    flex-basis: 100%;
+  }
+
+  .recipe-filter-scroll {
+    flex-basis: 100%;
+    width: 100%;
+  }
 }
 
 /* ---------- Modals ---------- */
