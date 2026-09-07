@@ -85,7 +85,8 @@
                   <button type="button" @click="navigate('evidence'); open = false" class="menu-item">🔬 Evidence Library</button>
                   <button type="button" @click="navigate('normalization'); open = false" class="menu-item">🧭 When Harm Becomes Normal</button>
               <button type="button" @click="navigate('resources'); open = false" class="menu-item">🔗 Resources</button>
-              <a href="https://michaelsboost.github.io/Zerra" target="_blank" rel="noopener noreferrer" class="menu-item">🌎 Explore Zerra</a>
+              <a href="https://michaelsboost.github.io/donate" target="_blank" rel="noopener noreferrer" class="menu-item mx-5">👏 Support Go Vegan</a>
+              <a href="https://michaelsboost.github.io/Zerra" target="_blank" rel="noopener noreferrer" class="menu-item mx-5">🌎 Explore Zerra</a>
               <button type="button" @click="navigate('about'); open = false" class="menu-item">ℹ️ About</button>
                 </div>
               </div>
@@ -106,8 +107,8 @@
               <button type="button" @click="shareApp()" class="icon-button header-share-button" aria-label="Share Go Vegan" title="Share Go Vegan">
                 <span aria-hidden="true">📤</span>
               </button>
-              <a href="https://michaelsboost.com/donate" target="_blank" rel="noopener noreferrer" class="icon-button" aria-label="Donate" title="Donate">
-                <span aria-hidden="true">💛</span>
+              <a href="https://michaelsboost-store.creator-spring.com/listing/all-life-is-connected-go-veg?product=2405" target="_blank" rel="noopener noreferrer" class="icon-button" aria-label="Store" title="Store">
+                <span aria-hidden="true">👕</span>
               </a>
             </div>
           </div>
@@ -1268,9 +1269,12 @@
           <button type="button" @click="navigate('ingredient-library'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🧪</span> Ingredients</button>
           <button type="button" @click="navigate('nutrition'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🥗</span> Nutrition</button>
           <button type="button" @click="openChecker = true; moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">✅</span> Ingredient Checker</button>
-      <button type="button" @click="shareApp(); moreOpen = false" class="tiny-share-menu-item" role="menuitem"><span class="drawer-icon" aria-hidden="true">📤</span> Share Go Vegan</button>
-      <a href="https://michaelsboost.github.io/Zerra" target="_blank" rel="noopener noreferrer" role="menuitem"><span class="drawer-icon" aria-hidden="true">🌎</span> Explore Zerra</a>
-      <button type="button" @click="navigate('about'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">ℹ️</span> About</button>
+            <button type="button" @click="shareApp(); moreOpen = false" class="tiny-share-menu-item" role="menuitem"><span class="drawer-icon" aria-hidden="true">📤</span> Share Go Vegan</button>
+            <a href="https://michaelsboost.com/donate" target="_blank" rel="noopener noreferrer" role="menuitem" class="donate-menu-item">
+                <span class="drawer-icon" aria-hidden="true">👏</span> Support Go Vegan
+            </a>
+            <a href="https://michaelsboost.github.io/Zerra" target="_blank" rel="noopener noreferrer" role="menuitem"><span class="drawer-icon" aria-hidden="true">🌎</span> Explore Zerra</a>
+            <button type="button" @click="navigate('about'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">ℹ️</span> About</button>
         </div>
     
         <!-- FOOTER -->
