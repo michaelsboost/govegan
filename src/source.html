@@ -39,6 +39,7 @@ ALPINE APP
               <button type="button" @click="navigate('ingredient-library'); open = false" class="menu-item">🧪 Ingredient Library</button>
               <button type="button" @click="navigate('nutrition'); open = false" class="menu-item">🥗 Nutrition</button>
               <button type="button" @click="navigate('learn'); open = false" class="menu-item">📖 Learn</button>
+              <button type="button" @click="navigate('impact'); open = false" class="menu-item">🌍 Impact</button>
               <button type="button" @click="navigate('evidence'); open = false" class="menu-item">🔬 Evidence Library</button>
               <button type="button" @click="navigate('normalization'); open = false" class="menu-item">🧭 When Harm Becomes Normal</button>
               <button type="button" @click="navigate('resources'); open = false" class="menu-item">🔗 Resources</button>
@@ -427,6 +428,132 @@ ALPINE APP
                 </div>
               </template>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- IMPACT VIEW -->
+      <div x-show="view === 'impact'" x-transition:enter.duration.300ms>
+        <div class="view view-impact">
+          <div class="view-container impact-shell">
+            <section class="impact-hero">
+              <span class="impact-eyebrow">See the scale. Understand the connection.</span>
+              <h2 class="view-title">Impact</h2>
+              <p class="view-subtitle">Food choices connect animals, ecosystems, climate, land and water. This section turns that system into something you can explore without pretending estimates are exact.</p>
+              <div class="impact-hero-actions">
+                <button type="button" class="primary-button" @click="navigate('animals')">Explore the animals</button>
+                <button type="button" class="secondary-button" @click="navigate('evidence')">Check the evidence</button>
+              </div>
+            </section>
+
+            <section class="impact-animal-scale" aria-labelledby="impact-animal-heading">
+              <div class="impact-section-heading">
+                <div><span class="impact-kicker">Animals</span><h3 id="impact-animal-heading">The scale is measured in lives.</h3></div>
+                <p>FAO production data record more than 86 billion cattle, goats, chickens, turkeys, pigs, sheep and ducks slaughtered for meat worldwide in 2024.</p>
+              </div>
+
+              <div class="impact-big-number-card">
+                <span class="impact-big-label">Land animals slaughtered for meat · worldwide · 2024</span>
+                <strong class="impact-big-number" x-text="formatImpactNumber(impactLandAnimals2024)"></strong>
+                <div class="impact-time-grid">
+                  <div><strong x-text="formatImpactNumber(impactPer('day'))"></strong><span>per day</span></div>
+                  <div><strong x-text="formatImpactNumber(impactPer('hour'))"></strong><span>per hour</span></div>
+                  <div><strong x-text="formatImpactNumber(impactPer('minute'))"></strong><span>per minute</span></div>
+                  <div><strong x-text="formatImpactNumber(impactPer('second'))"></strong><span>per second</span></div>
+                </div>
+                <p class="impact-data-note">This is a production count, not a complete count of animal deaths. It excludes fish and other aquatic animals and does not capture additional deaths associated with dairy or egg production.</p>
+              </div>
+
+              <div class="impact-species-grid">
+                <template x-for="species in impactSpecies" :key="species.animalId">
+                  <button type="button" class="impact-species-card" @click="openImpactAnimal(species.animalId)">
+                    <span class="impact-species-emoji" x-text="species.emoji" aria-hidden="true"></span>
+                    <span class="impact-species-copy"><strong x-text="species.label"></strong><span x-text="formatImpactNumber(species.yearly) + ' in 2024'"></span></span>
+                    <span class="impact-species-share" x-text="impactShare(species.yearly) + '%'"></span>
+                    <span class="impact-species-bar" aria-hidden="true"><i :style="'width:' + impactShare(species.yearly) + '%' "></i></span>
+                    <span class="impact-species-link">Meet them in the Animals Library →</span>
+                  </button>
+                </template>
+              </div>
+
+              <div class="impact-aquatic-callout">
+                <span aria-hidden="true">🐟</span>
+                <div><strong>And this still leaves out aquatic animals.</strong><p>Fish counts are much harder to estimate because fisheries are often reported by weight rather than individuals. Go Vegan keeps them separate rather than adding a highly uncertain estimate to the land-animal total.</p></div>
+              </div>
+
+              <div class="impact-source-row">
+                <a href="https://ourworldindata.org/grapher/animals-slaughtered-for-meat?tab=table" target="_blank" rel="noopener noreferrer" class="secondary-button">View FAO data via Our World in Data ↗</a>
+                <button type="button" class="text-button" @click="navigate('animals')">Explore all animals →</button>
+              </div>
+            </section>
+
+            <section class="impact-planet" aria-labelledby="impact-planet-heading">
+              <div class="impact-section-heading">
+                <div><span class="impact-kicker">Planet</span><h3 id="impact-planet-heading">Animal-based food leaves a larger footprint.</h3></div>
+                <p>A 2023 Nature Food study compared observed UK diets using life-cycle data from more than 38,000 farms in 119 countries. Below, vegan diets are shown relative to high-meat diets (≥100 g meat/day), with high-meat diets set to 100%.</p>
+              </div>
+              <div class="impact-planet-grid">
+                <template x-for="metric in impactPlanetMetrics" :key="metric.label">
+                  <article class="impact-planet-card">
+                    <span class="impact-planet-icon" x-text="metric.icon" aria-hidden="true"></span>
+                    <strong x-text="metric.value + '%' "></strong><b x-text="metric.label"></b>
+                    <p x-text="metric.copy"></p><span class="impact-uncertainty" x-text="'95% uncertainty: ' + metric.range"></span>
+                  </article>
+                </template>
+              </div>
+              <div class="impact-planet-context"><h4>What these percentages mean</h4><p>They are comparative dietary footprints, not a promise that one person will reduce each impact by exactly that amount. Food origin and production methods vary substantially. Water-use and biodiversity estimates also carry wider uncertainty than greenhouse gases, land use and eutrophication.</p></div>
+              <div class="impact-planet-sources">
+                <a href="https://doi.org/10.1038/s43016-023-00795-w" target="_blank" rel="noopener noreferrer" class="secondary-button">Nature Food study ↗</a>
+                <a href="https://doi.org/10.1126/science.aaq0216" target="_blank" rel="noopener noreferrer" class="secondary-button">Poore &amp; Nemecek dataset ↗</a>
+              </div>
+            </section>
+
+            <section class="impact-personal" aria-labelledby="impact-personal-heading">
+              <div class="impact-section-heading">
+                <div><span class="impact-kicker">Your Impact</span><h3 id="impact-personal-heading">See how a lower footprint compounds over time.</h3></div>
+                <p>This is a transparent comparison, not a claim that we can measure your exact personal savings. It applies the study’s vegan-versus-high-meat ratios across the time period you choose.</p>
+              </div>
+              <div class="impact-period-tabs" role="group" aria-label="Impact time period">
+                <template x-for="period in impactPeriods" :key="period.id">
+                  <button type="button" :class="{'active': impactPeriod === period.id}" @click="impactPeriod = period.id" x-text="period.label"></button>
+                </template>
+              </div>
+              <div class="impact-personal-summary">
+                <span class="impact-big-label">Over <span x-text="impactPeriodLabel().toLowerCase()"></span></span>
+                <strong>Every repeated choice adds up.</strong>
+                <p>For each metric below, the dark bar represents a high-meat diet baseline. The green portion shows the estimated vegan-diet footprint from the study; the remainder is the comparative difference.</p>
+              </div>
+              <div class="impact-personal-grid">
+                <template x-for="metric in impactPlanetMetrics" :key="'personal-' + metric.label">
+                  <article class="impact-personal-card">
+                    <div class="impact-personal-title"><span x-text="metric.icon" aria-hidden="true"></span><div><strong x-text="metric.label"></strong><span x-text="impactDifference(metric) + '% lower point estimate' "></span></div></div>
+                    <div class="impact-compare-bars" aria-hidden="true"><div><i style="width:100%"></i></div><div><i :style="'width:' + metric.value + '%' "></i></div></div>
+                    <div class="impact-compare-labels"><span>High-meat baseline · 100%</span><span x-text="'Vegan estimate · ' + metric.value + '%' "></span></div>
+                    <p><strong x-text="formatImpactDecimal(impactEquivalentDays(metric))"></strong> <span x-text="impactUnitLabel()"></span> of high-meat-baseline footprint difference across this period.</p>
+                    <small x-text="'95% uncertainty for vegan footprint: ' + metric.range"></small>
+                  </article>
+                </template>
+              </div>
+              <div class="impact-personal-method"><strong>How this works</strong><p>The study reports vegan dietary footprints as a percentage of high-meat diets standardized to 2,000 kcal/day. Go Vegan multiplies that relative difference by the selected number of days. “Baseline-footprint days” are a visualization unit, not literal days added to your life and not a measurement of your individual emissions, water, land or biodiversity impact.</p></div>
+            </section>
+
+            <section class="impact-paths" aria-label="More impact topics">
+              <article class="impact-path-card impact-path-planet"><span class="impact-path-icon" aria-hidden="true">🌎</span><span class="impact-kicker">Planet</span><h3>The footprint is now visible.</h3><p>Explore source-backed comparisons for greenhouse gases, land, water, eutrophication and biodiversity pressure above.</p><span class="impact-coming">Planet metrics added</span></article>
+              <article class="impact-path-card impact-path-personal"><span class="impact-path-icon" aria-hidden="true">🌱</span><span class="impact-kicker">Your Impact</span><h3>Your longer view is live.</h3><p>Compare day, week, month, year and five-year horizons using the study’s relative dietary footprints and visible uncertainty.</p><span class="impact-coming">Interactive comparison added</span></article>
+            </section>
+
+            <section class="impact-principles">
+              <div>
+                <span class="impact-eyebrow">How Go Vegan handles numbers</span>
+                <h3>Powerful does not have to mean exaggerated.</h3>
+              </div>
+              <div class="impact-principle-grid">
+                <div><strong>Source-backed</strong><span>Every published metric will point to the research behind it.</span></div>
+                <div><strong>Context included</strong><span>Baselines, geography, units and assumptions stay visible.</span></div>
+                <div><strong>Uncertainty matters</strong><span>Estimates will be labeled as estimates instead of presented as exact personal savings.</span></div>
+                <div><strong>Built to update</strong><span>Impact data stays separate from presentation so stronger evidence can replace older figures.</span></div>
+              </div>
+            </section>
           </div>
         </div>
       </div>
@@ -1218,6 +1345,7 @@ ALPINE APP
     <!-- MORE DRAWER -->
     <div id="more-drawer" class="more-drawer" :class="{'open': moreOpen}" :aria-hidden="!moreOpen" role="menu">
       <button type="button" @click="navigate('learn'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">📖</span> Learn</button>
+      <button type="button" @click="navigate('impact'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🌍</span> Impact</button>
       <button type="button" @click="navigate('evidence'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🔬</span> Evidence Library</button>
       <button type="button" @click="navigate('normalization'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🧭</span> When Harm Becomes Normal</button>
       <button type="button" @click="navigate('resources'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🔗</span> Resources</button>

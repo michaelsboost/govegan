@@ -52,6 +52,7 @@ document.addEventListener('alpine:init', function() {
         { id: 'explore', label: 'Explore' },
         { id: 'recipes', label: 'Recipes' },
         { id: 'learn', label: 'Learn' },
+        { id: 'impact', label: 'Impact' },
         { id: 'resources', label: 'Resources' },
         { id: 'journey', label: 'My Journey' }
       ],
@@ -496,7 +497,7 @@ document.addEventListener('alpine:init', function() {
 
       // ---- Navigation ----
       validViewIds() {
-        return ['home', 'explore', 'recipes', 'learn', 'resources', 'evidence', 'normalization', 'animals', 'journey', 'favorites', 'everyday', 'ingredient-library', 'nutrition', 'about'];
+        return ['home', 'explore', 'recipes', 'learn', 'impact', 'resources', 'evidence', 'normalization', 'animals', 'journey', 'favorites', 'everyday', 'ingredient-library', 'nutrition', 'about'];
       },
 
       makeHistoryState(extra = {}) {
@@ -829,6 +830,51 @@ document.addEventListener('alpine:init', function() {
             el.focus();
           }
         });
+      },
+
+      // ---- Impact ----
+      impactPeriod: 'year',
+      impactPeriods: [
+        { id: 'day', label: '1 day', days: 1 },
+        { id: 'week', label: '1 week', days: 7 },
+        { id: 'month', label: '1 month', days: 30.44 },
+        { id: 'year', label: '1 year', days: 365.25 },
+        { id: 'five-years', label: '5 years', days: 1826.25 }
+      ],
+      impactPeriodData() { return this.impactPeriods.find(period => period.id === this.impactPeriod) || this.impactPeriods[3]; },
+      impactPeriodLabel() { return this.impactPeriodData().label; },
+      impactDifference(metric) { return (100 - metric.value).toFixed(1); },
+      impactEquivalentDays(metric) { return this.impactPeriodData().days * (1 - metric.value / 100); },
+      impactUnitLabel() { return this.impactPeriod === 'day' ? 'baseline-footprint day' : 'baseline-footprint days'; },
+      formatImpactDecimal(value) { return new Intl.NumberFormat('en-US', { maximumFractionDigits: value < 10 ? 1 : 0 }).format(value); },
+      impactPlanetMetrics: [
+        { label: 'Greenhouse gases', icon: '🌡️', value: 25.1, range: '15.1–37.0%', copy: 'Climate footprint measured as 100-year CO₂-equivalent.' },
+        { label: 'Land use', icon: '🌾', value: 25.1, range: '7.1–44.5%', copy: 'Cropland and pasture associated with the diet.' },
+        { label: 'Water use', icon: '💧', value: 46.4, range: '21.0–81.0%', copy: 'Agricultural water use; uncertainty is comparatively wide.' },
+        { label: 'Eutrophication', icon: '🌊', value: 27.0, range: '19.4–40.4%', copy: 'Potential nutrient pollution from nitrogen and phosphorus.' },
+        { label: 'Biodiversity', icon: '🦋', value: 34.3, range: '12.0–65.3%', copy: 'Comparative terrestrial-vertebrate biodiversity impact.' }
+      ],
+      impactLandAnimals2024: 86332055600,
+      impactSpecies: [
+        { animalId: 'animal-chicken', label: 'Chickens', emoji: '🐔', yearly: 78533920000 },
+        { animalId: 'animal-duck-goose', label: 'Ducks', emoji: '🦆', yearly: 4227882000 },
+        { animalId: 'animal-pig', label: 'Pigs', emoji: '🐷', yearly: 1493796992 },
+        { animalId: 'animal-cattle', label: 'Cattle', emoji: '🐄', yearly: 304744672 }
+      ],
+      formatImpactNumber(value) {
+        return new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(Math.round(value));
+      },
+      impactPer(period) {
+        const divisors = { year: 1, day: 365.25, hour: 365.25 * 24, minute: 365.25 * 24 * 60, second: 365.25 * 24 * 60 * 60 };
+        return this.impactLandAnimals2024 / (divisors[period] || 1);
+      },
+      impactShare(yearly) {
+        return Math.max(1, Math.round((yearly / this.impactLandAnimals2024) * 100));
+      },
+      openImpactAnimal(animalId) {
+        const animal = this.animals.find(item => item.id === animalId);
+        if (!animal) return;
+        this.openAnimalDetail(animal);
       },
 
       // ---- Animals ----

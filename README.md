@@ -6,7 +6,7 @@
 
 
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://michaelsboost.com/govegan/)
-[![Version](https://img.shields.io/badge/version-1.0.1-6d8b61)](https://github.com/michaelsboost/govegan)
+[![Version](https://img.shields.io/badge/version-1.1.0-6d8b61)](https://github.com/michaelsboost/govegan)
 [![MIT License](https://img.shields.io/github/license/michaelsboost/govegan)](LICENSE)  [![GitHub Stars](https://img.shields.io/github/stars/michaelsboost/govegan)](https://github.com/michaelsboost/govegan/stargazers)  [![GitHub Issues](https://img.shields.io/github/issues/michaelsboost/govegan)](https://github.com/michaelsboost/govegan/issues)
 
 ---
@@ -41,6 +41,22 @@ Go Vegan and Zerra are separate companion applications connected by a shared com
 Explore Zerra: https://michaelsboost.github.io/Zerra
 
 Source code: https://github.com/michaelsboost/Zerra
+
+## ✨ What's New in 1.1.0
+
+Version 1.1.0 introduces the new **Impact** experience, connecting the scale of animal use with measurable environmental pressures and source-backed dietary comparisons.
+
+- A new **Impact** destination brings Animals, Planet, and Your Impact into one connected experience.
+- The Animals view visualizes FAO production data for more than 86 billion cattle, goats, chickens, turkeys, pigs, sheep, and ducks slaughtered for meat worldwide in 2024.
+- Annual land-animal figures are translated into daily, hourly, minute, and second-scale comparisons to make the magnitude easier to understand.
+- Major species totals connect directly back to the existing Animals Library.
+- Aquatic animals are kept separate from the land-animal total because fishery data are commonly reported by weight and individual counts carry substantially greater uncertainty.
+- The Planet view compares vegan and high-meat dietary footprints across greenhouse-gas emissions, land use, water use, eutrophication, and biodiversity pressure using published research.
+- Study baselines, geography, units, assumptions, source links, and uncertainty remain visible rather than presenting estimates as exact personal savings.
+- **Your Impact** adds interactive 1-day, 1-week, 1-month, 1-year, and 5-year horizons for exploring how relative dietary-footprint differences accumulate over time.
+- Impact data are kept separate from presentation so figures and sources can be updated as stronger evidence becomes available.
+- Impact styling has been integrated into the production CSS build for responsive desktop and mobile presentation.
+- The PWA cache version has been advanced for the 1.1.0 release so existing installations can receive the updated application assets.
 
 ## ✨ What's New in 1.0.1
 
@@ -113,6 +129,20 @@ Animal profiles may include:
 Some entries represent broad groups, such as fish or mollusks. These profiles are clearly identified because behavior, biology, and lifespan can vary substantially between species.
 
 Sensitive subjects are presented factually and with enough detail for accuracy, not for shock value. Routine practices, system-dependent practices, welfare failures, and natural biology are distinguished rather than treated as equivalent.
+
+---
+
+## 🌍 Impact
+
+The Impact section is designed to make large-scale consequences easier to understand without turning estimates into false precision. It combines three views:
+
+- **Animals** — global land-animal slaughter data, human-scale time comparisons, and links into relevant animal profiles.
+- **Planet** — comparative dietary footprints for greenhouse gases, land, water, eutrophication, and biodiversity pressure.
+- **Your Impact** — interactive time horizons that visualize relative differences over a day, week, month, year, or five years.
+
+Impact figures are presented with their baseline, scope, methodology, source, and uncertainty where available. Comparative dietary results describe research populations and modeled footprints; they are not claims that a particular individual has personally saved an exact quantity of water, land, emissions, or animal lives.
+
+Aquatic-animal deaths are not folded into the land-animal slaughter total because individual fish counts are much more uncertain than production counts for major land-animal categories.
 
 ---
 
@@ -276,6 +306,9 @@ The goal is to make meaningful change more understandable and achievable, not to
 - ✅ Animal-use and industry information
 - ✅ Documented physical-practice and harm information
 - ✅ Evidence Library with searchable claims and sources
+- ✅ Impact dashboard for animals and environmental pressures
+- ✅ Interactive dietary-footprint time-horizon comparisons
+- ✅ Visible methodology, sources, baselines, and uncertainty
 - ✅ Normalization and ethical-reflection section
 - ✅ Animal-derived ingredient database
 - ✅ Ingredient-label scanner
