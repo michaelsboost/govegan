@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
   <head>
     <title>Go Vegan — Everything you need to make the switch</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, interactive-widget=resizes-content, viewport-fit=cover">
-    <meta name="description" content="A source-backed guide to vegan products, ingredients, animal uses, alternatives, recipes, nutrition and practical transition planning.">
+    <meta name="description" content="See the reality of animal exploitation, confront the excuses, and take direct action with trusted vegan resources.">
     <meta name="author" content="Michael Schwartz">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="transparent">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <script>
       (function () {
-        var theme = 'light';
+        var theme = 'dark';
         try {
           var saved = localStorage.getItem('go-vegan-theme');
           if (saved === 'light' || saved === 'dark') {
@@ -39,6 +39,8 @@
     <link rel="icon" type="image/svg+xml" href="imgs/logo.svg">
     <link rel="apple-touch-icon" href="imgs/logo-192x192.png">
     <link rel="stylesheet" href="dist/bundle.css">
+    <link rel="stylesheet" href="src/home.css">
+    <link rel="stylesheet" href="src/antiuse.css">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script>
   </head>
   <body>
@@ -87,7 +89,7 @@
                   <button type="button" @click="navigate('evidence'); open = false" class="menu-item">🔬 Evidence Library</button>
                   <button type="button" @click="navigate('normalization'); open = false" class="menu-item">🧭 When Harm Becomes Normal</button>
                   <button type="button" @click="navigate('resources'); open = false" class="menu-item">🔗 Resources</button>
-                  <a href="https://michaelsboost.github.io/donate" target="_blank" rel="noopener noreferrer" class="menu-item mx-5">👏 Support Go Vegan</a>
+                  <a href="https://michaelsboost.com/donate" target="_blank" rel="noopener noreferrer" class="menu-item mx-5">♥ Donate</a>
                   <a href="https://michaelsboost.github.io/Zerra" target="_blank" rel="noopener noreferrer" class="menu-item mx-5">🌎 Explore Zerra</a>
                   <button type="button" @click="navigate('about'); open = false" class="menu-item">ℹ️ About</button>
                 </div>
@@ -95,23 +97,22 @@
             </nav>
     
             <div class="header-actions">
-              <button type="button" @click="navigate('favorites')" class="icon-button" aria-label="Favorites">
-                <span aria-hidden="true">❤️</span>
-                <span x-show="favorites.length > 0" class="favorites-badge" x-text="favorites.length"></span>
-              </button>
               <button type="button" @click="toggleTheme()" class="icon-button theme-toggle" :aria-label="theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'" :title="theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'">
                 <span x-show="theme === 'dark'" aria-hidden="true">☀️</span>
                 <span x-show="theme === 'light'" aria-hidden="true">🌙</span>
               </button>
-              <button type="button" @click="openGlobalSearch = !openGlobalSearch" class="icon-button" aria-label="Search">
-                <span aria-hidden="true">🔍</span>
-              </button>
+              <a href="https://michaelsboost.com/donate" target="_blank" rel="noopener noreferrer" class="icon-button donate-heart" aria-label="Donate to support Go Vegan" title="Donate">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-7.3-4.4-9.6-8.7C.5 8.8 2.1 4.5 6.1 3.6c2.3-.5 4.5.5 5.9 2.4 1.4-1.9 3.6-2.9 5.9-2.4 4 .9 5.6 5.2 3.7 8.7C19.3 16.6 12 21 12 21Z"/></svg>
+              </a>
               <button type="button" @click="shareApp()" class="icon-button header-share-button" aria-label="Share Go Vegan" title="Share Go Vegan">
                 <span aria-hidden="true">📤</span>
               </button>
-              <a href="https://michaelsboost-store.creator-spring.com/listing/all-life-is-connected-go-veg?product=2405" target="_blank" rel="noopener noreferrer" class="icon-button" aria-label="Store" title="Store">
+              <a href="https://michaelsboost-store.creator-spring.com/listing/all-life-is-connected-go-veg?product=2405" target="_blank" rel="noopener noreferrer" class="icon-button header-store-button" aria-label="Store" title="Store">
                 <span aria-hidden="true">👕</span>
               </a>
+              <button type="button" @click.stop="toggleMoreDrawer()" class="icon-button hamburger-button" :class="{'active': moreOpen}" :aria-label="moreOpen ? 'Close navigation menu' : 'Open navigation menu'" :aria-expanded="moreOpen" aria-controls="more-drawer">
+                <span aria-hidden="true"><i></i><i></i><i></i></span>
+              </button>
             </div>
           </div>
     
@@ -119,7 +120,7 @@
           <div x-show="openGlobalSearch" x-transition.duration.200ms class="global-search">
             <div class="search-field">
               <span class="search-icon" aria-hidden="true">🔍</span>
-              <input type="text" x-model="globalSearchQuery" @input.debounce.300ms="performUnifiedSearch()" placeholder="Search animals, products, recipes, ingredients..." class="search-input" aria-label="Global search" />
+              <input type="text" x-model="globalSearchQuery" @input.debounce.300ms="performUnifiedSearch()" placeholder="Search animals, products, ingredients and evidence..." class="search-input" aria-label="Global search" />
               <button type="button" @click="globalSearchQuery = ''; globalSearchResults = []; openGlobalSearch = false" class="search-clear" aria-label="Clear search">✕</button>
             </div>
             <div x-show="globalSearchQuery.length > 0" class="search-results">
@@ -153,8 +154,207 @@
           <!-- HOME VIEW -->
           <div x-show="view === 'home'" x-transition:enter.duration.300ms>
             <div class="view view-home">
-              <!-- Hero -->
-              <section class="hero">
+              <!-- Conviction-first hero -->
+              <section class="home-manifesto">
+                <div class="manifesto-glow" aria-hidden="true"></div>
+                <div class="manifesto-grid">
+                  <div class="manifesto-copy">
+                    <span class="manifesto-eyebrow">Every second counts</span>
+                    <h1>You Have a Choice. <em>They Don’t.</em></h1>
+                    <p class="manifesto-lead">If you don’t need to use animals, why do it at all?</p>
+                    <div class="manifesto-actions">
+                      <a href="https://www.vegansociety.com/go-vegan" target="_blank" rel="noopener noreferrer" class="manifesto-button manifesto-button-primary">Stop funding it</a>
+                      <button type="button" @click="$el.closest('.home-manifesto').nextElementSibling.scrollIntoView({behavior:'smooth'})" class="manifesto-button manifesto-button-secondary">Face what you fund ↓</button>
+                    </div>
+                  </div>
+                  <div class="manifesto-stat live-counter" aria-live="off" aria-label="Estimated land animals slaughtered for food since this page opened">
+                    <span>Since you opened this page</span>
+                    <strong x-text="formatImpactNumber(animalsKilledSinceOpen)"></strong>
+                    <p>animals killed for food, clothing,<br>entertainment &amp; testing</p>
+                    <button type="button" @click="navigate('impact')">How this estimate works →</button>
+                  </div>
+                </div>
+                <div class="manifesto-second">
+                  <span>That is approximately</span>
+                  <strong><span x-text="formatImpactNumber(impactPer('second'))"></span> lives every second</strong>
+                  <small>The live number is a documented food-only lower bound: aquatic animals and additional deaths in clothing, entertainment and testing are not counted.</small>
+                </div>
+              </section>
+
+              <!-- Essential viewing -->
+              <section class="home-cinema" aria-labelledby="home-cinema-title">
+                <div class="cinema-heading">
+                  <span class="manifesto-eyebrow">Essential viewing</span>
+                  <h2 id="home-cinema-title">Watch. Then decide.</h2>
+                </div>
+                <div class="cinema-stage">
+                  <div class="cinema-copy">
+                    <span x-text="homeVideo.label"></span>
+                    <h3 x-text="homeVideo.title"></h3>
+                    <p x-text="homeVideo.description"></p>
+                    <small class="cinema-warning" x-show="homeVideo.warning" x-text="homeVideo.warning"></small>
+                    <button type="button" class="manifesto-button manifesto-button-primary" @click="openHomeVideo()" x-text="homeVideo.externalOnly ? 'Watch on YouTube ↗' : 'Watch now'"></button>
+                  </div>
+                  <button type="button" class="cinema-poster" @click="openHomeVideo()" :aria-label="(homeVideo.externalOnly ? 'Watch on YouTube: ' : 'Play ') + homeVideo.title">
+                    <img :src="homeVideo.thumbnail" :alt="homeVideo.title + ' preview'" loading="lazy" decoding="async">
+                    <span class="cinema-poster-shade" aria-hidden="true"></span>
+                    <span class="cinema-play" aria-hidden="true">▶</span>
+                  </button>
+                </div>
+                <div class="cinema-controls">
+                  <button type="button" class="cinema-arrow" @click="shiftHomeVideo(-1)" aria-label="Previous video">←</button>
+                  <template x-for="(video, index) in homeVideos" :key="video.title">
+                    <button type="button" class="cinema-tab" :class="{'active': homeVideoIndex === index}" @click="openHomeVideo(index)" x-text="video.title"></button>
+                  </template>
+                  <button type="button" class="cinema-arrow" @click="shiftHomeVideo(1)" aria-label="Next video">→</button>
+                </div>
+                <div class="cinema-thumbnails">
+                  <template x-for="(video, index) in homeVideos" :key="'thumb-' + video.title">
+                    <button type="button" :class="{'active': homeVideoIndex === index}" @click="openHomeVideo(index)" :aria-label="'Select ' + video.title">
+                      <img :src="video.thumbnail" :alt="video.title" loading="lazy" decoding="async">
+                    </button>
+                  </template>
+                </div>
+              </section>
+
+              <!-- Moral baseline -->
+              <section class="home-baseline">
+                <div class="home-editorial-heading">
+                  <span>The question underneath every excuse</span>
+                  <h2>What you call normal is extreme to the animal forced to endure it.</h2>
+                </div>
+                <div class="baseline-grid">
+                  <article><div><span class="baseline-number">I · Consent</span><h3>They never agreed to this.</h3><p>No animal consents to being bred, confined, mutilated or killed for our preferences.</p></div><img src="imgs/animals/animal-cattle.jpg" alt="Cattle looking toward the camera" loading="lazy"></article>
+                  <article><div><span class="baseline-number">II · Fairness</span><h3>Their lives matter to them.</h3><p>They form bonds, seek safety, avoid pain and fight to stay alive. Convenience does not erase their experience.</p></div><img src="imgs/animals/animal-pig.jpg" alt="Pigs resting together" loading="lazy"></article>
+                  <article><div><span class="baseline-number">III · Power</span><h3>Ability is not justification.</h3><p>Having the power to use and kill another living being does not make doing it morally right.</p></div><img src="imgs/animals/animal-chicken.jpg" alt="A chicken looking toward the camera" loading="lazy"></article>
+                </div>
+                <div class="baseline-actions">
+                  <button type="button" @click="navigate('normalization')" class="text-button">Learn how harm becomes normal →</button>
+                  <button type="button" @click="navigate('evidence')" class="text-button">Check the evidence →</button>
+                </div>
+              </section>
+
+              <section class="home-excuses" aria-labelledby="excuses-title">
+                <div class="home-editorial-heading"><span>Question the justification</span><h2 id="excuses-title">What’s your excuse?</h2><p>Pick the excuse you use to justify animal exploitation. Then face what it actually means.</p></div>
+                <div class="excuse-grid"><template x-for="excuse in excuses" :key="excuse.id"><button type="button" @click="toggleExcuse(excuse.id)" :class="{'active': openExcuse === excuse.id}" :aria-expanded="openExcuse === excuse.id" :aria-controls="'excuse-answer-' + excuse.id"><span x-text="excuse.icon" aria-hidden="true"></span><strong x-text="excuse.label"></strong><em x-text="openExcuse === excuse.id ? '−' : '+'"></em></button></template></div>
+                <div x-show="activeExcuse" x-transition class="excuse-answer excuse-deep-dive" :id="activeExcuse ? 'excuse-answer-' + activeExcuse.id : 'excuse-answer'">
+                  <button type="button" class="excuse-back" @click="openExcuse = null; openExcuseFollowUp = null">← Back</button>
+                  <span>Quick answer</span><h3 x-text="activeExcuse && activeExcuse.label"></h3><p class="excuse-quick" x-text="activeExcuse && activeExcuse.answer"></p>
+                  <div class="excuse-deeper"><span>The deeper issue</span><p x-text="activeExcuse && activeExcuse.deeper"></p></div>
+                  <a :href="activeExcuse && activeExcuse.url" target="_blank" rel="noopener noreferrer" class="text-button" x-text="(activeExcuse && activeExcuse.linkLabel) + ' →'"></a>
+                  <div class="excuse-followups"><span>Common follow-ups</span><template x-for="(followup, index) in (activeExcuse ? activeExcuse.followUps : [])" :key="followup[0]"><article><button type="button" @click="openExcuseFollowUp = openExcuseFollowUp === index ? null : index" :aria-expanded="openExcuseFollowUp === index"><strong x-text="followup[0]"></strong><em x-text="openExcuseFollowUp === index ? '−' : '⌄'"></em></button><p x-show="openExcuseFollowUp === index" x-transition x-text="followup[1]"></p></article></template></div>
+                  <div class="excuse-resources"><span>More resources</span><template x-for="resource in (activeExcuse ? activeExcuse.resources : [])" :key="resource[1]"><a :href="resource[3]" target="_blank" rel="noopener noreferrer"><small x-text="resource[0]"></small><strong x-text="resource[1]"></strong><em x-text="resource[2]"></em></a></template></div>
+                </div>
+              </section>
+
+              <section class="home-witness-quote">
+                <span aria-hidden="true">“</span>
+                <blockquote>Every time we eat animals, we support the greatest oppression in history.</blockquote>
+                <p>— Dr. Alex Hershaft, Holocaust survivor and animal-rights pioneer</p>
+                <a href="https://alexhershaft.com/" target="_blank" rel="noopener noreferrer">Read the source on Alex Hershaft’s official website ↗</a>
+              </section>
+
+              <section class="home-action" aria-labelledby="home-action-title">
+                <div class="home-editorial-heading"><span>Your next move</span><h2 id="home-action-title">Stop participating. Start today.</h2><p>Knowledge removes the excuse. Your next purchase either funds animal use or refuses it.</p></div>
+                <div class="action-grid">
+                  <article><span>01</span><small>Step one</small><h3>Go Vegan Today</h3><p>Stop funding animal use in food, clothing, entertainment and testing. Begin with clear, practical guidance.</p><a href="https://www.vegansociety.com/go-vegan" target="_blank" rel="noopener noreferrer">Learn how ↗</a></article>
+                  <article><span>02</span><small>Free support</small><h3>Take Challenge 22</h3><p>Get a free 22-day program with mentors, dietitian support, daily guidance and recipes.</p><a href="https://challenge22.com/" target="_blank" rel="noopener noreferrer">Join Challenge 22 ↗</a></article>
+                  <article><span>03</span><small>Learn the basics</small><h3>Use trusted guidance</h3><p>Read The Vegan Society’s practical guidance on why and how to make the change.</p><a href="https://www.vegansociety.com/go-vegan" target="_blank" rel="noopener noreferrer">Visit The Vegan Society ↗</a></article>
+                  <article><span>04</span><small>Eat affordably</small><h3>Cook without the excuses</h3><p>Browse more than 150 budget-friendly vegan recipes with clear instructions.</p><a href="https://www.budgetbytes.com/category/recipes/vegetarian/vegan/" target="_blank" rel="noopener noreferrer">Browse Budget Bytes ↗</a></article>
+                </div>
+              </section>
+
+              <section class="home-faq" aria-labelledby="home-faq-title">
+                <div class="home-editorial-heading"><span>Frequently asked</span><h2 id="home-faq-title">Still have questions?</h2></div>
+                <div class="home-faq-list">
+                  <article><button type="button" @click="openHomeFaq = openHomeFaq === 0 ? null : 0" :aria-expanded="openHomeFaq === 0"><strong>Is veganism healthy long-term?</strong><span x-text="openHomeFaq === 0 ? '−' : '+'"></span></button><p x-show="openHomeFaq === 0" x-transition>A well-planned vegan diet can support health at every stage of life. Planning matters—especially reliable vitamin B12—so use the Nutrition section and qualified medical guidance for your needs.</p></article>
+                  <article><button type="button" @click="openHomeFaq = openHomeFaq === 1 ? null : 1" :aria-expanded="openHomeFaq === 1"><strong>What if someone cannot change everything?</strong><span x-text="openHomeFaq === 1 ? '−' : '+'"></span></button><p x-show="openHomeFaq === 1" x-transition>Veganism is about avoiding animal exploitation as far as possible and practicable. A genuine limitation is not a license to ignore every choice that remains available.</p></article>
+                  <article><button type="button" @click="openHomeFaq = openHomeFaq === 2 ? null : 2" :aria-expanded="openHomeFaq === 2"><strong>Will one person actually make a difference?</strong><span x-text="openHomeFaq === 2 ? '−' : '+'"></span></button><p x-show="openHomeFaq === 2" x-transition>Markets respond to accumulated choices, but this is also about refusing your own participation. You cannot control everyone; you can control what you knowingly support.</p></article>
+                  <article><button type="button" @click="openHomeFaq = openHomeFaq === 3 ? null : 3" :aria-expanded="openHomeFaq === 3"><strong>Isn’t this too extreme?</strong><span x-text="openHomeFaq === 3 ? '−' : '+'"></span></button><p x-show="openHomeFaq === 3" x-transition>Questioning avoidable confinement, mutilation and killing is not the extreme position. The scale and normality of the harm can make ordinary compassion feel radical.</p></article>
+                  <article><button type="button" @click="openHomeFaq = openHomeFaq === 4 ? null : 4" :aria-expanded="openHomeFaq === 4"><strong>Don’t animals eat other animals?</strong><span x-text="openHomeFaq === 4 ? '−' : '+'"></span></button><p x-show="openHomeFaq === 4" x-transition>Wild predators act from biological necessity and cannot weigh ethical alternatives. Our choices are not justified by what another species must do to survive.</p></article>
+                  <article><button type="button" @click="openHomeFaq = openHomeFaq === 5 ? null : 5" :aria-expanded="openHomeFaq === 5"><strong>What about Indigenous and traditional cultures?</strong><span x-text="openHomeFaq === 5 ? '−' : '+'"></span></button><p x-show="openHomeFaq === 5" x-transition>Different communities face different histories, resources and constraints. Their circumstances do not justify avoidable animal use by people who have accessible alternatives.</p></article>
+                  <article><button type="button" @click="openHomeFaq = openHomeFaq === 6 ? null : 6" :aria-expanded="openHomeFaq === 6"><strong>How do I deal with social pressure?</strong><span x-text="openHomeFaq === 6 ? '−' : '+'"></span></button><p x-show="openHomeFaq === 6" x-transition>Prepare one calm sentence, bring food you can eat and connect with supportive vegans. Challenge 22 offers free community and mentor support.</p></article>
+                  <article><button type="button" @click="openHomeFaq = openHomeFaq === 7 ? null : 7" :aria-expanded="openHomeFaq === 7"><strong>What about honey, wool and leather?</strong><span x-text="openHomeFaq === 7 ? '−' : '+'"></span></button><p x-show="openHomeFaq === 7" x-transition>Veganism addresses animal use, not only food. Honey, wool and leather turn animals and their bodies into products when non-animal alternatives are available.</p></article>
+                </div>
+              </section>
+
+              <!-- Practical bridge -->
+              <section class="home-bridge">
+                <div class="bridge-image-wrap">
+                  <img src="imgs/animals/animal-pig.jpg" alt="Two pigs resting together on straw" class="bridge-image" loading="lazy" decoding="async">
+                </div>
+                <div class="bridge-copy">
+                  <span class="manifesto-eyebrow">Conviction needs a path forward</span>
+                  <h2>You do not have to figure it out alone.</h2>
+                  <p>Go Vegan connects the reason to the action. Find affordable meals, replace familiar products, check ingredients, plan your nutrition and move at a pace you can sustain.</p>
+                  <button type="button" @click="navigate('journey')" class="manifesto-button manifesto-button-primary">Start your journey</button>
+                </div>
+              </section>
+
+              <!-- Tools -->
+              <section class="home-toolkit">
+                <div class="home-editorial-heading">
+                  <span>Everything you already built, in one place</span>
+                  <h2>Turn what you believe into what you do.</h2>
+                  <p>Start with the question in front of you. Go Vegan will take you to the right tool.</p>
+                </div>
+                <div class="toolkit-grid">
+                  <button type="button" @click="navigate('explore')"><span>01</span><strong>Replace it</strong><small>Find commercial, homemade and whole-food alternatives.</small><em>Explore alternatives →</em></button>
+                  <a href="https://budgetbytes.com/category/recipes/vegetarian/vegan/" target="_blank" rel="noopener noreferrer"><span>02</span><strong>Cook it</strong><small>Find practical vegan recipes for real budgets and real schedules.</small><em>Browse Budget Bytes ↗</em></a>
+                  <button type="button" @click="openChecker = true"><span>03</span><strong>Check it</strong><small>Scan an ingredient list for animal-derived terms.</small><em>Open ingredient checker →</em></button>
+                  <button type="button" @click="navigate('nutrition')"><span>04</span><strong>Plan it</strong><small>Understand B12, protein, iron, calcium and more.</small><em>Explore nutrition →</em></button>
+                  <button type="button" @click="navigate('animals')"><span>05</span><strong>See who is affected</strong><small>Learn how animals live and how industries use them.</small><em>Meet the animals →</em></button>
+                  <button type="button" @click="navigate('evidence')"><span>06</span><strong>Answer the excuses</strong><small>Research common objections without hiding uncertainty.</small><em>Search 207 claims →</em></button>
+                </div>
+              </section>
+
+              <!-- Search -->
+              <section class="home-search-panel">
+                <span class="manifesto-eyebrow">Make your first change now</span>
+                <h2>What do you want to replace?</h2>
+                <div class="hero-search">
+                  <div class="search-field">
+                    <span class="search-icon" aria-hidden="true">⌕</span>
+                    <input type="text" x-model="globalSearchQuery" @input.debounce.300ms="performUnifiedSearch()" @focus="openGlobalSearch = true" placeholder="Milk, eggs, leather, gelatin..." class="search-input" aria-label="Search for alternatives">
+                    <button type="button" @click="searchExplore(globalSearchQuery)" class="manifesto-button manifesto-button-primary search-submit">Find alternatives</button>
+                  </div>
+                  <div class="hero-tags">
+                    <template x-for="suggestion in ['Milk', 'Eggs', 'Cheese', 'Meat', 'Seafood', 'Leather']" :key="suggestion">
+                      <button type="button" @click="searchExplore(suggestion)" class="tag" x-text="suggestion"></button>
+                    </template>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Final call -->
+              <section class="home-final-call">
+                <blockquote>“They don’t have a voice, but we do. They don’t have a choice, but we do.”</blockquote>
+                <p>You do not have to become perfect overnight. You only have to stop looking away and take the next honest step.</p>
+                <button type="button" @click="navigate('journey')" class="manifesto-button manifesto-button-primary">Take the next step</button>
+              </section>
+
+              <!-- Cinema lightbox -->
+              <div x-show="homeVideoOpen" x-cloak x-transition.opacity class="cinema-lightbox" role="dialog" aria-modal="true" :aria-label="'Watching ' + homeVideo.title" @click.self="closeHomeVideo()" @keydown.escape.window="closeHomeVideo()">
+                <div class="cinema-lightbox-inner">
+                  <div class="cinema-lightbox-bar">
+                    <div><span>Now watching</span><strong x-text="homeVideo.title"></strong></div>
+                    <button type="button" @click="closeHomeVideo()" aria-label="Close video">Close ×</button>
+                  </div>
+                  <div class="cinema-frame">
+                    <template x-if="homeVideoOpen">
+                      <iframe :src="homeVideo.embed" :title="homeVideo.title" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen loading="eager" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    </template>
+                  </div>
+                  <div class="cinema-lightbox-switcher">
+                    <template x-for="(video, index) in homeVideos" :key="'modal-' + video.title">
+                      <button type="button" :class="{'active': homeVideoIndex === index}" @click="openHomeVideo(index)"><span x-text="'0' + (index + 1)"></span><strong x-text="video.title"></strong></button>
+                    </template>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Previous utility-first home retained below for reference -->
+              <section class="hero legacy-home" hidden>
                 <div class="hero-layout">
                   <div class="hero-copy">
                     <h1 class="hero-headline">Everything you need to make the switch.</h1>
@@ -389,6 +589,7 @@
               <div class="view-container">
                 <h2 class="view-title">Recipes</h2>
                 <p class="view-subtitle">Delicious plant‑based meals for every occasion.</p>
+                <aside class="recipe-referral"><div><span>Recommended recipe collection</span><h3>Vegan recipes from Budget Bytes</h3><p>Explore budget-conscious meals, step-by-step instructions and practical cooking ideas.</p></div><a href="https://budgetbytes.com/category/recipes/vegetarian/vegan/" target="_blank" rel="noopener noreferrer" class="manifesto-button manifesto-button-primary">Visit Budget Bytes ↗</a></aside>
                 <div class="search-field">
                   <span class="search-icon" aria-hidden="true">🔍</span>
                   <input type="text" x-model="recipeQuery" @input.debounce.300ms="filterRecipes()" placeholder="Search recipes..." class="search-input" aria-label="Search recipes" />
@@ -483,7 +684,7 @@
             <section class="impact-hero">
               <span class="impact-eyebrow">See the scale. Understand the connection.</span>
               <h2 class="view-title">Impact</h2>
-              <p class="view-subtitle">Food choices connect animals, ecosystems, climate, land and water. This section turns that system into something you can explore without pretending estimates are exact.</p>
+              <p class="view-subtitle">Your purchases are not abstract. They create demand for animals to be bred, confined and killed. These are the latest complete official counts available, with their limits stated plainly.</p>
               <div class="impact-hero-actions">
                 <button type="button" class="primary-button" @click="navigate('animals')">Explore the animals</button>
                 <button type="button" class="secondary-button" @click="navigate('evidence')">Check the evidence</button>
@@ -506,6 +707,16 @@
                   <div><strong x-text="formatImpactNumber(impactPer('second'))"></strong><span>per second</span></div>
                 </div>
                 <p class="impact-data-note">This is a production count, not a complete count of animal deaths. It excludes fish and other aquatic animals and does not capture additional deaths associated with dairy or egg production.</p>
+              </div>
+
+              <div class="impact-big-number-card impact-us-card">
+                <span class="impact-big-label">Land animals recorded slaughtered · United States · 2025</span>
+                <strong class="impact-big-number" x-text="formatImpactNumber(impactUSLandAnimals2025)"></strong>
+                <p class="impact-data-note">At least 10.06 billion chickens, turkeys, ducks, cattle, calves, hogs, sheep, lambs, goats and bison. Poultry figures are federally inspected; livestock figures are commercial slaughter. This still excludes fish and other aquatic animals.</p>
+                <div class="impact-source-row">
+                  <a href="https://www.nass.usda.gov/Publications/Todays_Reports/reports/psla0126.pdf" target="_blank" rel="noopener noreferrer" class="secondary-button">USDA poultry report ↗</a>
+                  <a href="https://www.nass.usda.gov/Publications/Todays_Reports/reports/lstk0126.pdf" target="_blank" rel="noopener noreferrer" class="secondary-button">USDA livestock report ↗</a>
+                </div>
               </div>
 
               <div class="impact-species-grid">
@@ -589,13 +800,13 @@
             <section class="impact-principles">
               <div>
                 <span class="impact-eyebrow">How Go Vegan handles numbers</span>
-                <h3>Powerful does not have to mean exaggerated.</h3>
+                <h3>The truth is brutal enough. The numbers do not need to be inflated.</h3>
               </div>
               <div class="impact-principle-grid">
                 <div><strong>Source-backed</strong><span>Every published metric will point to the research behind it.</span></div>
                 <div><strong>Context included</strong><span>Baselines, geography, units and assumptions stay visible.</span></div>
                 <div><strong>Uncertainty matters</strong><span>Estimates will be labeled as estimates instead of presented as exact personal savings.</span></div>
-                <div><strong>Built to update</strong><span>Impact data stays separate from presentation so stronger evidence can replace older figures.</span></div>
+                <div><strong>Latest complete years</strong><span>Worldwide figures use FAOSTAT 2024; U.S. figures use USDA 2025. Newer partial-year counts are not mixed with complete annual totals.</span></div>
               </div>
             </section>
           </div>
@@ -1372,22 +1583,10 @@
     
         </main>
     
-        <!-- BOTTOM NAV -->
-        <nav class="bottom-navigation" aria-label="Mobile navigation">
-          <template x-for="item in mobileNavItems" :key="item.id">
-            <button type="button" @click="navigate(item.id)" class="bottom-nav-item" :class="{'active': view === item.id}" :aria-current="view === item.id ? 'page' : undefined">
-              <span class="nav-icon" aria-hidden="true" x-text="item.icon"></span>
-              <span x-text="item.label"></span>
-            </button>
-          </template>
-          <button type="button" @click="toggleMoreDrawer()" class="bottom-nav-item" :class="{'active': moreOpen}" aria-label="More options" :aria-expanded="moreOpen" aria-controls="more-drawer">
-            <span class="nav-icon" aria-hidden="true">⋮</span>
-            <span>More</span>
-          </button>
-        </nav>
-    
-        <!-- MORE DRAWER -->
-        <div id="more-drawer" class="more-drawer" :class="{'open': moreOpen}" :aria-hidden="!moreOpen" role="menu">
+        <!-- STICKY HEADER MENU -->
+        <button type="button" x-show="moreOpen" x-cloak x-transition.opacity class="menu-scrim" @click="moreOpen = false" aria-label="Close navigation menu"></button>
+        <div id="more-drawer" class="more-drawer" :class="{'open': moreOpen}" :aria-hidden="!moreOpen" role="menu" @click.stop @keydown.escape.window="moreOpen = false">
+          <button type="button" @click="navigate('home'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">⌂</span> Home</button>
           <button type="button" @click="navigate('learn'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">📖</span> Learn</button>
           <button type="button" @click="navigate('impact'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🌍</span> Impact</button>
           <button type="button" @click="navigate('evidence'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🔬</span> Evidence Library</button>
@@ -1399,8 +1598,9 @@
           <button type="button" @click="navigate('nutrition'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🥗</span> Nutrition</button>
           <button type="button" @click="openChecker = true; moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">✅</span> Ingredient Checker</button>
           <button type="button" @click="shareApp(); moreOpen = false" class="tiny-share-menu-item" role="menuitem"><span class="drawer-icon" aria-hidden="true">📤</span> Share Go Vegan</button>
+          <a href="https://michaelsboost-store.creator-spring.com/listing/all-life-is-connected-go-veg?product=2405" target="_blank" rel="noopener noreferrer" role="menuitem"><span class="drawer-icon" aria-hidden="true">◆</span> Go Vegan Store</a>
           <a href="https://michaelsboost.com/donate" target="_blank" rel="noopener noreferrer" role="menuitem" class="donate-menu-item">
-              <span class="drawer-icon" aria-hidden="true">👏</span> Support Go Vegan
+              <span class="drawer-icon drawer-heart" aria-hidden="true">♥</span> Donate
           </a>
           <a href="https://michaelsboost.github.io/Zerra" target="_blank" rel="noopener noreferrer" role="menuitem"><span class="drawer-icon" aria-hidden="true">🌎</span> Explore Zerra</a>
           <button type="button" @click="navigate('about'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">ℹ️</span> About</button>
@@ -1408,7 +1608,7 @@
     
         <!-- FOOTER -->
         <footer class="app-footer">
-          <p>Go Vegan is free and open source. If this helped you, consider <a href="https://michaelsboost.com/donate" target="_blank" rel="noopener noreferrer">supporting development 💛</a> · <a href="https://github.com/michaelsboost/govegan" target="_blank" rel="noopener noreferrer">view the source on GitHub</a> · continue the connection with <a href="https://michaelsboost.github.io/Zerra" target="_blank" rel="noopener noreferrer">Zerra</a> · compassion over convenience · progress, not perfection</p>
+          <p>Go Vegan is free and open source. <a href="https://michaelsboost.com/donate" target="_blank" rel="noopener noreferrer">Donate to support development ♥</a> · <a href="https://github.com/michaelsboost/govegan" target="_blank" rel="noopener noreferrer">view the source on GitHub</a> · continue the connection with <a href="https://michaelsboost.github.io/Zerra" target="_blank" rel="noopener noreferrer">Zerra</a> · animals need action, not comfortable excuses</p>
           <p class="footer-disclaimer">All data for guidance. Always verify current product packaging.</p>
         </footer>
       </div>

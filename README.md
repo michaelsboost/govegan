@@ -1,485 +1,311 @@
 # GO VEGAN
 
-*A practical, compassionate, source-backed guide to vegan alternatives, animal-derived ingredients, animal use, evidence, plant-based recipes, and making the transition one step at a time.*
+**Every second counts. You have a choice. They don't.**
+
+Go Vegan is a free, open-source educational call to action about animal use, the lives affected by it, and the choices people can make when animal use is unnecessary.
 
 ![About Go Vegan](https://raw.githubusercontent.com/michaelsboost/govegan/main/imgs/promo.png)
 
-
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://michaelsboost.com/govegan/)
-[![Version](https://img.shields.io/badge/version-1.1.0-6d8b61)](https://github.com/michaelsboost/govegan)
-[![MIT License](https://img.shields.io/github/license/michaelsboost/govegan)](LICENSE)  [![GitHub Stars](https://img.shields.io/github/stars/michaelsboost/govegan)](https://github.com/michaelsboost/govegan/stargazers)  [![GitHub Issues](https://img.shields.io/github/issues/michaelsboost/govegan)](https://github.com/michaelsboost/govegan/issues)
+[![Version](https://img.shields.io/badge/version-2.0.0-ff2b75)](https://github.com/michaelsboost/govegan)
+[![MIT License](https://img.shields.io/github/license/michaelsboost/govegan)](LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/michaelsboost/govegan)](https://github.com/michaelsboost/govegan/stargazers)
+[![GitHub Issues](https://img.shields.io/github/issues/michaelsboost/govegan)](https://github.com/michaelsboost/govegan/issues)
 
 ---
 
-## 🌱 About Go Vegan
+## 🐾 About Go Vegan
 
-Go Vegan is a free, open-source educational app for people who want to reduce or eliminate their use of animal products but do not know where to begin.
+Go Vegan is designed to connect information with action. The project asks a simple question:
 
-Animal-derived products can appear in food, clothing, cosmetics, household supplies, supplements, medicine, furniture, vehicles, art materials, and many other parts of everyday life. Go Vegan brings that information together in one approachable place.
+> **If you don't need to use animals, why do it at all?**
 
-The app helps users:
+The app brings together information about animals, animal use, ingredients, nutrition, environmental impact, common arguments about veganism, educational films, outside resources, and practical next steps.
 
-- find vegan replacements for familiar foods and products
-- compare commercial, homemade, and whole-food alternatives
-- identify animal-derived or source-dependent ingredients
-- learn which animals are used by different industries
-- understand common welfare and exploitation concerns
-- examine documented physical practices across animal-use systems
-- research common claims and questions through an Evidence Library
-- examine how harmful practices can become socially normalized
-- discover affordable plant-based recipes
-- learn basic vegan nutrition considerations
-- follow a gradual transition plan
-- save useful products and resources
+The goal is not to hide the consequences of animal use behind products, industries, or familiar habits. Go Vegan makes those connections visible, provides sources where factual claims can be checked, and gives people places to continue learning and take action.
 
-Go Vegan is designed around informed, compassionate action. It does not demand perfection or assume everyone begins with the same health, income, access, knowledge, or living situation.
-
-## 🌎 Companion Project: Zerra
-
-Go Vegan and Zerra are separate companion applications connected by a shared commitment to informed action and respect for living systems. Go Vegan focuses on animals, normalized exploitation, plant-based alternatives, and compassionate change. Zerra explores our wider relationship with Mother Earth through ecological literacy, practical skills, responsibility, reciprocity, and regeneration.
-
-Explore Zerra: https://michaelsboost.github.io/Zerra
-
-Source code: https://github.com/michaelsboost/Zerra
-
-## ✨ What's New in 1.1.0
-
-Version 1.1.0 introduces the new **Impact** experience, connecting the scale of animal use with measurable environmental pressures and source-backed dietary comparisons.
-
-- A new **Impact** destination brings Animals, Planet, and Your Impact into one connected experience.
-- The Animals view visualizes FAO production data for more than 86 billion cattle, goats, chickens, turkeys, pigs, sheep, and ducks slaughtered for meat worldwide in 2024.
-- Annual land-animal figures are translated into daily, hourly, minute, and second-scale comparisons to make the magnitude easier to understand.
-- Major species totals connect directly back to the existing Animals Library.
-- Aquatic animals are kept separate from the land-animal total because fishery data are commonly reported by weight and individual counts carry substantially greater uncertainty.
-- The Planet view compares vegan and high-meat dietary footprints across greenhouse-gas emissions, land use, water use, eutrophication, and biodiversity pressure using published research.
-- Study baselines, geography, units, assumptions, source links, and uncertainty remain visible rather than presenting estimates as exact personal savings.
-- **Your Impact** adds interactive 1-day, 1-week, 1-month, 1-year, and 5-year horizons for exploring how relative dietary-footprint differences accumulate over time.
-- Impact data are kept separate from presentation so figures and sources can be updated as stronger evidence becomes available.
-- Impact styling has been integrated into the production CSS build for responsive desktop and mobile presentation.
-- The PWA cache version has been advanced for the 1.1.0 release so existing installations can receive the updated application assets.
-
-## ✨ What's New in 1.0.1
-
-Version 1.0.1 adds a clear companion-project connection to Zerra through Go Vegan's About page, desktop and mobile More menus, footer, and project documentation while keeping both apps independent.
-
-## ✨ What's New in 1.0.0
-
-Version 1.0.0 substantially expands the educational, research, and practical recipe portions of Go Vegan.
-
-- The Animals Library has grown from 24 to 52 animal groups.
-- Twenty-eight new profiles cover additional mammals, birds, aquatic animals, invertebrates, and animals used for materials, labor, entertainment, trade, or research.
-- Animal profiles now separate natural life, human uses, documented physical practices, derived ingredients, everyday items, alternatives, and sources into focused tabs.
-- A new **What Happens to Them** section adds 152 documented practice entries across 24 animal profiles.
-- A new **Evidence Library** organizes 207 common vegan claims and questions across eight subject areas.
-- A new **When Harm Becomes Normal** section examines normalization as a social mechanism without claiming that different historical injustices are identical.
-- Evidence results are included in unified search.
-- URL-based navigation now supports direct links to views and details, along with improved browser and PWA Back and Forward behavior.
-- Sharing controls, mobile navigation, narrow-screen layout support, and project support links have been improved.
-- The recipe library now contains 201 recipes across breakfast, lunch, dinner, snacks, desserts, homemade basics, and sauces.
-- The expansion adds 50 homemade alternatives to common animal products, including plant milks, butter, mayonnaise, egg replacements, cheeses, meat styles, and seafood styles.
-- New meal collections add 20 breakfasts, 20 lunches, 35 dinners, 15 snacks, and 15 desserts.
-- Recipe discovery now supports combined meal-type, quick, budget, high-protein, whole-food, dietary, allergy-aware, and difficulty filters.
-- Every expanded recipe now uses an embedded base64 WebP photograph showing the completed food, so the project does not depend on additional image downloads.
-- Recipe filter groups stay on a single horizontally scrollable row on small screens instead of wrapping into extra lines.
-- The installed PWA requests a transparent system status bar so the active light or dark page theme can show beneath it, with safe-area spacing for device indicators.
-
-The Evidence Library is an expanding research directory. Entries should be reviewed individually, strengthened with claim-specific evidence, and corrected whenever stronger sources become available.
+No account is required. The project is free, open source, client-side, and designed for desktop and mobile use.
 
 ---
 
-## 🧩 Go Vegan Explained Simply
+## 🚨 What’s New in 2.0.0
 
-Imagine you want to replace milk, eggs, leather, gelatin, wool, fish, honey, or another animal-derived product.
+Version 2.0.0 is a major redesign of Go Vegan around a clearer call to action and a more focused educational experience.
 
-Normally, you may need to search several different websites to answer questions such as:
+- A completely redesigned homepage opens with **Every Second Counts**, **You Have a Choice. They Don't.**, and **If you don't need to use animals, why do it at all?**
+- A live counter translates the scale of animal killing into something visitors can see changing while they are on the page.
+- The homepage now connects the ethical question directly to evidence, animal stories, practical action, and educational films.
+- A film experience places **3 Minute Movie** first and includes major educational speeches and documentaries, with external viewing used when a provider does not allow reliable embedded playback.
+- The Resources section has been reorganized and expanded with visual previews for films, documentaries, talks, guides, and other educational material.
+- The Impact experience presents global land-animal slaughter data, U.S. context, environmental comparisons, methodology, sources, and interactive time horizons.
+- The Animals Library remains a central part of the project, connecting natural lives with human uses, documented practices, derived ingredients, everyday items, alternatives, and sources.
+- The Evidence Library provides source-backed responses to common questions, objections, and claims surrounding veganism.
+- **When Harm Becomes Normal** examines how harmful practices can become socially accepted through repetition, tradition, law, language, institutions, and distance from their consequences.
+- The Ingredient Library and Ingredient Checker help identify animal-derived and source-dependent ingredients.
+- Nutrition education highlights nutrients commonly considered when eating vegan.
+- Practical food help now points visitors to a larger external vegan recipe collection rather than maintaining a limited built-in recipe catalog. This gives users access to a broader selection of budget-conscious meals and cooking ideas that can continue to grow independently of the app.
+- The interface has been refined across desktop and mobile, including full-screen editorial sections, navigation, film previews, responsive layouts, and accessibility behavior.
+- Go Vegan has a new visual identity designed to represent urgency and animal liberation rather than generic plant-based branding.
+- A self-contained **kodeWeave project** is included for testing and sharing the application in a CodePen-style HTML/CSS/JavaScript environment.
+- Project metadata and release files have been synchronized for version **2.0.0**.
 
-- What vegan alternatives exist?
-- Can I buy them locally or make them myself?
-- Is this unfamiliar ingredient animal-derived?
-- Which animal does it come from?
-- What everyday products may contain it?
-- Why is the original product considered an animal-welfare concern?
-- What nutritional role did the food serve?
-- What can replace that role?
+---
 
-Go Vegan is intended to connect those questions.
+## ❤️ The Homepage
 
-It is not simply a list of vegan brands. It connects products, recipes, ingredients, animals, industries, alternatives, and educational resources so users can understand both what to replace and why.
+The homepage is intentionally different from a conventional product landing page. It is structured as a progression from awareness to action.
+
+It begins with the choice at the center of the project, shows the scale of animal deaths occurring over time, challenges common justifications, asks visitors to consider the animal's perspective, and then provides ways to learn and act.
+
+Educational films are available directly from the homepage so a visitor does not need to understand the rest of the application before encountering the issue itself.
+
+The homepage also connects visitors to practical help, including outside recipe resources, vegan support programs, nutrition information, animal profiles, evidence, and other educational material.
 
 ---
 
 ## 🐄 Animals Library
 
-The Animals Library introduces animals used for food, clothing, materials, research, entertainment, labor, cosmetics, household goods, and industrial purposes.
+The Animals Library introduces animals used for food, clothing, materials, research, entertainment, labor, companionship, trade, and other human purposes.
 
-Animal profiles may include:
+Profiles can include:
 
-- natural habitat and diet
-- social behavior and communication
-- cognition and parenting
-- natural behaviors
-- potential lifespan
-- industries in which the animal is used
-- products and ingredients derived from the animal
-- documented welfare concerns
-- documented physical practices and their context
-- practical vegan alternatives
+- natural habitat, diet, behavior, communication, parenting, cognition, and lifespan
+- industries and human uses
+- documented physical practices
+- welfare concerns
+- animal-derived ingredients
+- everyday products associated with the animal
+- vegan alternatives
 - supporting sources
 
-Some entries represent broad groups, such as fish or mollusks. These profiles are clearly identified because behavior, biology, and lifespan can vary substantially between species.
-
-Sensitive subjects are presented factually and with enough detail for accuracy, not for shock value. Routine practices, system-dependent practices, welfare failures, and natural biology are distinguished rather than treated as equivalent.
+The purpose is to reconnect products and practices with the living beings affected by them. Sensitive subjects are presented for education and documentation, not as entertainment.
 
 ---
 
 ## 🌍 Impact
 
-The Impact section is designed to make large-scale consequences easier to understand without turning estimates into false precision. It combines three views:
+The Impact section makes large-scale consequences easier to understand while keeping methodology and uncertainty visible.
 
-- **Animals** — global land-animal slaughter data, human-scale time comparisons, and links into relevant animal profiles.
-- **Planet** — comparative dietary footprints for greenhouse gases, land, water, eutrophication, and biodiversity pressure.
-- **Your Impact** — interactive time horizons that visualize relative differences over a day, week, month, year, or five years.
+### 🐾 Animals
 
-Impact figures are presented with their baseline, scope, methodology, source, and uncertainty where available. Comparative dietary results describe research populations and modeled footprints; they are not claims that a particular individual has personally saved an exact quantity of water, land, emissions, or animal lives.
+The app presents the latest global land-animal slaughter data available from its cited datasets and translates annual totals into daily, hourly, minute, and second-scale comparisons. Major species can be opened in the Animals Library for additional context.
 
-Aquatic-animal deaths are not folded into the land-animal slaughter total because individual fish counts are much more uncertain than production counts for major land-animal categories.
+Aquatic animals are treated separately where individual death estimates are substantially more uncertain than reported production totals.
+
+### 🌎 Planet
+
+Environmental comparisons cover areas such as greenhouse-gas emissions, land use, water use, eutrophication, and biodiversity pressure using published research.
+
+### 📊 Your Impact
+
+Interactive time horizons show how relative dietary-footprint differences accumulate across periods such as a day, week, month, year, and five years. These are research-based comparisons, not claims that a particular visitor has personally saved an exact number of animals or exact quantity of resources.
 
 ---
 
-## 🔬 Evidence Library
+## 🔎 Evidence Library
 
-The Evidence Library provides a searchable structure for examining common claims and questions about veganism. Version 1.0.0 includes 207 entries organized into:
+The Evidence Library is a searchable collection of common questions and claims surrounding veganism, including topics such as:
 
-- sentience
-- plants
+- animal sentience
+- plants and plant sentience
 - nutrition
-- evolution and nature
-- environment
+- evolution and appeals to nature
+- environmental impacts
 - crop deaths and farming
 - animal agriculture
 - ethics and logic
 
-Each entry can contain a short answer, explanation, important context, verdict, confidence label, related questions, and supporting sources.
+Entries can include a short answer, explanation, context, verdict, confidence information, related questions, and sources.
 
-Scientific evidence can establish or challenge factual premises, but it cannot decide every ethical conclusion by itself. Ethical and philosophical entries are identified accordingly. The directory is intended to improve over time as individual claims receive deeper review and stronger claim-specific sourcing.
-
----
-
-## 🧭 When Harm Becomes Normal
-
-This section explores how harmful systems can become ordinary through repetition, law, tradition, economic dependence, social distance, euphemistic language, and institutional acceptance.
-
-It uses documented historical examples to examine the mechanism of normalization. It does not claim that animal agriculture is identical to slavery, forced assimilation, child labor, nonconsensual experimentation, eugenics, or other human atrocities. The victims, histories, circumstances, and forms of suffering are different.
-
-The central principle is that social acceptance, legality, tradition, and economic importance do not by themselves establish that a practice is morally justified.
+Scientific evidence can address factual premises, but science alone does not settle every ethical conclusion. The project distinguishes evidence, uncertainty, context, and philosophical reasoning rather than presenting every issue as the same kind of claim.
 
 ---
 
-## 🔍 Ingredient Checker
+## ⚠️ When Harm Becomes Normal
 
-The Ingredient Checker lets users paste an ingredient list and scan it for known animal-derived or source-dependent terms.
+This section explores normalization: how harmful systems can become ordinary through repetition, social acceptance, law, tradition, economic dependence, institutional support, euphemistic language, and distance from those affected.
 
-Results distinguish between:
+Historical examples are used to examine mechanisms of normalization, not to claim that different victims, histories, or forms of suffering are identical.
 
-| Status | Meaning |
-|---|---|
-| Animal-derived | The ingredient ordinarily comes from an animal source |
-| Usually animal-derived | Animal sourcing is common, although alternatives may exist |
-| May be animal-derived | The source can be animal, plant, microbial, or synthetic |
-| Usually plant or microbial | Commonly vegan, but unusual sources may require verification |
-| Vegan | Identified as non-animal-derived |
-| Unknown | Insufficient information to determine the source |
-
-The checker can recognize ingredient aliases such as alternative names, labeling terms, and additive codes.
-
-It also explains where an ingredient may be found and how to verify uncertain sourcing.
-
-The absence of a flagged ingredient does not guarantee that a product is vegan. Processing aids, manufacturing practices, testing policies, cross-contact, and undisclosed sources may still require additional verification.
+The central point is simple: **normal, legal, traditional, or profitable does not automatically mean justified.**
 
 ---
 
-## 🌿 Alternatives Explorer
+## 🧾 Ingredient Library & Checker
 
-The Explore section helps users discover several kinds of replacements:
+The Ingredient Library explains animal-derived and source-dependent ingredients, their possible origins, common uses, aliases, and alternatives.
 
-- recognizable commercial products
-- whole-food alternatives
-- homemade alternatives
-- budget-friendly options
-- high-protein options
-- soy-free options
-- peanut-free and tree-nut-free options when supported
-- non-food alternatives for clothing, cosmetics, cleaning, and household use
+The Ingredient Checker lets users paste an ingredient list and scan for known terms. Results distinguish between ingredients that are animal-derived, commonly animal-derived, source-dependent, generally plant or microbial, vegan, or unknown.
 
-Example categories include:
-
-- milk
-- cheese
-- eggs
-- burgers
-- chicken
-- seafood
-- yogurt
-- butter
-- ice cream
-- leather
-- wool
-- silk
-- cosmetics
-- cleaning products
-
-Commercial formulas, certifications, availability, and manufacturing policies can change. Users should always verify current packaging and manufacturer information.
+Because formulations and sourcing can change, the checker is an educational aid rather than a guarantee that a finished product is vegan. Manufacturer information, certifications, processing aids, testing policies, and current packaging may still need to be verified.
 
 ---
 
-## 🍽️ Recipes
+## 🥗 Nutrition
 
-Go Vegan includes beginner-friendly plant-based recipes with:
+The Nutrition section introduces nutrients commonly considered when eating vegan, including topics such as vitamin B12, protein, iron, calcium, iodine, vitamin D, zinc, selenium, and omega-3 fatty acids.
 
-- ingredient lists
-- step-by-step instructions
-- preparation time
-- difficulty level
-- estimated cost
-- meal category
-- dietary tags
-- substitution guidance
-- storage guidance
-- links to relevant homemade alternatives
-
-Recipe filters help users find meals that are:
-
-- quick
-- budget-friendly
-- high in protein
-- whole-food focused
-- soy-free, peanut-free, tree-nut-free, or gluten-free
-- beginner, intermediate, or advanced
-- suitable for breakfast, lunch, dinner, snacks, desserts, basics, or sauces
-
-Selections within meal type and difficulty work as alternatives, while needs and dietary selections combine. For example, users can request a quick, budget-friendly, gluten-free dinner rather than searching each filter separately.
-
-Dietary and allergy tags are informational. Ingredient brands and manufacturing facilities can differ, so users with allergies should verify labels and cross-contact information independently.
+This information is educational and is not individualized medical or nutritional advice. Needs can differ with age, pregnancy, health conditions, medications, allergies, and other circumstances.
 
 ---
 
-## 🥗 Nutrition Education
+## 📚 Learn
 
-The Learn section introduces nutritional topics commonly considered when transitioning toward a vegan diet, including:
+The Learn section provides practical educational material for people who want additional context, including guidance around getting started, reading labels, hidden animal-derived ingredients, nutrition, and other everyday considerations.
 
-- vitamin B12
-- protein
-- iron
-- calcium
-- iodine
-- vitamin D
-- zinc
-- selenium
-- omega-3 fatty acids
-- balanced meal planning
-- fortified foods and supplements
-
-Nutrition content is educational and does not replace individualized medical advice. Health conditions, medications, allergies, pregnancy, age, and other circumstances can affect nutritional needs.
+It is intended to make the information in the larger app easier to apply without requiring visitors to absorb everything at once.
 
 ---
 
-## 🧭 Transition Paths
+## 🎬 Films & Resources
 
-Not everyone changes their habits in the same way. Go Vegan includes several transition paths:
+Go Vegan uses films, talks, documentaries, guides, organizations, and other educational resources to let visitors continue beyond the app's summaries.
 
-- **One Swap** — replace one familiar animal product
-- **7-Day Introduction** — explore one practical topic each day
-- **30-Day Transition** — gradually build knowledge and confidence
-- **Whole-Food Path** — focus on legumes, grains, vegetables, fruits, nuts, seeds, and minimally processed staples
+The homepage film experience begins with **3 Minute Movie** and includes additional material such as **The Most Important Speech** and **Dominion**. The Resources section provides a broader collection that includes documentaries and other learning material.
 
-Progress is stored locally in the browser.
+Some media can play inside the app. When a provider restricts embedding or requires viewing on its own platform, Go Vegan directs the visitor to the original viewing location instead of presenting a broken player.
 
-The goal is to make meaningful change more understandable and achievable, not to shame people who are still learning or working within practical limitations.
+External resources remain the responsibility of their respective publishers and may change availability, URLs, access requirements, or content over time.
 
 ---
 
-## 🌟 Features
+## 🍽️ Practical Food Help
 
-- ✅ Vegan product and brand explorer
-- ✅ Whole-food and homemade alternatives
-- ✅ Animals Library
-- ✅ Animal-use and industry information
-- ✅ Documented physical-practice and harm information
-- ✅ Evidence Library with searchable claims and sources
-- ✅ Impact dashboard for animals and environmental pressures
-- ✅ Interactive dietary-footprint time-horizon comparisons
-- ✅ Visible methodology, sources, baselines, and uncertainty
-- ✅ Normalization and ethical-reflection section
-- ✅ Animal-derived ingredient database
-- ✅ Ingredient-label scanner
-- ✅ Plant-based recipes
-- ✅ Nutrition education
-- ✅ Budget-friendly filters
-- ✅ Dietary preference filters
-- ✅ Unified search
-- ✅ Direct links to views and detailed records
-- ✅ Browser and PWA history navigation
-- ✅ Transition plans and progress tracking
-- ✅ Product favorites
-- ✅ Favorites export
-- ✅ Responsive desktop and mobile design
-- ✅ Mobile bottom navigation
-- ✅ Accessible keyboard navigation
-- ✅ Reduced-motion support
-- ✅ LocalStorage persistence
-- ✅ Web Share API support
-- ✅ Progressive Web App compatibility
-- ✅ No account required
-- ✅ No backend required
-- ✅ Open source
+Go Vegan no longer maintains its own large recipe catalog. Instead, the app links to an established external collection of vegan recipes with a much broader range of meals, prices, preparation styles, and cooking ideas than would be practical to duplicate inside this project.
+
+This keeps Go Vegan focused on education and action while still giving visitors an immediate place to answer the practical question: **What can I eat instead?**
+
+External recipe information, prices, ingredients, allergy suitability, and availability should always be checked at the source.
 
 ---
 
-## 🔗 Connected Information Model
+## ✨ Features
 
-Go Vegan organizes information into linked collections rather than isolated lists.
+- Call-to-action homepage built around choice, urgency, and the consequences of animal use
+- Live animal-death counter with methodology information
+- Homepage educational film experience
+- Curated Resources library with visual previews and external viewing support
+- Animals Library with natural-life, human-use, harm, ingredient, everyday-item, alternative, and source information
+- Impact dashboard covering animals and environmental pressures
+- Interactive dietary-footprint time horizons
+- Visible sources, baselines, methodology, and uncertainty
+- Searchable Evidence Library
+- When Harm Becomes Normal educational section
+- Ingredient Library
+- Ingredient Checker for pasted labels
+- Vegan nutrition education
+- Learn library and practical educational guides
+- Links to broader external vegan recipe and support resources
+- Unified search across supported app content
+- Direct URL navigation to major views and records
+- Responsive desktop and mobile layouts
+- Keyboard and modal accessibility behavior
+- Reduced-motion support
+- Browser/PWA navigation support
+- Progressive Web App support
+- Local browser persistence where applicable
+- Web Share API support where available
+- No account required
+- No backend required
+- Open-source MIT-licensed code
+- Included kodeWeave project for portable testing and sharing
+
+---
+
+## 🧩 Information Model
+
+Go Vegan connects related information instead of treating each topic as an isolated article.
 
 ```text
 Animals
+  ├── Natural life
   ├── Human uses and industries
-  ├── Documented physical practices
+  ├── What happens to them
   ├── Derived ingredients
-  ├── Everyday products
-  ├── Welfare concerns
-  ├── Vegan alternatives
-  ├── Recipes
+  ├── Everyday items
+  ├── Alternatives
   └── Sources
 
-Evidence claims
-  ├── Category and verdict
-  ├── Short answer and explanation
-  ├── Context and limitations
+Evidence
+  ├── Question or claim
+  ├── Short answer
+  ├── Explanation and context
+  ├── Verdict / confidence
   ├── Related questions
+  └── Sources
+
+Impact
+  ├── Animals
+  ├── Planet
+  ├── Your Impact
+  ├── Methodology
   └── Sources
 ```
 
-For example, a user researching cattle can move from dairy and leather to casein, whey, gelatin, food alternatives, clothing materials, recipes, and supporting sources.
-
-This relationship-based structure helps explain how animal use extends beyond obvious products such as meat, milk, eggs, or leather.
+This structure helps visitors move from an everyday product or claim to the animal, practice, evidence, alternative, or source behind it.
 
 ---
 
-## ✅ Data Validation
+## 📖 Sourcing & Accuracy
 
-The app includes a client-side data validator that can identify problems such as:
+Go Vegan aims to distinguish sourced factual claims from ethical arguments, general guidance, and estimates.
 
-- duplicate IDs
-- missing IDs
-- broken relationships
-- unsupported status values
-- dietary-tag conflicts
-- allergy-tag conflicts
-- missing product verification sources
-- missing animal-profile sources
-- invalid URLs
-- duplicate ingredient aliases
-- incomplete recipes
+Preferred evidence includes peer-reviewed research, government and intergovernmental datasets, universities, veterinary resources, official organizations, certification bodies, and direct manufacturer information where appropriate.
 
-Validation warnings appear in the developer console without preventing the app from loading.
+The project favors visible limitations over false certainty. Estimates should identify their scope and assumptions, and claims should be corrected when stronger evidence becomes available.
+
+Because datasets are released on different schedules, the newest calendar year is not always the newest authoritative year available. The Impact section therefore uses the latest supported data available from its cited source rather than inventing or extrapolating newer figures as established fact.
+
+Corrections and stronger sources are welcome.
 
 ---
 
-## 📊 Current Content
+## 🛠️ Technology
 
-Version 1.0.0 includes:
-
-| Collection | Entries |
-|---|---:|
-| Animal groups | 52 |
-| Documented physical-practice entries | 152 |
-| Evidence claims and questions | 207 |
-| Animal-use categories | 23 |
-| Products | 92 |
-| Recipes | 201 |
-| Ingredients | 94 |
-| Alternatives | 32 |
-| Everyday items | 51 |
-| Household locations | 8 |
-| Nutrients | 10 |
-| Learning articles | 20 |
-| Resources | 16 |
-| Core source records | 80 |
-
-Counts describe the included dataset, not a claim that every entry has completed final editorial review.
-
----
-
-## 📚 Sourcing Policy
-
-Go Vegan aims to distinguish sourced facts from general guidance.
-
-Preferred sources include:
-
-1. peer-reviewed research
-2. government publications
-3. university and veterinary resources
-4. official certification organizations
-5. direct manufacturer information
-6. established animal-welfare and vegan organizations
-
-When a claim cannot be adequately supported, it should be labeled as needing further research rather than presented as certain.
-
-Product information should include direct manufacturer or certification evidence whenever a verification claim is made.
-
-Corrections, improved sources, and carefully documented contributions are welcome.
-
----
-
-## 🛠️ Tech Stack
-
-Go Vegan is built entirely with lightweight browser-native technologies.
-
-### Frontend
+Go Vegan is a browser-based static application built with:
 
 - HTML5
-- Tailwind CSS
-- Alpine.js
-- Custom CSS
 - JavaScript
-
-### Source and Build Files
-
-- `source.html` contains the application markup.
-- `source.css` contains the handwritten application styles.
-- `source.js` contains application behavior and structured content data.
-- `bundle.css` contains the production CSS generated from `source.css` plus the Tailwind classes detected in the HTML and JavaScript.
-- `dist/script.js` contains the production JavaScript bundle.
-- `index.html` is the deployable application page.
-
-### Browser APIs
-
-- LocalStorage API
-- Clipboard API
-- Web Share API
+- Alpine.js
+- Tailwind CSS
+- custom CSS
+- PostCSS / Autoprefixer / cssnano
+- Rollup / Terser
 - Progressive Web App APIs
 
-### Architecture Goals
+The application does not require an account or application backend.
 
-- lightweight
-- responsive
-- accessible
-- privacy-friendly
-- browser-native
-- client-side
-- no account required
-- no backend required
-- easy to fork
-- open-source
+### 📁 Project Structure
+
+Key release files include:
+
+- `src/source.html` — application markup
+- `src/bundle.css` — source CSS entry used by the build
+- `src/style.css` — core application styling
+- `src/home.css` — homepage-specific styling
+- `src/antiuse.css` — additional editorial/call-to-action styling
+- `src/script.js` — application behavior and structured content data
+- `dist/bundle.css` — compiled production CSS
+- `dist/script.js` — compiled production JavaScript
+- `index.html` — deployable application page
+- `test.html` — local/testing page
+- `manifest.json` — PWA metadata
+- `sw.js` — service worker
+- `govegan-kodeWeave.json` — self-contained kodeWeave project
 
 ---
 
-## 🚀 Launch Go Vegan
+## 🧪 kodeWeave Project
 
-➡️ **https://michaelsboost.com/govegan**
+The repository includes `govegan-kodeWeave.json` for opening and sharing Go Vegan in kodeWeave.
+
+The project follows kodeWeave's CodePen-style editor model: application HTML is stored in the HTML editor, CSS in the CSS editor, and JavaScript in the JavaScript editor. Assets that cannot reliably load from relative project paths can be embedded directly so the shared preview remains portable across desktop and mobile testing.
+
+The kodeWeave file is intended as a testing and sharing version of the same application, not a separate product.
 
 ---
 
-## 📥 Installation & Local Development
+## 💻 Run Locally
 
 Clone the repository:
 
@@ -488,112 +314,87 @@ git clone https://github.com/michaelsboost/govegan.git
 cd govegan
 ```
 
-Start a local server:
-
-```bash
-python3 -m http.server 8000
-```
-
-Then open:
-
-```text
-http://localhost:8000
-```
-
-Because Go Vegan is a client-side application, it can also be hosted using GitHub Pages or another static hosting provider.
-
-### Production Build
-
 Install development dependencies:
 
 ```bash
 npm install
 ```
 
-Build the production CSS and JavaScript:
+Build production CSS and JavaScript:
 
 ```bash
 npm run build
 ```
 
-When rebuilding CSS, ensure Tailwind scans both `source.html` and `source.js`. The final `bundle.css` must include the handwritten `source.css` rules and only the Tailwind classes used by the project.
+Start the included local server:
+
+```bash
+npm run serve
+```
+
+The configured development server runs on port `8081`.
+
+Because Go Vegan is a static client-side application, it can also be served by another static web server or deployed to static hosting.
 
 ---
 
-## ⚠️ Disclaimer
+## 🌐 Live App
+
+**Go Vegan:** https://michaelsboost.com/govegan/
+
+**Source:** https://github.com/michaelsboost/govegan
+
+---
+
+## 🌱 Companion Project: Zerra
+
+Go Vegan focuses specifically on animals, animal use, evidence, and practical change. **Zerra** is a separate companion project exploring the wider relationship between human activity and Mother Earth through ecological literacy, responsibility, practical skills, reciprocity, and regeneration.
+
+Zerra: https://michaelsboost.github.io/Zerra
+
+Source: https://github.com/michaelsboost/Zerra
+
+---
+
+## ⚕️ Disclaimer
 
 Go Vegan is an educational resource, not medical, nutritional, legal, veterinary, or emergency advice.
 
-The project may contain incomplete information, and product formulations, ingredient sources, certifications, prices, availability, and corporate policies can change.
+Information can become outdated. Product formulations, ingredient sources, certifications, prices, availability, corporate policies, external resources, and scientific datasets can change.
 
-Always verify:
+Always verify information that matters to a medical condition, allergy, medication, or other high-stakes personal decision with an appropriate qualified professional and current primary source.
 
-- current product packaging
-- manufacturer statements
-- certification databases
-- medication ingredients with a pharmacist
-- supplements with a qualified healthcare professional
-- dietary changes with an appropriate professional when medically necessary
-
-Never stop or avoid medically necessary treatment solely because an ingredient may be animal-derived. Ask a doctor or pharmacist whether a suitable alternative is available.
+Never stop or avoid medically necessary treatment solely because an ingredient may be animal-derived. A doctor or pharmacist can help determine whether an appropriate alternative exists.
 
 ---
 
 ## 🤝 Contributing
 
-Pull requests, corrections, sources, accessibility improvements, recipes, and carefully verified data are welcome.
+Contributions that improve accuracy, sourcing, accessibility, usability, or educational value are welcome.
 
-Useful contribution areas include:
+Useful contributions include stronger primary or peer-reviewed sources, corrections, animal-profile research, animal-use documentation, Evidence Library improvements, ingredient aliases, nutrition references, accessibility fixes, responsive-layout improvements, translations, and updated resource links.
 
-- additional vegan products
-- homemade and whole-food alternatives
-- animal profiles
-- animal-use documentation
-- claim-specific Evidence Library research
-- stronger peer-reviewed and primary sources
-- review of verdicts, limitations, and confidence labels
-- ingredient aliases
-- direct and current sources
-- affordable recipes
-- nutrition education
-- international product coverage
-- regional availability information
-- accessibility
-- mobile optimization
-- translations
-- data validation
-
-Please include reliable sources when adding factual claims or commercial product-verification information.
-
-Do not submit invented citations, unsupported certifications, copied proprietary descriptions, or dietary/allergy claims that have not been verified.
+Please do not submit invented citations, unsupported certifications, copied proprietary material, or factual claims presented with more certainty than the evidence supports.
 
 ---
 
-## 💖 Support
+## ❤️ Support
 
-Go Vegan is an independent open-source project built to make compassionate alternatives easier to understand and access.
+Go Vegan is an independent open-source project. If you want to support it, you can star or share the repository, contribute corrections or code, improve its sources, or support continued development.
 
-If you find the project useful or worth supporting:
-
-- ⭐ Star the repository
-- 📢 Share the project
-- 🧠 Contribute ideas, corrections, or sources
-- 🛠️ Submit improvements
-- 💸 Support development: https://michaelsboost.com/donate
-
-Support helps fund continued development, research, testing, accessibility improvements, and future open-source tools.
+Donate: https://michaelsboost.com/donate
 
 ---
 
-## 📜 License
+## 📄 License
 
 Go Vegan is open-source software licensed under the MIT License.
 
-See: [LICENSE](LICENSE)
+See [LICENSE](LICENSE).
 
 ---
 
-## 📧 Contact
+## 📬 Contact
 
 Michael Schwartz  
 https://michaelsboost.com

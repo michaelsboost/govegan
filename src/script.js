@@ -36,6 +36,99 @@ document.addEventListener('alpine:init', function() {
       selectedProduct: null,
       selectedRecipe: null,
       openChecker: false,
+      homeVideoIndex: 0,
+      homeVideoOpen: false,
+      animalsKilledSinceOpen: 0,
+      counterStartedAt: 0,
+      homeCounterTimer: null,
+      openExcuse: null,
+      openExcuseFollowUp: null,
+      openHomeFaq: null,
+      excuses: [
+        { id:'health',label:'Health',icon:'💪',url:'https://www.vegansociety.com/resources/nutrition-and-health',linkLabel:'Vegan nutrition guidance',answer:'A well-planned vegan diet can support a healthy life. Reliable B12 and informed food choices matter; animal use is not a nutritional requirement.',deeper:'Health is a reason to plan—not a moral exemption. Every diet can be poorly planned. The honest question is whether we can meet our needs without making another sentient being pay for our preferences.',followUps:[['What about protein?','Beans, lentils, tofu, tempeh, seitan, peas, grains, nuts and seeds all provide protein. Total intake and variety matter more than chasing one special food.'],['What about vitamin B12?','Use fortified foods or a reliable supplement. B12 is produced by microorganisms; ignoring supplementation is not a responsible approach.'],['What if I have a medical condition?','Work with a qualified clinician or dietitian. A real constraint should be addressed specifically rather than used to dismiss every avoidable form of animal use.']],resources:[['GUIDE','Vegan nutrition','The Vegan Society', 'https://www.vegansociety.com/resources/nutrition-and-health'],['GUIDE','Vitamin B12','Reliable sources and guidance','https://www.vegansociety.com/resources/nutrition-and-health/nutrients/vitamin-b12']] },
+        { id:'natural',label:'Natural',icon:'🌿',url:'https://yourveganfallacyis.com/en',linkLabel:'Examine the fallacy',answer:'Natural does not mean ethical, necessary or good. Disease, violence and suffering are natural too; morality asks what we should choose.',deeper:'Humans routinely use medicine, shelter, technology and law to move beyond what occurs in nature. Invoking nature only when defending animal use is inconsistent when accessible alternatives exist.',followUps:[['But humans are omnivores','Being able to digest both plants and animals describes capacity, not obligation. “Can” is not the same as “must” or “should.”'],['What about canine teeth?','Our teeth do not create a moral duty to eat animals. Nutritional needs can be met without treating anatomy as an ethical argument.'],['Animals eat animals','Predators act from necessity and cannot assess alternatives. We can.']],resources:[['REFERENCE','Your Vegan Fallacy Is','Common naturalness arguments','https://yourveganfallacyis.com/en'],['GUIDE','Why go vegan?','The Vegan Society','https://www.vegansociety.com/go-vegan/why-go-vegan']] },
+        { id:'apathy',label:'Apathy',icon:'🤷',url:'https://yourveganfallacyis.com/en',linkLabel:'Examine the fallacy',answer:'Not caring does not make the victim disappear. Their capacity to suffer—not the strength of our reaction—is what makes their interests relevant.',deeper:'Apathy can explain an action, but it cannot justify it. If someone more powerful felt nothing about harming us, their indifference would not make our pain morally unimportant.',followUps:[['Why should animals matter?','They have experiences of their own and can be harmed. Moral consideration does not require them to think or speak exactly as we do.'],['Humans matter more','Even if human interests sometimes take priority, a preference for taste or convenience does not outweigh an animal’s entire life.'],['I cannot fix everything','You do not need to fix everything to stop funding what you can avoid.']],resources:[['REFERENCE','Your Vegan Fallacy Is','Arguments examined clearly','https://yourveganfallacyis.com/en'],['ACTION','Take the next step','Practical vegan guidance','https://www.vegansociety.com/go-vegan']] },
+        { id:'religion',label:'Religion',icon:'✝️',url:'https://yourveganfallacyis.com/en',linkLabel:'Examine the religion claim',answer:'Permission is not obligation. Traditions are interpreted in many ways, often including mercy, stewardship and protection of the vulnerable.',deeper:'A belief that animal use is permitted does not establish that it is required when alternatives exist. Compassion can guide the choice not to exercise power merely because we can.',followUps:[['My scripture permits meat','Permission does not require participation. Many permitted actions are still choices we may decline out of compassion.'],['Humans have dominion','Dominion can mean responsibility and care, not unlimited entitlement to exploit.'],['My family tradition includes animals','Traditions can carry love and identity while individual practices evolve.']],resources:[['REFERENCE','Religion and meat arguments','Your Vegan Fallacy Is','https://yourveganfallacyis.com/en'],['GUIDE','How to go vegan','Practical first steps','https://www.vegansociety.com/go-vegan/how-go-vegan']] },
+        { id:'crops',label:'Crops',icon:'🌾',url:'https://yourveganfallacyis.com/en',linkLabel:'Examine crop deaths',answer:'Crop farming can cause incidental harm, but farmed animals also eat crops. Eating plants directly generally requires less land and fewer crops.',deeper:'Veganism is not a claim of perfect harmlessness. It rejects intentional animal exploitation and seeks to reduce avoidable harm. Feeding crops to animals and then eating them adds another resource-intensive layer.',followUps:[['Animals die during harvest','Yes, and that matters. It supports improving farming—not deliberately breeding and killing additional animals.'],['Pasture uses no crops','Pasture still uses land and does not erase breeding, confinement, separation or slaughter.'],['Vegans kill animals too','Imperfect harm reduction is not hypocrisy; knowingly choosing the lower-harm option is moral consistency.']],resources:[['REFERENCE','Vegans kill animals too','Your Vegan Fallacy Is','https://yourveganfallacyis.com/en'],['DATA','Food and land use','Our World in Data','https://ourworldindata.org/land-use-diets']] },
+        { id:'hard',label:'Hard',icon:'🏔️',url:'https://challenge22.com/',linkLabel:'Get free support',answer:'Hard is not the same as impossible. Your inconvenience does not outweigh an animal’s confinement and death. Use the tools available and make the change.',deeper:'Habits, family pressure, access and time can be real barriers. They are problems to solve, not a blanket excuse to keep funding every form of animal use. Change what you can now, prepare for the next obstacle and keep going.',followUps:[['I do not know what to eat','Begin with familiar meals and replace the animal ingredient. Free meal plans and mentors remove the guesswork; not knowing today is no excuse to refuse to learn.'],['My family will not support me','Their discomfort does not decide your values. Set a clear boundary, bring food you can eat and find support elsewhere.'],['I already failed once','One failure does not force the next purchase. Identify the obstacle, prepare for it and act differently next time.']],resources:[['FREE PROGRAM','Challenge 22','Mentors, dietitians and daily help','https://challenge22.com/'],['GUIDE','How to go vegan','The Vegan Society','https://www.vegansociety.com/go-vegan/how-go-vegan']] },
+        { id:'expensive',label:'Expensive',icon:'💰',url:'https://www.budgetbytes.com/category/recipes/vegetarian/vegan/',linkLabel:'Vegan on a budget',answer:'The cheapest staples are already vegan: beans, lentils, rice, oats, pasta, potatoes and seasonal or frozen vegetables. Expensive specialty products are optional, not the definition of vegan food.',deeper:'If you build every meal around premium imitation products, the bill rises. That does not make veganism expensive; it makes premium products expensive. Build around staples, compare unit prices, batch-cook and use substitutes selectively.',followUps:[['Vegan products cost more','Some branded substitutes do. You do not need them. Beans, lentils, tofu and ordinary store-brand staples are food, not a compromise.'],['I live in a food desert','Limited access is real and calls for specific solutions. Use what is shelf-stable and available, but do not turn one constraint into permission to ignore every choice you still control.'],['Eating out is impossible','Check menus before leaving, call ahead, choose flexible cuisines or eat beforehand. Social convenience does not make animal use necessary.']],resources:[['RECIPES','Budget Bytes Vegan','150+ budget-friendly recipes','https://www.budgetbytes.com/category/recipes/vegetarian/vegan/'],['FREE PROGRAM','Challenge 22','Meal ideas and personal support','https://challenge22.com/']] },
+        { id:'humane',label:'Humane',icon:'🏷️',url:'https://yourveganfallacyis.com/en',linkLabel:'Examine humane meat',answer:'Less suffering is better than more, but “humane” does not make unnecessary killing harmless or turn a sentient being into ours to use.',deeper:'Welfare labels address selected conditions, not the central question of ownership and killing. A pleasant period of life does not create consent to an avoidable death.',followUps:[['What about local farms?','Distance and scale do not change the animal’s interest in continuing to live. Ask what happens when the animal is no longer profitable.'],['What if they had a good life?','A good life is a reason not to end it unnecessarily, not permission to take it.'],['Is painless killing acceptable?','Even a painless death deprives an individual of every future experience for a preference that alternatives can satisfy.']],resources:[['REFERENCE','I only eat humane meat','Your Vegan Fallacy Is','https://yourveganfallacyis.com/en'],['FILM','Dominion','Documentary on animal-use industries','https://www.dominionmovement.com/watch']] }
+      ],
+      homeVideos: [
+        {
+          title: '3 Minute Movie',
+          label: 'The three-minute challenge',
+          description: 'Give this just three minutes. Watch what our purchases make possible, then decide whether looking away is still an honest option.',
+          warning: 'Content warning: graphic footage of animal suffering and killing.',
+          thumbnail: 'https://vz-68c141b9-e3b.b-cdn.net/a3428333-9a5e-4105-a2e0-1e8c176fb938/thumbnail_e08e4449.jpg',
+          embed: 'https://iframe.mediadelivery.net/embed/245757/a3428333-9a5e-4105-a2e0-1e8c176fb938?autoplay=false&loop=false&muted=false&preload=true&responsive=true&password=LIVES'
+        },
+        {
+          title: 'The Most Important Speech',
+          label: 'Gary Yourofsky · Full lecture',
+          description: 'The July 8, 2010 Georgia Tech lecture directly confronts the moral excuses used to defend animal exploitation.',
+          warning: 'Content warning: includes graphic footage. YouTube requires this video to be watched on its platform.',
+          thumbnail: 'https://img.youtube.com/vi/U5hGQDLprA8/hqdefault.jpg',
+          externalUrl: 'https://www.youtube.com/watch?v=U5hGQDLprA8',
+          externalOnly: true
+        },
+        {
+          title: 'Dominion',
+          label: 'Full documentary',
+          description: 'Hidden-camera and drone footage examines how animals are used across food, clothing, entertainment and research industries.',
+          warning: 'Content warning: prolonged graphic footage of animal suffering and killing.',
+          thumbnail: 'https://img.youtube.com/vi/LQRAfJyEsko/maxresdefault.jpg',
+          externalUrl: 'https://www.youtube.com/watch?v=LQRAfJyEsko',
+          externalOnly: true
+        },
+        {
+          title: 'Earthlings',
+          label: 'Full documentary',
+          description: 'Narrated by Joaquin Phoenix, this landmark film documents animal use in food, clothing, entertainment, research and the pet trade.',
+          warning: 'Content warning: prolonged graphic footage of animal suffering and killing.',
+          thumbnail: 'https://img.youtube.com/vi/3XrY2TP0ZyU/hqdefault.jpg',
+          embed: 'https://www.youtube-nocookie.com/embed/3XrY2TP0ZyU?rel=0'
+        },
+        {
+          title: 'Land of Hope and Glory',
+          label: 'Full documentary',
+          description: 'Footage gathered across roughly 100 UK facilities confronts the claim that routine animal farming is harmless when it happens close to home.',
+          warning: 'Content warning: prolonged graphic footage of animal suffering and killing.',
+          thumbnail: 'https://img.youtube.com/vi/dvtVkNofcq8/maxresdefault.jpg',
+          embed: 'https://www.youtube-nocookie.com/embed/dvtVkNofcq8?rel=0'
+        },
+        {
+          title: 'Cowspiracy',
+          label: 'Official trailer',
+          description: 'An investigation into animal agriculture’s environmental cost and why major environmental organizations have often avoided confronting it.',
+          warning: '',
+          thumbnail: 'https://img.youtube.com/vi/nV04zyfLyN4/maxresdefault.jpg',
+          embed: 'https://www.youtube-nocookie.com/embed/nV04zyfLyN4?rel=0'
+        },
+        {
+          title: 'What the Health',
+          label: 'Documentary trailer',
+          description: 'From the creators of Cowspiracy, this investigation examines diet, chronic disease and the influence of major health, food and pharmaceutical institutions.',
+          warning: 'Health claims in any documentary should be checked against current medical evidence and discussed with a qualified clinician when relevant.',
+          thumbnail: 'https://img.youtube.com/vi/Jf44vLndiRM/hqdefault.jpg',
+          embed: 'https://www.youtube-nocookie.com/embed/Jf44vLndiRM?rel=0'
+        },
+        {
+          title: 'Seaspiracy',
+          label: 'Official Netflix trailer',
+          description: 'An investigation into industrial fishing, marine destruction and the animals hidden behind the word “seafood.”',
+          warning: 'Content warning: footage of marine animals being harmed and killed.',
+          thumbnail: 'https://img.youtube.com/vi/1Q5CXN7soQg/maxresdefault.jpg',
+          embed: 'https://www.youtube-nocookie.com/embed/1Q5CXN7soQg?rel=0'
+        },
+        {
+          title: 'Christspiracy',
+          label: 'Documentary trailer',
+          description: 'A documentary investigation into the relationship between religion, ethics and the ways human societies treat animals.',
+          thumbnail: 'https://img.youtube.com/vi/17lo7W_ulPM/maxresdefault.jpg',
+          embed: 'https://www.youtube-nocookie.com/embed/17lo7W_ulPM?rel=0'
+        }
+      ],
       ingredientText: '',
       ingredientResults: [],
       initialized: false,
@@ -46,23 +139,65 @@ document.addEventListener('alpine:init', function() {
       applyingHistoryState: false,
       boundPopStateHandler: null,
 
+      get homeVideo() {
+        return this.homeVideos[this.homeVideoIndex] || this.homeVideos[0];
+      },
+      get activeExcuse() {
+        return this.excuses.find(excuse => excuse.id === this.openExcuse) || null;
+      },
+      toggleExcuse(id) {
+        this.openExcuse = this.openExcuse === id ? null : id;
+        this.openExcuseFollowUp = null;
+      },
+      exploreExcuseEvidence(excuse) {
+        if (!excuse) return;
+        this.evidenceQuery = excuse.query;
+        this.evidenceCategory = 'All';
+        this.evidenceVerdict = 'All';
+        this.navigate('evidence');
+      },
+      updateHomeCounter() {
+        const elapsedSeconds = Math.max(0, (Date.now() - this.counterStartedAt) / 1000);
+        this.animalsKilledSinceOpen = Math.floor(elapsedSeconds * this.impactPer('second'));
+      },
+      animateHomeCounter() {
+        this.updateHomeCounter();
+        this.homeCounterTimer = window.requestAnimationFrame(() => this.animateHomeCounter());
+      },
+      selectHomeVideo(index) {
+        const count = this.homeVideos.length;
+        this.homeVideoIndex = ((index % count) + count) % count;
+      },
+      shiftHomeVideo(direction) {
+        this.selectHomeVideo(this.homeVideoIndex + direction);
+      },
+      openHomeVideo(index) {
+        if (typeof index === 'number') this.selectHomeVideo(index);
+        if (this.homeVideo.externalOnly && this.homeVideo.externalUrl) {
+          this.homeVideoOpen = false;
+          document.body.style.overflow = '';
+          window.open(this.homeVideo.externalUrl, '_blank', 'noopener,noreferrer');
+          return;
+        }
+        this.homeVideoOpen = true;
+        document.body.style.overflow = 'hidden';
+      },
+      closeHomeVideo() {
+        this.homeVideoOpen = false;
+        document.body.style.overflow = '';
+      },
+
       // ---- Navigation Data ----
       navItems: [
         { id: 'home', label: 'Home' },
         { id: 'explore', label: 'Explore' },
-        { id: 'recipes', label: 'Recipes' },
         { id: 'learn', label: 'Learn' },
         { id: 'impact', label: 'Impact' },
-        { id: 'resources', label: 'Resources' },
-        { id: 'journey', label: 'My Journey' }
+        { id: 'resources', label: 'Resources' }
       ],
 
       mobileNavItems: [
-        { id: 'home', label: 'Home', icon: '🏠' },
-        { id: 'explore', label: 'Search', icon: '🔍' },
-        { id: 'recipes', label: 'Recipes', icon: '🍽️' },
-        { id: 'journey', label: 'Journey', icon: '🧭' },
-        { id: 'favorites', label: 'Faves', icon: '❤️' }
+        { id: 'home', label: 'Home', icon: '🏠' }
       ],
 
       // ---- Data Collections ----
@@ -84,11 +219,10 @@ document.addEventListener('alpine:init', function() {
       // ---- Computed Getters ----
       get groupedSearchResults() {
         const results = this.globalSearchResults;
-        const groups = { 'Animals': [], 'Products': [], 'Recipes': [], 'Ingredients': [], 'Everyday Items': [], 'Learn': [], 'Resources': [] };
+        const groups = { 'Animals': [], 'Products': [], 'Ingredients': [], 'Everyday Items': [], 'Learn': [], 'Resources': [] };
         results.forEach(item => {
           if (item._type === 'animal') groups['Animals'].push(item);
           else if (item._type === 'product') groups['Products'].push(item);
-          else if (item._type === 'recipe') groups['Recipes'].push(item);
           else if (item._type === 'ingredient') groups['Ingredients'].push(item);
           else if (item._type === 'everyday') groups['Everyday Items'].push(item);
           else if (item._type === 'learn') groups['Learn'].push(item);
@@ -497,7 +631,7 @@ document.addEventListener('alpine:init', function() {
 
       // ---- Navigation ----
       validViewIds() {
-        return ['home', 'explore', 'recipes', 'learn', 'impact', 'resources', 'evidence', 'normalization', 'animals', 'journey', 'favorites', 'everyday', 'ingredient-library', 'nutrition', 'about'];
+        return ['home', 'explore', 'learn', 'impact', 'resources', 'evidence', 'normalization', 'animals', 'everyday', 'ingredient-library', 'nutrition', 'about'];
       },
 
       makeHistoryState(extra = {}) {
@@ -693,15 +827,6 @@ document.addEventListener('alpine:init', function() {
           }
         });
 
-        this.recipes.forEach(r => {
-          if ((r.title && r.title.toLowerCase().includes(q)) ||
-              (r.description && r.description.toLowerCase().includes(q)) ||
-              (r.category && r.category.toLowerCase().includes(q)) ||
-              (r.ingredients && r.ingredients.some(i => i.item && i.item.toLowerCase().includes(q)))) {
-            results.push({ ...r, _type: 'recipe', displayName: r.title || 'Unnamed recipe', emoji: r.emoji || '🍽️' });
-          }
-        });
-
         this.ingredients.forEach(i => {
           if ((i.name && i.name.toLowerCase().includes(q)) ||
               (i.aliases && i.aliases.some(a => a.toLowerCase().includes(q))) ||
@@ -855,6 +980,7 @@ document.addEventListener('alpine:init', function() {
         { label: 'Biodiversity', icon: '🦋', value: 34.3, range: '12.0–65.3%', copy: 'Comparative terrestrial-vertebrate biodiversity impact.' }
       ],
       impactLandAnimals2024: 86332055600,
+      impactUSLandAnimals2025: 10060781400,
       impactSpecies: [
         { animalId: 'animal-chicken', label: 'Chickens', emoji: '🐔', yearly: 78533920000 },
         { animalId: 'animal-duck-goose', label: 'Ducks', emoji: '🦆', yearly: 4227882000 },
@@ -1483,6 +1609,8 @@ document.addEventListener('alpine:init', function() {
       initApp() {
         if (this.initialized) return;
         this.initialized = true;
+        this.counterStartedAt = Date.now();
+        this.animateHomeCounter();
 
         // Clone the global data to avoid mutating the original
         let rawData = {};
@@ -2170,7 +2298,7 @@ function validateGoVeganData(data) {
 
   const researchAtlasV150 = {
     schemaVersion:'1.0',
-    release:'1.5.0',
+    release:'1.7.4',
     status:'Stage 1 ontology closed; proposition-specific evidence remains attached to individual claims where available.',
     provenanceStatuses:['CURRENT ANIMAL-DERIVED','NON-ANIMAL-DERIVED','SOURCE-DEPENDENT','ANIMAL-DERIVED UPSTREAM','ANIMAL-DERIVED CULTURE MEDIUM','ANIMAL-DERIVED R&D INPUT','ANIMAL CELL/TISSUE LINE','HISTORICAL ANIMAL ORIGIN','ANIMAL-INSPIRED / BIOMIMETIC','RECOMBINANT PRODUCTION','MICROBIAL PRODUCTION','PLANT PRODUCTION','SYNTHETIC PRODUCTION','INSUFFICIENT INFORMATION'],
     acquisition:['one-time lethal','repeated living extraction','reproductive-state extraction','surgical','non-surgical collection','secretion/excretion','postpartum','postmortem byproduct','naturally shed/expelled','unknown/mixed'],
@@ -10508,9 +10636,9 @@ function validateGoVeganData(data) {
     "category": "Documentaries",
     "format": "Documentary",
     "description": "An earlier documentary examining human dependence on animals across several industries.",
-    "url": "https://www.nationearth.com/",
+    "url": "https://www.youtube.com/watch?v=3XrY2TP0ZyU",
     "emoji": "🎬",
-    "free": false,
+    "free": true,
     "featured": false,
     "graphic": true,
     "contentWarning": "Contains prolonged graphic footage of animal suffering and killing.",
@@ -10540,6 +10668,102 @@ function validateGoVeganData(data) {
       "agriculture"
     ],
     "verifiedDate": "2026-08-20"
+  },
+  {
+    "id": "resource-what-the-health",
+    "title": "What the Health",
+    "creator": "Kip Andersen and Keegan Kuhn",
+    "category": "Documentaries",
+    "format": "Documentary",
+    "description": "Examines diet, chronic disease and the influence of major health, food and pharmaceutical institutions. Treat its individual health claims as starting points and compare them with current medical evidence.",
+    "url": "https://www.whatthehealthfilm.com/",
+    "emoji": "🎬",
+    "free": false,
+    "featured": false,
+    "graphic": false,
+    "contentWarning": "Health information is educational and does not replace individualized medical care.",
+    "tags": ["health", "nutrition", "chronic disease", "institutions"],
+    "verifiedDate": "2026-09-15"
+  },
+  {
+    "id": "resource-three-minute-movie",
+    "title": "3 Minute Movie",
+    "creator": "3 Minute Movie",
+    "category": "Documentaries",
+    "format": "Short film",
+    "description": "A direct three-minute confrontation with what purchasing animal products makes possible.",
+    "url": "https://iframe.mediadelivery.net/play/245757/a3428333-9a5e-4105-a2e0-1e8c176fb938?password=LIVES",
+    "emoji": "▶️",
+    "free": true,
+    "featured": true,
+    "graphic": true,
+    "contentWarning": "Graphic footage of animal suffering and killing.",
+    "tags": ["ethics", "animal agriculture", "short film", "first watch"],
+    "verifiedDate": "2026-09-15"
+  },
+  {
+    "id": "resource-gary-yourofsky-speech",
+    "title": "The Most Important Speech You Will Ever Hear",
+    "creator": "Gary Yourofsky",
+    "category": "Talks",
+    "format": "Full lecture",
+    "description": "The July 8, 2010 Georgia Tech lecture directly challenges the moral excuses used to defend animal exploitation.",
+    "url": "https://www.youtube.com/watch?v=U5hGQDLprA8",
+    "emoji": "🎙️",
+    "free": true,
+    "featured": true,
+    "graphic": true,
+    "contentWarning": "Includes graphic footage of animal suffering and killing. YouTube requires this video to be watched on its own platform.",
+    "tags": ["ethics", "animal rights", "speech", "Gary Yourofsky"],
+    "verifiedDate": "2026-09-15"
+  },
+  {
+    "id": "resource-land-of-hope-and-glory",
+    "title": "Land of Hope and Glory",
+    "creator": "Earthling Ed and Surge",
+    "category": "Documentaries",
+    "format": "Free documentary",
+    "description": "Undercover footage from roughly 100 UK facilities exposes routine animal farming behind closed doors.",
+    "url": "https://www.youtube.com/watch?v=dvtVkNofcq8",
+    "emoji": "🎬",
+    "free": true,
+    "featured": true,
+    "graphic": true,
+    "contentWarning": "Contains prolonged graphic footage of animal suffering and killing.",
+    "tags": ["UK", "animal agriculture", "farming", "investigation"],
+    "verifiedDate": "2026-09-15"
+  },
+  {
+    "id": "resource-seaspiracy",
+    "title": "Seaspiracy",
+    "creator": "Ali Tabrizi and Netflix",
+    "category": "Documentaries",
+    "format": "Documentary trailer",
+    "description": "Investigates industrial fishing, marine destruction and the animals hidden behind the word seafood.",
+    "url": "https://www.youtube.com/watch?v=1Q5CXN7soQg",
+    "emoji": "🌊",
+    "free": true,
+    "featured": false,
+    "graphic": true,
+    "contentWarning": "Includes footage of marine animals being harmed and killed.",
+    "tags": ["oceans", "fishing", "environment", "marine animals"],
+    "verifiedDate": "2026-09-15"
+  },
+  {
+    "id": "resource-christspiracy",
+    "title": "Christspiracy",
+    "creator": "Kip Andersen and Kameron Waters",
+    "category": "Documentaries",
+    "format": "Documentary trailer",
+    "description": "Investigates the relationship between religion, ethics and humanity’s treatment of animals.",
+    "url": "https://www.youtube.com/watch?v=17lo7W_ulPM",
+    "emoji": "🎬",
+    "free": true,
+    "featured": false,
+    "graphic": false,
+    "contentWarning": "Discusses animal exploitation and killing.",
+    "tags": ["religion", "ethics", "spirituality", "animal rights"],
+    "verifiedDate": "2026-09-15"
   },
   {
     "id": "resource-vegan-society-guide",
@@ -13154,9 +13378,41 @@ function validateGoVeganData(data) {
     imageCredit: `Go Vegan original resource card · ${source}`
   });
 
-  setExactImage(resources, 'resource-dominion', titleCardVisual(
-    'Dominion', 'Dominion Movement', '#d96c5a', 'D', 'https://www.dominionmovement.com/watch'
-  ));
+  setExactImage(resources, 'resource-three-minute-movie', {
+    imageUrl: 'https://vz-68c141b9-e3b.b-cdn.net/a3428333-9a5e-4105-a2e0-1e8c176fb938/thumbnail_e08e4449.jpg',
+    imagePage: 'https://iframe.mediadelivery.net/play/245757/a3428333-9a5e-4105-a2e0-1e8c176fb938?password=LIVES',
+    imageCredit: '3 Minute Movie · video thumbnail'
+  });
+  setExactImage(resources, 'resource-gary-yourofsky-speech', {
+    imageUrl: 'https://img.youtube.com/vi/U5hGQDLprA8/hqdefault.jpg',
+    imagePage: 'https://www.youtube.com/watch?v=U5hGQDLprA8',
+    imageCredit: 'YouTube · official video thumbnail'
+  });
+  setExactImage(resources, 'resource-dominion', {
+    imageUrl: 'https://img.youtube.com/vi/LQRAfJyEsko/maxresdefault.jpg',
+    imagePage: 'https://www.youtube.com/watch?v=LQRAfJyEsko',
+    imageCredit: 'YouTube · Dominion video thumbnail'
+  });
+  setExactImage(resources, 'resource-what-the-health', {
+    imageUrl: 'https://img.youtube.com/vi/Jf44vLndiRM/hqdefault.jpg',
+    imagePage: 'https://www.whatthehealthfilm.com/',
+    imageCredit: 'YouTube · What the Health trailer thumbnail'
+  });
+  setExactImage(resources, 'resource-land-of-hope-and-glory', {
+    imageUrl: 'https://img.youtube.com/vi/dvtVkNofcq8/hqdefault.jpg',
+    imagePage: 'https://www.youtube.com/watch?v=dvtVkNofcq8',
+    imageCredit: 'YouTube · Land of Hope and Glory video thumbnail'
+  });
+  setExactImage(resources, 'resource-seaspiracy', {
+    imageUrl: 'https://img.youtube.com/vi/1Q5CXN7soQg/hqdefault.jpg',
+    imagePage: 'https://www.youtube.com/watch?v=1Q5CXN7soQg',
+    imageCredit: 'YouTube · Seaspiracy trailer thumbnail'
+  });
+  setExactImage(resources, 'resource-christspiracy', {
+    imageUrl: 'https://img.youtube.com/vi/17lo7W_ulPM/hqdefault.jpg',
+    imagePage: 'https://www.youtube.com/watch?v=17lo7W_ulPM',
+    imageCredit: 'YouTube · Christspiracy trailer thumbnail'
+  });
   setExactImage(resources, 'resource-vegan-society-guide', titleCardVisual(
     'How to Go Vegan', 'The Vegan Society', '#7ba98a', 'VS', 'https://www.vegansociety.com/go-vegan/how-go-vegan'
   ));
@@ -13201,6 +13457,21 @@ function validateGoVeganData(data) {
   setExactImage(resources, 'resource-animal-ethics', titleCardVisual(
     'Animal Ethics', 'Animal Ethics', '#c8df64', 'AE', 'https://www.animal-ethics.org/'
   ));
+
+  const resourcePriority = [
+    'resource-three-minute-movie',
+    'resource-gary-yourofsky-speech',
+    'resource-dominion',
+    'resource-what-the-health'
+  ];
+  resources.sort((a, b) => {
+    const ai = resourcePriority.indexOf(a.id);
+    const bi = resourcePriority.indexOf(b.id);
+    if (ai === -1 && bi === -1) return 0;
+    if (ai === -1) return 1;
+    if (bi === -1) return -1;
+    return ai - bi;
+  });
 
   const resourceFallbackAccents = ['#7ba98a', '#d4a853', '#d96c5a', '#68aee8', '#c8df64', '#e88970'];
   resources.forEach((resource, index) => {
