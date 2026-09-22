@@ -8,7 +8,7 @@ const { ExpirationPlugin } = workbox.expiration;
 const { clientsClaim, skipWaiting } = workbox.core;
 
 // Define cache name dynamically based on the project name
-const cacheName = 'GoVegan-cache-v1.7.4';
+const cacheName = 'GoVegan-cache-v1.7.5';
 
 // Force update when a new service worker is available
 self.addEventListener('install', (event) => {
@@ -21,7 +21,13 @@ self.addEventListener('activate', async (event) => {
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames
-          .filter(name => name !== cacheName && name !== cacheName + '-modules')
+          .filter(name =>
+            name.startsWith('GoVegan-cache-') &&
+            name !== cacheName &&
+            name !== cacheName + '-modules' &&
+            name !== cacheName + '-documents' &&
+            name !== cacheName + '-workbox'
+          )
           .map(name => caches.delete(name))
       );
     })
@@ -67,6 +73,25 @@ registerRoute(
     plugins: [
       new CacheableResponsePlugin({
         statuses: [0, 200],
+      }),
+    ],
+  })
+);
+
+// Cache the public Scientific Evidence Library PDF after first access
+registerRoute(
+  ({ url }) =>
+    url.origin === self.location.origin &&
+    url.pathname.endsWith('/docs/scientific-evidence-library.pdf'),
+  new StaleWhileRevalidate({
+    cacheName: cacheName + '-documents',
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+      new ExpirationPlugin({
+        maxEntries: 10,
+        maxAgeSeconds: 30 * 24 * 60 * 60,
       }),
     ],
   })
