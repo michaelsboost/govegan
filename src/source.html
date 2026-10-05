@@ -530,7 +530,7 @@ ALPINE APP
                     <div x-show="getResourcesForArticle(article).length > 0" class="context-resources context-resources-learn">
                       <div class="context-resource-heading">Go deeper</div>
                       <template x-for="resource in getResourcesForArticle(article)" :key="resource.id">
-                        <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><span x-text="resource.emoji || '🔗'"></span><span><strong x-text="resource.title"></strong><small x-text="resource.category + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
+                        <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><img :src="resourceImage(resource)" :alt="''" class="context-resource-thumb" loading="lazy" /><span><strong x-text="resource.title"></strong><small x-text="resource.category + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
                       </template>
                     </div>
                   </div>
@@ -571,6 +571,7 @@ ALPINE APP
                   <div><strong x-text="formatImpactNumber(impactPer('second'))"></strong><span>per second</span></div>
                 </div>
                 <p class="impact-data-note">This is a production count, not a complete count of animal deaths. It excludes fish and other aquatic animals and does not capture additional deaths associated with dairy or egg production.</p>
+                <div class="impact-method-note"><strong>How do we get “about 2,736 every second”?</strong><p>Start with the annual FAO land-animal slaughter total shown above and divide it by the number of seconds in a year (365.25 × 24 × 60 × 60). It is an annual average, not a claim that exactly 2,736 animals are killed during every literal second.</p></div>
               </div>
 
               <div class="impact-big-number-card impact-us-card">
@@ -597,7 +598,7 @@ ALPINE APP
 
               <div class="impact-aquatic-callout">
                 <span aria-hidden="true">🐟</span>
-                <div><strong>And this still leaves out aquatic animals.</strong><p>Fish counts are much harder to estimate because fisheries are often reported by weight rather than individuals. Go Vegan keeps them separate rather than adding a highly uncertain estimate to the land-animal total.</p></div>
+                <div><strong>Aquatic animals make the scale dramatically larger.</strong><p>The 86.3-billion counter is intentionally land animals only. Peer-reviewed estimates put farmed finfish killed for food at about <strong>124 billion in 2019</strong> (78–171 billion range), while wild-caught finfish averaged roughly <strong>1.1–2.2 trillion per year</strong> during 2000–2019. Fish are kept separate because these figures are estimated from biomass rather than direct global head counts.</p><div class="impact-source-row"><a href="https://pubmed.ncbi.nlm.nih.gov/38487450/" target="_blank" rel="noopener noreferrer" class="secondary-button">Farmed fish study ↗</a><a href="https://pubmed.ncbi.nlm.nih.gov/38510420/" target="_blank" rel="noopener noreferrer" class="secondary-button">Wild fish study ↗</a></div></div>
               </div>
 
               <div class="impact-source-row">
@@ -827,12 +828,10 @@ ALPINE APP
               <template x-for="resource in filteredResources" :key="resource.id">
                 <article class="external-resource-card external-resource-card-visual" :class="{'resource-graphic': resource.graphic}">
                   <div class="resource-photo card-photo-wrap">
-                    <span class="card-photo-fallback resource-emoji" aria-hidden="true" x-text="resource.emoji || '🔗'"></span>
                     <img x-show="resource.imageUrl" :src="resource.imageUrl" :alt="resource.title + ' resource artwork'" class="card-photo" loading="lazy" decoding="async" referrerpolicy="no-referrer" @error="if ($event.currentTarget.getAttribute('src') !== resource.fallbackImageUrl) { $event.currentTarget.src = resource.fallbackImageUrl } else { $event.currentTarget.style.display = 'none' }" />
                     <span x-show="resource.graphic" class="resource-image-warning">Content warning</span>
                   </div>
                   <div class="resource-card-top">
-                    <span class="resource-emoji" aria-hidden="true" x-text="resource.emoji || '🔗'"></span>
                     <div class="resource-badges">
                       <span class="resource-badge" x-text="resource.category"></span>
                       <span x-show="resource.free" class="resource-badge resource-free">Free</span>
@@ -930,7 +929,7 @@ ALPINE APP
             <div x-show="currentJourneyResources.length > 0" class="context-resources journey-resources">
               <div class="context-resource-heading">Helpful for this path</div>
               <template x-for="resource in currentJourneyResources" :key="resource.id">
-                <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><span x-text="resource.emoji || '🔗'"></span><span><strong x-text="resource.title"></strong><small x-text="resource.format + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
+                <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><img :src="resourceImage(resource)" :alt="''" class="context-resource-thumb" loading="lazy" /><span><strong x-text="resource.title"></strong><small x-text="resource.format + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
               </template>
             </div>
           </div>
@@ -1059,7 +1058,7 @@ ALPINE APP
                   <div x-show="getResourcesForNutrient(nutrient).length > 0" class="context-resources nutrient-resources">
                     <div class="context-resource-heading">Evidence and planning guides</div>
                     <template x-for="resource in getResourcesForNutrient(nutrient)" :key="resource.id">
-                      <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><span x-text="resource.emoji || '🔗'"></span><span><strong x-text="resource.title"></strong><small x-text="resource.creator"></small></span><span aria-hidden="true">↗</span></a>
+                      <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><img :src="resourceImage(resource)" :alt="''" class="context-resource-thumb" loading="lazy" /><span><strong x-text="resource.title"></strong><small x-text="resource.creator"></small></span><span aria-hidden="true">↗</span></a>
                     </template>
                   </div>
                 </div>
@@ -1156,7 +1155,7 @@ ALPINE APP
                 <div x-show="selectedAnimalResources.length > 0" class="context-resources animal-context-resources">
                   <div class="context-resource-heading">Related resources</div>
                   <template x-for="resource in selectedAnimalResources" :key="resource.id">
-                    <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><span x-text="resource.emoji || '🔗'"></span><span><strong x-text="resource.title"></strong><small x-text="resource.graphic ? 'Graphic content · ' + resource.category : resource.category + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
+                    <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><img :src="resourceImage(resource)" :alt="''" class="context-resource-thumb" loading="lazy" /><span><strong x-text="resource.title"></strong><small x-text="resource.graphic ? 'Graphic content · ' + resource.category : resource.category + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
                   </template>
                 </div>
               </div>
@@ -1332,7 +1331,7 @@ ALPINE APP
               <div x-show="selectedProductResources.length > 0" class="context-resources product-context-resources">
                 <div class="context-resource-heading">Related guidance</div>
                 <template x-for="resource in selectedProductResources" :key="resource.id">
-                  <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><span x-text="resource.emoji || '🔗'"></span><span><strong x-text="resource.title"></strong><small x-text="resource.graphic ? 'Graphic content · ' + resource.category : resource.category + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
+                  <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><img :src="resourceImage(resource)" :alt="''" class="context-resource-thumb" loading="lazy" /><span><strong x-text="resource.title"></strong><small x-text="resource.graphic ? 'Graphic content · ' + resource.category : resource.category + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
                 </template>
               </div>
               <div class="product-detail-actions">

@@ -7,7 +7,7 @@ Go Vegan is a free, open-source educational call to action about animal use, the
 ![About Go Vegan](https://raw.githubusercontent.com/michaelsboost/govegan/main/imgs/promo.png)
 
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://michaelsboost.com/govegan/)
-[![Version](https://img.shields.io/badge/version-2.0.0-ff2b75)](https://github.com/michaelsboost/govegan)
+[![Version](https://img.shields.io/badge/version-2.1.0-ff2b75)](https://github.com/michaelsboost/govegan)
 [![MIT License](https://img.shields.io/github/license/michaelsboost/govegan)](LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/michaelsboost/govegan)](https://github.com/michaelsboost/govegan/stargazers)
 [![GitHub Issues](https://img.shields.io/github/issues/michaelsboost/govegan)](https://github.com/michaelsboost/govegan/issues)
@@ -25,6 +25,24 @@ The app brings together information about animals, animal use, ingredients, nutr
 The goal is not to hide the consequences of animal use behind products, industries, or familiar habits. Go Vegan makes those connections visible, provides sources where factual claims can be checked, and gives people places to continue learning and take action.
 
 No account is required. The project is free, open source, client-side, and designed for desktop and mobile use.
+
+---
+
+## 🚨 What’s New in 2.1.0
+
+Version 2.1.0 is an evidence and outreach release focused on making Go Vegan easier to use in live conversations and easier to verify afterward.
+
+- Added the finalized one-page **Veganism Live Debate Master Sheet**, designed as a fast printable reference for live discussions.
+- Rebuilt the **Scientific Evidence Library** into a deep research companion covering veganism, animal sentience and welfare, nutrition and health, agriculture, ecology, climate and land use, fishing and aquaculture, public health, food systems, economics, social impacts, companion animals, and farmer transition.
+- Evidence sections now lead with plain-English explanations before deeper scientific detail so readers do not need prior subject knowledge.
+- Scientific and technical abbreviations are expanded on first use rather than assuming the reader already knows them.
+- Source citations sit directly with the claims they support.
+- URLs in the Scientific Evidence Library are clickable, including the Go Vegan footer link on every page.
+- The Scientific Evidence Library includes the Go Vegan QR code and consistent footer on every page.
+- Fish sentience, emotion, cognition, and pain coverage was strengthened and clarified using peer-reviewed evidence.
+- Evidence wording was audited to distinguish strong findings, limitations, observational evidence, modeled estimates, official primary sources, and ethical reasoning.
+- Soy allocation, crop-death claims, environmental metrics, companion-animal nutrition, pregnancy, childhood nutrition, and other commonly disputed topics were revised to avoid overstatement.
+- Project documentation and release metadata are synchronized for version **2.1.0**.
 
 ---
 

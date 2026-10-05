@@ -38,7 +38,7 @@
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/svg+xml" href="imgs/logo.svg">
     <link rel="apple-touch-icon" href="imgs/logo-192x192.png">
-    <link rel="stylesheet" href="src/bundle.css">
+    <link rel="stylesheet" href="dist/bundle.css">
     <link rel="stylesheet" href="src/home.css">
     <link rel="stylesheet" href="src/antiuse.css">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script>
@@ -300,7 +300,7 @@
                 </div>
                 <div class="toolkit-grid">
                   <button type="button" @click="navigate('explore')"><span>01</span><strong>Replace it</strong><small>Find commercial, homemade and whole-food alternatives.</small><em>Explore alternatives →</em></button>
-                  <a href="https://budgetbytes.com/category/recipes/vegetarian/vegan/" target="_blank" rel="noopener noreferrer"><span>02</span><strong>Cook it</strong><small>Find practical vegan recipes for real budgets and real schedules.</small><em>Browse Budget Bytes ↗</em></a>
+                  <a href="https://www.tasteofhome.com/collection/vegan-recipes/" target="_blank" rel="noopener noreferrer"><span>02</span><strong>Cook it</strong><small>Find practical written vegan recipes for real schedules.</small><em>Browse Taste of Home ↗</em></a>
                   <button type="button" @click="openChecker = true"><span>03</span><strong>Check it</strong><small>Scan an ingredient list for animal-derived terms.</small><em>Open ingredient checker →</em></button>
                   <button type="button" @click="navigate('nutrition')"><span>04</span><strong>Plan it</strong><small>Understand B12, protein, iron, calcium and more.</small><em>Explore nutrition →</em></button>
                   <button type="button" @click="navigate('animals')"><span>05</span><strong>See who is affected</strong><small>Learn how animals live and how industries use them.</small><em>Meet the animals →</em></button>
@@ -589,7 +589,7 @@
               <div class="view-container">
                 <h2 class="view-title">Recipes</h2>
                 <p class="view-subtitle">Delicious plant‑based meals for every occasion.</p>
-                <aside class="recipe-referral"><div><span>Recommended recipe collection</span><h3>Vegan recipes from Budget Bytes</h3><p>Explore budget-conscious meals, step-by-step instructions and practical cooking ideas.</p></div><a href="https://budgetbytes.com/category/recipes/vegetarian/vegan/" target="_blank" rel="noopener noreferrer" class="manifesto-button manifesto-button-primary">Visit Budget Bytes ↗</a></aside>
+                <aside class="recipe-referral"><div><span>Recommended recipe collection</span><h3>Vegan recipes from Taste of Home</h3><p>Explore written vegan recipes, step-by-step instructions and practical cooking ideas beyond TikTok and YouTube.</p></div><a href="https://www.tasteofhome.com/collection/vegan-recipes/" target="_blank" rel="noopener noreferrer" class="manifesto-button manifesto-button-primary">Visit Taste of Home ↗</a></aside>
                 <div class="search-field">
                   <span class="search-icon" aria-hidden="true">🔍</span>
                   <input type="text" x-model="recipeQuery" @input.debounce.300ms="filterRecipes()" placeholder="Search recipes..." class="search-input" aria-label="Search recipes" />
@@ -666,7 +666,7 @@
                         <div x-show="getResourcesForArticle(article).length > 0" class="context-resources context-resources-learn">
                           <div class="context-resource-heading">Go deeper</div>
                           <template x-for="resource in getResourcesForArticle(article)" :key="resource.id">
-                            <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><span x-text="resource.emoji || '🔗'"></span><span><strong x-text="resource.title"></strong><small x-text="resource.category + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
+                            <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><img :src="resourceImage(resource)" :alt="''" class="context-resource-thumb" loading="lazy" /><span><strong x-text="resource.title"></strong><small x-text="resource.category + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
                           </template>
                         </div>
                       </div>
@@ -707,6 +707,7 @@
                   <div><strong x-text="formatImpactNumber(impactPer('second'))"></strong><span>per second</span></div>
                 </div>
                 <p class="impact-data-note">This is a production count, not a complete count of animal deaths. It excludes fish and other aquatic animals and does not capture additional deaths associated with dairy or egg production.</p>
+                <div class="impact-method-note"><strong>How do we get “about 2,736 every second”?</strong><p>Start with the annual FAO land-animal slaughter total shown above and divide it by the number of seconds in a year (365.25 × 24 × 60 × 60). It is an annual average, not a claim that exactly 2,736 animals are killed during every literal second.</p></div>
               </div>
 
               <div class="impact-big-number-card impact-us-card">
@@ -733,7 +734,7 @@
 
               <div class="impact-aquatic-callout">
                 <span aria-hidden="true">🐟</span>
-                <div><strong>And this still leaves out aquatic animals.</strong><p>Fish counts are much harder to estimate because fisheries are often reported by weight rather than individuals. Go Vegan keeps them separate rather than adding a highly uncertain estimate to the land-animal total.</p></div>
+                <div><strong>Aquatic animals make the scale dramatically larger.</strong><p>The 86.3-billion counter is intentionally land animals only. Peer-reviewed estimates put farmed finfish killed for food at about <strong>124 billion in 2019</strong> (78–171 billion range), while wild-caught finfish averaged roughly <strong>1.1–2.2 trillion per year</strong> during 2000–2019. Fish are kept separate because these figures are estimated from biomass rather than direct global head counts.</p><div class="impact-source-row"><a href="https://pubmed.ncbi.nlm.nih.gov/38487450/" target="_blank" rel="noopener noreferrer" class="secondary-button">Farmed fish study ↗</a><a href="https://pubmed.ncbi.nlm.nih.gov/38510420/" target="_blank" rel="noopener noreferrer" class="secondary-button">Wild fish study ↗</a></div></div>
               </div>
 
               <div class="impact-source-row">
@@ -822,7 +823,20 @@
                     <div class="evidence-hero-copy">
                       <span class="evidence-eyebrow">Research, without the gotchas</span>
                       <h2 class="view-title">Evidence Library</h2>
-                      <p class="view-subtitle">Search common questions about veganism and see what the evidence supports, what needs context, and what science cannot answer by itself.</p>
+                      <p class="view-subtitle">Search common questions about veganism using claim-specific scientific evidence. Empirical claims must be supported by relevant peer-reviewed research; uncertainty and conflicting findings are shown rather than hidden.</p>
+                      <div class="hero-actions evidence-document-actions">
+                        <a href="docs/scientific-evidence-library.pdf" target="_blank" rel="noopener" class="primary-button" aria-label="Open the full Scientific Evidence Library PDF in a new tab">
+                          <span aria-hidden="true">📚</span>
+                          <span>Scientific Evidence Library</span>
+                          <span aria-hidden="true">↗</span>
+                        </a>
+                        <a href="docs/veganism_debate_master_sheet.pdf" target="_blank" rel="noopener" class="secondary-button" aria-label="Open the one-page Veganism Debate Master Sheet PDF in a new tab">
+                          <span aria-hidden="true">⚡</span>
+                          <span>Debate Master Sheet</span>
+                          <span aria-hidden="true">↗</span>
+                        </a>
+                      </div>
+                      <p class="evidence-document-note">Scientific standard: a real citation is not enough—the cited research must actually support the claim. Ethical arguments are labeled as philosophy rather than presented as scientific findings. Open the full library for methodology, limitations and sources.</p>
                     </div>
                     <span class="resource-count" x-text="evidenceClaims.length + ' claims reviewed'"></span>
                   </div>
@@ -956,12 +970,15 @@
                   <template x-for="resource in filteredResources" :key="resource.id">
                     <article class="external-resource-card external-resource-card-visual" :class="{'resource-graphic': resource.graphic}">
                       <div class="resource-photo card-photo-wrap">
-                        <span class="card-photo-fallback resource-emoji" aria-hidden="true" x-text="resource.emoji || '🔗'"></span>
-                        <img x-show="resource.imageUrl" :src="resource.imageUrl" :alt="resource.title + ' resource artwork'" class="card-photo" loading="lazy" decoding="async" referrerpolicy="no-referrer" @error="if ($event.currentTarget.getAttribute('src') !== resource.fallbackImageUrl) { $event.currentTarget.src = resource.fallbackImageUrl } else { $event.currentTarget.style.display = 'none' }" />
+                        <div x-show="resource.nativeArt" class="resource-native-art" aria-hidden="true">
+                          <span class="resource-native-kicker" x-text="resource.artKicker"></span>
+                          <strong class="resource-native-mark" x-text="resource.artMark"></strong>
+                          <span class="resource-native-tagline" x-text="resource.artTagline"></span>
+                        </div>
+                        <img x-show="!resource.nativeArt" :src="resourceImage(resource)" :alt="resource.title + ' resource artwork'" class="card-photo" loading="lazy" decoding="async" referrerpolicy="no-referrer" @error="if ($event.currentTarget.getAttribute('src') !== resource.fallbackImageUrl) { $event.currentTarget.src = resource.fallbackImageUrl } else { $event.currentTarget.style.display = 'none' }" />
                         <span x-show="resource.graphic" class="resource-image-warning">Content warning</span>
                       </div>
                       <div class="resource-card-top">
-                        <span class="resource-emoji" aria-hidden="true" x-text="resource.emoji || '🔗'"></span>
                         <div class="resource-badges">
                           <span class="resource-badge" x-text="resource.category"></span>
                           <span x-show="resource.free" class="resource-badge resource-free">Free</span>
@@ -1059,7 +1076,7 @@
                 <div x-show="currentJourneyResources.length > 0" class="context-resources journey-resources">
                   <div class="context-resource-heading">Helpful for this path</div>
                   <template x-for="resource in currentJourneyResources" :key="resource.id">
-                    <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><span x-text="resource.emoji || '🔗'"></span><span><strong x-text="resource.title"></strong><small x-text="resource.format + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
+                    <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><img :src="resourceImage(resource)" :alt="''" class="context-resource-thumb" loading="lazy" /><span><strong x-text="resource.title"></strong><small x-text="resource.format + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
                   </template>
                 </div>
               </div>
@@ -1188,7 +1205,7 @@
                       <div x-show="getResourcesForNutrient(nutrient).length > 0" class="context-resources nutrient-resources">
                         <div class="context-resource-heading">Evidence and planning guides</div>
                         <template x-for="resource in getResourcesForNutrient(nutrient)" :key="resource.id">
-                          <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><span x-text="resource.emoji || '🔗'"></span><span><strong x-text="resource.title"></strong><small x-text="resource.creator"></small></span><span aria-hidden="true">↗</span></a>
+                          <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><img :src="resourceImage(resource)" :alt="''" class="context-resource-thumb" loading="lazy" /><span><strong x-text="resource.title"></strong><small x-text="resource.creator"></small></span><span aria-hidden="true">↗</span></a>
                         </template>
                       </div>
                     </div>
@@ -1285,7 +1302,7 @@
                     <div x-show="selectedAnimalResources.length > 0" class="context-resources animal-context-resources">
                       <div class="context-resource-heading">Related resources</div>
                       <template x-for="resource in selectedAnimalResources" :key="resource.id">
-                        <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><span x-text="resource.emoji || '🔗'"></span><span><strong x-text="resource.title"></strong><small x-text="resource.graphic ? 'Graphic content · ' + resource.category : resource.category + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
+                        <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><img :src="resourceImage(resource)" :alt="''" class="context-resource-thumb" loading="lazy" /><span><strong x-text="resource.title"></strong><small x-text="resource.graphic ? 'Graphic content · ' + resource.category : resource.category + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
                       </template>
                     </div>
                   </div>
@@ -1461,7 +1478,7 @@
                   <div x-show="selectedProductResources.length > 0" class="context-resources product-context-resources">
                     <div class="context-resource-heading">Related guidance</div>
                     <template x-for="resource in selectedProductResources" :key="resource.id">
-                      <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><span x-text="resource.emoji || '🔗'"></span><span><strong x-text="resource.title"></strong><small x-text="resource.graphic ? 'Graphic content · ' + resource.category : resource.category + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
+                      <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="context-resource-link"><img :src="resourceImage(resource)" :alt="''" class="context-resource-thumb" loading="lazy" /><span><strong x-text="resource.title"></strong><small x-text="resource.graphic ? 'Graphic content · ' + resource.category : resource.category + ' · ' + resource.creator"></small></span><span aria-hidden="true">↗</span></a>
                     </template>
                   </div>
                   <div class="product-detail-actions">
@@ -1613,7 +1630,7 @@
         </footer>
       </div>
     </div>
-        <script src="src/script.js"></script>
+        <script src="dist/script.js"></script>
     <script src="https://storage.googleapis.com/workbox-cdn/releases/6.4.1/workbox-sw.js"></script>
     <script>
       if ('serviceWorker' in navigator) {
