@@ -10633,6 +10633,32 @@ function validateGoVeganData(data) {
   // ---- External Resources Library ----
   const resources = [
   {
+    "id": "resource-urban-forager",
+    "nativeArt": true, "artKicker": "SISTER APP", "artMark": "UF", "artTagline": "Wild plants, fungi, field knowledge and responsible foraging",
+    "title": "Urban Forager",
+    "creator": "Michael Schwartz",
+    "category": "Companion Apps",
+    "format": "Free open-source field reference",
+    "description": "A sister app for identifying wild plants, trees, shrubs, vines and fungi while exploring wild foods, nutrition, ethnobotany, traditional and modern uses, safety, stewardship and responsible foraging.",
+    "url": "https://michaelsboost.com/Urban-Forager/",
+    "imageUrl": "https://raw.githubusercontent.com/michaelsboost/Urban-Forager/main/imgs/promo.png",
+    "emoji": "🌿", "free": true, "featured": true, "graphic": false,
+    "tags": ["sister app", "foraging", "wild plants", "fungi", "ethnobotany", "stewardship"], "verifiedDate": "2026-10-05"
+  },
+  {
+    "id": "resource-zerra",
+    "nativeArt": true, "artKicker": "COMPANION APP", "artMark": "Z", "artTagline": "Ecological literacy, responsibility, reciprocity and regeneration",
+    "title": "Zerra",
+    "creator": "Michael Schwartz",
+    "category": "Companion Apps",
+    "format": "Free open-source environmental education app",
+    "description": "A companion app exploring waste, material systems, ecological responsibility, practical skills, reciprocity, regeneration and ways to live with a more informed relationship to Mother Earth.",
+    "url": "https://michaelsboost.github.io/Zerra",
+    "imageUrl": "https://raw.githubusercontent.com/michaelsboost/Zerra/main/imgs/promo.png",
+    "emoji": "🌎", "free": true, "featured": true, "graphic": false,
+    "tags": ["companion app", "zero waste", "ecology", "stewardship", "reciprocity", "regeneration"], "verifiedDate": "2026-10-05"
+  },
+  {
     "id": "resource-vegan-food-cost-study",
     "title": "Vegan Diet and Food Costs Among Adults With Overweight",
     "creator": "Kahleova et al. · JAMA Network Open (2023)",

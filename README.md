@@ -183,6 +183,8 @@ The homepage film experience begins with **3 Minute Movie** and includes additio
 
 Some media can play inside the app. When a provider restricts embedding or requires viewing on its own platform, Go Vegan directs the visitor to the original viewing location instead of presenting a broken player.
 
+The Resources Library also includes a **Companion Apps** category that connects visitors to **Zerra** for broader ecological responsibility and **Urban Forager** for wild plant, fungi, ethnobotany, and responsible-foraging field knowledge.
+
 External resources remain the responsibility of their respective publishers and may change availability, URLs, access requirements, or content over time.
 
 ---
@@ -202,7 +204,7 @@ External recipe information, prices, ingredients, allergy suitability, and avail
 - Call-to-action homepage built around choice, urgency, and the consequences of animal use
 - Live animal-death counter with methodology information
 - Homepage educational film experience
-- Curated Resources library with visual previews and external viewing support
+- Curated Resources library with visual previews, companion apps, and external viewing support
 - Animals Library with natural-life, human-use, harm, ingredient, everyday-item, alternative, and source information
 - Impact dashboard covering animals and environmental pressures
 - Interactive dietary-footprint time horizons
@@ -364,13 +366,27 @@ Because Go Vegan is a static client-side application, it can also be served by a
 
 ---
 
-## 🌱 Companion Project: Zerra
+## 🌱 Companion Projects
 
-Go Vegan focuses specifically on animals, animal use, evidence, and practical change. **Zerra** is a separate companion project exploring the wider relationship between human activity and Mother Earth through ecological literacy, responsibility, practical skills, reciprocity, and regeneration.
+Go Vegan focuses specifically on animals, animal use, evidence, and practical change. Two separate sister projects extend that work into related areas without turning Go Vegan into an all-purpose environmental or field-reference app.
+
+### Zerra
+
+**Zerra** explores the wider relationship between human activity and Mother Earth through ecological literacy, waste prevention, responsibility, practical skills, reciprocity, and regeneration.
 
 Zerra: https://michaelsboost.github.io/Zerra
 
 Source: https://github.com/michaelsboost/Zerra
+
+### Urban Forager
+
+**Urban Forager** is a field-reference sister app for identifying wild plants, trees, shrubs, vines, and fungi; learning about wild foods, nutrition, ethnobotany, traditional and modern uses; and approaching foraging with safety, stewardship, reciprocity, and respect for the living world.
+
+Urban Forager: https://michaelsboost.com/Urban-Forager/
+
+Source: https://github.com/michaelsboost/Urban-Forager
+
+Both projects are also surfaced from Go Vegan's interface, and the Resources Library includes a **Companion Apps** category so visitors can discover them alongside other educational resources.
 
 ---
 
