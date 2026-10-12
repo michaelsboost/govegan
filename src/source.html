@@ -139,14 +139,14 @@ ALPINE APP
       <section class="home-cinema" aria-labelledby="home-cinema-title">
         <div class="cinema-heading"><span class="manifesto-eyebrow">Essential viewing</span><h2 id="home-cinema-title">Watch. Then decide.</h2></div>
         <div class="cinema-stage">
-          <div class="cinema-copy"><span x-text="homeVideo.label"></span><h3 x-text="homeVideo.title"></h3><p x-text="homeVideo.description"></p><small class="cinema-warning" x-show="homeVideo.warning" x-text="homeVideo.warning"></small><button type="button" class="manifesto-button manifesto-button-primary" @click="openHomeVideo()" x-text="homeVideo.externalOnly ? 'Watch on YouTube ↗' : 'Watch now'"></button></div>
-          <button type="button" class="cinema-poster" @click="openHomeVideo()" :aria-label="(homeVideo.externalOnly ? 'Watch on YouTube: ' : 'Play ') + homeVideo.title"><img :src="homeVideo.thumbnail" :alt="homeVideo.title + ' preview'" loading="lazy" decoding="async"><span class="cinema-poster-shade" aria-hidden="true"></span><span class="cinema-play" aria-hidden="true">▶</span></button>
+          <div class="cinema-copy"><span x-text="homeVideo.label"></span><h3 x-text="homeVideo.title"></h3><p x-text="homeVideo.description"></p><small class="cinema-warning" x-show="homeVideo.warning" x-text="homeVideo.warning"></small><button type="button" class="manifesto-button manifesto-button-primary" @click="openHomeVideo()" x-text="homeVideo.externalOnly ? (homeVideo.embed ? 'Watch now' : 'Learn more') : 'Watch now'"></button></div>
+          <button type="button" class="cinema-poster" @click="openHomeVideo()" :aria-label="(homeVideo.embed ? 'Play ' : 'Explore ') + homeVideo.title"><img :src="homeVideo.thumbnail" :alt="homeVideo.title + ' preview'" loading="lazy" decoding="async"><span class="cinema-poster-shade" aria-hidden="true"></span><span class="cinema-play" aria-hidden="true">▶</span></button>
         </div>
         <div class="cinema-controls"><button type="button" class="cinema-arrow" @click="shiftHomeVideo(-1)" aria-label="Previous video">←</button><template x-for="(video, index) in homeVideos" :key="video.title"><button type="button" class="cinema-tab" :class="{'active': homeVideoIndex === index}" @click="openHomeVideo(index)" x-text="video.title"></button></template><button type="button" class="cinema-arrow" @click="shiftHomeVideo(1)" aria-label="Next video">→</button></div>
         <div class="cinema-thumbnails"><template x-for="(video, index) in homeVideos" :key="'thumb-' + video.title"><button type="button" :class="{'active': homeVideoIndex === index}" @click="openHomeVideo(index)" :aria-label="'Select ' + video.title"><img :src="video.thumbnail" :alt="video.title" loading="lazy" decoding="async"></button></template></div>
       </section>
-
-      <section class="home-baseline">
+              <section class="home-official-downloads" aria-labelledby="home-official-title"><span class="manifesto-eyebrow">Official Go Vegan downloads</span><h2 id="home-official-title">Take these resources with you.</h2><p>Download and share the official outreach cards, Scientific Evidence Library, Veganism Debate Master Sheet, and critical-thinking terminology reference.</p><div class="home-official-actions"><a class="manifesto-button manifesto-button-primary" href="docs/activism-cards/vegan-activism-card-landscape-print-ready.pdf" download>Landscape outreach card ↓</a><a class="manifesto-button manifesto-button-secondary" href="docs/activism-cards/vegan-activism-card-portrait-print-ready.pdf" download>Portrait outreach card ↓</a><a class="manifesto-button manifesto-button-secondary" href="docs/psychological_philosophical_terminology_reference.pdf" download>Terminology PDF ↓</a><a class="manifesto-button manifesto-button-secondary" href="docs/scientific-evidence-library.pdf" download>Scientific Evidence Library ↓</a><a class="manifesto-button manifesto-button-secondary" href="docs/veganism_debate_master_sheet.pdf" download>Veganism Debate Master Sheet (one page) ↓</a></div><button type="button" class="text-button" @click="navigate('resources')">See ZIP packages and the full resources library →</button></section>
+<section class="home-baseline">
         <div class="home-editorial-heading">
           <span>The question underneath every excuse</span>
           <h2>What you call normal is extreme to the animal forced to endure it.</h2>
@@ -357,7 +357,28 @@ ALPINE APP
             </div>
           </section>
 
-          <!-- Feature cards -->
+                        <!-- Phase 4: featured research tools -->
+              <section class="section phase4-resources" aria-labelledby="phase4-resources-title">
+                <div class="section-container">
+                  <div class="section-header"><div><h2 id="phase4-resources-title" class="section-title">Research &amp; critical thinking</h2><p class="phase4-section-intro">Two free resources for informed, compassionate choices.</p></div></div>
+                  <div class="phase4-feature-grid">
+                    <article class="phase4-feature-card">
+                      <span class="phase4-feature-kicker">BRAND RESEARCH · PETA</span>
+                      <h3>Is that brand cruelty-free?</h3>
+                      <p>Explore PETA's maintained animal-testing and cruelty-free listings. Vegan and animal-test-free are distinct classifications.</p>
+                      <a href="https://crueltyfree.peta.org/" target="_blank" rel="noopener noreferrer" class="secondary-button">Search PETA's database ↗</a>
+                    </article>
+                    <article class="phase4-feature-card">
+                      <span class="phase4-feature-kicker">FREE EDUCATIONAL PDF · 11 PAGES</span>
+                      <h3>Critical-thinking terminology</h3>
+                      <p>Learn to identify reasoning errors, cognitive biases, communication tactics and ethical concepts.</p>
+                      <a href="docs/psychological_philosophical_terminology_reference.pdf" download="psychological_philosophical_terminology_reference.pdf" class="secondary-button">Download the PDF ↓</a>
+                    </article>
+                  </div>
+                </div>
+              </section>
+
+<!-- Feature cards -->
           <section class="section section-features">
             <div class="section-container">
               <div class="features-grid">
@@ -808,20 +829,21 @@ ALPINE APP
       <div x-show="view === 'resources'" x-transition:enter.duration.300ms>
         <div class="view view-resources">
           <div class="view-container">
-            <div class="resources-heading">
-              <div>
-                <h2 class="view-title">Resources Library</h2>
-                <p class="view-subtitle">Go deeper with documentaries, books, talks, podcasts, organizations and evidence-based references.</p>
-              </div>
-              <span class="resource-count" x-text="filteredResources.length + ' resources'"></span>
-            </div>
-            <div class="resource-safety-note"><strong>You control the experience.</strong> External videos never autoplay. Graphic resources are clearly marked so you can decide whether and when to engage.</div>
-            <details class="activism-downloads">
-              <summary class="activism-downloads-summary">
-                <span><small class="evidence-eyebrow">Free outreach materials</small><strong>Download Activism Cards</strong></span>
-                <span class="activism-summary-icon" aria-hidden="true">+</span>
-              </summary>
-              <div class="activism-downloads-body">
+                            <details class="official-resource-drawer">
+                  <summary class="official-resource-toggle">
+                    <span class="official-resource-toggle-icon" aria-hidden="true">↓</span>
+                    <span class="official-resource-toggle-text"><small>OFFICIAL GO VEGAN DOWNLOADS</small><strong>Free guides &amp; outreach materials</strong><span>Evidence library · Debate sheet · Terminology · Printable cards</span></span>
+                    <span class="official-resource-toggle-action" aria-hidden="true">Explore <span class="official-resource-chevron">⌄</span></span>
+                  </summary>
+                  <div class="official-resource-panel">
+                    <div class="official-resource-panel-heading"><h3>Educational PDFs</h3><p>Download reliable references to read, share, and discuss.</p></div>
+                    <div class="official-pdf-grid">
+                      <a href="docs/scientific-evidence-library.pdf" download="scientific-evidence-library.pdf" class="official-pdf-item"><span class="official-pdf-icon" aria-hidden="true">PDF</span><span><strong>Scientific Evidence Library</strong><small>Research and supporting sources</small></span><span class="official-pdf-arrow" aria-hidden="true">↓</span></a>
+                      <a href="docs/veganism_debate_master_sheet.pdf" download="veganism_debate_master_sheet.pdf" class="official-pdf-item"><span class="official-pdf-icon" aria-hidden="true">PDF</span><span><strong>Veganism Debate Master Sheet</strong><small>Single-page reference</small></span><span class="official-pdf-arrow" aria-hidden="true">↓</span></a>
+                      <a href="docs/psychological_philosophical_terminology_reference.pdf" download="psychological_philosophical_terminology_reference.pdf" class="official-pdf-item"><span class="official-pdf-icon" aria-hidden="true">PDF</span><span><strong>Critical-Thinking Terminology</strong><small>Psychology and philosophy reference</small></span><span class="official-pdf-arrow" aria-hidden="true">↓</span></a>
+                    </div>
+                    <div class="official-resource-panel-heading official-resource-outreach-heading"><h3>Printable outreach cards</h3><p>Print-ready PDF files and ZIP packages with high-resolution artwork.</p></div>
+<div class="activism-downloads-body">
                 <div class="activism-downloads-copy">
                   <p>Print and share the Go Vegan outreach cards yourself. Each print-ready PDF contains the front and back as two pages. The ZIP package also includes the original high-resolution JPG files for printers that prefer separate uploads.</p>
                   <p class="activism-print-note"><strong>Printing tip:</strong> Upload both sides and choose <em>fit</em> rather than crop if your printer uses a different card ratio. Always check the printer preview and scan the printed QR codes before ordering a large batch.</p>
@@ -845,7 +867,17 @@ ALPINE APP
                   </article>
                 </div>
               </div>
-            </details>
+                  </div>
+                </details>
+                <div class="resources-heading">
+              <div>
+                <h2 class="view-title">Resources Library</h2>
+                <p class="view-subtitle">Go deeper with documentaries, books, talks, podcasts, organizations and evidence-based references.</p>
+              </div>
+              <span class="resource-count" x-text="filteredResources.length + ' resources'"></span>
+            </div>
+            <div class="resource-safety-note"><strong>You control the experience.</strong> External videos never autoplay. Graphic resources are clearly marked so you can decide whether and when to engage.</div>
+
 
             <div class="search-field resource-search">
               <span class="search-icon" aria-hidden="true">🔍</span>
@@ -856,11 +888,26 @@ ALPINE APP
                 <button type="button" @click="resourceCategory = category" class="filter-chip" :class="{'active': resourceCategory === category}" x-text="category"></button>
               </template>
             </div>
-            <div class="resource-grid">
+                            <div class="resource-size-toolbar" x-init="restoreResourceCardSize()" aria-label="Resource card display size">
+                  <span class="resource-size-label">Card size</span>
+                  <div class="resource-size-options" role="group" aria-label="Choose resource card size">
+                    <button type="button" class="resource-size-button" :class="{'active': resourceCardSize === 'compact'}" :aria-pressed="resourceCardSize === 'compact'" @click="setResourceCardSize('compact')">Compact</button>
+                    <button type="button" class="resource-size-button" :class="{'active': resourceCardSize === 'comfortable'}" :aria-pressed="resourceCardSize === 'comfortable'" @click="setResourceCardSize('comfortable')">Comfortable</button>
+                    <button type="button" class="resource-size-button" :class="{'active': resourceCardSize === 'large'}" :aria-pressed="resourceCardSize === 'large'" @click="setResourceCardSize('large')">Large</button>
+                  </div>
+                </div>
+                <div class="resource-grid resource-grid-adjustable" :class="'resource-size-' + resourceCardSize">
               <template x-for="resource in filteredResources" :key="resource.id">
                 <article class="external-resource-card external-resource-card-visual" :class="{'resource-graphic': resource.graphic}">
                   <div class="resource-photo card-photo-wrap">
-                    <img x-show="resource.imageUrl" :src="resource.imageUrl" :alt="resource.title + ' resource artwork'" class="card-photo" loading="lazy" decoding="async" referrerpolicy="no-referrer" @error="if ($event.currentTarget.getAttribute('src') !== resource.fallbackImageUrl) { $event.currentTarget.src = resource.fallbackImageUrl } else { $event.currentTarget.style.display = 'none' }" />
+                        <div x-show="resource.nativeArt || resource.imageFailed" class="resource-native-art" :style="{'--resource-accent': resource.artAccent}" role="img" :aria-label="resource.title + ' illustrated title card'">
+                          <span class="resource-native-symbol" aria-hidden="true" x-text="resource.artMark"></span>
+                          <span class="resource-native-kicker" x-text="resource.artKicker"></span>
+                          <strong class="resource-native-title" x-text="resource.artTitle || resource.title"></strong>
+                          <span class="resource-native-rule" aria-hidden="true"></span>
+                        </div>
+                        <img x-show="resource.category === 'Documentaries' && !resource.nativeArt && !resource.imageFailed" class="documentary-cover-backdrop" :src="resourceImage(resource)" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                        <img :class="{'documentary-cover-foreground': resource.category === 'Documentaries'}" x-show="!resource.nativeArt && !resource.imageFailed" :src="resourceImage(resource)" :alt="resource.title + ' resource artwork'" class="card-photo" loading="lazy" decoding="async" referrerpolicy="no-referrer" @error="resource.imageFailed = true" />
                     <span x-show="resource.graphic" class="resource-image-warning">Content warning</span>
                   </div>
                   <div class="resource-card-top">
@@ -877,7 +924,7 @@ ALPINE APP
                   <div class="resource-tags">
                     <template x-for="tag in (resource.tags || []).slice(0, 4)" :key="tag"><span x-text="tag"></span></template>
                   </div>
-                  <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="resource-open-link"><span>Open resource</span><span aria-hidden="true">↗</span></a>
+                  <a :href="resource.url" :target="resource.download ? null : '_blank'" :rel="resource.download ? null : 'noopener noreferrer'" :download="resource.download ? 'psychological_philosophical_terminology_reference.pdf' : null" class="resource-open-link"><span x-text="resource.download ? 'Download PDF' : 'Open resource'"></span><span aria-hidden="true" x-text="resource.download ? '↓' : '↗'"></span></a>
                 </article>
               </template>
             </div>

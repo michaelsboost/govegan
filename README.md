@@ -45,21 +45,19 @@ and designed for desktop and mobile use.
 
 ## 🚨 What's New in 2.2.0
 
-Version 2.2.0 adds free, reusable outreach materials directly to Go
-Vegan while keeping documentaries and educational resources front and
-center.
+Version 2.2.0 expands the educational viewing experience and makes official outreach and research materials easier to find.
 
--   Added **Download Activism Cards** to the Resources Library as a
-    compact, collapsed accordion, especially suited to smaller mobile
-    screens.
--   Added downloadable **landscape and portrait vegan activism cards**.
--   Added two-page **print-ready PDFs** containing the front and back
-    artwork.
--   Added ZIP packages with the PDFs and original high-resolution JPG
-    files for print services that prefer separate uploads.
--   Added printing guidance to avoid unintended cropping and to verify
-    printed QR codes before larger orders.
--   Updated project metadata to version **2.2.0**.
+- Reorganized the homepage's **Essential Viewing** carousel into a progression from introductory videos, through industry documentaries and research, to farm-transition stories and programs.
+- Expanded the viewing selection with films addressing dairy, fashion, nutrition research, marine captivity, environmental impacts, and industrial farming.
+- Added video entries for **Rowdy Girl Sanctuary**, the **Rancher Advocacy Program**, **The Transfarmation Project**, and **Refarm'd**.
+- Plays supported embedded videos in the homepage lightbox; the 12-minute film, Gary Yourofsky speech, and *Dominion* retain external viewing links. Third-party embedding depends on the video host's permissions.
+- Added local documentary poster imagery with a centered, fully visible poster and a blurred backdrop.
+- Added **Compact**, **Comfortable**, and **Large** resource-card display preferences. Large is the default for new visitors; the preference is remembered locally.
+- Prioritized **Official Go Vegan Resources** above the resource catalog in a compact, collapsed download panel.
+- Made the **Scientific Evidence Library**, **Veganism Debate Master Sheet**, **Critical-Thinking Terminology Reference**, and printable portrait/landscape outreach cards available from the site; key PDFs and cards are also accessible from the homepage.
+- Updated release metadata and the service-worker cache identifier to **2.2.0**.
+
+Release history is maintained here in the README. For deployment, upload the website files to your static host, verify the homepage video lightbox and external playback exceptions, test the official PDF downloads, and confirm the Resources display preferences on mobile and desktop.
 
 ------------------------------------------------------------------------
 

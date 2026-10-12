@@ -971,12 +971,13 @@
                   <template x-for="resource in filteredResources" :key="resource.id">
                     <article class="external-resource-card external-resource-card-visual" :class="{'resource-graphic': resource.graphic}">
                       <div class="resource-photo card-photo-wrap">
-                        <div x-show="resource.nativeArt" class="resource-native-art" aria-hidden="true">
+                        <div x-show="resource.nativeArt || resource.imageFailed" class="resource-native-art" :style="{'--resource-accent': resource.artAccent}" role="img" :aria-label="resource.title + ' illustrated title card'">
+                          <span class="resource-native-symbol" aria-hidden="true" x-text="resource.artMark"></span>
                           <span class="resource-native-kicker" x-text="resource.artKicker"></span>
-                          <strong class="resource-native-mark" x-text="resource.artMark"></strong>
-                          <span class="resource-native-tagline" x-text="resource.artTagline"></span>
+                          <strong class="resource-native-title" x-text="resource.artTitle || resource.title"></strong>
+                          <span class="resource-native-rule" aria-hidden="true"></span>
                         </div>
-                        <img x-show="!resource.nativeArt" :src="resourceImage(resource)" :alt="resource.title + ' resource artwork'" class="card-photo" loading="lazy" decoding="async" referrerpolicy="no-referrer" @error="if ($event.currentTarget.getAttribute('src') !== resource.fallbackImageUrl) { $event.currentTarget.src = resource.fallbackImageUrl } else { $event.currentTarget.style.display = 'none' }" />
+                        <img x-show="!resource.nativeArt && !resource.imageFailed" :src="resourceImage(resource)" :alt="resource.title + ' resource artwork'" class="card-photo" loading="lazy" decoding="async" referrerpolicy="no-referrer" @error="resource.imageFailed = true" />
                         <span x-show="resource.graphic" class="resource-image-warning">Content warning</span>
                       </div>
                       <div class="resource-card-top">

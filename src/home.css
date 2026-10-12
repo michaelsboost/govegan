@@ -12,3 +12,83 @@
 .home-final-call{align-items:center;display:flex;flex-direction:column;padding:clamp(5rem,11vw,10rem) 1.25rem;text-align:center}.home-final-call blockquote{font-family:var(--font-display);font-size:clamp(2.2rem,5.5vw,5rem);font-style:italic;letter-spacing:-.035em;line-height:1.08;max-width:18ch}.home-final-call p{color:#9aa69e;line-height:1.7;margin:1.5rem auto 2rem;max-width:55ch}
 @media(max-width:860px){.manifesto-grid,.home-bridge{grid-template-columns:1fr}.home-manifesto{min-height:0}.manifesto-copy h1{font-size:clamp(3.8rem,16vw,7rem)}.manifesto-second{display:grid}.manifesto-second small{margin-left:0}.baseline-grid,.toolkit-grid{grid-template-columns:1fr}.baseline-grid article+article,.toolkit-grid button:nth-child(n+2){border-left:1px solid rgba(247,242,232,.12);border-top:0}.baseline-grid article{min-height:0}.baseline-grid h3{margin-top:2rem}.home-bridge{min-height:0}.bridge-image-wrap{max-height:520px}}
 @media(max-width:540px){.home-manifesto{padding-top:3.5rem}.manifesto-actions{display:grid}.manifesto-button{width:100%}.manifesto-stat strong{overflow-wrap:anywhere}.home-search-panel .search-field{border-radius:0}.bridge-copy{padding:3rem 1.25rem}}
+
+/* Phase 4: compact, responsive educational homepage links */
+.phase4-resources { padding-block: clamp(2rem, 4vw, 3.5rem); }
+.phase4-section-intro { margin: .35rem 0 0; opacity: .78; }
+.phase4-feature-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(.9rem, 2vw, 1.5rem); }
+.phase4-feature-card { display: flex; flex-direction: column; align-items: flex-start; gap: .8rem; min-width: 0; padding: clamp(1.15rem, 2.5vw, 1.8rem); border: 1px solid rgba(110, 168, 129, .3); border-radius: 1.1rem; background: linear-gradient(135deg, rgba(24, 82, 57, .10), rgba(125, 174, 135, .045)); }
+.phase4-feature-kicker { font-size: .73rem; letter-spacing: .11em; font-weight: 800; color: #328657; }
+.phase4-feature-card h3 { margin: 0; font-size: clamp(1.15rem, 2vw, 1.55rem); line-height: 1.25; }
+.phase4-feature-card p { margin: 0 0 .5rem; line-height: 1.55; flex: 1; }
+.phase4-feature-card .secondary-button { text-decoration: none; display: inline-flex; align-items: center; min-height: 2.6rem; }
+@media (max-width: 680px) { .phase4-feature-grid { grid-template-columns: 1fr; } }
+
+
+/* Phase 4.5: two real image layers. The backdrop is a cropped/blurred IMG,
+   not an Alpine background-image binding; foreground always shows full poster. */
+.resource-photo:has(.documentary-cover-foreground){position:relative;isolation:isolate;overflow:hidden;background:#15251f;height:clamp(12rem,27vw,17rem)}
+.resource-photo img.documentary-cover-backdrop{display:block;position:absolute;inset:-22px;width:calc(100% + 44px);height:calc(100% + 44px);max-width:none;object-fit:cover;object-position:center;filter:blur(19px) brightness(.64) saturate(.8);transform:scale(1.08);z-index:0;pointer-events:none}
+.resource-photo:has(.documentary-cover-foreground)::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(6,12,10,.17),rgba(6,12,10,.38));pointer-events:none}
+.resource-photo img.card-photo.documentary-cover-foreground{position:relative;z-index:2;display:block;width:100%;height:100%;object-fit:contain;object-position:center;filter:drop-shadow(0 5px 13px rgba(0,0,0,.65))}
+.resource-photo .resource-image-warning{z-index:4}
+
+
+/* Phase 4.6: responsive visitor-controlled resource card sizing. */
+.resource-size-toolbar{display:flex;align-items:center;justify-content:space-between;gap:.65rem;flex-wrap:wrap;margin:1rem 0 .85rem}
+.resource-size-label{font-size:.83rem;font-weight:700;color:var(--text-secondary)}
+.resource-size-options{display:inline-flex;flex-wrap:wrap;gap:.25rem;padding:.22rem;border:1px solid var(--border-subtle);border-radius:999px;background:var(--bg-surface-alt)}
+.resource-size-button{border:0;background:transparent;color:var(--text-secondary);border-radius:999px;min-height:2.4rem;padding:.38rem .7rem;font-size:.78rem;font-weight:700;cursor:pointer}
+.resource-size-button.active{background:var(--color-forest);color:var(--bg-surface);box-shadow:var(--shadow-sm)}
+.resource-size-button:focus-visible{outline:2px solid var(--color-lime);outline-offset:2px}
+.resource-grid.resource-grid-adjustable{display:grid;align-items:stretch;gap:clamp(.75rem,1.8vw,1.4rem);grid-template-columns:repeat(auto-fit,minmax(min(100%,var(--resource-card-min)),1fr))}
+.resource-grid-adjustable.resource-size-compact{--resource-card-min:225px;--resource-art-height:170px}
+.resource-grid-adjustable.resource-size-comfortable{--resource-card-min:325px;--resource-art-height:245px}
+.resource-grid-adjustable.resource-size-large{--resource-card-min:510px;--resource-art-height:345px}
+.resource-grid-adjustable .resource-photo:has(.documentary-cover-foreground){height:var(--resource-art-height)}
+@media(max-width:700px){.resource-grid-adjustable.resource-size-compact{--resource-card-min:185px;--resource-art-height:145px}.resource-grid-adjustable.resource-size-comfortable{--resource-card-min:280px;--resource-art-height:235px}.resource-grid-adjustable.resource-size-large{--resource-card-min:100%;--resource-art-height:360px}}
+@media(max-width:420px){.resource-size-toolbar{align-items:flex-start;flex-direction:column}.resource-size-options{width:100%;display:flex}.resource-size-button{flex:1;padding:.45rem .35rem}.resource-grid-adjustable.resource-size-compact{--resource-card-min:100%;--resource-art-height:165px}.resource-grid-adjustable.resource-size-large{--resource-art-height:clamp(300px,105vw,410px)}}
+
+
+/* Phase 4.8: first-party downloads and cross-industry homepage film discovery */
+.official-downloads-heading{margin:0 0 1rem}.official-downloads-heading h2,.home-official-downloads h2{font-size:clamp(1.4rem,3vw,2rem);margin:.4rem 0}.official-downloads-heading p,.home-official-downloads p{opacity:.8}.official-downloads-extra{margin:.85rem 0 2.4rem;display:flex;flex-wrap:wrap;gap:.7rem}.home-industry-films,.home-official-downloads{margin:3rem 0}.home-industry-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin:1.6rem 0}.home-industry-card{border:1px solid rgba(255,255,255,.12);border-radius:1rem;overflow:hidden;background:rgba(12,19,17,.85)}.home-industry-card a{display:block;color:inherit;text-decoration:none;height:100%}.home-industry-image{height:215px;display:flex;justify-content:center;align-items:center;background:#15201d;overflow:hidden}.home-industry-image img{height:100%;width:100%;object-fit:contain}.home-industry-copy{padding:1rem}.home-industry-copy span{font-size:.73rem;letter-spacing:.08em;text-transform:uppercase;color:#ff4688}.home-industry-copy h3{margin:.45rem 0;font-size:1.15rem}.home-industry-copy p{font-size:.9rem;line-height:1.5;opacity:.8}.home-industry-copy strong{display:block;color:#ff4688;margin-top:.7rem}.home-official-downloads{border:1px solid rgba(255,255,255,.15);border-radius:1.25rem;padding:clamp(1rem,3vw,2rem)}.home-official-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin:1.2rem 0}.home-official-actions a{text-decoration:none}@media(max-width:850px){.home-industry-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:540px){.home-industry-grid{grid-template-columns:1fr}.home-industry-image{height:250px}.home-official-actions a{width:100%;text-align:center}}
+
+
+/* Phase 4.9: farm transition pathways on homepage */
+.farm-transition-type{font-size:.75rem;text-transform:uppercase;letter-spacing:.09em;font-weight:700;color:#a6dfba}
+
+.cinema-resource-info{display:flex;align-items:center;justify-content:center;gap:1.5rem;padding:2rem;background:#10211b;color:#fff;min-height:260px}.cinema-resource-info img{max-width:38%;max-height:240px;object-fit:contain;border-radius:10px}.cinema-resource-info div{max-width:450px}.cinema-resource-info p{line-height:1.6;margin:1rem 0 1.5rem}@media(max-width:600px){.cinema-resource-info{flex-direction:column;padding:1rem}.cinema-resource-info img{max-width:80%;max-height:180px}}
+
+/* Phase 4.15: grouped official PDF downloads */
+.official-downloads-extra{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;margin-block:1.25rem 2rem}.official-downloads-extra .secondary-button{max-width:100%;white-space:normal;text-align:center}
+
+
+/* Phase 4.16: refined, space-saving official resource drawer */
+.official-resource-drawer{margin:0 0 clamp(1.7rem,4vw,2.8rem);border:1px solid rgba(255,255,255,.18);border-radius:16px;background:linear-gradient(125deg,rgba(18,37,31,.9),rgba(15,20,20,.94));overflow:hidden;box-shadow:0 14px 38px rgba(0,0,0,.13)}
+.official-resource-toggle{list-style:none;display:flex;align-items:center;gap:clamp(.7rem,2vw,1.2rem);padding:clamp(1rem,2.5vw,1.35rem);cursor:pointer;transition:background .2s ease}
+.official-resource-toggle::-webkit-details-marker{display:none}
+.official-resource-toggle:hover,.official-resource-toggle:focus-visible{background:rgba(255,255,255,.055)}
+.official-resource-toggle:focus-visible{outline:2px solid #ff4688;outline-offset:-3px}
+.official-resource-toggle-icon{flex:0 0 42px;width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:rgba(255,70,136,.12);color:#ff6b9e;font-size:1.35rem}
+.official-resource-toggle-text{display:flex;flex:1;flex-direction:column;gap:.28rem;min-width:0}
+.official-resource-toggle-text small{font-size:.64rem;font-weight:750;letter-spacing:.13em;color:#ff75a4}
+.official-resource-toggle-text strong{font-family:Georgia,serif;font-weight:500;font-size:clamp(1.12rem,2.5vw,1.5rem);line-height:1.2;color:#f7f4f2}
+.official-resource-toggle-text>span{font-size:.79rem;color:rgba(255,255,255,.65);line-height:1.45}
+.official-resource-toggle-action{display:flex;gap:.65rem;align-items:center;white-space:nowrap;color:#ff75a4;font-size:.79rem;font-weight:700}
+.official-resource-chevron{font-size:1.4rem;line-height:1;transition:transform .2s ease}
+.official-resource-drawer[open] .official-resource-chevron{transform:rotate(180deg)}
+.official-resource-panel{padding:clamp(1rem,2.6vw,1.6rem);border-top:1px solid rgba(255,255,255,.12)}
+.official-resource-panel-heading h3{font-size:1.15rem;margin:0 0 .25rem;color:#fff}
+.official-resource-panel-heading p{margin:0 0 1rem;font-size:.86rem;color:rgba(255,255,255,.68)}
+.official-pdf-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem}
+.official-pdf-item{display:flex;align-items:center;gap:.65rem;min-width:0;padding:.85rem;border:1px solid rgba(255,255,255,.13);border-radius:12px;background:rgba(255,255,255,.035);text-decoration:none;color:#fff;transition:border-color .2s,background .2s}
+.official-pdf-item:hover,.official-pdf-item:focus-visible{border-color:#ff4688;background:rgba(255,70,136,.08)}
+.official-pdf-icon{font-size:.62rem;font-weight:800;letter-spacing:.05em;border:1px solid rgba(255,70,136,.5);border-radius:6px;padding:.5rem .38rem;color:#ff75a4}
+.official-pdf-item>span:nth-child(2){min-width:0;flex:1;display:flex;flex-direction:column;gap:.25rem}
+.official-pdf-item strong{font-size:.84rem;line-height:1.3}
+.official-pdf-item small{font-size:.7rem;color:rgba(255,255,255,.62);line-height:1.3}
+.official-pdf-arrow{color:#ff75a4;font-size:1.15rem}
+.official-resource-outreach-heading{margin-top:1.7rem}
+.official-resource-panel .activism-downloads-body{padding:0;background:none;border:0}
+@media(max-width:850px){.official-pdf-grid{grid-template-columns:1fr}}
+@media(max-width:540px){.official-resource-toggle-action{font-size:0;gap:0}.official-resource-chevron{font-size:1.5rem}.official-resource-toggle-icon{flex-basis:36px;width:36px;height:36px}.official-resource-toggle-text>span{font-size:.72rem}}
