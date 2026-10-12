@@ -11,7 +11,7 @@ Vegan](https://raw.githubusercontent.com/michaelsboost/govegan/main/imgs/promo.p
 
 [![Live
 Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://michaelsboost.com/govegan/)
-[![Version](https://img.shields.io/badge/version-2.2.0-ff2b75)](https://github.com/michaelsboost/govegan)
+[![Version](https://img.shields.io/badge/version-2.3.0-ff2b75)](https://github.com/michaelsboost/govegan)
 [![MIT
 License](https://img.shields.io/github/license/michaelsboost/govegan)](LICENSE)
 [![GitHub
@@ -40,6 +40,40 @@ people places to continue learning and take action.
 
 No account is required. The project is free, open source, client-side,
 and designed for desktop and mobile use.
+
+------------------------------------------------------------------------
+
+## 🚨 What's New in 2.3.0
+
+Version 2.3.0 expands the official Go Vegan research downloads with two
+source-linked government-records reference libraries, each offered as both a
+ready-to-share PDF and an editable Word document.
+
+- Added **Slaughterhouse Violations & Government Records**, covering USDA
+  humane-handling enforcement, poultry rules, workplace-safety records,
+  environmental compliance, and methods for checking individual facilities.
+- Added **Government-Funded Hunting & Animal Exploitation**, covering public
+  game-bird releases, recreational fish stocking, wildlife-damage management,
+  and relevant government funding records.
+- Added both documents to the **homepage's official downloads** and the
+  **Resources section**, with PDF and DOCX download options.
+- Updated the bundled **kodeWeave project** to include the same download
+  controls and layout; its document links resolve against the live website
+  once the new files are deployed.
+- Preserved the documentary carousel, locally bundled artwork, lightbox,
+  existing research documents, and previous release history.
+- Updated version metadata and the service-worker cache for **2.3.0**.
+
+**New files:**
+
+- `docs/slaughterhouse-violations-government-evidence-library.pdf`
+- `docs/slaughterhouse-violations-government-evidence-library.docx`
+- `docs/government-funded-hunting-and-stocking-programs.pdf`
+- `docs/government-funded-hunting-and-stocking-programs.docx`
+
+The libraries describe public records and documented agency actions; they
+should not be read as proof that every facility or every hunted animal falls
+under the same circumstances. See each document's source notes and caveats.
 
 ------------------------------------------------------------------------
 

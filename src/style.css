@@ -3686,3 +3686,14 @@ img, svg, video, canvas { max-width: 100%; }
 .resource-native-title{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden;max-width:95%;margin-top:clamp(.5rem,3%,.85rem);font-family:var(--font-display,inherit);font-size:clamp(1rem,2.15vw,1.85rem);font-weight:800;line-height:1.12;letter-spacing:-.035em;color:#fff;overflow-wrap:anywhere;text-wrap:balance}
 .resource-native-rule{display:block;width:17%;min-width:2.25rem;height:clamp(3px,.6vw,5px);margin-top:auto;border-radius:99px;background:var(--resource-accent,#c8df64)}
 @media(max-width:520px){.resource-native-art{padding:1rem}.resource-native-title{font-size:clamp(1.05rem,5vw,1.55rem)}.resource-native-kicker{font-size:.62rem}}
+
+
+/* Government records research downloads — homepage and Resources */
+.research-download-additions{margin:1.5rem 0;display:grid;gap:1rem}
+.research-download-intro{margin:0;color:var(--text-muted,#aaa)}
+.research-download-pair{display:flex;align-items:center;flex-wrap:wrap;gap:.65rem;padding:1rem;border:1px solid rgba(255,255,255,.16);border-radius:12px}
+.research-download-pair>strong{flex:1 1 260px;line-height:1.45}
+.research-download-pair .manifesto-button{font-size:.8rem;padding:.7rem 1rem;white-space:nowrap}
+.official-research-downloads{margin:1rem 0 2rem}
+.official-research-downloads .official-pdf-item{flex:0 1 auto;min-width:145px}
+@media(max-width:560px){.research-download-pair{align-items:stretch}.research-download-pair>strong{flex-basis:100%}.research-download-pair a{flex:1;text-align:center;justify-content:center}}

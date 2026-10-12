@@ -119,3 +119,14 @@
 .official-resource-panel .activism-downloads-body{padding:0;background:none;border:0}
 @media(max-width:850px){.official-pdf-grid{grid-template-columns:1fr}}
 @media(max-width:540px){.official-resource-toggle-action{font-size:0;gap:0}.official-resource-chevron{font-size:1.5rem}.official-resource-toggle-icon{flex-basis:36px;width:36px;height:36px}.official-resource-toggle-text>span{font-size:.72rem}}
+
+
+/* Government records research downloads — homepage and Resources */
+.research-download-additions{margin:1.5rem 0;display:grid;gap:1rem}
+.research-download-intro{margin:0;color:var(--text-muted,#aaa)}
+.research-download-pair{display:flex;align-items:center;flex-wrap:wrap;gap:.65rem;padding:1rem;border:1px solid rgba(255,255,255,.16);border-radius:12px}
+.research-download-pair>strong{flex:1 1 260px;line-height:1.45}
+.research-download-pair .manifesto-button{font-size:.8rem;padding:.7rem 1rem;white-space:nowrap}
+.official-research-downloads{margin:1rem 0 2rem}
+.official-research-downloads .official-pdf-item{flex:0 1 auto;min-width:145px}
+@media(max-width:560px){.research-download-pair{align-items:stretch}.research-download-pair>strong{flex-basis:100%}.research-download-pair a{flex:1;text-align:center;justify-content:center}}
