@@ -3,6 +3,7 @@
   <head>
     <title>Go Vegan — Every Second Counts</title>
     <meta charset="utf-8">
+    <meta name="app-version" content="2.4.0">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, interactive-widget=resizes-content, viewport-fit=cover">
     <meta name="description" content="See the reality of animal exploitation, confront the excuses, and take direct action with trusted vegan resources.">
     <meta name="author" content="Michael Schwartz">
@@ -40,6 +41,7 @@
     <link rel="apple-touch-icon" href="imgs/logo-192x192.png">
     <link rel="stylesheet" href="dist/bundle.css">
     <link rel="stylesheet" href="src/home.css">
+    <link rel="stylesheet" href="src/athletes.css">
     <link rel="stylesheet" href="src/antiuse.css">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js" defer></script>
   </head>
@@ -84,6 +86,7 @@
                   <button type="button" @click="navigate('everyday'); open = false" class="menu-item">🏠 Everyday Products</button>
                   <button type="button" @click="navigate('ingredient-library'); open = false" class="menu-item">🧪 Ingredient Library</button>
                   <button type="button" @click="navigate('nutrition'); open = false" class="menu-item">🥗 Nutrition</button>
+              <button type="button" @click="navigate('athletes'); open = false" class="menu-item">🏆 Vegan Athletes</button>
                   <button type="button" @click="navigate('learn'); open = false" class="menu-item">📖 Learn</button>
                   <button type="button" @click="navigate('impact'); open = false" class="menu-item">🌍 Impact</button>
                   <button type="button" @click="navigate('evidence'); open = false" class="menu-item">🔬 Evidence Library</button>
@@ -219,7 +222,8 @@
               </section>
               <section class="home-official-downloads" aria-labelledby="home-official-title"><span class="manifesto-eyebrow">Official Go Vegan downloads</span><h2 id="home-official-title">Take these resources with you.</h2><p>Download and share the official outreach cards, Scientific Evidence Library, Veganism Debate Master Sheet, and critical-thinking terminology reference.</p><div class="home-official-actions"><a class="manifesto-button manifesto-button-primary" href="docs/activism-cards/vegan-activism-card-landscape-print-ready.pdf" download>Landscape outreach card ↓</a><a class="manifesto-button manifesto-button-secondary" href="docs/activism-cards/vegan-activism-card-portrait-print-ready.pdf" download>Portrait outreach card ↓</a><a class="manifesto-button manifesto-button-secondary" href="docs/psychological_philosophical_terminology_reference.pdf" download>Terminology PDF ↓</a><a class="manifesto-button manifesto-button-secondary" href="docs/scientific-evidence-library.pdf" download>Scientific Evidence Library ↓</a><a class="manifesto-button manifesto-button-secondary" href="docs/veganism_debate_master_sheet.pdf" download>Veganism Debate Master Sheet (one page) ↓</a></div><div class="research-download-additions" aria-label="New government records research downloads"><p class="research-download-intro">Government records and public-source research:</p><div class="research-download-pair"><strong>Slaughterhouse Violations & Government Records</strong><a class="manifesto-button manifesto-button-secondary" href="docs/slaughterhouse-violations-government-evidence-library.pdf" download>PDF ↓</a><a class="manifesto-button manifesto-button-secondary" href="docs/slaughterhouse-violations-government-evidence-library.docx" download>Word ↓</a></div><div class="research-download-pair"><strong>Government-Funded Hunting & Animal Exploitation</strong><a class="manifesto-button manifesto-button-secondary" href="docs/government-funded-hunting-and-stocking-programs.pdf" download>PDF ↓</a><a class="manifesto-button manifesto-button-secondary" href="docs/government-funded-hunting-and-stocking-programs.docx" download>Word ↓</a></div></div><button type="button" class="text-button" @click="navigate('resources')">See ZIP packages and the full resources library →</button></section>
 <!-- Moral baseline -->
-              <section class="home-baseline">
+              <section class="home-athletes-preview" aria-labelledby="home-athletes-title"><div class="home-editorial-heading"><span>Plant-powered performance</span><h2 id="home-athletes-title">The athletes are real. So are their records.</h2><p>Olympic medals, world records and professional bodybuilding—achieved by people who compete on plant-based diets. Check the dates and original sources.</p></div><div class="home-athletes-preview-stat"><div><strong>10</strong><span>documented athlete profiles</span></div><div><strong>7</strong><span>sport categories</span></div><div><strong>100%</strong><span>source-linked achievements</span></div></div><button type="button" class="manifesto-button manifesto-button-primary" @click="showAthletesFor('All')">Explore vegan athletes →</button></section>
+<section class="home-baseline">
                 <div class="home-editorial-heading">
                   <span>The question underneath every excuse</span>
                   <h2>What you call normal is extreme to the animal forced to endure it.</h2>
@@ -1276,7 +1280,64 @@
             </div>
           </div>
     
-          <!-- NUTRITION VIEW -->
+    
+      <!-- ATHLETES VIEW: source-linked performance profiles -->
+      <div x-show="view === 'athletes'" x-transition:enter.duration.300ms>
+        <div class="view view-athletes">
+          <div class="view-container athletes-shell">
+            <div class="athletes-heading">
+              <span class="athletes-eyebrow">Real athletes · Real achievements · Checkable sources</span>
+              <h1 class="view-title">Vegan athletes</h1>
+              <p class="view-subtitle">A growing athlete library covering bodybuilding, calisthenics, weightlifting, cycling, endurance sports, motorsport, skating and more. Every current profile includes a photo, a short achievement summary, and source links so people can verify the claim for themselves.</p>
+              <div class="athletes-takeaway"><strong>What this proves:</strong> Animal products are not a prerequisite for elite performance or muscle growth. <strong>What it does not prove:</strong> Vegan diets automatically make someone stronger, faster or healthier.</div>
+            </div>
+            <div class="athletes-toolbar" role="search" aria-label="Find vegan athletes">
+              <label class="athletes-search-label" for="athletes-search">Search athletes or accomplishments
+                <input id="athletes-search" type="search" class="search-input" x-model.debounce.150ms="athleteQuery" placeholder="Name, sport, record, Olympic gold..." autocomplete="off" />
+              </label>
+              <label class="athletes-search-label" for="athletes-sport">Filter by sport
+                <select id="athletes-sport" x-model="athleteSportFilter" class="athletes-select"><template x-for="sport in athleteSports" :key="sport"><option :value="sport" x-text="sport === 'All' ? 'All sports' : sport"></option></template></select>
+              </label>
+              <button type="button" class="secondary-button athletes-reset" @click="athleteQuery = ''; athleteSportFilter = 'All'" :disabled="!athleteQuery && athleteSportFilter === 'All'">Clear filters</button>
+            </div>
+            <p class="athletes-result-count" role="status" aria-live="polite" x-text="filteredAthletes.length + (filteredAthletes.length === 1 ? ' athlete' : ' athletes') + ' shown'"></p>
+            <div class="athletes-grid">
+              <template x-for="athlete in filteredAthletes" :key="athlete.id">
+                <article class="athlete-card" :id="'athlete-' + athlete.id">
+                  <div class="athlete-photo-wrap">
+                    <div class="athlete-portrait-fallback" aria-hidden="true"><span x-text="athlete.emoji"></span><strong x-text="athlete.name.split(' ').map(name => name.charAt(0)).join('')"></strong></div>
+                    <template x-if="athlete.photo"><img class="athlete-photo" :src="athlete.photo" :alt="'Photograph of ' + athlete.name" loading="lazy" decoding="async" referrerpolicy="no-referrer" @error="if (athlete.photoFallback && $el.src !== athlete.photoFallback) { $el.src = athlete.photoFallback; } else { $el.style.display = 'none'; }" /></template>
+                    <span class="athlete-sport-label" x-text="athlete.sport"></span>
+                  </div>
+                  <div class="athlete-card-body">
+                    <h2 x-text="athlete.name"></h2>
+                    <p class="athlete-headline" x-text="athlete.headline"></p>
+                    <dl class="athlete-facts">
+                      <div><dt>Achievement</dt><dd x-text="athlete.achievement"></dd></div>
+                      <div><dt>Vegan timeline</dt><dd x-text="athlete.diet"></dd></div>
+                    </dl>
+                    <details class="athlete-more">
+                      <summary>See the timeline and evidence <span aria-hidden="true">⌄</span></summary>
+                      <div class="athlete-more-content">
+                        <p><strong>When it happened:</strong> <span x-text="athlete.timing"></span></p>
+                        <p><strong>Important context:</strong> <span x-text="athlete.context"></span></p>
+                        <h3>Verify the record</h3>
+                        <ul><template x-for="source in athlete.sources" :key="source.url"><li><a :href="source.url" target="_blank" rel="noopener noreferrer" x-text="source.label + ' ↗'"></a></li></template></ul>
+                        <p class="athlete-photo-credit" x-show="athlete.photo"><a :href="athlete.photoPage" target="_blank" rel="noopener noreferrer">Photo: <span x-text="athlete.photoAuthor"></span> ↗</a> · <a :href="athlete.photoLicenseUrl" target="_blank" rel="noopener noreferrer" x-text="athlete.photoLicense"></a></p>
+                        <p class="athlete-photo-credit" x-show="!athlete.photo">Portrait not included because a reusable image was not verified.</p>
+                      </div>
+                    </details>
+                  </div>
+                </article>
+              </template>
+            </div>
+            <div x-show="filteredAthletes.length === 0" class="athletes-empty">No athletes match those filters. <button type="button" class="text-button" @click="athleteQuery = ''; athleteSportFilter = 'All'">Show all athletes →</button></div>
+            <aside class="athletes-bottom-note"><h2>Strength needs nutrients, not animal products.</h2><p>Individual success stories show possibility, not causation. Athletes need enough energy, protein, and a complete nutrition plan. Vegan diets require dependable vitamin B12 and appropriate planning just like other diets.</p><div class="athletes-bottom-actions"><button type="button" class="primary-button" @click="navigate('nutrition')">Explore vegan nutrition →</button><button type="button" class="secondary-button" @click="navigate('evidence')">Review the evidence library →</button></div><small>Profiles describe documented diet practices during particular periods, not independently verified current dietary status. Photo credits and claim sources are linked within each card.</small></aside>
+          </div>
+        </div>
+      </div>
+
+      <!-- NUTRITION VIEW -->
           <div x-show="view === 'nutrition'" x-transition:enter.duration.300ms>
             <div class="view view-nutrition">
               <div class="view-container view-container-narrow">
@@ -1715,6 +1776,7 @@
           <button type="button" @click="navigate('everyday'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🏠</span> Everyday</button>
           <button type="button" @click="navigate('ingredient-library'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🧪</span> Ingredients</button>
           <button type="button" @click="navigate('nutrition'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🥗</span> Nutrition</button>
+      <button type="button" @click="navigate('athletes'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🏆</span> Vegan Athletes</button>
           <button type="button" @click="openChecker = true; moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">✅</span> Ingredient Checker</button>
           <button type="button" @click="shareApp(); moreOpen = false" class="tiny-share-menu-item" role="menuitem"><span class="drawer-icon" aria-hidden="true">📤</span> Share Go Vegan</button>
           <a href="https://michaelsboost-store.creator-spring.com/listing/all-life-is-connected-go-veg?product=2405" target="_blank" rel="noopener noreferrer" role="menuitem"><span class="drawer-icon" aria-hidden="true">◆</span> Go Vegan Store</a>

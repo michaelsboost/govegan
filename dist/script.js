@@ -1,3 +1,350 @@
+/* Source-linked vegan athlete profiles. Update dates, evidence, and photo credits together. */
+const VEGAN_ATHLETE_PROFILES = [
+  {
+    "id": "patrik-baboumian",
+    "name": "Patrik Baboumian",
+    "sport": "Strength & bodybuilding",
+    "emoji": "🏋️",
+    "headline": "555.2 kg (1,224 lb) carried over 10 metres",
+    "achievement": "Set a Guinness World Record for the heaviest yoke carry over 10 metres in Toronto on 8 September 2013.",
+    "diet": "Became vegan in 2011 after years as a vegetarian.",
+    "timing": "The record was set after he became vegan.",
+    "context": "A verified feat of elite strength; it does not mean vegan food alone caused the record.",
+    "sources": [
+      {
+        "label": "Guinness World Records — 555.2 kg yoke carry (2013)",
+        "url": "https://www.guinnessworldrecords.com/world-records/110923-heaviest-yoke-carry-travelling-10-m"
+      },
+      {
+        "label": "Guinness — plant-based athletes",
+        "url": "https://www.guinnessworldrecords.com/news/2019/11/the-game-changers-11-record-breaking-plant-based-athletes-601566"
+      }
+    ],
+    "photo": "https://commons.wikimedia.org/wiki/Special:FilePath/Patrik_Baboumian_verkundet_den_Gewinner_in_der_Kategorie_%22Sports%22_(18597469409).jpg?width=640",
+    "photoAuthor": "Webvideopreis Deutschland",
+    "photoLicense": "CC BY 2.0",
+    "photoLicenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "photoPage": "https://commons.wikimedia.org/wiki/File:Patrik_Baboumian_verkundet_den_Gewinner_in_der_Kategorie_%22Sports%22_(18597469409).jpg"
+  },
+  {
+    "id": "nimai-delgado",
+    "name": "Nimai Delgado",
+    "sport": "Strength & bodybuilding",
+    "emoji": "💪",
+    "headline": "IFBB Pro physique competitor who never ate meat",
+    "achievement": "Competed professionally in IFBB Men’s Physique and built his physique without ever eating meat.",
+    "diet": "Raised vegetarian from birth; stopped consuming dairy and became vegan in early 2015.",
+    "timing": "He trained as a vegetarian before 2015 and later competed as a vegan. Do not count his lifelong vegetarian years as vegan years.",
+    "context": "His experience demonstrates substantial muscle development without meat, not that all diets yield identical results.",
+    "sources": [
+      {
+        "label": "Muscle & Fitness — interview and professional career",
+        "url": "https://www.muscleandfitness.com/athletes-celebrities/interviews/how-nimai-delgado-built-championship-physique-meatless-diet/"
+      },
+      {
+        "label": "Interview — vegan transition in early 2015",
+        "url": "https://www.vedgenutrition.com/blogs/healthyhabits/q-a-with-ifbb-pro-nimai-delgado"
+      }
+    ],
+    "photo": "https://i0.wp.com/www.muscleandfitness.com/wp-content/uploads/2018/05/nimai-delgado-1109.jpg?quality=86&strip=all",
+    "photoAuthor": "Per Bernal / Muscle & Fitness",
+    "photoLicense": "Source / copyright details",
+    "photoLicenseUrl": "https://www.muscleandfitness.com/athletes-celebrities/interviews/how-nimai-delgado-built-championship-physique-meatless-diet/",
+    "photoPage": "https://www.muscleandfitness.com/athletes-celebrities/interviews/how-nimai-delgado-built-championship-physique-meatless-diet/"
+  },
+  {
+    "id": "torre-washington",
+    "name": "Torre Washington",
+    "sport": "Strength & bodybuilding",
+    "emoji": "🏆",
+    "headline": "Multiple pro cards in drug-free bodybuilding",
+    "achievement": "Won his class and the overall title in his second contest in 2009, earning a professional card; subsequently earned more pro cards.",
+    "diet": "Vegan since 1998, before beginning competitive bodybuilding.",
+    "timing": "His documented bodybuilding achievements followed his vegan transition.",
+    "context": "Washington describes getting protein from seeds, nuts, legumes and other plant foods.",
+    "sources": [
+      {
+        "label": "Torre Washington — personal biography",
+        "url": "https://www.torrewashington.com/about/"
+      },
+      {
+        "label": "First-person article — Forks Over Knives",
+        "url": "https://www.forksoverknives.com/success-stories/vegan-bodybuilder-plant-based-diet/"
+      }
+    ],
+    "photo": "https://keepfitkingdom.com/wp-content/uploads/2020/04/Torre-Washington-vegan-bodybuilding.jpg",
+    "photoAuthor": "Keep Fit Kingdom (main image); Compassion Over Killing (fallback)",
+    "photoLicense": "Main: publisher-owned; fallback: CC BY 2.0",
+    "photoLicenseUrl": "https://commons.wikimedia.org/wiki/File:Torre_Washington_-_vegan_bodybuilder.jpg",
+    "photoPage": "https://keepfitkingdom.com/vegan-bodybuilding-interview-with-ifbb-pro-torre-washington/",
+    "photoFallback": "https://upload.wikimedia.org/wikipedia/commons/2/28/Torre_Washington_-_vegan_bodybuilder.jpg"
+  },
+  {
+    "id": "frank-medrano",
+    "name": "Frank Medrano",
+    "sport": "Calisthenics",
+    "emoji": "🤸",
+    "headline": "Vegan calisthenics athlete known for advanced bodyweight strength",
+    "achievement": "Built an international following through high-level calisthenics performance, bodyweight strength demonstrations, and coaching content.",
+    "diet": "Forks Over Knives profiled him as vegan after transitioning in adulthood.",
+    "timing": "His best-known calisthenics work and public training career came after the vegan switch.",
+    "context": "Medrano is best understood as a calisthenics and bodyweight-training athlete rather than a conventional bodybuilding competitor.",
+    "sources": [
+      {
+        "label": "Forks Over Knives — Frank Medrano: Powered by Plants",
+        "url": "https://www.forksoverknives.com/success-stories/frank-medrano-powered-by-plants/"
+      },
+      {
+        "label": "Frank Medrano — TRAIN INSANE Calisthenics Workout!!!",
+        "url": "https://www.youtube.com/watch?v=mvJHw64fxgQ"
+      }
+    ],
+    "photo": "https://i.ytimg.com/vi/mvJHw64fxgQ/hqdefault.jpg",
+    "photoAuthor": "Frank Medrano / YouTube thumbnail",
+    "photoLicense": "See source page",
+    "photoLicenseUrl": "https://www.youtube.com/watch?v=mvJHw64fxgQ",
+    "photoPage": "https://www.youtube.com/watch?v=mvJHw64fxgQ"
+  },
+  {
+    "id": "kendrick-farris",
+    "name": "Kendrick Farris",
+    "sport": "Weightlifting",
+    "emoji": "🏋️",
+    "headline": "U.S. record total of 377 kg at the 2016 trials",
+    "achievement": "Three-time U.S. Olympic weightlifter who set a 377 kg American-record total at the May 2016 Olympic Trials.",
+    "diet": "Adopted a vegan diet in 2014.",
+    "timing": "The record total and his Rio 2016 Olympic appearance came after the diet change.",
+    "context": "He had competed at earlier Olympics before going vegan; the 2012 photograph below predates the switch.",
+    "sources": [
+      {
+        "label": "Sports Illustrated — Farris at Rio 2016",
+        "url": "https://www.si.com/olympics/2016/08/12/kendrick-farris-vegan-us-weightlifter-2016-rio-olympics"
+      },
+      {
+        "label": "Men’s Journal — first-person diet interview",
+        "url": "https://www.mensjournal.com/food/vegan-diet-american-olympic-weightlifter-kendrick-farris"
+      }
+    ],
+    "photo": "https://commons.wikimedia.org/wiki/Special:FilePath/Kendrick_Farris_2012.jpg?width=640",
+    "photoAuthor": "David Boffa",
+    "photoLicense": "CC BY 3.0",
+    "photoLicenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "photoPage": "https://commons.wikimedia.org/wiki/File:Kendrick_Farris_2012.jpg"
+  },
+  {
+    "id": "dotsie-bausch",
+    "name": "Dotsie Bausch",
+    "sport": "Cycling",
+    "emoji": "🚴",
+    "headline": "Silver medal — 2012 London Olympics",
+    "achievement": "Won Olympic silver in women’s team pursuit cycling for the United States at London 2012.",
+    "diet": "Was following a vegan diet during her Olympic cycling career.",
+    "timing": "Her 2012 Olympic silver was won while vegan.",
+    "context": "Her broader accomplishments include eight U.S. national titles and two Pan American gold medals.",
+    "sources": [
+      {
+        "label": "Olympedia — London 2012 women’s team pursuit",
+        "url": "https://www.olympedia.org/athletes/126691"
+      },
+      {
+        "label": "Dotsie Bausch — official biography",
+        "url": "https://dotsiebauschusa.com/about/"
+      },
+      {
+        "label": "Guinness — plant-based athletes",
+        "url": "https://www.guinnessworldrecords.com/news/2019/11/the-game-changers-11-record-breaking-plant-based-athletes-601566"
+      }
+    ],
+    "photo": "https://commons.wikimedia.org/wiki/Special:FilePath/Dotsie_Bausch_WCh_2011.jpg?width=640",
+    "photoAuthor": "Nicola (German Wikipedia)",
+    "photoLicense": "CC BY-SA 3.0",
+    "photoLicenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "photoPage": "https://commons.wikimedia.org/wiki/File:Dotsie_Bausch_WCh_2011.jpg"
+  },
+  {
+    "id": "scott-jurek",
+    "name": "Scott Jurek",
+    "sport": "Endurance",
+    "emoji": "🏃",
+    "headline": "7 straight Western States 100-mile victories",
+    "achievement": "Won the Western States 100-mile Endurance Run every year from 1999 through 2005.",
+    "diet": "Longtime plant-based endurance athlete, described as following a 100% plant-based diet.",
+    "timing": "His plant-based eating overlapped his winning ultramarathon career.",
+    "context": "These are race victories, not proof of a dietary performance advantage.",
+    "sources": [
+      {
+        "label": "Scott Jurek — official career achievements",
+        "url": "https://www.scottjurek.com/about-title"
+      },
+      {
+        "label": "Guinness — plant-based athletes",
+        "url": "https://www.guinnessworldrecords.com/news/2019/11/the-game-changers-11-record-breaking-plant-based-athletes-601566"
+      }
+    ],
+    "photo": "https://commons.wikimedia.org/wiki/Special:FilePath/Scott_Jurek.JPG?width=640",
+    "photoAuthor": "SGT David Reardon, U.S. Army",
+    "photoLicense": "U.S. public domain",
+    "photoLicenseUrl": "https://commons.wikimedia.org/wiki/Commons:Public_domain",
+    "photoPage": "https://commons.wikimedia.org/wiki/File:Scott_Jurek.JPG"
+  },
+  {
+    "id": "fiona-oakes",
+    "name": "Fiona Oakes",
+    "sport": "Endurance",
+    "emoji": "🏃",
+    "headline": "Guinness-recognized marathon records across continents",
+    "achievement": "Held Guinness records for aggregate marathon times across all seven continents, including the North Pole, and won the 2013 Antarctic Ice Marathon.",
+    "diet": "A longtime vegan, including during her marathon-record years.",
+    "timing": "Her record-setting marathon career took place while vegan.",
+    "context": "Oakes runs in support of Tower Hill Stables Animal Sanctuary.",
+    "sources": [
+      {
+        "label": "Guinness World Records — Fiona Oakes interview",
+        "url": "https://www.guinnessworldrecords.com/news/2018/3/her-story-how-fiona-oakes-ran-a-marathon-on-every-continent-even-antarctica-519574"
+      },
+      {
+        "label": "Guinness — plant-based athletes",
+        "url": "https://www.guinnessworldrecords.com/news/2019/11/the-game-changers-11-record-breaking-plant-based-athletes-601566"
+      }
+    ],
+    "photo": "https://www.guinnessworldrecords.com/news/2018/3/images/herstory-runner-519572.png",
+    "photoAuthor": "Guinness World Records",
+    "photoLicense": "Source / copyright details",
+    "photoLicenseUrl": "https://www.guinnessworldrecords.com/news/2018/3/her-story-how-fiona-oakes-ran-a-marathon-on-every-continent-even-antarctica-519574",
+    "photoPage": "https://www.guinnessworldrecords.com/news/2018/3/her-story-how-fiona-oakes-ran-a-marathon-on-every-continent-even-antarctica-519574"
+  },
+  {
+    "id": "meagan-duhamel",
+    "name": "Meagan Duhamel",
+    "sport": "Winter sports",
+    "emoji": "⛸️",
+    "headline": "2018 Olympic team gold; two-time pairs world champion",
+    "achievement": "Won team gold and pairs bronze at PyeongChang 2018 with Canada; won World Pairs titles in 2015 and 2016 with Eric Radford.",
+    "diet": "Vegan since 2008, according to the Canadian Olympic Committee.",
+    "timing": "All of these listed major medals came after becoming vegan.",
+    "context": "The Olympic gold was in the team competition; the pairs result was bronze, not gold.",
+    "sources": [
+      {
+        "label": "Team Canada — official athlete biography and medals",
+        "url": "https://olympic.ca/team-canada/meagan-duhamel/"
+      },
+      {
+        "label": "International Skating Union — athlete record",
+        "url": "https://isu-skating.com/en/synchronized-skating/skaters/meagan-duhamel-eric-radford/"
+      }
+    ],
+    "photo": "https://commons.wikimedia.org/wiki/Special:FilePath/Meagan_Duhamel_at_2015_Worlds_(crop).jpg?width=640",
+    "photoAuthor": "David W. Carmichael",
+    "photoLicense": "CC BY-SA 3.0",
+    "photoLicenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "photoPage": "https://commons.wikimedia.org/wiki/File:Meagan_Duhamel_at_2015_Worlds_(crop).jpg"
+  },
+  {
+    "id": "morgan-mitchell",
+    "name": "Morgan Mitchell",
+    "sport": "Track & field",
+    "emoji": "🏃",
+    "headline": "Two-time Australian Olympian: Rio and Tokyo",
+    "achievement": "Competed in the 400 m and 4×400 m relay at Rio 2016, and the 800 m at Tokyo 2020.",
+    "diet": "Has publicly discussed veganism during her international athletics career.",
+    "timing": "Vegan athlete coverage overlaps her Olympic career; an exact transition date is not asserted.",
+    "context": "She is a two-time Olympian (2016 and Tokyo 2020, held in 2021), not a three-time Olympian.",
+    "sources": [
+      {
+        "label": "Australian Olympic Committee — official profile",
+        "url": "https://www.olympics.com.au/olympians/morgan-mitchell/"
+      },
+      {
+        "label": "LAIKA — vegan Olympian interview (2021)",
+        "url": "https://laikamagazine.com/vegan-olympian-morgan-mitchell/"
+      }
+    ],
+    "photo": "https://commons.wikimedia.org/wiki/Special:FilePath/Morgan_Mitchell_2014.jpg?width=640",
+    "photoAuthor": "Daniel (Melrose, UK)",
+    "photoLicense": "CC BY 2.0",
+    "photoLicenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "photoPage": "https://commons.wikimedia.org/wiki/File:Morgan_Mitchell_2014.jpg"
+  },
+  {
+    "id": "lewis-hamilton",
+    "name": "Lewis Hamilton",
+    "sport": "Motorsport",
+    "emoji": "🏎️",
+    "headline": "Seven-time Formula 1 world champion",
+    "achievement": "Won seven Formula 1 drivers’ titles in 2008, 2014, 2015, 2017, 2018, 2019 and 2020.",
+    "diet": "Announced a switch to vegan eating during the 2017 Formula 1 season.",
+    "timing": "The 2017–2020 titles followed or overlapped his vegan transition; 2008, 2014 and 2015 came before it.",
+    "context": "A 2017 dietary change cannot explain championships already earned years earlier.",
+    "sources": [
+      {
+        "label": "BBC Sport — Hamilton’s 2017 switch",
+        "url": "https://www.bbc.co.uk/sport/formula1/41416402"
+      },
+      {
+        "label": "Formula 1 — seventh championship in 2020",
+        "url": "https://www.formula1.com/en/latest/article/must-see-thats-for-all-the-kids-who-dream-the-impossible-the-moment-hamilton.UM0CWpMepPSRs00YMwdiu"
+      }
+    ],
+    "photo": "https://commons.wikimedia.org/wiki/Special:FilePath/Lewis_Hamilton,_2019_Canadian_Grand_Prix_(cropped).jpg?width=640",
+    "photoAuthor": "Steve Melnyk",
+    "photoLicense": "CC BY 2.0",
+    "photoLicenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "photoPage": "https://commons.wikimedia.org/wiki/File:Lewis_Hamilton,_2019_Canadian_Grand_Prix_(cropped).jpg"
+  },
+  {
+    "id": "carl-lewis",
+    "name": "Carl Lewis",
+    "sport": "Track & field",
+    "emoji": "🥇",
+    "headline": "Nine Olympic gold medals and one of the greatest all-around track careers ever",
+    "achievement": "Won nine Olympic gold medals and dominated the sprints and long jump across four Olympic Games.",
+    "diet": "Has said he adopted a vegan diet in 1990 and credited it with helping produce one of the best seasons of his career.",
+    "timing": "Much of his legendary career began before going vegan, but his celebrated 1991 season followed the change.",
+    "context": "A photo of Carl Lewis long-jumping at the 1984 Olympic trials, before he adopted vegan eating in 1990. His best-known career results span both periods.",
+    "sources": [
+      {
+        "label": "Carl Lewis — official biography",
+        "url": "https://carllewis.com/about-carl-lewis/"
+      },
+      {
+        "label": "PETA — Carl Lewis on vegan eating",
+        "url": "https://www.peta.org/features/carl-lewis-vegan/"
+      }
+    ],
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Carl_Lewis_mid-leap_at_the_1984_U.S._Olympic_trials.jpg/960px-Carl_Lewis_mid-leap_at_the_1984_U.S._Olympic_trials.jpg",
+    "photoAuthor": "Joe Kennedy / Los Angeles Times Photographic Collection, UCLA",
+    "photoLicense": "CC BY 4.0",
+    "photoLicenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "photoPage": "https://commons.wikimedia.org/wiki/File:Carl_Lewis_mid-leap_at_the_1984_U.S._Olympic_trials.jpg"
+  },
+  {
+    "id": "ed-templeton",
+    "name": "Ed Templeton",
+    "sport": "Skateboarding",
+    "emoji": "🛹",
+    "headline": "Pro skateboarder, Toy Machine founder, and longtime vegan",
+    "achievement": "Turned professional in 1990, founded Toy Machine in 1993, and became one of the most recognizable skateboarders of his era.",
+    "diet": "Templeton has said he and his wife became vegan in 1991.",
+    "timing": "He has said the skateboarding people have seen from him since 1991 has been done as a vegan.",
+    "context": "Templeton is known both for professional skateboarding and for later work as an artist and photographer.",
+    "sources": [
+      {
+        "label": "Wikipedia — Ed Templeton",
+        "url": "https://en.wikipedia.org/wiki/Ed_Templeton"
+      },
+      {
+        "label": "Vegan Skate Blog — Ed Templeton interview pt. 2",
+        "url": "https://veganskateblog.com/interview/ed-templeton-interview-pt-2"
+      }
+    ],
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/3/32/Ed_Templeton.jpg",
+    "photoAuthor": "gigi murru",
+    "photoLicense": "CC BY-SA 2.0",
+    "photoLicenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "photoPage": "https://commons.wikimedia.org/wiki/File:Ed_Templeton.jpg"
+  }
+];
+
 document.addEventListener('alpine:init', function() {
   Alpine.data('goVeganApp', function() {
     return {
@@ -14,6 +361,8 @@ document.addEventListener('alpine:init', function() {
       activeFilters: [],
       recipeQuery: '',
       recipeFilters: [],
+      athleteQuery: '',
+      athleteSportFilter: 'All',
       resourceQuery: '',
       resourceCategory: 'All',
       resourceCardSize: 'large',
@@ -232,6 +581,7 @@ document.addEventListener('alpine:init', function() {
         { id: 'explore', label: 'Explore' },
         { id: 'learn', label: 'Learn' },
         { id: 'impact', label: 'Impact' },
+        { id: 'athletes', label: 'Athletes' },
         { id: 'resources', label: 'Resources' }
       ],
 
@@ -251,6 +601,7 @@ document.addEventListener('alpine:init', function() {
       nutrients: [],
       learnArticles: [],
       resources: [],
+      athletes: VEGAN_ATHLETE_PROFILES,
       sources: [],
       transitionPaths: [],
       transitionTasksByPath: {},
@@ -258,12 +609,13 @@ document.addEventListener('alpine:init', function() {
       // ---- Computed Getters ----
       get groupedSearchResults() {
         const results = this.globalSearchResults;
-        const groups = { 'Animals': [], 'Products': [], 'Ingredients': [], 'Everyday Items': [], 'Learn': [], 'Resources': [] };
+        const groups = { 'Animals': [], 'Products': [], 'Ingredients': [], 'Everyday Items': [], 'Athletes': [], 'Learn': [], 'Resources': [] };
         results.forEach(item => {
           if (item._type === 'animal') groups['Animals'].push(item);
           else if (item._type === 'product') groups['Products'].push(item);
           else if (item._type === 'ingredient') groups['Ingredients'].push(item);
           else if (item._type === 'everyday') groups['Everyday Items'].push(item);
+          else if (item._type === 'athlete') groups['Athletes'].push(item);
           else if (item._type === 'learn') groups['Learn'].push(item);
           else if (item._type === 'resource') groups['Resources'].push(item);
         });
@@ -300,6 +652,26 @@ document.addEventListener('alpine:init', function() {
         if (this.activeFilters.includes('tree-nut-free')) items = items.filter(p => p.dietaryTags && p.dietaryTags.includes('tree-nut-free'));
 
         return items;
+      },
+
+      get athleteSports() {
+        return ['All', ...new Set(this.athletes.map(athlete => athlete.sport))];
+      },
+      get filteredAthletes() {
+        const q = this.normalizeSearchQuery(this.athleteQuery);
+        return this.athletes.filter(athlete => {
+          if (this.athleteSportFilter !== 'All' && athlete.sport !== this.athleteSportFilter) return false;
+          if (!q) return true;
+          return this.normalizeSearchQuery([
+            athlete.name, athlete.sport, athlete.headline, athlete.achievement,
+            athlete.diet, athlete.timing, athlete.context
+          ].join(' ')).includes(q);
+        });
+      },
+      showAthletesFor(sport) {
+        this.athleteSportFilter = sport || 'All';
+        this.athleteQuery = '';
+        this.navigate('athletes');
       },
 
       get resourceCategories() {
@@ -693,7 +1065,7 @@ document.addEventListener('alpine:init', function() {
 
       // ---- Navigation ----
       validViewIds() {
-        return ['home', 'explore', 'learn', 'impact', 'resources', 'evidence', 'normalization', 'animals', 'everyday', 'ingredient-library', 'nutrition', 'about'];
+        return ['home', 'explore', 'learn', 'impact', 'athletes', 'resources', 'evidence', 'normalization', 'animals', 'everyday', 'ingredient-library', 'nutrition', 'about'];
       },
 
       makeHistoryState(extra = {}) {
@@ -917,6 +1289,13 @@ document.addEventListener('alpine:init', function() {
           }
         });
 
+        this.athletes.forEach(athlete => {
+          const searchable = [athlete.name, athlete.sport, athlete.headline, athlete.achievement, athlete.diet].join(' ');
+          if (this.normalizeSearchQuery(searchable).includes(q)) {
+            results.push({ ...athlete, _type: 'athlete', displayName: athlete.name, emoji: athlete.emoji });
+          }
+        });
+
         this.learnArticles.forEach(l => {
           if ((l.title && this.normalizeSearchQuery(l.title).includes(q)) ||
               (l.content && this.normalizeSearchQuery(l.content).includes(q))) {
@@ -969,6 +1348,10 @@ document.addEventListener('alpine:init', function() {
           }
           this.navigate('everyday');
           this.showToast('Showing: ' + (item.displayName || item.name));
+        } else if (item._type === 'athlete') {
+          this.athleteSportFilter = 'All';
+          this.athleteQuery = item.name;
+          this.navigate('athletes');
         } else if (item._type === 'learn') {
           this.navigate('learn');
           this.expandLearnArticle(item.id);

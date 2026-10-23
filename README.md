@@ -11,7 +11,7 @@ Vegan](https://raw.githubusercontent.com/michaelsboost/govegan/main/imgs/promo.p
 
 [![Live
 Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://michaelsboost.com/govegan/)
-[![Version](https://img.shields.io/badge/version-2.3.0-ff2b75)](https://github.com/michaelsboost/govegan)
+[![Version](https://img.shields.io/badge/version-2.4.0-ff2b75)](https://github.com/michaelsboost/govegan)
 [![MIT
 License](https://img.shields.io/github/license/michaelsboost/govegan)](LICENSE)
 [![GitHub
@@ -42,6 +42,21 @@ No account is required. The project is free, open source, client-side,
 and designed for desktop and mobile use.
 
 ------------------------------------------------------------------------
+
+## 🚨 What's New in 2.4.0
+
+- Added a searchable **Vegan Athletes** section featuring **13 profiles** across strength/bodybuilding, calisthenics, weightlifting, cycling, endurance, figure skating, track and field, motorsport, and skateboarding.
+- Included profiles for **Frank Medrano, Torre Washington, Nimai Delgado, Fiona Oakes, Carl Lewis, Ed Templeton**, and others, with athlete achievements, vegan diet timelines, and source links.
+- Added sport filters, responsive athlete cards, a homepage feature, navigation, and unified search indexing.
+- All **13 athlete profile photos** now use direct `https://` image links in both the website and kodeWeave project—no athlete photos are embedded as Base64 data URLs. The Torre Washington profile includes an alternate Wikimedia Commons URL if the preferred competition photograph is blocked. Images require internet access; third-party hosts may change or restrict hotlinking.
+- Maintained factual distinctions about athletic achievements that occurred before and after athletes adopted vegan diets.
+- Synchronized the source, deployed JavaScript, kodeWeave file, package version, and PWA cache under **release 2.4.0**.
+
+Open the section at `#/athletes`. The athlete data lives near the start of `src/script.js` and is mirrored in `dist/script.js`. Page structure and styling are in `src/source.html` and `src/athletes.css`.
+
+**Photo note:** Linked photos remain hosted by their owners, and third-party servers can restrict hotlinks. Photo credits and license or publisher-source links are listed on athlete cards. Linking does not automatically grant permission for commercial reuse, especially for publisher-owned photographs.
+
+---
 
 ## 🚨 What's New in 2.3.0
 
