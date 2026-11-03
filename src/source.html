@@ -1,4 +1,4 @@
-<!-- Go Vegan release: v2.4.0 -->
+<!-- Go Vegan release: v2.5.0 -->
 <!-- ============================================================
 SKIP LINK
 ============================================================ -->
@@ -7,7 +7,7 @@ SKIP LINK
 <!-- ============================================================
 ALPINE APP
 ============================================================ -->
-<div x-data="goVeganApp()" x-init="initApp()" id="app" x-cloak>
+<div x-data="goVeganApp()" x-init="initApp()" @go-vegan-calendar-open.window="navigate('calendar')" id="app" x-cloak>
 
   <!-- Toast -->
   <div class="toast-container" x-show="toast.message" x-transition.duration.300ms>
@@ -45,6 +45,7 @@ ALPINE APP
               <button type="button" @click="navigate('evidence'); open = false" class="menu-item">🔬 Evidence Library</button>
               <button type="button" @click="navigate('normalization'); open = false" class="menu-item">🧭 When Harm Becomes Normal</button>
               <button type="button" @click="navigate('resources'); open = false" class="menu-item">🔗 Resources</button>
+              <button type="button" @click="navigate('calendar'); open = false" class="menu-item">📅 Advocacy Calendar</button>
               <a href="https://michaelsboost.com/donate" target="_blank" rel="noopener noreferrer" class="menu-item mx-5">♥ Donate</a>
               <a href="https://michaelsboost.github.io/Zerra" target="_blank" rel="noopener noreferrer" class="menu-item mx-5">🌎 Explore Zerra</a>
               <a href="https://michaelsboost.com/Urban-Forager/" target="_blank" rel="noopener noreferrer" class="menu-item mx-5">🌿 Explore Urban Forager</a>
@@ -138,6 +139,21 @@ ALPINE APP
         </div>
       </section>
 
+      <!-- Context-aware advocacy note: today, this month, or the next upcoming date. -->
+      <section id="home-advocacy-spotlight" class="home-advocacy-spotlight" aria-labelledby="home-advocacy-title" hidden>
+        <div class="home-advocacy-inner">
+          <span class="home-advocacy-icon" aria-hidden="true">🌱</span>
+          <div class="home-advocacy-copy">
+            <span id="home-advocacy-kicker" class="home-advocacy-kicker">Today in advocacy</span>
+            <h2 id="home-advocacy-title" class="home-advocacy-title"></h2>
+            <p id="home-advocacy-description" class="home-advocacy-description"></p>
+            <small id="home-advocacy-extra" class="home-advocacy-extra"></small>
+          </div>
+          <a id="home-advocacy-link" class="home-advocacy-link" href="#/calendar">View in calendar <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+
+
       <section class="home-cinema" aria-labelledby="home-cinema-title">
         <div class="cinema-heading"><span class="manifesto-eyebrow">Essential viewing</span><h2 id="home-cinema-title">Watch. Then decide.</h2></div>
         <div class="cinema-stage">
@@ -147,6 +163,9 @@ ALPINE APP
         <div class="cinema-controls"><button type="button" class="cinema-arrow" @click="shiftHomeVideo(-1)" aria-label="Previous video">←</button><template x-for="(video, index) in homeVideos" :key="video.title"><button type="button" class="cinema-tab" :class="{'active': homeVideoIndex === index}" @click="openHomeVideo(index)" x-text="video.title"></button></template><button type="button" class="cinema-arrow" @click="shiftHomeVideo(1)" aria-label="Next video">→</button></div>
         <div class="cinema-thumbnails"><template x-for="(video, index) in homeVideos" :key="'thumb-' + video.title"><button type="button" :class="{'active': homeVideoIndex === index}" @click="openHomeVideo(index)" :aria-label="'Select ' + video.title"><img :src="video.thumbnail" :alt="video.title" loading="lazy" decoding="async"></button></template></div>
       </section>
+
+
+
               <section class="home-official-downloads" aria-labelledby="home-official-title"><span class="manifesto-eyebrow">Official Go Vegan downloads</span><h2 id="home-official-title">Take these resources with you.</h2><p>Download and share the official outreach cards, Scientific Evidence Library, Veganism Debate Master Sheet, and critical-thinking terminology reference.</p><div class="home-official-actions"><a class="manifesto-button manifesto-button-primary" href="docs/activism-cards/vegan-activism-card-landscape-print-ready.pdf" download>Landscape outreach card ↓</a><a class="manifesto-button manifesto-button-secondary" href="docs/activism-cards/vegan-activism-card-portrait-print-ready.pdf" download>Portrait outreach card ↓</a><a class="manifesto-button manifesto-button-secondary" href="docs/psychological_philosophical_terminology_reference.pdf" download>Terminology PDF ↓</a><a class="manifesto-button manifesto-button-secondary" href="docs/scientific-evidence-library.pdf" download>Scientific Evidence Library ↓</a><a class="manifesto-button manifesto-button-secondary" href="docs/veganism_debate_master_sheet.pdf" download>Veganism Debate Master Sheet (one page) ↓</a></div><div class="research-download-additions" aria-label="New government records research downloads"><p class="research-download-intro">Government records and public-source research:</p><div class="research-download-pair"><strong>Slaughterhouse Violations & Government Records</strong><a class="manifesto-button manifesto-button-secondary" href="docs/slaughterhouse-violations-government-evidence-library.pdf" download>PDF ↓</a><a class="manifesto-button manifesto-button-secondary" href="docs/slaughterhouse-violations-government-evidence-library.docx" download>Word ↓</a></div><div class="research-download-pair"><strong>Government-Funded Hunting & Animal Exploitation</strong><a class="manifesto-button manifesto-button-secondary" href="docs/government-funded-hunting-and-stocking-programs.pdf" download>PDF ↓</a><a class="manifesto-button manifesto-button-secondary" href="docs/government-funded-hunting-and-stocking-programs.docx" download>Word ↓</a></div></div><button type="button" class="text-button" @click="navigate('resources')">See ZIP packages and the full resources library →</button></section>
 <section class="home-athletes-preview" aria-labelledby="home-athletes-title"><div class="home-editorial-heading"><span>Plant-powered performance</span><h2 id="home-athletes-title">The athletes are real. So are their records.</h2><p>Olympic medals, world records and professional bodybuilding—achieved by people who compete on plant-based diets. Check the dates and original sources.</p></div><div class="home-athletes-preview-stat"><div><strong>10</strong><span>documented athlete profiles</span></div><div><strong>7</strong><span>sport categories</span></div><div><strong>100%</strong><span>source-linked achievements</span></div></div><button type="button" class="manifesto-button manifesto-button-primary" @click="showAthletesFor('All')">Explore vegan athletes →</button></section>
 <section class="home-baseline">
@@ -565,6 +584,79 @@ ALPINE APP
           </div>
         </div>
       </div>
+
+
+          <!-- ADVOCACY CALENDAR VIEW — uses the same app shell as Learn, Impact and Resources -->
+          <div x-show="view === 'calendar'" x-transition:enter.duration.300ms>
+            <div class="view view-calendar" id="advocacy-calendar">
+              <div class="view-container">
+                <header class="advcal-page-header">
+                  <div>
+                    <h2 class="view-title">Advocacy Calendar</h2>
+                    <p class="view-subtitle">Explore vegan holidays, animal rights campaigns, and related awareness days throughout the year.</p>
+                  </div>
+                  <div class="advcal-page-actions">
+                    <button type="button" class="secondary-button" id="export-ics">↓ Export dates</button>
+                  </div>
+                </header>
+                <p class="advcal-export-status" id="export-status" role="status" aria-live="polite"></p>
+                <!-- Current local date takes priority over the full calendar. -->
+                <section class="advcal-feature" id="advcal-feature" aria-labelledby="advcal-feature-title">
+                  <div class="advcal-feature-topline">
+                    <span id="advcal-feature-kicker" class="advcal-feature-kicker">Today in advocacy</span>
+                    <span id="advcal-feature-date" class="advcal-feature-date"></span>
+                  </div>
+                  <h3 id="advcal-feature-title" class="advcal-feature-title"></h3>
+                  <p id="advcal-feature-description" class="advcal-feature-description"></p>
+                  <div class="advcal-feature-footer">
+                    <span id="advcal-feature-context" class="advcal-feature-context"></span>
+                    <button type="button" id="advcal-feature-action" class="secondary-button">See observance →</button>
+                  </div>
+                </section>
+                <!-- Real month-at-a-glance calendar, separate from the searchable observance directory. -->
+                <section class="advcal-month-view" aria-labelledby="advcal-grid-heading">
+                  <header class="advcal-month-header">
+                    <div class="advcal-month-heading-copy">
+                      <span class="advcal-month-kicker">Explore the calendar</span>
+                      <h3 id="advcal-grid-heading"></h3>
+                      <p>Choose a day to see its observances and advocacy resources.</p>
+                    </div>
+                    <div class="advcal-month-nav" aria-label="Browse calendar months">
+                      <button id="advcal-grid-prev" type="button" class="secondary-button" aria-label="Previous month">‹</button>
+                      <button id="advcal-grid-today" type="button" class="secondary-button">Today</button>
+                      <button id="advcal-grid-next" type="button" class="secondary-button" aria-label="Next month">›</button>
+                    </div>
+                  </header>
+                  <div id="advcal-month-campaigns" class="advcal-month-campaigns" hidden></div>
+                  <div class="advcal-weekday-row" aria-hidden="true"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
+                  <div id="advcal-day-grid" class="advcal-day-grid" role="group" aria-label="Days of the selected month"></div>
+                  <div class="advcal-calendar-legend" aria-label="Calendar legend"><span><i class="advcal-legend-dot" aria-hidden="true"></i> Observance</span><span><i class="advcal-legend-today" aria-hidden="true"></i> Today</span><span>Tap a date for details</span></div>
+                  <div id="advcal-day-details" class="advcal-day-details" aria-live="polite" hidden>
+                    <div class="advcal-day-details-heading"><div><span class="advcal-month-kicker">Selected day</span><h4 id="advcal-day-title"></h4></div><span id="advcal-day-count"></span></div>
+                    <p id="advcal-day-empty" class="advcal-day-empty" hidden></p>
+                    <div id="advcal-day-events" class="card-grid"></div>
+                  </div>
+                </section>
+                <section class="advcal-upcoming" aria-labelledby="advcal-upcoming-title">
+                  <div class="advcal-section-intro"><h3 id="advcal-upcoming-title">Coming up</h3><span>Dates worth sharing</span></div>
+                  <div id="coming-up" class="advcal-upcoming-grid"></div>
+                </section>
+                <section class="advcal-filter-panel" aria-label="Filter advocacy calendar">
+                  <div class="advcal-filter-header"><h3>Explore observances</h3><div class="advcal-year" aria-label="Select year"><button type="button" id="prev-year" class="secondary-button" aria-label="Previous year">‹</button><strong id="year-value"></strong><button type="button" id="next-year" class="secondary-button" aria-label="Next year">›</button></div></div>
+                  <div class="advcal-filter-row">
+                    <label class="advcal-field advcal-search"><span>Search</span><input id="search" type="search" placeholder="Search days, animals, topics…" autocomplete="off"></label>
+                    <label class="advcal-field"><span>Category</span><select id="category"></select></label>
+                    <button type="button" id="focus-toggle" class="secondary-button" aria-pressed="false">🌱 Vegan &amp; rights only</button>
+                  </div>
+                  <nav id="month-picker" class="advcal-month-picker" aria-label="Choose a month"></nav>
+                  <p id="status" class="advcal-results" aria-live="polite"></p>
+                </section>
+                <div id="month-groups" class="advcal-month-groups"></div>
+                <p id="no-results" class="advcal-empty" hidden>No observances match your search. Try a different month or category.</p>
+                <p class="advcal-disclaimer">Not every awareness day is a vegan holiday. Categories distinguish direct vegan and animal-rights observances from related animal welfare and environmental awareness. Organizer-set dates may change; check the source before planning an event.</p>
+              </div>
+            </div>
+          </div>
 
       <!-- IMPACT VIEW -->
       <div x-show="view === 'impact'" x-transition:enter.duration.300ms>
@@ -1607,6 +1699,7 @@ ALPINE APP
       <button type="button" @click="navigate('evidence'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🔬</span> Evidence Library</button>
       <button type="button" @click="navigate('normalization'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🧭</span> When Harm Becomes Normal</button>
       <button type="button" @click="navigate('resources'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🔗</span> Resources</button>
+      <button type="button" @click="navigate('calendar'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">📅</span> Advocacy Calendar</button>
       <button type="button" @click="navigate('animals'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🐄</span> Animals</button>
       <button type="button" @click="navigate('everyday'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🏠</span> Everyday</button>
       <button type="button" @click="navigate('ingredient-library'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🧪</span> Ingredients</button>

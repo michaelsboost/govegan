@@ -92,3 +92,17 @@
 .official-resource-panel .activism-downloads-body{padding:0;background:none;border:0}
 @media(max-width:850px){.official-pdf-grid{grid-template-columns:1fr}}
 @media(max-width:540px){.official-resource-toggle-action{font-size:0;gap:0}.official-resource-chevron{font-size:1.5rem}.official-resource-toggle-icon{flex-basis:36px;width:36px;height:36px}.official-resource-toggle-text>span{font-size:.72rem}}
+
+/* Compact contextual advocacy prompt: same dark editorial palette as the homepage. */
+.home-advocacy-spotlight{background:#090d0b;color:#f7f2e8;border-top:1px solid rgba(233,130,105,.25);border-bottom:1px solid rgba(233,130,105,.25)}
+.home-advocacy-spotlight[hidden]{display:none!important}
+.home-advocacy-inner{max-width:1280px;margin:auto;padding:1.4rem 1.25rem;display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap}
+.home-advocacy-icon{font-size:1.7rem;flex:none;border:1px solid rgba(233,130,105,.35);padding:.6rem;line-height:1.3}
+.home-advocacy-copy{flex:1 1 320px;min-width:0}
+.home-advocacy-kicker{color:#e98269;display:block;font-size:.69rem;letter-spacing:.13em;font-weight:850;text-transform:uppercase;margin-bottom:.35rem}
+.view-home .home-advocacy-title{color:#f7f2e8;font-family:var(--font-display);font-size:clamp(1.2rem,2.4vw,1.9rem);letter-spacing:-.025em;margin:0 0 .3rem}
+.home-advocacy-description{color:#b8c4b8;margin:0;font-size:.85rem;line-height:1.5;max-width:70ch}
+.home-advocacy-extra{display:block;color:#9aa69e;font-size:.72rem;margin-top:.5rem}
+.home-advocacy-link{align-items:center;border:1px solid rgba(247,242,232,.35);color:#f7f2e8;display:inline-flex;gap:.5rem;min-height:44px;padding:.8rem 1rem;text-decoration:none;font-weight:850;font-size:.73rem;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.home-advocacy-link:hover{border-color:#e98269;color:#e98269}
+@media(max-width:680px){.home-advocacy-inner{padding:1.25rem;gap:.8rem}.home-advocacy-icon{display:none}.home-advocacy-link{width:100%;justify-content:center}}

@@ -1065,7 +1065,7 @@ document.addEventListener('alpine:init', function() {
 
       // ---- Navigation ----
       validViewIds() {
-        return ['home', 'explore', 'learn', 'impact', 'athletes', 'resources', 'evidence', 'normalization', 'animals', 'everyday', 'ingredient-library', 'nutrition', 'about'];
+        return ['home', 'explore', 'learn', 'impact', 'athletes', 'resources', 'evidence', 'normalization', 'animals', 'everyday', 'ingredient-library', 'nutrition', 'about', 'calendar'];
       },
 
       makeHistoryState(extra = {}) {

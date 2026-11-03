@@ -1,6 +1,6 @@
 {
   "name": "govegan",
-  "version": "2.1.0",
+  "version": "2.5.0",
   "type": "module",
   "scripts": {
     "build:css": "postcss src/bundle.css -o dist/bundle.css",

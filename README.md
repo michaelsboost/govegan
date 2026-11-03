@@ -11,7 +11,7 @@ Vegan](https://raw.githubusercontent.com/michaelsboost/govegan/main/imgs/promo.p
 
 [![Live
 Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://michaelsboost.com/govegan/)
-[![Version](https://img.shields.io/badge/version-2.4.0-ff2b75)](https://github.com/michaelsboost/govegan)
+[![Version](https://img.shields.io/badge/version-2.5.0-ff2b75)](https://github.com/michaelsboost/govegan)
 [![MIT
 License](https://img.shields.io/github/license/michaelsboost/govegan)](LICENSE)
 [![GitHub
@@ -40,6 +40,38 @@ people places to continue learning and take action.
 
 No account is required. The project is free, open source, client-side,
 and designed for desktop and mobile use.
+
+------------------------------------------------------------------------
+
+## 🚀 What's New in 2.5.0 — Advocacy Calendar
+
+Go Vegan now includes a **12-month Advocacy Calendar** as a native app page at
+`#/calendar`, featuring **117 source-linked observances**. The observances are
+categorized so veganism-specific days can be distinguished from broader animal,
+plant-based, and environmental awareness campaigns.
+
+- **Today's observance** appears prominently at the top of the calendar. On
+  days without a listed daily holiday, it shows an active monthly campaign or
+  the next upcoming observance instead.
+- A **real month-view calendar** shows Sunday–Saturday date cells, previous/next
+  navigation, a Today shortcut, marked dates, and details when dates are selected.
+  Month-long campaigns appear above the grid, rather than in every date cell.
+- The **homepage advocacy spotlight** appears directly below the main hero and
+  highlights what's relevant to the visitor's current local date.
+- Search, category and month filters, source links, educational discussion
+  prompts, and `.ics` calendar export support advocacy planning.
+- The calendar uses Go Vegan's existing **header, navigation, typography,
+  components, and light/dark theme** on desktop and mobile. The kodeWeave
+  snapshot is synchronized.
+- The app version and service-worker cache were updated to **2.5.0**.
+
+Open **Advocacy Calendar** through the desktop or mobile **More** menu, or visit
+`#/calendar`. No accounts, external APIs, or new runtime dependencies are needed.
+
+**Calendar data:** `calendar/holidays.json`, with date rules in
+`calendar/date-utils.js`. Organizers may change variable-date campaigns; the
+source links and event-specific notes should be checked before public events
+are scheduled.
 
 ------------------------------------------------------------------------
 

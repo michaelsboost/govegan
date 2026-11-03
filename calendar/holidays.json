@@ -1,0 +1,2139 @@
+{
+  "title": "Go Vegan — 12-Month Advocacy Calendar",
+  "version": "1.0.0",
+  "reviewed": "2026-11-01",
+  "note": "Curated international and regional observances. Not a definitive list of every unofficial observance; categories distinguish vegan/animal rights from related wildlife or environmental days. Campaign dates may change; verify before scheduling public actions.",
+  "categories": {
+    "vegan": "Veganism",
+    "animal-rights": "Animal rights",
+    "plant-based": "Plant-based & vegetarian",
+    "animal-awareness": "Animal awareness",
+    "environment": "Environment & food systems"
+  },
+  "observances": [
+    {
+      "id": "veganuary",
+      "title": "Veganuary",
+      "category": "vegan",
+      "description": "A January campaign inviting people to try vegan eating and explore the reasons for living vegan.",
+      "advocacyPrompt": "What would help you begin living vegan this January?",
+      "rule": {
+        "type": "month",
+        "month": 1
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://veganuary.com/"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "national-bird-day-us",
+      "title": "National Bird Day (US)",
+      "category": "animal-awareness",
+      "description": "Highlights the lives and protection of birds, including those kept in captivity.",
+      "advocacyPrompt": "Why do birds deserve room to fly and express natural behaviors?",
+      "rule": {
+        "type": "fixed",
+        "month": 1,
+        "day": 5
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "United States",
+      "notice": ""
+    },
+    {
+      "id": "international-zebra-day",
+      "title": "International Zebra Day",
+      "category": "animal-awareness",
+      "description": "Spotlights zebra species and their protection in the wild.",
+      "advocacyPrompt": "What threatens free-living zebras and their habitats?",
+      "rule": {
+        "type": "fixed",
+        "month": 1,
+        "day": 31
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "vegan-cuisine-month",
+      "title": "Vegan Cuisine Month",
+      "category": "vegan",
+      "description": "An American Vegan Society initiative celebrating vegan cooking and access to vegan meals.",
+      "advocacyPrompt": "What is one favorite meal you could prepare entirely without animal products?",
+      "rule": {
+        "type": "month",
+        "month": 2
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://americanvegan.org/vegan-cuisine-month/"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-pangolin-day",
+      "title": "World Pangolin Day",
+      "category": "animal-awareness",
+      "description": "Draws attention to pangolins and pressures from trafficking and habitat loss.",
+      "advocacyPrompt": "Why are pangolins trafficked and what alternatives exist?",
+      "rule": {
+        "type": "nthWeekday",
+        "month": 2,
+        "weekday": 6,
+        "nth": 3
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-whale-day",
+      "title": "World Whale Day",
+      "category": "animal-awareness",
+      "description": "Highlights whales and threats to their lives and ocean habitats.",
+      "advocacyPrompt": "How do ship strikes, hunting, and noise affect whales?",
+      "rule": {
+        "type": "nthWeekday",
+        "month": 2,
+        "weekday": 0,
+        "nth": 3
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-wetlands-day",
+      "title": "World Wetlands Day",
+      "category": "environment",
+      "description": "Recognizes wetland ecosystems and the wildlife that depend on them.",
+      "advocacyPrompt": "How do wetlands support nonhuman lives?",
+      "rule": {
+        "type": "fixed",
+        "month": 2,
+        "day": 2
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.un.org/en/observances/world-wetlands-day"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-bonobo-day",
+      "title": "World Bonobo Day",
+      "category": "animal-awareness",
+      "description": "Celebrates bonobos and their social lives while encouraging habitat protection.",
+      "advocacyPrompt": "What can bonobo social relationships teach us about animal individuality?",
+      "rule": {
+        "type": "fixed",
+        "month": 2,
+        "day": 14
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-hippopotamus-day",
+      "title": "World Hippopotamus Day",
+      "category": "animal-awareness",
+      "description": "Highlights hippos and the pressures they face.",
+      "advocacyPrompt": "How does habitat destruction affect hippos?",
+      "rule": {
+        "type": "fixed",
+        "month": 2,
+        "day": 15
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-polar-bear-day",
+      "title": "International Polar Bear Day",
+      "category": "animal-awareness",
+      "description": "Raises awareness of polar bears and habitat loss from Arctic warming.",
+      "advocacyPrompt": "What happens to animals when their habitats rapidly change?",
+      "rule": {
+        "type": "fixed",
+        "month": 2,
+        "day": 27
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "manatee-appreciation-day",
+      "title": "Manatee Appreciation Day",
+      "category": "animal-awareness",
+      "description": "Recognizes manatees and the need to protect waterways.",
+      "advocacyPrompt": "How do boats and water pollution harm manatees?",
+      "rule": {
+        "type": "lastWeekday",
+        "month": 3,
+        "weekday": 3
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-day-for-the-end-of-fishing-and-fish-farming",
+      "title": "World Day for the End of Fishing and Fish Farming",
+      "category": "animal-rights",
+      "description": "An international anti-speciesist day of action calling for an end to exploitation of aquatic animals.",
+      "advocacyPrompt": "Why are fish often left out of conversations about sentience and rights?",
+      "rule": {
+        "type": "organizerDates",
+        "month": 3,
+        "dates": {
+          "2026": "2026-03-28",
+          "2027": "2027-03-27"
+        }
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://end-of-fishing.org/"
+      },
+      "region": "Global",
+      "notice": "Organizer confirmation required each year"
+    },
+    {
+      "id": "world-wildlife-day",
+      "title": "World Wildlife Day",
+      "category": "animal-awareness",
+      "description": "A United Nations observance celebrating wild animals and plants.",
+      "advocacyPrompt": "What does respecting wildlife as individuals look like?",
+      "rule": {
+        "type": "fixed",
+        "month": 3,
+        "day": 3
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.un.org/en/observances/world-wildlife-day"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "buzzards-day",
+      "title": "Buzzards Day",
+      "category": "animal-awareness",
+      "description": "An informal recognition of scavenging birds and their ecological role.",
+      "advocacyPrompt": "Why are scavengers often misunderstood?",
+      "rule": {
+        "type": "fixed",
+        "month": 3,
+        "day": 15
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "national-panda-day",
+      "title": "National Panda Day",
+      "category": "animal-awareness",
+      "description": "Celebrates pandas and their conservation.",
+      "advocacyPrompt": "How does habitat preservation help pandas?",
+      "rule": {
+        "type": "fixed",
+        "month": 3,
+        "day": 16
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "meatout-day",
+      "title": "MeatOut Day",
+      "category": "plant-based",
+      "description": "FARM invites people to try a day without meat and explore plant-based food. Meat-free does not necessarily mean vegan.",
+      "advocacyPrompt": "How might one meat-free day become a commitment not to exploit animals?",
+      "rule": {
+        "type": "fixed",
+        "month": 3,
+        "day": 20
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://farmusa.org/meatout"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-frog-day",
+      "title": "World Frog Day",
+      "category": "animal-awareness",
+      "description": "Draws attention to amphibians and their changing habitats.",
+      "advocacyPrompt": "How can we avoid harming amphibians in everyday life?",
+      "rule": {
+        "type": "fixed",
+        "month": 3,
+        "day": 20
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-sparrow-day",
+      "title": "World Sparrow Day",
+      "category": "animal-awareness",
+      "description": "Highlights sparrows and the challenges of shared urban habitats.",
+      "advocacyPrompt": "How can cities become safer places for birds?",
+      "rule": {
+        "type": "fixed",
+        "month": 3,
+        "day": 20
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-day-of-forests",
+      "title": "International Day of Forests",
+      "category": "environment",
+      "description": "A United Nations observance promoting forest ecosystems.",
+      "advocacyPrompt": "What happens to wildlife when forests are cleared for agriculture?",
+      "rule": {
+        "type": "fixed",
+        "month": 3,
+        "day": 21
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.un.org/en/observances/forests-and-trees-day"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-seal-day",
+      "title": "International Seal Day",
+      "category": "animal-awareness",
+      "description": "Highlights seals and threats from human activity.",
+      "advocacyPrompt": "How do fishing gear and habitat changes affect seals?",
+      "rule": {
+        "type": "fixed",
+        "month": 3,
+        "day": 22
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-water-day",
+      "title": "World Water Day",
+      "category": "environment",
+      "description": "A United Nations observance focused on freshwater and access to water.",
+      "advocacyPrompt": "How does farming affect freshwater availability?",
+      "rule": {
+        "type": "fixed",
+        "month": 3,
+        "day": 22
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.un.org/en/observances/water-day"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-bear-day",
+      "title": "World Bear Day",
+      "category": "animal-awareness",
+      "description": "Raises awareness about bears, their habitats, and human-caused threats.",
+      "advocacyPrompt": "What would peaceful coexistence with bears require?",
+      "rule": {
+        "type": "fixed",
+        "month": 3,
+        "day": 23
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-veterinary-day",
+      "title": "World Veterinary Day",
+      "category": "animal-awareness",
+      "description": "Recognizes veterinary professionals and animal health.",
+      "advocacyPrompt": "How does preventive veterinary care reduce animal suffering?",
+      "rule": {
+        "type": "lastWeekday",
+        "month": 4,
+        "weekday": 6
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-aquatic-animal-day",
+      "title": "World Aquatic Animal Day",
+      "category": "animal-rights",
+      "description": "Raises awareness of aquatic animals, including those exploited in fishing, farming, and research.",
+      "advocacyPrompt": "How should aquatic animal interests shape our choices?",
+      "rule": {
+        "type": "fixed",
+        "month": 4,
+        "day": 3
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://law.lclark.edu/centers/animal_law_studies/world_aquatic_animal_day/"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-civet-day",
+      "title": "World Civet Day",
+      "category": "animal-awareness",
+      "description": "Highlights civets, including threats from wildlife trade and captivity.",
+      "advocacyPrompt": "What ethical issues arise from keeping civets in trade or captivity?",
+      "rule": {
+        "type": "fixed",
+        "month": 4,
+        "day": 4
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-stray-animals-day",
+      "title": "World Stray Animals Day",
+      "category": "animal-awareness",
+      "description": "Encourages attention to abandoned and free-roaming companion animals.",
+      "advocacyPrompt": "What do responsible care and non-breeding solutions look like?",
+      "rule": {
+        "type": "fixed",
+        "month": 4,
+        "day": 4
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-beaver-day",
+      "title": "International Beaver Day",
+      "category": "animal-awareness",
+      "description": "Recognizes beavers as animals and ecosystem engineers.",
+      "advocacyPrompt": "How do beavers shape healthy habitats?",
+      "rule": {
+        "type": "fixed",
+        "month": 4,
+        "day": 7
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "bat-appreciation-day",
+      "title": "Bat Appreciation Day",
+      "category": "animal-awareness",
+      "description": "Highlights bats and their importance to ecosystems.",
+      "advocacyPrompt": "How can we protect bats without harming them?",
+      "rule": {
+        "type": "fixed",
+        "month": 4,
+        "day": 17
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "earth-day",
+      "title": "Earth Day",
+      "category": "environment",
+      "description": "An international environmental action and education day.",
+      "advocacyPrompt": "How does animal agriculture affect land, climate, and biodiversity?",
+      "rule": {
+        "type": "fixed",
+        "month": 4,
+        "day": 22
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.earthday.org/"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-pallas-s-cat-day",
+      "title": "International Pallas's Cat Day",
+      "category": "animal-awareness",
+      "description": "Raises awareness of Pallas’s cats and the threats they face.",
+      "advocacyPrompt": "What is life like for this elusive wild cat?",
+      "rule": {
+        "type": "fixed",
+        "month": 4,
+        "day": 23
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-day-for-laboratory-animals",
+      "title": "World Day for Laboratory Animals",
+      "category": "animal-rights",
+      "description": "An annual day against animal experimentation, recognizing laboratory animals and non-animal alternatives.",
+      "advocacyPrompt": "What valid, modern alternatives to animal experiments exist?",
+      "rule": {
+        "type": "fixed",
+        "month": 4,
+        "day": 24
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://worlddayforlaboratoryanimals.org/"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-penguin-day",
+      "title": "World Penguin Day",
+      "category": "animal-awareness",
+      "description": "Highlights penguins and climate and ocean threats.",
+      "advocacyPrompt": "How are penguins affected by changing ocean ecosystems?",
+      "rule": {
+        "type": "fixed",
+        "month": 4,
+        "day": 25
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-hyena-day",
+      "title": "International Hyena Day",
+      "category": "animal-awareness",
+      "description": "Encourages understanding and protection of hyenas.",
+      "advocacyPrompt": "How do human stereotypes affect hyena protection?",
+      "rule": {
+        "type": "fixed",
+        "month": 4,
+        "day": 27
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-tapir-day",
+      "title": "World Tapir Day",
+      "category": "animal-awareness",
+      "description": "Celebrates tapirs and their forest habitats.",
+      "advocacyPrompt": "Why are tapirs important to forest ecosystems?",
+      "rule": {
+        "type": "fixed",
+        "month": 4,
+        "day": 27
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "no-meat-may",
+      "title": "No Meat May",
+      "category": "plant-based",
+      "description": "A 31-day challenge to avoid meat; its organizer also offers a no-animal-products pledge.",
+      "advocacyPrompt": "Could a meat-free month be an opportunity to explore full veganism?",
+      "rule": {
+        "type": "month",
+        "month": 5
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.nomeatmay.org/about"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "endangered-species-day",
+      "title": "Endangered Species Day",
+      "category": "animal-awareness",
+      "description": "An awareness day highlighting endangered species and conservation.",
+      "advocacyPrompt": "What human activities create extinction pressures?",
+      "rule": {
+        "type": "nthWeekday",
+        "month": 5,
+        "weekday": 5,
+        "nth": 3
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.endangered.org/campaigns/endangered-species-day/"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-migratory-bird-day-may",
+      "title": "World Migratory Bird Day (May)",
+      "category": "animal-awareness",
+      "description": "A global migration and habitat-awareness campaign, also marked in October.",
+      "advocacyPrompt": "How can we support migratory birds through their journeys?",
+      "rule": {
+        "type": "nthWeekday",
+        "month": 5,
+        "weekday": 6,
+        "nth": 2
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.cms.int/campaign/world-migratory-bird-day-wmbd"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-otter-day",
+      "title": "World Otter Day",
+      "category": "animal-awareness",
+      "description": "The International Otter Survival Fund marks this on the last Wednesday in May.",
+      "advocacyPrompt": "How do wildlife trade and habitat destruction affect otters?",
+      "rule": {
+        "type": "lastWeekday",
+        "month": 5,
+        "weekday": 3
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.otter.org/world-otter-day"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-tuna-day",
+      "title": "World Tuna Day",
+      "category": "animal-awareness",
+      "description": "A UN day about tuna; included as a chance to discuss the ethics of fishing, not an endorsement of fisheries.",
+      "advocacyPrompt": "Do tuna interests matter beyond fishing quotas?",
+      "rule": {
+        "type": "fixed",
+        "month": 5,
+        "day": 2
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.un.org/en/observances/tuna-day"
+      },
+      "region": "Global",
+      "notice": "Conservation/fisheries framing is not necessarily vegan"
+    },
+    {
+      "id": "international-leopard-day",
+      "title": "International Leopard Day",
+      "category": "animal-awareness",
+      "description": "Raises awareness of leopard conservation and conflicts with humans.",
+      "advocacyPrompt": "How might coexistence reduce harm to leopards?",
+      "rule": {
+        "type": "fixed",
+        "month": 5,
+        "day": 3
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "wild-koala-day",
+      "title": "Wild Koala Day",
+      "category": "animal-awareness",
+      "description": "Highlights koalas and their habitat needs.",
+      "advocacyPrompt": "How do land clearing and fires affect koalas?",
+      "rule": {
+        "type": "fixed",
+        "month": 5,
+        "day": 3
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "bird-day-us",
+      "title": "Bird Day (US)",
+      "category": "animal-awareness",
+      "description": "A US bird observance, distinct from January National Bird Day.",
+      "advocacyPrompt": "What can people do to protect birds in their area?",
+      "rule": {
+        "type": "fixed",
+        "month": 5,
+        "day": 4
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "United States",
+      "notice": ""
+    },
+    {
+      "id": "world-donkey-day",
+      "title": "World Donkey Day",
+      "category": "animal-awareness",
+      "description": "Celebrates donkeys and draws attention to their use in labor and trade.",
+      "advocacyPrompt": "How are donkeys treated in working-animal industries?",
+      "rule": {
+        "type": "fixed",
+        "month": 5,
+        "day": 8
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-bee-day",
+      "title": "World Bee Day",
+      "category": "animal-awareness",
+      "description": "A UN day recognizing pollinators and their ecological roles.",
+      "advocacyPrompt": "Can we care about bees without treating them as production tools?",
+      "rule": {
+        "type": "fixed",
+        "month": 5,
+        "day": 20
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.un.org/en/observances/bee-day"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-day-for-biological-diversity",
+      "title": "International Day for Biological Diversity",
+      "category": "environment",
+      "description": "A UN day about biological diversity and protection of ecosystems.",
+      "advocacyPrompt": "How do land-use choices affect biodiversity?",
+      "rule": {
+        "type": "fixed",
+        "month": 5,
+        "day": 22
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.un.org/en/observances/biological-diversity-day"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-turtle-day",
+      "title": "World Turtle Day",
+      "category": "animal-awareness",
+      "description": "Raises awareness of turtles and threats to their wellbeing.",
+      "advocacyPrompt": "What risks do turtles face from trade and habitat loss?",
+      "rule": {
+        "type": "fixed",
+        "month": 5,
+        "day": 23
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-parrot-day",
+      "title": "World Parrot Day",
+      "category": "animal-awareness",
+      "description": "Highlights parrots and issues such as the wildlife trade.",
+      "advocacyPrompt": "Why do parrots need more than life in a cage?",
+      "rule": {
+        "type": "fixed",
+        "month": 5,
+        "day": 31
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "national-animal-rights-day",
+      "title": "National Animal Rights Day",
+      "category": "animal-rights",
+      "description": "An international annual commemoration and call for animal rights, held the first Sunday of June.",
+      "advocacyPrompt": "How would society change if all sentient animals had basic rights?",
+      "rule": {
+        "type": "nthWeekday",
+        "month": 6,
+        "weekday": 0,
+        "nth": 1
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://thenard.org/"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-environment-day",
+      "title": "World Environment Day",
+      "category": "environment",
+      "description": "A UN observance raising awareness of environmental protection.",
+      "advocacyPrompt": "How does our food system shape environmental harm?",
+      "rule": {
+        "type": "fixed",
+        "month": 6,
+        "day": 5
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.worldenvironmentday.global/"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-oceans-day",
+      "title": "World Oceans Day",
+      "category": "environment",
+      "description": "Calls attention to oceans and ocean conservation.",
+      "advocacyPrompt": "How do fishing and pollution affect aquatic individuals?",
+      "rule": {
+        "type": "fixed",
+        "month": 6,
+        "day": 8
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://worldoceanday.org/"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-lynx-day",
+      "title": "International Lynx Day",
+      "category": "animal-awareness",
+      "description": "Highlights lynx conservation and peaceful coexistence.",
+      "advocacyPrompt": "How do roads and habitat fragmentation affect lynx?",
+      "rule": {
+        "type": "fixed",
+        "month": 6,
+        "day": 11
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "national-cougar-day",
+      "title": "National Cougar Day",
+      "category": "animal-awareness",
+      "description": "A cougar awareness day, especially relevant in North America.",
+      "advocacyPrompt": "How can people reduce conflict with cougars?",
+      "rule": {
+        "type": "fixed",
+        "month": 6,
+        "day": 12
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "North America",
+      "notice": ""
+    },
+    {
+      "id": "world-sea-turtle-day",
+      "title": "World Sea Turtle Day",
+      "category": "animal-awareness",
+      "description": "Recognizes sea turtles and threats from human activity.",
+      "advocacyPrompt": "How does marine plastic and fishing gear harm sea turtles?",
+      "rule": {
+        "type": "fixed",
+        "month": 6,
+        "day": 16
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-croc-day",
+      "title": "World Croc Day",
+      "category": "animal-awareness",
+      "description": "Raises awareness of crocodiles and their habitats.",
+      "advocacyPrompt": "How do we share habitats with crocodilians responsibly?",
+      "rule": {
+        "type": "fixed",
+        "month": 6,
+        "day": 17
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-giraffe-day",
+      "title": "World Giraffe Day",
+      "category": "animal-awareness",
+      "description": "Highlights giraffes and their conservation.",
+      "advocacyPrompt": "How is giraffe habitat affected by land use?",
+      "rule": {
+        "type": "fixed",
+        "month": 6,
+        "day": 21
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-camel-day",
+      "title": "World Camel Day",
+      "category": "animal-awareness",
+      "description": "Recognizes camels, including concerns about their treatment in human use.",
+      "advocacyPrompt": "What is owed to animals used for transport and labor?",
+      "rule": {
+        "type": "fixed",
+        "month": 6,
+        "day": 22
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "independence-from-meat-day",
+      "title": "Independence From Meat Day",
+      "category": "plant-based",
+      "description": "An informal meat-free observance, often associated with July 4; not a formal vegan holiday.",
+      "advocacyPrompt": "What does freedom from using animals for food mean?",
+      "rule": {
+        "type": "fixed",
+        "month": 7,
+        "day": 4
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.andtodayis.com/en/event/Independence-From-Meat-Day"
+      },
+      "region": "Global",
+      "notice": "Informal community observance"
+    },
+    {
+      "id": "shark-awareness-day",
+      "title": "Shark Awareness Day",
+      "category": "animal-awareness",
+      "description": "Raises awareness of sharks and their treatment in fisheries.",
+      "advocacyPrompt": "What do sharks experience from fishing and finning?",
+      "rule": {
+        "type": "fixed",
+        "month": 7,
+        "day": 14
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-chimpanzee-day",
+      "title": "World Chimpanzee Day",
+      "category": "animal-awareness",
+      "description": "Celebrates chimpanzees and advocates for their protection.",
+      "advocacyPrompt": "How do primate social bonds challenge exploitation?",
+      "rule": {
+        "type": "fixed",
+        "month": 7,
+        "day": 14
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-orca-day",
+      "title": "World Orca Day",
+      "category": "animal-awareness",
+      "description": "Highlights orcas and concerns including captivity and ocean threats.",
+      "advocacyPrompt": "Should orcas be held in marine entertainment facilities?",
+      "rule": {
+        "type": "fixed",
+        "month": 7,
+        "day": 14
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-snake-day",
+      "title": "World Snake Day",
+      "category": "animal-awareness",
+      "description": "Encourages appreciation and peaceful coexistence with snakes.",
+      "advocacyPrompt": "Why do snakes deserve protection despite fear?",
+      "rule": {
+        "type": "fixed",
+        "month": 7,
+        "day": 16
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-tofu-day",
+      "title": "World Tofu Day",
+      "category": "plant-based",
+      "description": "An informal celebration of tofu as a versatile plant-based food.",
+      "advocacyPrompt": "What easy vegan meal can be made with tofu?",
+      "rule": {
+        "type": "fixed",
+        "month": 7,
+        "day": 26
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.eatrightillinois.org/index.php?Itemid=136&day=26&evid=1410&month=07&option=com_jevents&task=icalrepeat.detail&title=world-tofu-day&uid=b85db7224c6f82b48b215df88a7&year=2026"
+      },
+      "region": "Global",
+      "notice": "Informal food observance"
+    },
+    {
+      "id": "international-tiger-day",
+      "title": "International Tiger Day",
+      "category": "animal-awareness",
+      "description": "Highlights tigers, their habitats, and poaching pressures.",
+      "advocacyPrompt": "How can tiger protection avoid harming people or other animals?",
+      "rule": {
+        "type": "fixed",
+        "month": 7,
+        "day": 29
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "vegan-synergy-month",
+      "title": "Vegan Synergy Month",
+      "category": "vegan",
+      "description": "American Vegan Society highlights collaboration among vegan organizations.",
+      "advocacyPrompt": "Which vegan organizations can collaborate to amplify animal advocacy?",
+      "rule": {
+        "type": "month",
+        "month": 8
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://americanvegan.org/vegan-synergy/"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "national-honey-bee-day-us",
+      "title": "National Honey Bee Day (US)",
+      "category": "animal-awareness",
+      "description": "A US awareness day about honey bees, typically held the third Saturday in August.",
+      "advocacyPrompt": "How do pollinators live beyond their value to food production?",
+      "rule": {
+        "type": "nthWeekday",
+        "month": 8,
+        "weekday": 6,
+        "nth": 3
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "United States",
+      "notice": ""
+    },
+    {
+      "id": "world-day-for-the-end-of-speciesism",
+      "title": "World Day for the End of Speciesism",
+      "category": "animal-rights",
+      "description": "An international day of action against discrimination and exploitation based on species.",
+      "advocacyPrompt": "Why should species alone determine whose interests count?",
+      "rule": {
+        "type": "organizerDates",
+        "month": 8,
+        "dates": {
+          "2026": "2026-08-29",
+          "2027": "2027-08-28"
+        }
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://end-of-speciesism.org/en/"
+      },
+      "region": "Global",
+      "notice": "Organizer confirmation required each year"
+    },
+    {
+      "id": "international-clouded-leopard-day",
+      "title": "International Clouded Leopard Day",
+      "category": "animal-awareness",
+      "description": "Celebrates clouded leopards and highlights threats to their survival.",
+      "advocacyPrompt": "What threatens clouded leopards in forest habitats?",
+      "rule": {
+        "type": "fixed",
+        "month": 8,
+        "day": 4
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-moon-bear-day",
+      "title": "International Moon Bear Day",
+      "category": "animal-awareness",
+      "description": "Raises awareness of Asiatic black bears and their exploitation.",
+      "advocacyPrompt": "How can bears be protected from bile farming and trafficking?",
+      "rule": {
+        "type": "fixed",
+        "month": 8,
+        "day": 8
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-lion-day",
+      "title": "World Lion Day",
+      "category": "animal-awareness",
+      "description": "Highlights lions and human-caused risks.",
+      "advocacyPrompt": "What ethical concerns surround captive-bred lion industries?",
+      "rule": {
+        "type": "fixed",
+        "month": 8,
+        "day": 10
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-elephant-day",
+      "title": "World Elephant Day",
+      "category": "animal-awareness",
+      "description": "Highlights elephants and pressures from tourism, trade, and habitat loss.",
+      "advocacyPrompt": "What does respect for elephant autonomy require?",
+      "rule": {
+        "type": "fixed",
+        "month": 8,
+        "day": 12
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-hirola-day",
+      "title": "World Hirola Day",
+      "category": "animal-awareness",
+      "description": "Draws attention to the endangered hirola antelope.",
+      "advocacyPrompt": "Why should less famous species matter equally?",
+      "rule": {
+        "type": "fixed",
+        "month": 8,
+        "day": 12
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-wolf-day",
+      "title": "International Wolf Day",
+      "category": "animal-awareness",
+      "description": "Raises awareness of wolves and coexistence.",
+      "advocacyPrompt": "How can livestock protection avoid killing wolves?",
+      "rule": {
+        "type": "fixed",
+        "month": 8,
+        "day": 13
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-orangutan-day",
+      "title": "World Orangutan Day",
+      "category": "animal-awareness",
+      "description": "Highlights orangutans and habitat threats.",
+      "advocacyPrompt": "How does industrial land use affect orangutan families?",
+      "rule": {
+        "type": "fixed",
+        "month": 8,
+        "day": 19
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-plant-milk-day",
+      "title": "World Plant Milk Day",
+      "category": "plant-based",
+      "description": "Celebrates plant-based milk alternatives and traditions.",
+      "advocacyPrompt": "What dairy-free swaps reduce demand for animal exploitation?",
+      "rule": {
+        "type": "fixed",
+        "month": 8,
+        "day": 22
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://worldplantmilkday.com/press/"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-african-wild-dog-day",
+      "title": "World African Wild Dog Day",
+      "category": "animal-awareness",
+      "description": "Highlights African wild dogs and their conservation.",
+      "advocacyPrompt": "Why do pack relationships matter when protecting these animals?",
+      "rule": {
+        "type": "fixed",
+        "month": 8,
+        "day": 26
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-whale-shark-day",
+      "title": "International Whale Shark Day",
+      "category": "animal-awareness",
+      "description": "Highlights whale sharks and threats from fisheries and habitat changes.",
+      "advocacyPrompt": "How can people protect filter-feeding sharks?",
+      "rule": {
+        "type": "fixed",
+        "month": 8,
+        "day": 30
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-rabbit-day",
+      "title": "International Rabbit Day",
+      "category": "animal-awareness",
+      "description": "Highlights domestic and wild rabbits, including welfare and exploitation.",
+      "advocacyPrompt": "What do rabbits need beyond being seen as pets or products?",
+      "rule": {
+        "type": "nthWeekday",
+        "month": 9,
+        "weekday": 6,
+        "nth": 4
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.worldanimalprotection.org/our-campaigns/sentience/animal-awareness-days/international-rabbit-day/"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-red-panda-day",
+      "title": "International Red Panda Day",
+      "category": "animal-awareness",
+      "description": "Highlights red pandas and habitat threats.",
+      "advocacyPrompt": "How can forests be protected for red pandas?",
+      "rule": {
+        "type": "nthWeekday",
+        "month": 9,
+        "weekday": 6,
+        "nth": 3
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-vulture-awareness-day",
+      "title": "International Vulture Awareness Day",
+      "category": "animal-awareness",
+      "description": "Highlights vultures and their role as scavengers.",
+      "advocacyPrompt": "How can we reduce poisonings and persecution of vultures?",
+      "rule": {
+        "type": "nthWeekday",
+        "month": 9,
+        "weekday": 6,
+        "nth": 1
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-primate-day",
+      "title": "International Primate Day",
+      "category": "animal-awareness",
+      "description": "Raises awareness of primates, including use in research and entertainment.",
+      "advocacyPrompt": "Why should primate sentience matter in research and captivity?",
+      "rule": {
+        "type": "fixed",
+        "month": 9,
+        "day": 1
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "japan-dolphin-day",
+      "title": "Japan Dolphin Day",
+      "category": "animal-rights",
+      "description": "An animal advocacy day focused on dolphin hunts and capture in Japan.",
+      "advocacyPrompt": "What happens to dolphins in drive hunts and captivity?",
+      "rule": {
+        "type": "fixed",
+        "month": 9,
+        "day": 1
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Japan / international advocacy",
+      "notice": ""
+    },
+    {
+      "id": "world-dolphin-day",
+      "title": "World Dolphin Day",
+      "category": "animal-awareness",
+      "description": "Highlights dolphins and threats from captivity and fishing.",
+      "advocacyPrompt": "How does confinement affect dolphins?",
+      "rule": {
+        "type": "fixed",
+        "month": 9,
+        "day": 12
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-manta-day",
+      "title": "World Manta Day",
+      "category": "animal-awareness",
+      "description": "Promotes understanding and protection of manta rays.",
+      "advocacyPrompt": "What harms do manta rays face in fishing industries?",
+      "rule": {
+        "type": "fixed",
+        "month": 9,
+        "day": 17
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-tamarin-day",
+      "title": "International Tamarin Day",
+      "category": "animal-awareness",
+      "description": "Raises awareness of tamarin primates and their habitats.",
+      "advocacyPrompt": "Why do small primates deserve serious protection?",
+      "rule": {
+        "type": "fixed",
+        "month": 9,
+        "day": 22
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-rhino-day",
+      "title": "World Rhino Day",
+      "category": "animal-awareness",
+      "description": "Recognizes rhinoceroses and conservation challenges.",
+      "advocacyPrompt": "How does wildlife trafficking affect rhinos?",
+      "rule": {
+        "type": "fixed",
+        "month": 9,
+        "day": 22
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-gorilla-day",
+      "title": "World Gorilla Day",
+      "category": "animal-awareness",
+      "description": "Highlights gorillas, their families, and habitat protection.",
+      "advocacyPrompt": "What do gorilla social bonds tell us about their interests?",
+      "rule": {
+        "type": "fixed",
+        "month": 9,
+        "day": 24
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-cassowary-day",
+      "title": "World Cassowary Day",
+      "category": "animal-awareness",
+      "description": "Raises awareness of cassowaries and their ecological role.",
+      "advocacyPrompt": "How can we share habitats safely with cassowaries?",
+      "rule": {
+        "type": "fixed",
+        "month": 9,
+        "day": 26
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-rabies-day",
+      "title": "World Rabies Day",
+      "category": "animal-awareness",
+      "description": "Raises awareness of rabies prevention and humane animal-health responses.",
+      "advocacyPrompt": "How can vaccination help prevent harm to animals and humans?",
+      "rule": {
+        "type": "fixed",
+        "month": 9,
+        "day": 28
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.who.int/campaigns/world-rabies-day"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-day-of-awareness-of-food-loss-and-waste",
+      "title": "International Day of Awareness of Food Loss and Waste",
+      "category": "environment",
+      "description": "A UN observance on food loss and waste through supply chains.",
+      "advocacyPrompt": "How can a plant-based food system reduce waste and resource demand?",
+      "rule": {
+        "type": "fixed",
+        "month": 9,
+        "day": 29
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.un.org/en/observances/end-food-waste-day"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-lemur-day",
+      "title": "World Lemur Day",
+      "category": "animal-awareness",
+      "description": "Celebrates lemurs and their conservation; last Friday in October.",
+      "advocacyPrompt": "How can deforestation and animal trade be reduced?",
+      "rule": {
+        "type": "lastWeekday",
+        "month": 10,
+        "weekday": 5
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-migratory-bird-day-october",
+      "title": "World Migratory Bird Day (October)",
+      "category": "animal-awareness",
+      "description": "The second annual migration-awareness date, especially important for southern migration.",
+      "advocacyPrompt": "How do migrations connect habitats and human responsibilities?",
+      "rule": {
+        "type": "nthWeekday",
+        "month": 10,
+        "weekday": 6,
+        "nth": 2
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.cms.int/campaign/world-migratory-bird-day-wmbd"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-vegetarian-day",
+      "title": "World Vegetarian Day",
+      "category": "plant-based",
+      "description": "A vegetarian-awareness day; vegetarianism may still include animal products and is not the same as veganism.",
+      "advocacyPrompt": "What is the distinction between vegetarian eating and vegan living?",
+      "rule": {
+        "type": "fixed",
+        "month": 10,
+        "day": 1
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.worldvegetarianday.org/"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-day-for-farmed-animals",
+      "title": "World Day for Farmed Animals",
+      "category": "animal-rights",
+      "description": "A FARM-led day remembering animals used and killed for food.",
+      "advocacyPrompt": "How can we challenge the idea that sentient beings are commodities?",
+      "rule": {
+        "type": "fixed",
+        "month": 10,
+        "day": 2
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://dayforanimals.com/"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-animal-day",
+      "title": "World Animal Day",
+      "category": "animal-awareness",
+      "description": "A global day for the recognition and protection of animals.",
+      "advocacyPrompt": "What duties do we owe all animals, not only our favorites?",
+      "rule": {
+        "type": "fixed",
+        "month": 10,
+        "day": 4
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.worldanimalprotection.org/our-campaigns/sentience/animal-awareness-days/world-animal-day"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-octopus-day",
+      "title": "World Octopus Day",
+      "category": "animal-awareness",
+      "description": "Highlights octopuses and growing concerns about their exploitation.",
+      "advocacyPrompt": "What does octopus intelligence imply for octopus farming?",
+      "rule": {
+        "type": "fixed",
+        "month": 10,
+        "day": 8
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-food-day",
+      "title": "World Food Day",
+      "category": "environment",
+      "description": "A UN observance examining hunger, food systems, and food security.",
+      "advocacyPrompt": "What role can plant-based food systems play in food security?",
+      "rule": {
+        "type": "fixed",
+        "month": 10,
+        "day": 16
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.fao.org/world-food-day/en"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-sawfish-day",
+      "title": "International Sawfish Day",
+      "category": "animal-awareness",
+      "description": "Highlights sawfishes and the threats they face.",
+      "advocacyPrompt": "How do fishing nets threaten sawfishes?",
+      "rule": {
+        "type": "fixed",
+        "month": 10,
+        "day": 17
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-okapi-day",
+      "title": "World Okapi Day",
+      "category": "animal-awareness",
+      "description": "Raises awareness of okapis and rainforest habitat.",
+      "advocacyPrompt": "Why protect little-known rainforest animals?",
+      "rule": {
+        "type": "fixed",
+        "month": 10,
+        "day": 18
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-sloth-day",
+      "title": "International Sloth Day",
+      "category": "animal-awareness",
+      "description": "Recognizes sloths and the need to protect their habitats.",
+      "advocacyPrompt": "How do trafficking and habitat destruction affect sloths?",
+      "rule": {
+        "type": "fixed",
+        "month": 10,
+        "day": 20
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "reptile-awareness-day",
+      "title": "Reptile Awareness Day",
+      "category": "animal-awareness",
+      "description": "Highlights reptiles and their protection.",
+      "advocacyPrompt": "How can we challenge harmful myths about reptiles?",
+      "rule": {
+        "type": "fixed",
+        "month": 10,
+        "day": 21
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "United States / informal",
+      "notice": ""
+    },
+    {
+      "id": "international-wombat-day",
+      "title": "International Wombat Day",
+      "category": "animal-awareness",
+      "description": "Celebrates wombats and their protection.",
+      "advocacyPrompt": "How can habitat and road protections help wombats?",
+      "rule": {
+        "type": "fixed",
+        "month": 10,
+        "day": 22
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-snow-leopard-day",
+      "title": "International Snow Leopard Day",
+      "category": "animal-awareness",
+      "description": "Highlights snow leopards and mountain ecosystems.",
+      "advocacyPrompt": "How can farmers and wild predators coexist?",
+      "rule": {
+        "type": "fixed",
+        "month": 10,
+        "day": 23
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "freshwater-dolphin-day",
+      "title": "Freshwater Dolphin Day",
+      "category": "animal-awareness",
+      "description": "Raises awareness of river dolphins and river ecosystems.",
+      "advocacyPrompt": "What is happening to freshwater dolphin habitat?",
+      "rule": {
+        "type": "fixed",
+        "month": 10,
+        "day": 24
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-gibbon-day",
+      "title": "International Gibbon Day",
+      "category": "animal-awareness",
+      "description": "Highlights gibbons, including their social lives and threats from trade.",
+      "advocacyPrompt": "What do gibbon family bonds suggest about captivity?",
+      "rule": {
+        "type": "fixed",
+        "month": 10,
+        "day": 24
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-vegan-month",
+      "title": "World Vegan Month",
+      "category": "vegan",
+      "description": "A month of vegan awareness linked to the founding of The Vegan Society in 1944.",
+      "advocacyPrompt": "How can we encourage compassionate choices beyond food?",
+      "rule": {
+        "type": "month",
+        "month": 11
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.vegansociety.com/get-involved/world-vegan-month"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "fur-free-friday",
+      "title": "Fur Free Friday",
+      "category": "animal-rights",
+      "description": "A day of action against fur farming and fur products, held on US Black Friday.",
+      "advocacyPrompt": "Why should fashion never require farming or killing sentient animals?",
+      "rule": {
+        "type": "relative",
+        "month": 11,
+        "anchor": {
+          "type": "nthWeekday",
+          "month": 11,
+          "weekday": 4,
+          "nth": 4
+        },
+        "offset": 1
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.idausa.org/campaign/wild-animals-and-habitats/fur/fur-free-friday/"
+      },
+      "region": "Global / US calendar",
+      "notice": ""
+    },
+    {
+      "id": "national-bison-day-us",
+      "title": "National Bison Day (US)",
+      "category": "animal-awareness",
+      "description": "A US observance highlighting bison and conservation.",
+      "advocacyPrompt": "How should bison be protected and respected?",
+      "rule": {
+        "type": "nthWeekday",
+        "month": 11,
+        "weekday": 6,
+        "nth": 1
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "United States",
+      "notice": ""
+    },
+    {
+      "id": "world-vegan-day",
+      "title": "World Vegan Day",
+      "category": "vegan",
+      "description": "Celebrates veganism as a commitment to exclude animal exploitation as far as possible and practicable.",
+      "advocacyPrompt": "Why are sentient animals still treated as products?",
+      "rule": {
+        "type": "fixed",
+        "month": 11,
+        "day": 1
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.vegansociety.com/get-involved/world-vegan-month"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "dynamic-harmlessness-day",
+      "title": "Dynamic Harmlessness Day",
+      "category": "vegan",
+      "description": "The American Vegan Society honors H. Jay Dinshah’s principle of doing the least harm and most good.",
+      "advocacyPrompt": "What does the principle of dynamic harmlessness ask of us?",
+      "rule": {
+        "type": "fixed",
+        "month": 11,
+        "day": 2
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://americanvegan.org/dynamic-harmlessness-day/"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-anteater-day",
+      "title": "World Anteater Day",
+      "category": "animal-awareness",
+      "description": "Highlights anteaters and the threats they face.",
+      "advocacyPrompt": "What are the threats to anteaters and their habitats?",
+      "rule": {
+        "type": "fixed",
+        "month": 11,
+        "day": 19
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-fisheries-day",
+      "title": "World Fisheries Day",
+      "category": "animal-awareness",
+      "description": "An awareness event about fisheries; included for critical discussion of aquatic animals, not as endorsement of fishing.",
+      "advocacyPrompt": "Whose interests are missing from fisheries policy?",
+      "rule": {
+        "type": "fixed",
+        "month": 11,
+        "day": 21
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": "Fishing-industry framing is not necessarily vegan"
+    },
+    {
+      "id": "international-jaguar-day",
+      "title": "International Jaguar Day",
+      "category": "animal-awareness",
+      "description": "Highlights jaguars and the protection of their habitats.",
+      "advocacyPrompt": "How can human-jaguar coexistence be made safer?",
+      "rule": {
+        "type": "fixed",
+        "month": 11,
+        "day": 29
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-cheetah-day",
+      "title": "International Cheetah Day",
+      "category": "animal-awareness",
+      "description": "Highlights cheetahs and the challenges they face.",
+      "advocacyPrompt": "How can we protect cheetahs without persecution?",
+      "rule": {
+        "type": "fixed",
+        "month": 12,
+        "day": 4
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "wildlife-conservation-day",
+      "title": "Wildlife Conservation Day",
+      "category": "animal-awareness",
+      "description": "Encourages reflection on wildlife protection and human impacts.",
+      "advocacyPrompt": "How can respect for individuals strengthen conservation?",
+      "rule": {
+        "type": "fixed",
+        "month": 12,
+        "day": 4
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "world-soil-day",
+      "title": "World Soil Day",
+      "category": "environment",
+      "description": "A UN observance promoting healthy soils and ecosystem stewardship.",
+      "advocacyPrompt": "How do food production methods affect soil health?",
+      "rule": {
+        "type": "fixed",
+        "month": 12,
+        "day": 5
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.fao.org/world-soil-day/en/"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "international-animal-rights-day",
+      "title": "International Animal Rights Day",
+      "category": "animal-rights",
+      "description": "An annual call to recognize the rights and sentience of nonhuman animals.",
+      "advocacyPrompt": "What fundamental protections should sentient animals have?",
+      "rule": {
+        "type": "fixed",
+        "month": 12,
+        "day": 10
+      },
+      "source": {
+        "label": "Organizer or reference",
+        "url": "https://www.worldanimalprotection.org/our-campaigns/sentience/animal-awareness-days/international-animal-rights-day/"
+      },
+      "region": "Global",
+      "notice": ""
+    },
+    {
+      "id": "monkey-day",
+      "title": "Monkey Day",
+      "category": "animal-awareness",
+      "description": "An informal day celebrating monkeys and prompting reflection on their treatment.",
+      "advocacyPrompt": "What threats do monkeys face from capture and captivity?",
+      "rule": {
+        "type": "fixed",
+        "month": 12,
+        "day": 14
+      },
+      "source": {
+        "label": "World Animal Protection — animal awareness calendar",
+        "url": "https://www.worldanimalprotection.org/animal-awareness-days"
+      },
+      "region": "Global",
+      "notice": ""
+    }
+  ]
+}

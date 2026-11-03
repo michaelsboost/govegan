@@ -1,0 +1,122 @@
+/* Advocacy Calendar — a normal Go Vegan app view. All colors, typography, borders,
+   buttons and surfaces inherit the existing site tokens and components. */
+.view-calendar .advcal-page-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1.25rem;flex-wrap:wrap;margin-bottom:2rem}
+.view-calendar .advcal-page-header>div:first-child{max-width:680px}
+.view-calendar .advcal-page-actions{display:flex;gap:.6rem;align-items:center}
+.view-calendar .advcal-page-actions .secondary-button{font-size:.87rem;padding:.65rem 1.25rem;white-space:nowrap}
+.view-calendar .advcal-export-status{color:var(--text-secondary);font-size:.85rem;margin:-1.1rem 0 1rem}
+.view-calendar .advcal-export-status:empty{display:none}
+.view-calendar .advcal-upcoming{margin:0 0 2.1rem}
+.view-calendar .advcal-section-intro{display:flex;justify-content:space-between;align-items:baseline;gap:.8rem;flex-wrap:wrap;margin-bottom:1rem}
+.view-calendar .advcal-section-intro h3{font-family:var(--font-display);font-size:1.45rem;margin:0}
+.view-calendar .advcal-section-intro>span{color:var(--text-muted);font-size:.84rem}
+.view-calendar .advcal-upcoming-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.view-calendar .next-item{display:flex;flex-direction:column;gap:.45rem;justify-content:center;background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:1.1rem 1.25rem;text-decoration:none;min-height:114px;color:var(--text-primary);box-shadow:var(--shadow-sm);transition:border-color .2s,transform .2s}
+.view-calendar .next-item:hover{border-color:var(--color-moss);transform:translateY(-2px)}
+.view-calendar .next-item strong{font-family:var(--font-display);font-size:1.07rem;line-height:1.3}
+.view-calendar .next-item span{color:var(--text-secondary);font-size:.79rem}
+.view-calendar .advcal-filter-panel{background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:1.25rem;margin-bottom:2rem}
+.view-calendar .advcal-filter-header{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
+.view-calendar .advcal-filter-header h3{font-size:1.25rem;margin:0}
+.view-calendar .advcal-year{display:flex;align-items:center;gap:.65rem}
+.view-calendar .advcal-year strong{font-size:.94rem;min-width:4ch;text-align:center;font-variant-numeric:tabular-nums}
+.view-calendar .advcal-year button{min-height:2.3rem;min-width:2.3rem;font-size:1.35rem;line-height:1;padding:.2rem .5rem;border-radius:var(--radius-full)}
+.view-calendar .advcal-filter-row{display:flex;align-items:end;gap:.85rem;flex-wrap:wrap}
+.view-calendar .advcal-field{display:flex;flex:1 1 180px;min-width:0;gap:.38rem;flex-direction:column}
+.view-calendar .advcal-field.advcal-search{flex:2 1 250px}
+.view-calendar .advcal-field>span{color:var(--text-secondary);font-weight:600;font-size:.84rem}
+.view-calendar .advcal-field>input,.view-calendar .advcal-field>select{width:100%;min-height:46px;border:1.5px solid var(--border-subtle);border-radius:var(--radius-sm);background:var(--bg-input);color:var(--text-primary);padding:.55rem .85rem;font:inherit}
+.view-calendar .advcal-field>input:focus,.view-calendar .advcal-field>select:focus{border-color:var(--color-moss);outline:2px solid transparent}
+.view-calendar #focus-toggle{min-height:46px;padding:.5rem .9rem;font-size:.83rem;white-space:nowrap}
+.view-calendar #focus-toggle.selected{background:var(--color-forest);color:var(--text-inverse);border-color:var(--color-forest)}
+.view-calendar .advcal-month-picker{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.25rem}
+.view-calendar .month-button{display:inline-flex;align-items:center;justify-content:center;border-radius:var(--radius-full);border:1px solid var(--border-subtle);background:var(--bg-surface-alt);color:var(--text-secondary);font-size:.79rem;font-weight:650;min-height:36px;padding:.4rem .8rem;cursor:pointer;transition:background .15s,border-color .15s}
+.view-calendar .month-button:hover{border-color:var(--border-strong);color:var(--text-primary)}
+.view-calendar .month-button.selected{background:var(--color-forest);border-color:var(--color-forest);color:var(--text-inverse)}
+.view-calendar .advcal-results{font-size:.8rem;color:var(--text-muted);margin:1.1rem 0 0}
+.view-calendar .month-section{scroll-margin-top:95px;margin:0 0 2.3rem}
+.view-calendar .month-heading{display:flex;align-items:baseline;justify-content:space-between;gap:.75rem;border-bottom:1px solid var(--border-subtle);padding:0 0 .65rem;margin:0 0 1rem}
+.view-calendar .month-heading h2{font-size:1.5rem;margin:0}
+.view-calendar .month-count{font-size:.77rem;color:var(--text-muted)}
+.view-calendar .card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.view-calendar .observance-card{scroll-margin-top:100px;display:flex;flex-direction:column;gap:.6rem;background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:1.25rem;box-shadow:var(--shadow-sm);min-height:255px;transition:border-color .2s,box-shadow .2s}
+.view-calendar .observance-card:hover{border-color:var(--color-moss);box-shadow:var(--shadow-md)}
+.view-calendar .observance-card.spotlight-target{border-color:var(--color-moss);box-shadow:0 0 0 2px var(--color-moss)}
+.view-calendar .card-top{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.view-calendar .event-date{font-weight:650;font-size:.79rem;color:var(--color-forest)}
+.view-calendar .type-tag{border-radius:var(--radius-full);background:var(--bg-surface-alt);font-size:.7rem;color:var(--text-secondary);padding:.3rem .6rem}
+.view-calendar .card-title{font-size:1.2rem;margin:.2rem 0 0;line-height:1.26}
+.view-calendar .card-description{color:var(--text-secondary);font-size:.87rem;margin:0}
+.view-calendar .card-prompt{color:var(--text-primary);font-size:.83rem;margin:0}
+.view-calendar .card-footer{display:flex;align-items:center;justify-content:space-between;gap:.65rem;flex-wrap:wrap;margin-top:auto;border-top:1px solid var(--border-subtle);padding-top:.9rem}
+.view-calendar .region-label{font-size:.75rem;color:var(--text-muted)}
+.view-calendar .source-link{font-weight:650;text-decoration:none;color:var(--color-forest);font-size:.83rem}
+.view-calendar .source-link:hover{text-decoration:underline}
+.view-calendar .today-tag{align-self:flex-start;background:var(--color-lime);color:#111;border-radius:var(--radius-full);padding:.25rem .6rem;font-size:.72rem;font-weight:700}
+.view-calendar .card-note{font-size:.75rem;color:var(--text-muted);margin:0}
+.view-calendar .advcal-empty{text-align:center;color:var(--text-muted);padding:3rem 0}
+.view-calendar .advcal-disclaimer{border-top:1px solid var(--border-subtle);color:var(--text-muted);padding:1.3rem 0 0;margin:1.5rem 0;font-size:.82rem;max-width:95ch}
+@media(max-width:1000px){.view-calendar .card-grid,.view-calendar .advcal-upcoming-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.view-calendar .advcal-page-header{gap:1rem;margin-bottom:1.5rem}.view-calendar .advcal-page-actions{width:100%}.view-calendar .advcal-page-actions .secondary-button{width:100%}.view-calendar .advcal-filter-panel{padding:.9rem}.view-calendar .advcal-filter-row{gap:.65rem}.view-calendar .advcal-field{flex:1 1 100%}.view-calendar #focus-toggle{width:100%}.view-calendar .card-grid,.view-calendar .advcal-upcoming-grid{grid-template-columns:1fr}.view-calendar .next-item{min-height:0}.view-calendar .observance-card{min-height:0}.view-calendar .advcal-section-intro h3{font-size:1.3rem}}
+@media print{.view-calendar .advcal-upcoming,.view-calendar .advcal-filter-panel,.view-calendar .advcal-page-actions,.app-header,.more-drawer,.mobile-bottom-nav,.bottom-nav{display:none!important}.view-calendar .card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.view-calendar .observance-card{break-inside:avoid;box-shadow:none}.view-calendar .month-section{break-inside:avoid}}
+
+/* The day-first feature is an ordinary Go Vegan surface, not a second page theme. */
+.view-calendar .advcal-feature{background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);padding:clamp(1.15rem,2.1vw,1.75rem);margin:0 0 1.75rem}
+.view-calendar .advcal-feature-topline{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem;margin-bottom:.65rem}
+.view-calendar .advcal-feature-kicker{font-family:var(--font-body);font-size:.72rem;letter-spacing:.055em;font-weight:750;color:var(--color-forest);text-transform:uppercase}
+.view-calendar .advcal-feature-date{color:var(--text-muted);font-size:.78rem;font-variant-numeric:tabular-nums}
+.view-calendar .advcal-feature-title{font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.1rem);margin:0 0 .5rem;line-height:1.2}
+.view-calendar .advcal-feature-description{font-size:.92rem;color:var(--text-secondary);line-height:1.6;max-width:72ch;margin:0 0 1.15rem}
+.view-calendar .advcal-feature-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:1px solid var(--border-subtle);padding-top:1rem}
+.view-calendar .advcal-feature-context{color:var(--text-secondary);font-size:.8rem;max-width:76ch;flex:1 1 275px}
+.view-calendar #advcal-feature-action{font-size:.84rem;min-height:40px;padding:.55rem 1.25rem;white-space:nowrap}
+@media(max-width:650px){.view-calendar .advcal-feature{margin-bottom:1.35rem}.view-calendar .advcal-feature-footer{align-items:stretch}.view-calendar #advcal-feature-action{width:100%}}
+
+
+/* Month-at-a-glance date grid. Uses Go Vegan's shared surfaces, type, focus and theme tokens. */
+.view-calendar .advcal-month-view{background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:clamp(1rem,2vw,1.5rem);box-shadow:var(--shadow-sm);margin:0 0 1.75rem}
+.view-calendar .advcal-month-header{display:flex;align-items:center;justify-content:space-between;gap:1.25rem;flex-wrap:wrap;margin:0 0 1.25rem}
+.view-calendar .advcal-month-heading-copy h3{font-size:clamp(1.55rem,2.5vw,2rem);margin:.15rem 0 .3rem}
+.view-calendar .advcal-month-heading-copy p{font-size:.83rem;color:var(--text-secondary);margin:0}
+.view-calendar .advcal-month-kicker{font-size:.72rem;font-weight:750;color:var(--color-forest);text-transform:uppercase;letter-spacing:.055em}
+.view-calendar .advcal-month-nav{display:flex;align-items:center;gap:.5rem;flex-wrap:nowrap}
+.view-calendar .advcal-month-nav button{min-height:2.5rem;min-width:2.5rem;font-size:1.1rem;padding:.35rem .7rem;line-height:1.4}
+.view-calendar #advcal-grid-today{font-size:.82rem;padding:.45rem 1rem;min-width:0}
+.view-calendar .advcal-month-nav button:disabled{opacity:.35;cursor:not-allowed}
+.view-calendar .advcal-month-campaigns{display:flex;align-items:center;flex-wrap:wrap;gap:.5rem;padding:.75rem 0;margin:0 0 1rem;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)}
+.view-calendar .advcal-month-campaigns[hidden]{display:none}
+.view-calendar .advcal-month-campaign-label{font-size:.72rem;letter-spacing:.03em;color:var(--text-muted);text-transform:uppercase;font-weight:700;margin-right:.4rem}
+.view-calendar .advcal-month-campaign{border:1px solid var(--border-strong);border-radius:var(--radius-full);background:var(--bg-surface-alt);font-size:.83rem;color:var(--text-primary);padding:.4rem .85rem;cursor:pointer}
+.view-calendar .advcal-month-campaign:hover{border-color:var(--color-moss)}
+.view-calendar .advcal-weekday-row,.view-calendar .advcal-day-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.view-calendar .advcal-weekday-row{margin-bottom:5px}
+.view-calendar .advcal-weekday-row span{text-align:center;padding:.35rem .2rem;font-size:.76rem;font-weight:700;color:var(--text-muted)}
+.view-calendar .advcal-day{position:relative;display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:.3rem;min-width:0;min-height:104px;padding:.55rem .6rem;border:1px solid var(--border-subtle);border-radius:var(--radius-sm);background:var(--bg-surface-alt);color:var(--text-primary);cursor:pointer;transition:border-color .12s,background .12s,box-shadow .12s}
+.view-calendar .advcal-day:hover{border-color:var(--color-moss);background:var(--bg-elevated)}
+.view-calendar .advcal-day.advcal-outside-day{opacity:.4;cursor:default;color:var(--text-muted);min-height:104px;display:block}
+.view-calendar .advcal-day.advcal-day-holiday{border-color:var(--border-strong)}
+.view-calendar .advcal-day.advcal-day-selected{border-color:var(--color-forest);box-shadow:inset 0 0 0 1px var(--color-forest);background:var(--bg-elevated)}
+.view-calendar .advcal-day.advcal-day-today .advcal-date-number{background:var(--color-lime);color:#111;border-radius:var(--radius-full);width:1.65rem;height:1.65rem;display:inline-flex;align-items:center;justify-content:center}
+.view-calendar .advcal-date-number{font-weight:750;font-size:.88rem;font-variant-numeric:tabular-nums;line-height:1.65rem;min-height:1.65rem}
+.view-calendar .advcal-date-today-label{font-size:.64rem;color:var(--color-forest);font-weight:800;text-transform:uppercase;position:absolute;top:.7rem;right:.35rem}
+.view-calendar .advcal-event-marks{display:flex;flex-direction:column;gap:.25rem;min-width:0;max-width:100%;width:100%}
+.view-calendar .advcal-event-mark{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.68rem;line-height:1.4;font-weight:650;background:var(--bg-elevated);border-left:3px solid var(--color-moss);border-radius:3px;padding:.16rem .3rem;color:var(--text-secondary)}
+.view-calendar .advcal-event-mark[data-category='vegan'],.view-calendar .advcal-event-mark[data-category='animal-rights']{border-left-color:var(--color-coral)}
+.view-calendar .advcal-event-more{font-size:.65rem;color:var(--text-muted)}
+.view-calendar .advcal-date-dots{display:none;align-items:center;gap:3px;flex-wrap:wrap}
+.view-calendar .advcal-date-dot,.view-calendar .advcal-legend-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--color-moss)}
+.view-calendar .advcal-date-dot[data-category='vegan'],.view-calendar .advcal-date-dot[data-category='animal-rights']{background:var(--color-coral)}
+.view-calendar .advcal-dot-more{font-size:.65rem;font-weight:750;color:var(--text-secondary)}
+.view-calendar .advcal-calendar-legend{display:flex;gap:1.2rem;flex-wrap:wrap;justify-content:flex-end;color:var(--text-muted);font-size:.73rem;padding:.9rem 0 0}
+.view-calendar .advcal-calendar-legend span{display:inline-flex;gap:.4rem;align-items:center}
+.view-calendar .advcal-legend-today{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--color-lime)}
+.view-calendar .advcal-day-details{border-top:1px solid var(--border-subtle);padding-top:1.25rem;margin-top:1.2rem;scroll-margin-top:5.5rem}
+.view-calendar .advcal-day-details[hidden]{display:none}
+.view-calendar .advcal-day-details-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:.8rem;flex-wrap:wrap;margin-bottom:1rem}
+.view-calendar .advcal-day-details-heading h4{font-size:1.3rem;margin:.2rem 0 0}
+.view-calendar #advcal-day-count{font-size:.78rem;color:var(--text-muted)}
+.view-calendar .advcal-day-empty{font-size:.86rem;color:var(--text-secondary)}
+.view-calendar .advcal-day-details .observance-card{min-height:0;box-shadow:none}
+@media(max-width:750px){.view-calendar .advcal-day{min-height:79px;padding:.4rem}.view-calendar .advcal-day.advcal-outside-day{min-height:79px}.view-calendar .advcal-event-mark{font-size:.59rem}.view-calendar .advcal-date-today-label{display:none}}
+@media(max-width:650px){.view-calendar .advcal-month-header{align-items:flex-start}.view-calendar .advcal-month-heading-copy{width:100%}.view-calendar .advcal-month-nav{width:100%;justify-content:flex-end}.view-calendar .advcal-day-grid,.view-calendar .advcal-weekday-row{gap:3px}.view-calendar .advcal-day{min-height:57px;padding:.35rem .3rem;gap:.25rem}.view-calendar .advcal-day.advcal-outside-day{min-height:57px;font-size:.7rem}.view-calendar .advcal-date-number{font-size:.8rem;line-height:1.4rem;min-height:1.4rem}.view-calendar .advcal-day.advcal-day-today .advcal-date-number{width:1.4rem;height:1.4rem}.view-calendar .advcal-weekday-row span{font-size:.68rem;padding:.25rem 0}.view-calendar .advcal-event-marks{display:none}.view-calendar .advcal-date-dots{display:flex}.view-calendar .advcal-calendar-legend{font-size:.67rem;gap:.7rem;justify-content:flex-start}.view-calendar .advcal-day-details-heading h4{font-size:1.1rem}}
+@media print{.view-calendar .advcal-month-nav,.view-calendar .advcal-day-details{display:none!important}.view-calendar .advcal-day{break-inside:avoid}}
