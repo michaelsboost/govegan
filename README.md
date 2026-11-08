@@ -11,7 +11,7 @@ Vegan](https://raw.githubusercontent.com/michaelsboost/govegan/main/imgs/promo.p
 
 [![Live
 Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://michaelsboost.com/govegan/)
-[![Version](https://img.shields.io/badge/version-2.5.0-ff2b75)](https://github.com/michaelsboost/govegan)
+[![Version](https://img.shields.io/badge/version-2.6.0-ff2b75)](https://github.com/michaelsboost/govegan)
 [![MIT
 License](https://img.shields.io/github/license/michaelsboost/govegan)](LICENSE)
 [![GitHub
@@ -42,6 +42,21 @@ No account is required. The project is free, open source, client-side,
 and designed for desktop and mobile use.
 
 ------------------------------------------------------------------------
+
+## 🩺 What's New in 2.6.0 — Meat & Health
+
+- Added a dedicated, responsive **Meat & Health** guide accessible from the home screen, desktop More menu, mobile drawer, Nutrition page and global search.
+- Explains WHO/IARC Group 1 processed meat vs Group 2A red meat, including relative versus absolute risk and the limits of causal inference.
+- Provides an interactive, searchable index of 63 processed and unprocessed red meat examples, with category filters and preparation caveats.
+- Covers colorectal cancer, type 2 diabetes, heart disease, sodium/blood pressure, other cancers and cooking/processing mechanisms, with direct WHO, WCRF, NIH, CDC and AHA sources.
+- Includes substitutions, label-reading pitfalls, nutrition considerations and a source bibliography.
+- Added a professional nutrition support hub: PCRM plant-based RD directory, free Challenge 22 and 10 Weeks to Vegan programs, clearly labeled Animal Justice 21 community, credential comparisons, B12 evidence and a question checklist.
+- Added a visible homepage link to professional nutrition help; resources distinguish free access from potentially paid one-to-one care.
+- Fixed **Browse the food guide** to smoothly scroll directly to the searchable food catalog rather than redirecting to Home.
+- Fixed **Check the research** to smoothly scroll directly to the scientific sources rather than redirecting to Home.
+- Both navigation actions now preserve the app router state, including in the editable kodeWeave export.
+- Updated cache and version metadata to **2.6.0**.
+- Run `npm run test:meat-health` to check routes, filtered catalog counts, and global search behavior.
 
 ## 🚀 What's New in 2.5.0 — Advocacy Calendar
 

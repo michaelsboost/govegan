@@ -1,3 +1,448 @@
+/* Meat and health: examples and labels. Guidance is educational, not product certification. */
+const MEAT_HEALTH_ENTRIES = [
+  {
+    "id": "meat-1",
+    "name": "Bacon",
+    "type": "processed",
+    "category": "Bacon & cured cuts",
+    "note": "Usually salt-cured and often smoked; includes so-called “uncured” bacon when salted or smoked."
+  },
+  {
+    "id": "meat-2",
+    "name": "Turkey bacon",
+    "type": "processed",
+    "category": "Bacon & cured cuts",
+    "note": "Counts when preserved by salting, curing or smoking; poultry is not exempt."
+  },
+  {
+    "id": "meat-3",
+    "name": "Ham",
+    "type": "processed",
+    "category": "Bacon & cured cuts",
+    "note": "Includes cured, smoked and deli ham."
+  },
+  {
+    "id": "meat-4",
+    "name": "Prosciutto",
+    "type": "processed",
+    "category": "Bacon & cured cuts",
+    "note": "Dry-cured ham."
+  },
+  {
+    "id": "meat-5",
+    "name": "Pancetta",
+    "type": "processed",
+    "category": "Bacon & cured cuts",
+    "note": "Salt-cured pork belly."
+  },
+  {
+    "id": "meat-6",
+    "name": "Guanciale",
+    "type": "processed",
+    "category": "Bacon & cured cuts",
+    "note": "Cured pork jowl."
+  },
+  {
+    "id": "meat-7",
+    "name": "Speck",
+    "type": "processed",
+    "category": "Bacon & cured cuts",
+    "note": "Cured and smoked ham."
+  },
+  {
+    "id": "meat-8",
+    "name": "Jamón serrano",
+    "type": "processed",
+    "category": "Bacon & cured cuts",
+    "note": "Dry-cured Spanish ham."
+  },
+  {
+    "id": "meat-9",
+    "name": "Salt beef",
+    "type": "processed",
+    "category": "Bacon & cured cuts",
+    "note": "Beef preserved by salting or curing."
+  },
+  {
+    "id": "meat-10",
+    "name": "Corned beef",
+    "type": "processed",
+    "category": "Bacon & cured cuts",
+    "note": "Beef cured in brine or with salt."
+  },
+  {
+    "id": "meat-11",
+    "name": "Pastrami",
+    "type": "processed",
+    "category": "Bacon & cured cuts",
+    "note": "Typically brined or cured, then smoked."
+  },
+  {
+    "id": "meat-12",
+    "name": "Tasso",
+    "type": "processed",
+    "category": "Bacon & cured cuts",
+    "note": "Seasoned, cured and smoked pork."
+  },
+  {
+    "id": "meat-13",
+    "name": "Hot dogs / frankfurters",
+    "type": "processed",
+    "category": "Sausages & deli",
+    "note": "Typically cured, smoked or otherwise preserved."
+  },
+  {
+    "id": "meat-14",
+    "name": "Salami",
+    "type": "processed",
+    "category": "Sausages & deli",
+    "note": "Cured or fermented sausage."
+  },
+  {
+    "id": "meat-15",
+    "name": "Pepperoni",
+    "type": "processed",
+    "category": "Sausages & deli",
+    "note": "Cured, usually fermented sausage."
+  },
+  {
+    "id": "meat-16",
+    "name": "Bologna",
+    "type": "processed",
+    "category": "Sausages & deli",
+    "note": "Commonly cured or otherwise preserved deli sausage."
+  },
+  {
+    "id": "meat-17",
+    "name": "Mortadella",
+    "type": "processed",
+    "category": "Sausages & deli",
+    "note": "Cooked, preserved deli sausage."
+  },
+  {
+    "id": "meat-18",
+    "name": "Chorizo (cured varieties)",
+    "type": "processed",
+    "category": "Sausages & deli",
+    "note": "Dried or cured chorizo is processed meat; fresh chorizo needs a label check."
+  },
+  {
+    "id": "meat-19",
+    "name": "Andouille",
+    "type": "processed",
+    "category": "Sausages & deli",
+    "note": "Usually smoked sausage."
+  },
+  {
+    "id": "meat-20",
+    "name": "Kielbasa (smoked/cured)",
+    "type": "processed",
+    "category": "Sausages & deli",
+    "note": "Smoked or cured varieties; not every fresh sausage is processed meat."
+  },
+  {
+    "id": "meat-21",
+    "name": "Lap cheong",
+    "type": "processed",
+    "category": "Sausages & deli",
+    "note": "Chinese dried/cured sausage."
+  },
+  {
+    "id": "meat-22",
+    "name": "Soppressata",
+    "type": "processed",
+    "category": "Sausages & deli",
+    "note": "Dry-cured salami-style sausage."
+  },
+  {
+    "id": "meat-23",
+    "name": "Nduja",
+    "type": "processed",
+    "category": "Sausages & deli",
+    "note": "Fermented, cured spreadable sausage."
+  },
+  {
+    "id": "meat-24",
+    "name": "Preserved breakfast sausage",
+    "type": "processed",
+    "category": "Sausages & deli",
+    "note": "Counts if cured, smoked or preserved; plain fresh sausage is not automatically in this category."
+  },
+  {
+    "id": "meat-25",
+    "name": "Preserved bratwurst",
+    "type": "processed",
+    "category": "Sausages & deli",
+    "note": "Counts if cured or smoked; fresh bratwurst requires a label check."
+  },
+  {
+    "id": "meat-26",
+    "name": "Deli turkey / turkey cold cuts",
+    "type": "processed",
+    "category": "Sausages & deli",
+    "note": "Commonly processed when cured or preserved; plain freshly roasted turkey is different."
+  },
+  {
+    "id": "meat-27",
+    "name": "Deli chicken / chicken cold cuts",
+    "type": "processed",
+    "category": "Sausages & deli",
+    "note": "Preserved or cured chicken deli slices; plain cooked chicken is not automatically processed meat."
+  },
+  {
+    "id": "meat-28",
+    "name": "Cured roast beef cold cuts",
+    "type": "processed",
+    "category": "Sausages & deli",
+    "note": "Counts when preserved or cured; freshly roasted beef alone is unprocessed red meat."
+  },
+  {
+    "id": "meat-29",
+    "name": "Beef jerky",
+    "type": "processed",
+    "category": "Dried, smoked & snack",
+    "note": "Dried and commonly salt-preserved beef."
+  },
+  {
+    "id": "meat-30",
+    "name": "Biltong",
+    "type": "processed",
+    "category": "Dried, smoked & snack",
+    "note": "Dried, seasoned and preserved meat."
+  },
+  {
+    "id": "meat-31",
+    "name": "Meat snack sticks",
+    "type": "processed",
+    "category": "Dried, smoked & snack",
+    "note": "Often cured, dried or smoked."
+  },
+  {
+    "id": "meat-32",
+    "name": "Smoked turkey",
+    "type": "processed",
+    "category": "Dried, smoked & snack",
+    "note": "Counts when smoking is used as a processing/preservation method."
+  },
+  {
+    "id": "meat-33",
+    "name": "Smoked chicken",
+    "type": "processed",
+    "category": "Dried, smoked & snack",
+    "note": "Counts when smoked or otherwise preserved."
+  },
+  {
+    "id": "meat-34",
+    "name": "Smoked pork",
+    "type": "processed",
+    "category": "Dried, smoked & snack",
+    "note": "Counts when smoking is used to preserve or process it."
+  },
+  {
+    "id": "meat-35",
+    "name": "Smoked beef",
+    "type": "processed",
+    "category": "Dried, smoked & snack",
+    "note": "Counts when smoking is used to preserve or process it."
+  },
+  {
+    "id": "meat-36",
+    "name": "Cured venison jerky",
+    "type": "processed",
+    "category": "Dried, smoked & snack",
+    "note": "Game meat that has been cured or dried for preservation."
+  },
+  {
+    "id": "meat-37",
+    "name": "Cured duck",
+    "type": "processed",
+    "category": "Dried, smoked & snack",
+    "note": "Preserved poultry can be processed meat."
+  },
+  {
+    "id": "meat-38",
+    "name": "Canned luncheon meat",
+    "type": "processed",
+    "category": "Canned & prepared",
+    "note": "Canned, preserved meat products."
+  },
+  {
+    "id": "meat-39",
+    "name": "Canned corned beef",
+    "type": "processed",
+    "category": "Canned & prepared",
+    "note": "Cured meat packed in a can."
+  },
+  {
+    "id": "meat-40",
+    "name": "Canned sausages",
+    "type": "processed",
+    "category": "Canned & prepared",
+    "note": "Preserved canned meat sausages."
+  },
+  {
+    "id": "meat-41",
+    "name": "Shelf-stable canned meat",
+    "type": "processed",
+    "category": "Canned & prepared",
+    "note": "Meat processed for preservation; exact processing method varies."
+  },
+  {
+    "id": "meat-42",
+    "name": "Meat pâté or spread (preserved)",
+    "type": "processed",
+    "category": "Canned & prepared",
+    "note": "Canned, cured or otherwise preserved meat spreads; freshly made versions vary."
+  },
+  {
+    "id": "meat-43",
+    "name": "Prepared meat sauces with cured meat",
+    "type": "processed",
+    "category": "Canned & prepared",
+    "note": "Examples include sauces with bacon, cured sausage or ham."
+  },
+  {
+    "id": "meat-44",
+    "name": "Cured blood sausage",
+    "type": "processed",
+    "category": "Canned & prepared",
+    "note": "Processed meat may include offal or blood-based products."
+  },
+  {
+    "id": "meat-45",
+    "name": "Beef steak",
+    "type": "red",
+    "category": "Beef & veal",
+    "note": "Fresh or frozen beef; red meat, not processed solely because it is cooked."
+  },
+  {
+    "id": "meat-46",
+    "name": "Beef roast / brisket (fresh)",
+    "type": "red",
+    "category": "Beef & veal",
+    "note": "Uncured fresh beef; smoked or corned versions may also be processed."
+  },
+  {
+    "id": "meat-47",
+    "name": "Ground beef / beef mince (plain)",
+    "type": "red",
+    "category": "Beef & veal",
+    "note": "Grinding alone does not make it processed meat."
+  },
+  {
+    "id": "meat-48",
+    "name": "Fresh beef burger patty",
+    "type": "red",
+    "category": "Beef & veal",
+    "note": "Plain minced beef without curing or preserving; additives or preserved ingredients can change classification."
+  },
+  {
+    "id": "meat-49",
+    "name": "Veal",
+    "type": "red",
+    "category": "Beef & veal",
+    "note": "Meat from a young cow is red meat."
+  },
+  {
+    "id": "meat-50",
+    "name": "Pork chops",
+    "type": "red",
+    "category": "Pork",
+    "note": "Fresh pork is red meat, even though cooked pork looks pale."
+  },
+  {
+    "id": "meat-51",
+    "name": "Pork tenderloin",
+    "type": "red",
+    "category": "Pork",
+    "note": "Fresh, unprocessed pork."
+  },
+  {
+    "id": "meat-52",
+    "name": "Fresh pork shoulder",
+    "type": "red",
+    "category": "Pork",
+    "note": "Uncured pork; curing or smoking can make it processed."
+  },
+  {
+    "id": "meat-53",
+    "name": "Pork loin roast",
+    "type": "red",
+    "category": "Pork",
+    "note": "Fresh, unsalted pork muscle meat."
+  },
+  {
+    "id": "meat-54",
+    "name": "Ground pork (plain)",
+    "type": "red",
+    "category": "Pork",
+    "note": "Grinding alone does not mean cured or preserved."
+  },
+  {
+    "id": "meat-55",
+    "name": "Lamb chops",
+    "type": "red",
+    "category": "Lamb, goat & other mammals",
+    "note": "Fresh lamb is red meat."
+  },
+  {
+    "id": "meat-56",
+    "name": "Mutton",
+    "type": "red",
+    "category": "Lamb, goat & other mammals",
+    "note": "Sheep meat is red meat."
+  },
+  {
+    "id": "meat-57",
+    "name": "Goat meat",
+    "type": "red",
+    "category": "Lamb, goat & other mammals",
+    "note": "Fresh goat muscle meat."
+  },
+  {
+    "id": "meat-58",
+    "name": "Venison",
+    "type": "red",
+    "category": "Lamb, goat & other mammals",
+    "note": "Deer meat is red meat; jerky can also be processed."
+  },
+  {
+    "id": "meat-59",
+    "name": "Bison",
+    "type": "red",
+    "category": "Lamb, goat & other mammals",
+    "note": "Fresh bison muscle meat."
+  },
+  {
+    "id": "meat-60",
+    "name": "Elk",
+    "type": "red",
+    "category": "Lamb, goat & other mammals",
+    "note": "Fresh elk meat."
+  },
+  {
+    "id": "meat-61",
+    "name": "Buffalo",
+    "type": "red",
+    "category": "Lamb, goat & other mammals",
+    "note": "Fresh buffalo meat."
+  },
+  {
+    "id": "meat-62",
+    "name": "Horse",
+    "type": "red",
+    "category": "Lamb, goat & other mammals",
+    "note": "Mammalian muscle meat."
+  },
+  {
+    "id": "meat-63",
+    "name": "Rabbit",
+    "type": "red",
+    "category": "Lamb, goat & other mammals",
+    "note": "Mammalian muscle meat; classifications are based on animal type, not color alone."
+  }
+];
+
 /* Source-linked vegan athlete profiles. Update dates, evidence, and photo credits together. */
 const VEGAN_ATHLETE_PROFILES = [
   {
@@ -364,6 +809,10 @@ document.addEventListener('alpine:init', function() {
       athleteQuery: '',
       athleteSportFilter: 'All',
       resourceQuery: '',
+      meatSearch: '',
+      meatType: 'all',
+      meatCategory: 'All',
+      meatEntries: MEAT_HEALTH_ENTRIES,
       resourceCategory: 'All',
       resourceCardSize: 'large',
       evidenceQuery: '',
@@ -607,9 +1056,20 @@ document.addEventListener('alpine:init', function() {
       transitionTasksByPath: {},
 
       // ---- Computed Getters ----
+      get meatCategories() {
+        return [...new Set(this.meatEntries.filter(item => this.meatType === 'all' || item.type === this.meatType).map(item => item.category))];
+      },
+      get filteredMeatEntries() {
+        const q = this.normalizeSearchQuery(this.meatSearch);
+        return this.meatEntries.filter(item =>
+          (this.meatType === 'all' || item.type === this.meatType) &&
+          (this.meatCategory === 'All' || item.category === this.meatCategory) &&
+          (!q || this.normalizeSearchQuery([item.name,item.category,item.type,item.note].join(' ')).includes(q))
+        );
+      },
       get groupedSearchResults() {
         const results = this.globalSearchResults;
-        const groups = { 'Animals': [], 'Products': [], 'Ingredients': [], 'Everyday Items': [], 'Athletes': [], 'Learn': [], 'Resources': [] };
+        const groups = { 'Animals': [], 'Products': [], 'Ingredients': [], 'Everyday Items': [], 'Athletes': [], 'Learn': [], 'Resources': [], 'Meat & Health': [], 'Nutrition Support': [] };
         results.forEach(item => {
           if (item._type === 'animal') groups['Animals'].push(item);
           else if (item._type === 'product') groups['Products'].push(item);
@@ -618,6 +1078,8 @@ document.addEventListener('alpine:init', function() {
           else if (item._type === 'athlete') groups['Athletes'].push(item);
           else if (item._type === 'learn') groups['Learn'].push(item);
           else if (item._type === 'resource') groups['Resources'].push(item);
+          else if (item._type === 'meat-health') groups['Meat & Health'].push(item);
+          else if (item._type === 'nutrition-help') groups['Nutrition Support'].push(item);
         });
         return groups;
       },
@@ -1065,7 +1527,7 @@ document.addEventListener('alpine:init', function() {
 
       // ---- Navigation ----
       validViewIds() {
-        return ['home', 'explore', 'learn', 'impact', 'athletes', 'resources', 'evidence', 'normalization', 'animals', 'everyday', 'ingredient-library', 'nutrition', 'about', 'calendar'];
+        return ['home', 'explore', 'learn', 'impact', 'athletes', 'resources', 'evidence', 'normalization', 'animals', 'everyday', 'ingredient-library', 'nutrition', 'meat-health', 'about', 'calendar'];
       },
 
       makeHistoryState(extra = {}) {
@@ -1187,6 +1649,18 @@ document.addEventListener('alpine:init', function() {
         this.closeAllModals();
         this.pushHistoryState();
         window.scrollTo({ top: 0, behavior: 'smooth' });
+      },
+
+      // Scroll within this SPA view without changing the URL hash. Plain
+      // #mh-* anchors are interpreted by the router as unknown pages and
+      // incorrectly send visitors back to Home.
+      scrollToMeatSection(sectionId) {
+        if (!['mh-catalog', 'mh-sources'].includes(sectionId)) return;
+        if (this.view !== 'meat-health') this.navigate('meat-health');
+        this.$nextTick(() => {
+          const section = document.getElementById(sectionId);
+          if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
       },
 
       toggleMoreDrawer() {
@@ -1311,6 +1785,18 @@ document.addEventListener('alpine:init', function() {
           }
         });
 
+
+        this.meatEntries.forEach(food => {
+          const searchable = this.normalizeSearchQuery([food.name, food.category, food.type, food.note, 'meat carcinogen colorectal cancer health'].join(' '));
+          if (searchable.includes(q)) results.push({ ...food, _type: 'meat-health', displayName: food.name, emoji: food.type === 'processed' ? '🥓' : '🥩' });
+        });
+
+        // One discoverable gateway to vetted RD/RDN help, rather than sending users to unverified services.
+        const nutritionHelpTerms = 'find a plant based dietitian registered nutritionist doctor physician nutrition counseling b12 pcrm challenge 22 free vegan nutrition support';
+        if (this.normalizeSearchQuery(nutritionHelpTerms).includes(q)) {
+          results.push({ id:'nutrition-help', _type:'nutrition-help', displayName:'Plant-based dietitians and nutrition support', emoji:'🥗' });
+        }
+
         // Evidence Library is part of the app's unified search, too.
         this.evidenceClaims.forEach(claim => {
           const searchable = [
@@ -1361,6 +1847,13 @@ document.addEventListener('alpine:init', function() {
           this.resourceCategory = 'All';
           this.navigate('resources');
           this.showToast('Showing resource: ' + (item.displayName || item.title));
+        } else if (item._type === 'nutrition-help') {
+          this.navigate('nutrition');
+        } else if (item._type === 'meat-health') {
+          this.meatSearch = item.name;
+          this.meatType = item.type;
+          this.meatCategory = 'All';
+          this.navigate('meat-health');
         } else if (item._type === 'evidence') {
           this.navigate('evidence');
           this.openEvidenceClaim(item);

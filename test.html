@@ -3,7 +3,7 @@
   <head>
     <title>Go Vegan — Every Second Counts</title>
     <meta charset="utf-8">
-    <meta name="app-version" content="2.5.0">
+    <meta name="app-version" content="2.6.0">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, interactive-widget=resizes-content, viewport-fit=cover">
     <meta name="description" content="See the reality of animal exploitation, confront the excuses, and take direct action with trusted vegan resources.">
     <meta name="author" content="Michael Schwartz">
@@ -91,6 +91,7 @@
                   <button type="button" @click="navigate('everyday'); open = false" class="menu-item">🏠 Everyday Products</button>
                   <button type="button" @click="navigate('ingredient-library'); open = false" class="menu-item">🧪 Ingredient Library</button>
                   <button type="button" @click="navigate('nutrition'); open = false" class="menu-item">🥗 Nutrition</button>
+                  <button type="button" @click="navigate('meat-health'); open = false" class="menu-item">🩺 Meat &amp; Health</button>
               <button type="button" @click="navigate('athletes'); open = false" class="menu-item">🏆 Vegan Athletes</button>
                   <button type="button" @click="navigate('learn'); open = false" class="menu-item">📖 Learn</button>
                   <button type="button" @click="navigate('impact'); open = false" class="menu-item">🌍 Impact</button>
@@ -321,7 +322,12 @@
               </section>
 
               <!-- Tools -->
-              <section class="home-toolkit">
+        
+      <section class="nh-home-prompt" aria-label="Plant-based dietitian support">
+        <div><span class="nh-eyebrow">A REAL PERSON CAN HELP</span><h3>Questions about vegan nutrition?</h3><p>Find plant-based dietitians, free guided support, and clear answers about B12.</p></div>
+        <button type="button" @click="navigate('nutrition')">Find nutrition support →</button>
+      </section>
+      <section class="home-toolkit">
                 <div class="home-editorial-heading">
                   <span>Everything you already built, in one place</span>
                   <h2>Turn what you believe into what you do.</h2>
@@ -529,7 +535,11 @@
                       <span class="feature-icon" aria-hidden="true">🥗</span>
                       <h4 class="feature-label">Nutrition</h4>
                     </button>
-                    <button type="button" @click="openChecker = true" class="feature-card">
+                                        <button type="button" @click="navigate('meat-health')" class="feature-card">
+                      <span class="feature-icon" aria-hidden="true">🩺</span>
+                      <h4 class="feature-label">Meat &amp; Health</h4>
+                    </button>
+<button type="button" @click="openChecker = true" class="feature-card">
                       <span class="feature-icon" aria-hidden="true">🔍</span>
                       <h4 class="feature-label">Checker</h4>
                     </button>
@@ -1340,13 +1350,124 @@
         </div>
       </div>
 
+
+      <!-- MEAT & HEALTH — independent, source-linked education view -->
+      <div x-show="view === 'meat-health'" x-transition:enter.duration.300ms>
+        <div class="view view-meat-health">
+          <div class="view-container meat-health-container">
+            <section class="mh-hero" aria-labelledby="mh-title">
+              <div class="mh-hero-top"><span class="mh-eyebrow">EVIDENCE GUIDE · FOOD & HEALTH</span><span class="mh-source-tag">WHO · IARC · WCRF</span></div>
+              <h2 id="mh-title">What's in your <em>meat?</em></h2>
+              <p class="mh-hero-lead">Bacon, hot dogs, ham, steak, burgers: familiar foods, very different classifications. Explore what counts as processed or red meat, what research actually says, and the health outcomes associated with eating them.</p>
+              <div class="mh-hero-actions"><button type="button" @click="scrollToMeatSection('mh-catalog')" class="mh-button mh-button-light">Browse the food guide ↓</button><button type="button" @click="scrollToMeatSection('mh-sources')" class="mh-button mh-button-outline">Check the research ↗</button></div>
+              <div class="mh-hero-decoration" aria-hidden="true">01 / KNOW WHAT YOU EAT</div>
+            </section>
+
+            <section class="mh-section" aria-labelledby="mh-at-glance">
+              <div class="mh-section-head"><div><p class="mh-kicker">THE FACTS</p><h3 id="mh-at-glance">At a glance</h3></div><p>These classifications describe <strong>strength of evidence</strong>, not identical danger levels.</p></div>
+              <div class="mh-stat-grid">
+                <article class="mh-stat-card mh-stat-coral"><span class="mh-stat-icon" aria-hidden="true">●</span><span class="mh-stat-tag">Processed meat</span><strong>Group 1</strong><p><b>Carcinogenic to humans.</b> WHO/IARC finds sufficient evidence that processed meat causes colorectal cancer.</p><a href="https://www.who.int/news-room/questions-and-answers/item/cancer-carcinogenicity-of-the-consumption-of-red-meat-and-processed-meat/" target="_blank" rel="noopener noreferrer">WHO classification ↗</a></article>
+                <article class="mh-stat-card"><span class="mh-stat-icon" aria-hidden="true">◉</span><span class="mh-stat-tag">Unprocessed red meat</span><strong>Group 2A</strong><p><b>Probably carcinogenic to humans.</b> Observational evidence is more limited; the causal conclusion is less certain.</p><a href="https://www.who.int/news-room/questions-and-answers/item/cancer-carcinogenicity-of-the-consumption-of-red-meat-and-processed-meat/" target="_blank" rel="noopener noreferrer">WHO classification ↗</a></article>
+                <article class="mh-stat-card"><span class="mh-stat-icon" aria-hidden="true">↗</span><span class="mh-stat-tag">Colorectal cancer</span><strong>+18%</strong><p><b>Relative risk estimate</b> for every 50 g of processed meat consumed <em>daily</em>, compared with a lower intake. Not an 18-point increase in absolute risk.</p><a href="https://www.wcrf.org/about-us/news-and-blogs/red-meat-and-bowel-cancer-risk-how-strong-is-the-evidence/" target="_blank" rel="noopener noreferrer">WCRF 18% estimate ↗</a></article>
+                <article class="mh-stat-card"><span class="mh-stat-icon" aria-hidden="true">↗</span><span class="mh-stat-tag">Type 2 diabetes</span><strong>+15%</strong><p><b>Relative association</b> per 50 g of processed meat consumed daily in a 2024 analysis of nearly 2 million adults. Association alone does not prove causation.</p><a href="https://pubmed.ncbi.nlm.nih.gov/39174161/" target="_blank" rel="noopener noreferrer">2024 cohort analysis ↗</a></article>
+              </div>
+              <aside class="mh-accuracy-note"><strong>Important context:</strong> Group 1 also includes tobacco smoking, but this <em>does not</em> mean processed meat is as dangerous as smoking. IARC groups indicate confidence that a cancer hazard exists, not how large an individual's risk is. As an illustration of <em>relative</em> risk only, an 18% increase would change a hypothetical 4% baseline risk to 4.72%, <strong>not</strong> 22%. Real personal risk varies.</aside>
+            </section>
+
+            <section class="mh-section" aria-labelledby="mh-explained">
+              <div class="mh-section-head"><div><p class="mh-kicker">THE DISTINCTION</p><h3 id="mh-explained">Two categories. One important overlap.</h3></div></div>
+              <div class="mh-explain-grid">
+                <article class="mh-explain-panel"><div class="mh-explain-symbol" aria-hidden="true">01</div><h4>Processed meat</h4><p>Meat transformed through <b>curing, salting, fermentation, smoking or other preservation/flavour-enhancing processes</b>. It can be beef, pork, poultry, other meat, offal or meat by-products.</p><p class="mh-panel-example">Examples: bacon, ham, hot dogs, salami, jerky, cured turkey cold cuts.</p></article>
+                <article class="mh-explain-panel"><div class="mh-explain-symbol" aria-hidden="true">02</div><h4>Red meat</h4><p>Fresh or otherwise unprocessed <b>mammalian muscle meat</b>, such as beef, pork, lamb, goat, veal and venison. Red meat is defined by the animal, not its color after cooking.</p><p class="mh-panel-example">Examples: plain steak, fresh pork chop, lamb, unseasoned ground beef.</p></article>
+              </div>
+              <div class="mh-overlap"><span aria-hidden="true">↔</span><p><b>Both can apply.</b> Bacon is processed meat <em>made from red meat</em>; smoked, cured turkey is processed meat <em>made from poultry</em>. Plain ground beef is red meat but not automatically processed. Simply cutting, freezing, grinding or cooking meat does not make it “processed meat” under IARC's preservation-based definition.</p></div>
+            </section>
+
+            <section class="mh-section" aria-labelledby="mh-outcomes">
+              <div class="mh-section-head"><div><p class="mh-kicker">HEALTH OUTCOMES</p><h3 id="mh-outcomes">What the evidence connects</h3></div><p>Different outcomes have different strengths of evidence. Read each one separately.</p></div>
+              <div class="mh-risk-grid">
+                <article class="mh-risk-card"><span class="mh-risk-level">ESTABLISHED CAUSAL LINK</span><h4>Colorectal cancer</h4><p>WHO/IARC concludes that eating processed meat <strong>causes colorectal cancer</strong>. The estimated relative risk rises about 18% per 50 g/day. Red meat is classified as probably carcinogenic; an older estimate suggests about 17% higher relative colorectal risk per 100 g/day <em>if the association is causal</em>.</p><a href="https://www.wcrf.org/about-us/news-and-blogs/red-meat-and-bowel-cancer-risk-how-strong-is-the-evidence/" target="_blank" rel="noopener noreferrer">WCRF risk estimates ↗</a></article>
+                <article class="mh-risk-card"><span class="mh-risk-level mh-risk-assoc">OBSERVATIONAL ASSOCIATION</span><h4>Type 2 diabetes</h4><p>A 2024 pooled analysis of 31 cohorts found <strong>15% higher incidence</strong> per 50 g/day of processed meat and <strong>10% higher incidence</strong> per 100 g/day of unprocessed red meat. These adjusted associations do not establish that meat alone caused each case.</p><a href="https://pubmed.ncbi.nlm.nih.gov/39174161/" target="_blank" rel="noopener noreferrer">The Lancet Diabetes &amp; Endocrinology ↗</a></article>
+                <article class="mh-risk-card"><span class="mh-risk-level mh-risk-assoc">CARDIOVASCULAR EVIDENCE</span><h4>Heart disease</h4><p>Higher red and processed meat consumption has been linked to <strong>coronary heart disease</strong> in long-term studies. Some products contribute substantial saturated fat and sodium. Risk also depends on the foods substituted for meat and overall diet quality.</p><a href="https://www.wcrf.org/research-policy/evidence-for-our-recommendations/limit-red-processed-meat/" target="_blank" rel="noopener noreferrer">WCRF evidence ↗</a></article>
+                <article class="mh-risk-card"><span class="mh-risk-level mh-risk-mechanism">DIETARY RISK FACTOR</span><h4>High blood pressure &amp; stroke</h4><p>Many cured and deli meats are high in <strong>sodium</strong>. Excess sodium can raise blood pressure, increasing risk of <strong>stroke and cardiovascular disease</strong>. This is a sodium-related pathway, not proof that every meat product directly causes hypertension.</p><a href="https://www.cdc.gov/salt/about/index.html" target="_blank" rel="noopener noreferrer">CDC sodium and health ↗</a></article>
+                <article class="mh-risk-card"><span class="mh-risk-level mh-risk-limited">LIMITED OR INCONCLUSIVE</span><h4>Other cancers</h4><p>WHO/IARC reports an observed association between processed meat and <strong>stomach cancer</strong>, but says the evidence is <strong>not conclusive</strong>. Red meat has limited evidence of associations with <strong>pancreatic and prostate cancers</strong>; do not treat these as established causes.</p><a href="https://www.who.int/news-room/questions-and-answers/item/cancer-carcinogenicity-of-the-consumption-of-red-meat-and-processed-meat/" target="_blank" rel="noopener noreferrer">WHO evidence levels ↗</a></article>
+                <article class="mh-risk-card"><span class="mh-risk-level mh-risk-mechanism">MECHANISM RESEARCH</span><h4>How processing &amp; cooking matter</h4><p>Curing can contribute to formation of <strong>N-nitroso compounds</strong>. Cooking meat at high temperatures can generate <strong>heterocyclic amines (HCAs)</strong> and <strong>polycyclic aromatic hydrocarbons (PAHs)</strong>. These plausible mechanisms help explain concern but do not quantify an individual's cancer risk.</p><a href="https://www.cancer.gov/about-cancer/causes-prevention/risk/diet/cooked-meats-fact-sheet" target="_blank" rel="noopener noreferrer">National Cancer Institute ↗</a></article>
+              </div>
+            </section>
+
+            <section class="mh-section" id="mh-catalog" aria-labelledby="mh-catalog-heading">
+              <div class="mh-section-head"><div><p class="mh-kicker">IDENTIFY THE FOOD</p><h3 id="mh-catalog-heading">The meat index</h3></div><p>Search an extensive example library. Preparation and ingredient labels still matter.</p></div>
+              <div class="mh-catalog-panel">
+                <div class="mh-searchbar"><span aria-hidden="true">⌕</span><input type="search" x-model.debounce.150ms="meatSearch" placeholder="Search bacon, turkey, ground beef, salami…" aria-label="Search meat examples"><button type="button" x-show="meatSearch" @click="meatSearch = ''" aria-label="Clear meat search">✕</button></div>
+                <div class="mh-filter-row" role="group" aria-label="Filter meat types"><button type="button" :aria-pressed="meatType === 'all'" :class="{'selected': meatType === 'all'}" @click="meatType = 'all'; meatCategory = 'All'">All examples</button><button type="button" :aria-pressed="meatType === 'processed'" :class="{'selected': meatType === 'processed'}" @click="meatType = 'processed'; meatCategory = 'All'">Processed meat</button><button type="button" :aria-pressed="meatType === 'red'" :class="{'selected': meatType === 'red'}" @click="meatType = 'red'; meatCategory = 'All'">Unprocessed red meat</button></div>
+                <div class="mh-filter-bottom"><label for="mh-category">Food group <select id="mh-category" x-model="meatCategory"><option value="All">All food groups</option><template x-for="category in meatCategories" :key="category"><option :value="category" x-text="category"></option></template></select></label><span class="mh-count" aria-live="polite"><strong x-text="filteredMeatEntries.length"></strong> examples shown</span></div>
+                <div class="mh-food-grid"><template x-for="food in filteredMeatEntries" :key="food.id"><article class="mh-food-card"><div class="mh-food-card-top"><span class="mh-food-kind" :class="food.type === 'processed' ? 'mh-kind-processed' : 'mh-kind-red'" x-text="food.type === 'processed' ? 'PROCESSED' : 'RED MEAT'"></span><span class="mh-food-category" x-text="food.category"></span></div><h4 x-text="food.name"></h4><p x-text="food.note"></p></article></template></div>
+                <div class="mh-empty" x-show="filteredMeatEntries.length === 0">No exact matches. Try another name or reset the filters. <button type="button" @click="meatSearch='';meatType='all';meatCategory='All'">Reset all filters</button></div>
+              </div>
+              <p class="mh-catalog-note">This is an extensive guide to common food names, not a finite or exhaustive inventory of every regional brand or preparation. “Counts when…” examples depend on how that particular item was preserved. For a packaged food, check the ingredients and processing method.</p>
+            </section>
+
+            <section class="mh-section" aria-labelledby="mh-labels"><div class="mh-section-head"><div><p class="mh-kicker">LABEL LITERACY</p><h3 id="mh-labels">Four common misconceptions</h3></div></div>
+              <div class="mh-myth-grid"><article><span>01</span><h4>“Uncured” means unprocessed.</h4><p>Not necessarily. Bacon labeled “uncured” may still be salted or smoked. Preservation method matters more than front-of-pack wording.</p></article><article><span>02</span><h4>Turkey or chicken can't be processed meat.</h4><p>Wrong. Cured or smoked poultry cold cuts and turkey bacon can fit WHO's processed-meat definition.</p></article><article><span>03</span><h4>All ground meat is processed meat.</h4><p>Grinding by itself is not the preservation-based processing in the IARC category. Plain fresh burger patties are usually unprocessed red meat.</p></article><article><span>04</span><h4>“No added nitrates” removes the concern.</h4><p>Not automatically. Salting, curing, fermentation and smoking can still make a product processed meat; no single label claim establishes safety.</p></article></div>
+            </section>
+
+            <section class="mh-section mh-action-section" aria-labelledby="mh-next"><div class="mh-action-intro"><p class="mh-kicker">WHAT NEXT?</p><h3 id="mh-next">Make an informed swap.</h3><p>The World Cancer Research Fund advises eating <strong>little, if any, processed meat</strong>, and limiting red meat to about <strong>350–500 g cooked weight per week</strong> for people who eat it. Replacing processed meat with beans, lentils, tofu, tempeh, mushrooms or other plant-based foods is a practical place to start. Choose a varied diet with adequate protein, iron and a reliable source of B12 on a vegan diet.</p><div class="mh-hero-actions"><button type="button" @click="navigate('nutrition')" class="mh-button mh-button-solid">Plan plant-based nutrition →</button><button type="button" @click="navigate('explore')" class="mh-button mh-button-outline-dark">Explore alternatives →</button></div></div><aside class="mh-action-note"><b>A useful comparison:</b> Bacon → smoky tempeh or seasoned mushrooms. Deli meats → chickpea salad or baked tofu. Ground beef → lentils, beans or soy crumbles. These are meal ideas, not claims of identical nutrition; compare sodium and saturated fat on substitute labels, too.</aside></section>
+
+            <section class="mh-section mh-source-section" id="mh-sources" aria-labelledby="mh-references"><div class="mh-section-head"><div><p class="mh-kicker">OPEN SCIENCE</p><h3 id="mh-references">Read the original sources</h3></div><p>Every major numeric or health claim above points to its source.</p></div><div class="mh-source-grid">
+              <a href="https://www.who.int/news-room/questions-and-answers/item/cancer-carcinogenicity-of-the-consumption-of-red-meat-and-processed-meat/" target="_blank" rel="noopener noreferrer"><span>01 · WHO / IARC</span><strong>Red and processed meat: classifications, definitions &amp; cancer evidence</strong><em>Official Q&amp;A ↗</em></a>
+              <a href="https://www.wcrf.org/research-policy/evidence-for-our-recommendations/limit-red-processed-meat/" target="_blank" rel="noopener noreferrer"><span>02 · WCRF</span><strong>Cancer prevention recommendations and intake guidance</strong><em>Evidence review ↗</em></a>
+              <a href="https://pubmed.ncbi.nlm.nih.gov/39174161/" target="_blank" rel="noopener noreferrer"><span>03 · LANCET, 2024</span><strong>Nearly 2 million adults: meat consumption and type 2 diabetes incidence</strong><em>Peer-reviewed analysis ↗</em></a>
+              <a href="https://www.cdc.gov/salt/about/index.html" target="_blank" rel="noopener noreferrer"><span>04 · CDC</span><strong>Excess sodium, high blood pressure, heart disease &amp; stroke</strong><em>Public health guidance ↗</em></a>
+              <a href="https://www.heart.org/en/healthy-living/healthy-eating/eat-smart/fats/saturated-fats" target="_blank" rel="noopener noreferrer"><span>05 · AMERICAN HEART ASSOCIATION</span><strong>Saturated fat, LDL cholesterol and cardiovascular health</strong><em>Nutrition guidance ↗</em></a>
+              <a href="https://www.cancer.gov/about-cancer/causes-prevention/risk/diet/cooked-meats-fact-sheet" target="_blank" rel="noopener noreferrer"><span>06 · NATIONAL CANCER INSTITUTE</span><strong>High-heat meat cooking and potentially harmful compounds</strong><em>Research explainer ↗</em></a>
+              <a href="https://www.aicr.org/cancer-prevention/food-facts/processed-meat/" target="_blank" rel="noopener noreferrer"><span>07 · AICR</span><strong>Processed meat: colorectal cancer evidence and practical prevention</strong><em>Food facts ↗</em></a>
+            </div><p class="mh-disclaimer"><strong>Educational information, not medical advice.</strong> The evidence concerns population-level risk, not a prediction for any individual or the cause of a particular diagnosis. Observational correlations are labeled as such; consult a qualified healthcare professional about personal concerns. Source review: November 2026.</p></section>
+          </div>
+        </div>
+      </div>
+
       <!-- NUTRITION VIEW -->
           <div x-show="view === 'nutrition'" x-transition:enter.duration.300ms>
             <div class="view view-nutrition">
               <div class="view-container view-container-narrow">
                 <h2 class="view-title">Nutrition</h2>
                 <p class="view-subtitle">Explore important nutrition topics for plant-based eating.</p>
-                <div class="nutrient-list">
+                                <button type="button" @click="navigate('meat-health')" class="mh-nutrition-jump" style="display:block;width:100%;text-align:left;padding:1.05rem 1.2rem;margin:1rem 0 1.5rem;border:1px solid var(--border-subtle);border-radius:15px;background:var(--bg-surface-alt);color:var(--text-primary);cursor:pointer;font-weight:800;">🩺 Read the evidence on processed meat, red meat, cancer and heart health →</button>
+
+                <!-- Nutrition help: verified directories, training, B12 science. -->
+                <section class="nh-section" aria-labelledby="nh-title">
+                  <div class="nh-hero">
+                    <div class="nh-hero-copy">
+                      <span class="nh-eyebrow">FREE RESOURCES · PERSONALIZED GUIDANCE</span>
+                      <h3 id="nh-title">You don't have to figure out nutrition alone.</h3>
+                      <p>Have questions about going vegan, meeting your nutrient needs, or feeding your family? A <strong>registered dietitian experienced in plant-based nutrition</strong> can tailor advice to your health, budget, preferences, and life stage.</p>
+                      <div class="nh-hero-actions">
+                        <a href="https://www.pcrm.org/findadietitian" target="_blank" rel="noopener noreferrer" class="nh-primary-link">Find a plant-based dietitian ↗</a>
+                        <a href="https://challenge22.com/" target="_blank" rel="noopener noreferrer" class="nh-secondary-link">Join free nutrition support ↗</a>
+                      </div>
+                    </div>
+                    <div class="nh-hero-mark" aria-hidden="true"><span>RD</span><small>Nutrition is<br>their specialty.</small></div>
+                  </div>
+                  <div class="nh-section-heading"><div><span class="nh-eyebrow">START HERE</span><h3>Find the right support.</h3></div><p>Free program or free directory? They are not the same thing.</p></div>
+                  <div class="nh-support-grid">
+                    <article class="nh-support-card nh-featured"><span class="nh-chip">FREE TO SEARCH</span><h4>Physicians Committee (PCRM)</h4><p>Find <strong>registered, plant-based dietitians</strong> for in-person or telehealth counseling. The directory is free; appointments, insurance acceptance, and fees depend on the provider.</p><a href="https://www.pcrm.org/findadietitian" target="_blank" rel="noopener noreferrer">Browse specialist directory <span aria-hidden="true">↗</span></a></article>
+                    <article class="nh-support-card"><span class="nh-chip">FREE PROGRAM</span><h4>Challenge 22</h4><p>A 22-day guided vegan challenge with recipes, mentors, group support, and advice from registered dietitians overseeing the program. Not a guaranteed private medical consultation.</p><a href="https://challenge22.com/" target="_blank" rel="noopener noreferrer">Join Challenge 22 <span aria-hidden="true">↗</span></a></article>
+                    <article class="nh-support-card"><span class="nh-chip">FREE PROGRAM</span><h4>10 Weeks to Vegan</h4><p>Vegan Outreach's free transition program provides recipes and nutrition tips; associated community groups offer access to dietitians for nutrition questions.</p><a href="https://10weeks.org/10-weeks-to-vegan/" target="_blank" rel="noopener noreferrer">Explore 10 Weeks to Vegan <span aria-hidden="true">↗</span></a></article>
+                    <article class="nh-support-card"><span class="nh-chip nh-chip-neutral">ADDITIONAL COMMUNITY</span><h4>Animal Justice 21</h4><p>An ethics-focused vegan learning community. Its availability of <strong>free one-to-one dietitian consultations is not independently verified</strong>; check directly before expecting that service.</p><a href="https://www.animaljustice21.org/" target="_blank" rel="noopener noreferrer">Visit Animal Justice 21 <span aria-hidden="true">↗</span></a></article>
+                  </div>
+                  <div class="nh-section-heading nh-lower-heading"><div><span class="nh-eyebrow">KNOW THE DIFFERENCE</span><h3>Who should you ask?</h3></div><p>Different professionals bring different skills. The strongest care often combines them.</p></div>
+                  <div class="nh-professional-grid">
+                    <article class="nh-pro-card"><div class="nh-pro-heading"><span class="nh-pro-index">01</span><span>MD / DO</span></div><h4>Physician (doctor)</h4><p><strong>Best for:</strong> diagnosis, medical tests, treatment, prescriptions, and assessing symptoms or health conditions.</p><p><strong>Typical U.S. training:</strong> about 4 years of college, 4 years of medical school, then 3–8 years of residency/specialty training (roughly 11–16 years overall).</p><small>Nutrition training varies. Some physicians specialize in it; others can refer you to an RD/RDN. A doctor and dietitian are partners, not substitutes.</small></article>
+                    <article class="nh-pro-card nh-pro-highlight"><div class="nh-pro-heading"><span class="nh-pro-index">02</span><span>RD / RDN</span></div><h4>Registered dietitian</h4><p><strong>Best for:</strong> individualized eating plans, nutrient adequacy, food allergies, medical nutrition therapy, and plant-based meal planning.</p><p><strong>U.S. credential:</strong> accredited dietetics coursework, required supervised practice, national exam, continuing education, and any required state licensing. New exam candidates have needed a graduate degree since January 2024; commonly <strong>5+ years</strong> of higher education, with program paths varying.</p><small>Look for an RD/RDN with demonstrated vegan or plant-based expertise; the credential alone does not prove a specialty.</small></article>
+                    <article class="nh-pro-card"><div class="nh-pro-heading"><span class="nh-pro-index">03</span><span>TITLE VARIES</span></div><h4>Nutritionist</h4><p><strong>Best for:</strong> depends on the person's actual credentials and scope of practice; some are highly trained professionals.</p><p><strong>Training:</strong> no single nationwide education requirement is established by the word “nutritionist” alone. Some states regulate the term or nutrition practice; others do not.</p><small>Ask about degrees, supervised practice, state licensure, and recognized credentials such as RD/RDN. Avoid assuming a title guarantees clinical qualifications.</small></article>
+                  </div>
+                  <p class="nh-team-note"><strong>When to use both:</strong> For medical conditions, pregnancy, children, eating disorders, suspected deficiencies, or medication–diet interactions, involve your clinician <em>and</em> a qualified dietitian experienced with your needs.</p>
+                  <div class="nh-b12-panel"><div class="nh-b12-copy"><span class="nh-eyebrow">B12 WITHOUT THE MYTHS</span><h3>You need B12. You don't need meat to obtain it.</h3><p>Vitamin B12 is produced by certain microorganisms, not by animals or plants. Animal foods can contain it through microbial pathways and animal feeding practices; <strong>not all livestock simply receive a B12 supplement</strong>.</p><p>Unfortified plant foods are <strong>not dependable B12 sources</strong>. People eating vegan should plan a consistent source through <strong>verified fortified foods and/or a B12 supplement</strong>. Fortified soy milk, nutritional yeast, and plant-based cheeses count <em>only when the label lists B12</em>; products vary.</p><div class="nh-b12-stat"><strong>2.4 μg/day</strong><span>Recommended intake for most adults; not a stand-alone supplement dosing schedule. Needs differ by age, pregnancy, breastfeeding, and absorption.</span></div><a href="https://ods.od.nih.gov/factsheets/VitaminB12-Consumer/" target="_blank" rel="noopener noreferrer" class="nh-text-link">Check the NIH B12 fact sheet ↗</a></div><div class="nh-b12-checklist"><h4>Four questions to ask</h4><ol><li>Which of my foods are actually fortified with B12, and how much do they provide?</li><li>Is my B12 source consistent and sufficient, or would a supplement be simpler?</li><li>Should we review B12 status, iron, vitamin D, iodine, calcium, or other needs given my circumstances?</li><li>Can you help me build a realistic plant-based plan for my budget and routine?</li></ol><small>Do not rely on unfortified nutritional yeast, seaweed, or untested fermented foods for B12. A clinician can assess suspected deficiency.</small></div></div>
+                  <div class="nh-evidence"><span>Verify the information</span><div><a href="https://www.eatrightpro.org/acend/students-and-advancing-education/professional-information-and-scholarships/registered-dietitian-nutritionist-fact-sheet" target="_blank" rel="noopener noreferrer">Academy: RD/RDN qualifications ↗</a><a href="https://www.eatright.org/at-the-table/who-should-you-trust-for-nutrition-advice" target="_blank" rel="noopener noreferrer">Academy: Dietitian vs. nutritionist ↗</a><a href="https://students-residents.aamc.org/choosing-medical-career/what-consider-you-decide-career-medicine" target="_blank" rel="noopener noreferrer">AAMC: Physician education ↗</a><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5788147/" target="_blank" rel="noopener noreferrer">Peer-reviewed: B12 and microbes ↗</a></div></div>
+                  <p class="nh-fine-print">Educational information, not individualized medical advice. Services, pricing, and telehealth availability can change. Directory listings are not endorsements; verify a practitioner's credentials, licensing and fees before booking. Reviewed November 2026.</p>
+                </section>
+
+<div class="nutrient-list">
                   <template x-for="nutrient in nutrients" :key="nutrient.id">
                     <div class="nutrient-card">
                       <h3 class="nutrient-title" x-text="nutrient.name"></h3>
@@ -1780,6 +1901,7 @@
           <button type="button" @click="navigate('everyday'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🏠</span> Everyday</button>
           <button type="button" @click="navigate('ingredient-library'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🧪</span> Ingredients</button>
           <button type="button" @click="navigate('nutrition'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🥗</span> Nutrition</button>
+          <button type="button" @click="navigate('meat-health'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🩺</span> Meat &amp; Health</button>
       <button type="button" @click="navigate('athletes'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">🏆</span> Vegan Athletes</button>
           <button type="button" @click="openChecker = true; moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">✅</span> Ingredient Checker</button>
           <button type="button" @click="shareApp(); moreOpen = false" class="tiny-share-menu-item" role="menuitem"><span class="drawer-icon" aria-hidden="true">📤</span> Share Go Vegan</button>
