@@ -100,7 +100,8 @@
                   <button type="button" @click="navigate('resources'); open = false" class="menu-item">🔗 Resources</button>
                   <button type="button" @click="navigate('calendar'); open = false" class="menu-item">📅 Advocacy Calendar</button>
                   <a href="https://michaelsboost.com/donate" target="_blank" rel="noopener noreferrer" class="menu-item mx-5">♥ Donate</a>
-                  <a href="https://michaelsboost.github.io/Zerra" target="_blank" rel="noopener noreferrer" class="menu-item mx-5">🌎 Explore Zerra</a>
+                  <a href="https://michaelsboost.com/sentia/" target="_blank" rel="noopener noreferrer" class="menu-item mx-5">🧠 Explore Sentia ↗</a>
+              <a href="https://michaelsboost.github.io/Zerra" target="_blank" rel="noopener noreferrer" class="menu-item mx-5">🌎 Explore Zerra</a>
                   <a href="https://michaelsboost.com/Urban-Forager/" target="_blank" rel="noopener noreferrer" class="menu-item mx-5">🌿 Explore Urban Forager</a>
                   <button type="button" @click="navigate('about'); open = false" class="menu-item">ℹ️ About</button>
                 </div>
@@ -192,6 +193,9 @@
                 </div>
               </section>
 
+      <section class="sentia-feature" aria-labelledby="sentia-home-title">
+  <div class="sentia-feature-inner"><div class="sentia-feature-symbol" aria-hidden="true">🧠</div><div class="sentia-feature-copy"><span class="sentia-kicker">FREE · OPEN-SOURCE · INTERACTIVE LEARNING</span><h2 id="sentia-home-title">Meet Sentia 🌱</h2><p>Go deeper into veganism with interactive quizzes, challenges, and additional research on animal ethics, environmental impact, nutrition, and more. Explore at your own pace in a separate companion app.</p><a class="sentia-launch" href="https://michaelsboost.com/sentia/" target="_blank" rel="noopener noreferrer">Launch Sentia <span aria-hidden="true">↗</span></a><small>Opens in a new tab · Go Vegan stays open</small></div></div>
+</section>
       <!-- Context-aware advocacy note: today, this month, or the next upcoming date. -->
       <section id="home-advocacy-spotlight" class="home-advocacy-spotlight" aria-labelledby="home-advocacy-title" hidden>
         <div class="home-advocacy-inner">
@@ -736,7 +740,8 @@
               <div class="view-container view-container-narrow">
                 <h2 class="view-title">Learn</h2>
                 <p class="view-subtitle">Factual, compassionate guidance for your vegan journey.</p>
-                <div class="learn-list">
+                <aside class="sentia-learn" aria-labelledby="sentia-learn-title"><span class="sentia-kicker">KEEP EXPLORING</span><h3 id="sentia-learn-title">Learn interactively with Sentia 🧠</h3><p>Put what you've learned into practice with quizzes and challenges, and discover additional research beyond Go Vegan.</p><a href="https://michaelsboost.com/sentia/" target="_blank" rel="noopener noreferrer">Explore Sentia ↗</a></aside>
+            <div class="learn-list">
                   <template x-for="article in learnArticles" :key="article.id">
                     <div class="learn-item">
                       <button type="button" @click="toggleLearnArticle(article.id)" class="learn-toggle" :aria-expanded="expandedLearn.includes(article.id)" :aria-controls="'learn-panel-' + article.id" :id="'learn-btn-' + article.id">
@@ -1602,7 +1607,8 @@
                   <p><strong>Go Vegan</strong> is a free, open‑source educational application designed to help people understand veganism and make the switch, step by step.</p>
                   <p>We believe in progress, not perfection. Veganism is defined by The Vegan Society as <em>“a philosophy and way of living which seeks to exclude—as far as is possible and practicable—all forms of exploitation of, and cruelty to, animals for food, clothing or any other purpose.”</em></p>
                   <p>This app is built with compassion and respect for everyone, regardless of where they are on their journey. We do not shame or judge. We recognize that disability, medication needs, health conditions, poverty, food access, geography, and survival circumstances can affect what is possible for each person.</p>
-                  <div class="companion-project">
+                  <div class="companion-project"><p class="companion-project-label">Companion app · Interactive education</p><h3>Explore further with Sentia</h3><p>Sentia is a separate, free and open-source interactive vegan education app featuring quizzes, challenges, and additional research on animal ethics, environmental impact, nutrition, and veganism.</p><a href="https://michaelsboost.com/sentia/" target="_blank" rel="noopener noreferrer" class="companion-project-link">Launch Sentia <span aria-hidden="true">↗</span></a></div>
+              <div class="companion-project">
                     <p class="companion-project-label">Companion project</p>
                     <h3>Continue the connection with Zerra</h3>
                     <p>Go Vegan focuses on animals, normalized exploitation, plant-based alternatives, and compassionate action. Zerra is a separate companion app that explores our wider relationship with Mother Earth through ecological literacy, practical skills, responsibility, reciprocity, and regeneration.</p>
@@ -2003,6 +2009,7 @@
           <a href="https://michaelsboost.com/donate" target="_blank" rel="noopener noreferrer" role="menuitem" class="donate-menu-item">
               <span class="drawer-icon drawer-heart" aria-hidden="true">♥</span> Donate
           </a>
+          <a href="https://michaelsboost.com/sentia/" target="_blank" rel="noopener noreferrer" role="menuitem"><span class="drawer-icon" aria-hidden="true">🧠</span> Explore Sentia ↗</a>
           <a href="https://michaelsboost.github.io/Zerra" target="_blank" rel="noopener noreferrer" role="menuitem"><span class="drawer-icon" aria-hidden="true">🌎</span> Explore Zerra</a>
           <a href="https://michaelsboost.com/Urban-Forager/" target="_blank" rel="noopener noreferrer" role="menuitem"><span class="drawer-icon" aria-hidden="true">🌿</span> Explore Urban Forager</a>
           <button type="button" @click="navigate('about'); moreOpen = false" role="menuitem"><span class="drawer-icon" aria-hidden="true">ℹ️</span> About</button>

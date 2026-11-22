@@ -5,7 +5,7 @@ export default {
   output: {
     file: 'dist/script.js',
     format: 'iife', // Immediately Invoked Function Expression, suitable for <script> tags
-    name: 'zerra'
+    name: 'govegan'
   },
   plugins: [
     
